@@ -1,0 +1,268 @@
+
+{
+    "name": "InventoryLot ripenessStatus",
+    "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+    "instructions":
+    {
+        "ifEvent":
+        {
+            "AND": [
+                {
+                    "EQUALS": [
+                        {
+                            "select": "eventCode",
+                            "type": "String"
+                        },
+                        {
+                            "value": "objectAdhocUpsertedEvent",
+                            "type": "String"
+                        }
+                    ]
+                },
+                {
+                    "EQUALS": [
+                        {
+                            "select": "objectType",
+                            "type": "String"
+                        },
+                        {
+                            "value": "InventoryLot",
+                            "type": "String"
+                        }
+                    ]
+                },
+                {
+                    "EXISTS": [
+                        {
+                            "select": "eventDetails.changedFieldPaths.customAttributes.ripenessFloat",
+                            "type": "String"
+                        }
+                    ]
+                }
+            ]
+        },
+        "sendObjectUpsertEvents":
+        {
+            "objects":
+            {
+                "id":
+                {
+                    "SELECT": "eventDetails.businessObject.id"
+                },
+                "type":
+                {
+                    "VALUE": "InventoryLot"
+                }
+            },
+            "map": [
+                {
+                    "sequence": 1,
+                    "expression":
+                    {
+                        "QUERY":
+                        {
+                            "hint": "objectwarehouse-adhoc",
+                            "output_local":
+                            {
+                                "fields": [
+                                    "customAttributes.ripenessUpperLimitFloat",
+                                    "customAttributes.ripenessLowerLimitFloat"
+                                ],
+                                "resultAlias": "current_product"
+                            },
+                            "advancedFilter":
+                            {
+                                "AND": [
+                                    {
+                                        "EQUALS": [
+                                            {
+                                                "FIELD": "id",
+                                                "TYPE": "String"
+                                            },
+                                            {
+                                                "TYPE": "String",
+                                                "SELECT": "eventDetails.businessObject.product.id"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "EQUALS": [
+                                            {
+                                                "FIELD": "type",
+                                                "TYPE": "String"
+                                            },
+                                            {
+                                                "VALUE": "Product",
+                                                "TYPE": "String"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                {
+                    "sequence": 2,
+                    "output":
+                    {
+                        "resultFieldPath": "customAttributes.ripenessAboveUpperLimitFloat",
+                        "resultType": "Float"
+                    },
+                    "expression":
+                    {
+                        "max": [
+                            {
+                                "minus": [
+                                    {
+                                        "SELECT": "eventDetails.businessObject.customAttributes.ripenessFloat",
+                                        "TYPE": "Float"
+                                    },
+                                    {
+                                        "SELECT_LOCAL": "current_product.customAttributes.ripenessUpperLimitFloat",
+                                        "TYPE": "Float"
+                                    }
+                                ]
+                            },
+                            {
+                                "VALUE": "0.0",
+                                "TYPE": "Float"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "sequence": 3,
+                    "output":
+                    {
+                        "resultFieldPath": "customAttributes.ripenessBelowLowerLimitFloat",
+                        "resultType": "Float"
+                    },
+                    "expression":
+                    {
+                        "max": [
+                            {
+                                "minus": [
+                                    {
+                                        "SELECT_LOCAL": "current_product.customAttributes.ripenessLowerLimitFloat",
+                                        "TYPE": "Float"
+                                    },
+                                    {
+
+                                        "SELECT": "eventDetails.businessObject.customAttributes.ripenessFloat",
+                                        "TYPE": "Float"
+                                    }
+                                ]
+                            },
+                            {
+                                "VALUE": "0.0",
+                                "TYPE": "Float"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "sequence": 4,
+                    "output":
+                    {
+                        "resultFieldPath": "customAttributes.ripenessStatusString",
+                        "resultType": "String"
+                    },
+                    "expression":
+                    {
+                        "VALUE": "HIGH",
+                        "TYPE": "STRING"
+                    },
+                    "IF":
+                    {
+                        "GREATER_THAN": [
+                            {
+                                "SELECT": "eventDetails.businessObject.customAttributes.ripenessFloat",
+                                "TYPE": "Float"
+                            },
+                            {
+                                "SELECT_LOCAL": "current_product.customAttributes.ripenessUpperLimitFloat",
+                                "TYPE": "Float"
+                            }
+
+                        ]
+                    },
+                    "breakOnMatch": true
+                },
+                {
+                    "sequence": 5,
+                    "output":
+                    {
+                        "resultFieldPath": "customAttributes.ripenessStatusString",
+                        "resultType": "String"
+                    },
+                    "expression":
+                    {
+                        "VALUE": "LOW",
+                        "TYPE": "STRING"
+                    },
+                    "IF":
+                    {
+                        "LESS_THAN": [
+                            {
+                                "SELECT": "eventDetails.businessObject.customAttributes.ripenessFloat",
+                                "TYPE": "Float"
+                            },
+                            {
+                                "SELECT_LOCAL": "current_product.customAttributes.ripenessLowerLimitFloat",
+                                "TYPE": "Float"
+                            }
+
+                        ]
+                    },
+                    "breakOnMatch": true
+                },
+                {
+                    "sequence": 6,
+                    "output":
+                    {
+                        "resultFieldPath": "customAttributes.ripenessStatusString",
+                        "resultType": "String"
+                    },
+                    "expression":
+                    {
+                        "VALUE": "IN_BOUNDS",
+                        "TYPE": "STRING"
+                    },
+                    "IF":
+                    {
+                        "AND": [
+                            {
+                                "LESS_EQUALS": [
+                                    {
+                                        "SELECT": "eventDetails.businessObject.customAttributes.ripenessFloat",
+                                        "TYPE": "Float"
+                                    },
+                                    {
+                                        "SELECT_LOCAL": "current_product.customAttributes.ripenessUpperLimitFloat",
+                                        "TYPE": "Float"
+                                    }
+
+                                ]
+                            },
+                            {
+                                "GREATER_EQUALS": [
+                                    {
+                                        "SELECT": "eventDetails.businessObject.customAttributes.ripenessFloat",
+                                        "TYPE": "Float"
+                                    },
+                                    {
+                                        "SELECT_LOCAL": "current_product.customAttributes.ripenessLowerLimitFloat",
+                                        "TYPE": "Float"
+                                    }
+
+                                ]
+                            }
+                        ]
+                    },
+                    "breakOnMatch": true
+                }
+            ]
+        }
+    }
+}
