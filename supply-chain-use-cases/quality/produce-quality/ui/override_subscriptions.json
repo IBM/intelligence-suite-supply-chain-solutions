@@ -1,0 +1,200 @@
+
+{
+    "id": "OPEN_WORK_QUEUE_ITEMS_subscription",
+    "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+    "widgetDefinitionId": "OPEN_WORK_QUEUE_ITEMS",
+    "offeringId": "SCO",
+    "state": "ACTIVE",
+    "subscriptionConfig": [
+        {
+            "name": "productRipenessAboveUpperLimit.columns[0].header.label",
+            "value": "Product"
+        },
+        {
+            "name": "productRipenessAboveUpperLimit.columns[1].header.label",
+            "value": "Supplier"
+        },
+        {
+            "name": "productRipenessAboveUpperLimit.columns[2].header.label",
+            "value": "Location"
+        },
+        {
+            "name": "productRipenessAboveUpperLimit.columns[5].header.label",
+            "value": "Inspection date"
+        },
+        {
+            "name": "productRipenessAboveUpperLimit.columns[6].header.label",
+            "value": "Ripeness"
+        },
+        {
+            "name": "productRipenessAboveUpperLimit.columns[7].header.label",
+            "value": "Upper limit"
+        },
+        {
+            "name": "productFirmnessAboveUpperLimit.columns[0].header.label",
+            "value": "Product"
+        },
+        {
+            "name": "productFirmnessAboveUpperLimit.columns[1].header.label",
+            "value": "Supplier"
+        },
+        {
+            "name": "productFirmnessAboveUpperLimit.columns[2].header.label",
+            "value": "Location"
+        },
+        {
+            "name": "productFirmnessAboveUpperLimit.columns[5].header.label",
+            "value": "Inspection date"
+        },
+        {
+            "name": "productFirmnessAboveUpperLimit.columns[6].header.label",
+            "value": "Firmness"
+        },
+        {
+            "name": "productFirmnessAboveUpperLimit.columns[7].header.label",
+            "value": "Upper limit"
+        },        {
+            "name": "productSweetnessAboveUpperLimit.columns[0].header.label",
+            "value": "Product"
+        },
+        {
+            "name": "productSweetnessAboveUpperLimit.columns[1].header.label",
+            "value": "Supplier"
+        },
+        {
+            "name": "productSweetnessAboveUpperLimit.columns[2].header.label",
+            "value": "Location"
+        },
+        {
+            "name": "productSweetnessAboveUpperLimit.columns[5].header.label",
+            "value": "Inspection date"
+        },
+        {
+            "name": "productSweetnessAboveUpperLimit.columns[6].header.label",
+            "value": "Sweetness"
+        },
+        {
+            "name": "productSweetnessAboveUpperLimit.columns[7].header.label",
+            "value": "Upper limit"
+        },
+		        {
+            "name": "productWeightAboveUpperLimit.columns[0].header.label",
+            "value": "Product"
+        },
+        {
+            "name": "productWeightAboveUpperLimit.columns[1].header.label",
+            "value": "Supplier"
+        },
+        {
+            "name": "productWeightAboveUpperLimit.columns[2].header.label",
+            "value": "Location"
+        },
+        {
+            "name": "productWeightAboveUpperLimit.columns[5].header.label",
+            "value": "Inspection date"
+        },
+        {
+            "name": "productWeightAboveUpperLimit.columns[6].header.label",
+            "value": "Weight"
+        },
+        {
+            "name": "productWeightAboveUpperLimit.columns[7].header.label",
+            "value": "Upper limit"
+        },
+		        {
+            "name": "productRipenessBelowLowerLimit.columns[0].header.label",
+            "value": "Product"
+        },
+        {
+            "name": "productRipenessBelowLowerLimit.columns[1].header.label",
+            "value": "Supplier"
+        },
+        {
+            "name": "productRipenessBelowLowerLimit.columns[2].header.label",
+            "value": "Location"
+        },
+        {
+            "name": "productRipenessBelowLowerLimit.columns[5].header.label",
+            "value": "Inspection date"
+        },
+        {
+            "name": "productRipenessBelowLowerLimit.columns[6].header.label",
+            "value": "Ripeness"
+        },
+        {
+            "name": "productRipenessBelowLowerLimit.columns[7].header.label",
+            "value": "Lower limit"
+        },
+        {
+            "name": "productFirmnessBelowLowerLimit.columns[0].header.label",
+            "value": "Product"
+        },
+        {
+            "name": "productFirmnessBelowLowerLimit.columns[1].header.label",
+            "value": "Supplier"
+        },
+        {
+            "name": "productFirmnessBelowLowerLimit.columns[2].header.label",
+            "value": "Location"
+        },
+        {
+            "name": "productFirmnessBelowLowerLimit.columns[5].header.label",
+            "value": "Inspection date"
+        },
+        {
+            "name": "productFirmnessBelowLowerLimit.columns[6].header.label",
+            "value": "Firmness"
+        },
+        {
+            "name": "productFirmnessBelowLowerLimit.columns[7].header.label",
+            "value": "Lower limit"
+        },        {
+            "name": "productSweetnessBelowLowerLimit.columns[0].header.label",
+            "value": "Product"
+        },
+        {
+            "name": "productSweetnessBelowLowerLimit.columns[1].header.label",
+            "value": "Supplier"
+        },
+        {
+            "name": "productSweetnessBelowLowerLimit.columns[2].header.label",
+            "value": "Location"
+        },
+        {
+            "name": "productSweetnessBelowLowerLimit.columns[5].header.label",
+            "value": "Inspection date"
+        },
+        {
+            "name": "productSweetnessBelowLowerLimit.columns[6].header.label",
+            "value": "Sweetness"
+        },
+        {
+            "name": "productSweetnessBelowLowerLimit.columns[7].header.label",
+            "value": "Lower limit"
+        },
+		        {
+            "name": "productWeightBelowLowerLimit.columns[0].header.label",
+            "value": "Product"
+        },
+        {
+            "name": "productWeightBelowLowerLimit.columns[1].header.label",
+            "value": "Supplier"
+        },
+        {
+            "name": "productWeightBelowLowerLimit.columns[2].header.label",
+            "value": "Location"
+        },
+        {
+            "name": "productWeightBelowLowerLimit.columns[5].header.label",
+            "value": "Inspection date"
+        },
+        {
+            "name": "productWeightBelowLowerLimit.columns[6].header.label",
+            "value": "Weight"
+        },
+        {
+            "name": "productWeightBelowLowerLimit.columns[7].header.label",
+            "value": "Lower limit"
+        }
+    ]
+}

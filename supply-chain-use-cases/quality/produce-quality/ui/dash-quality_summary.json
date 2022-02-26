@@ -1,0 +1,202 @@
+
+{
+    "id": "quality_summary",
+    "offeringId": "SCO",
+    "state": "ACTIVE",
+    "sequence": 5.0,
+    "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+    "defaultLanguage": "en",
+    "descriptions":
+    {
+        "en":
+        {
+            "name": "Quality summary",
+            "description": "Quality summary"
+        }
+    },
+    "type": "Dashboard",
+    "widgets": [
+        {
+            "tenantId": "all-tenants",
+            "layoutId": "quality_summary",
+            "sequence": 0.0,
+            "widgetDefinitionId": "SCO_ICT_DASHBOARD_FILTER",
+            "name": "SCO ICT Dashboard Filter",
+            "widgetProperties": {},
+            "displayProperties":
+            {
+                "colSpan": "6",
+                "rowSpan": "5",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "filter",
+                "fullBodyWidget": "false",
+                "enabled": "true",
+                "section": "layout_header"
+            }
+        },
+        {
+            "tenantId": "all-tenants",
+            "layoutId": "quality_summary",
+            "sequence": 1.0,
+            "widgetDefinitionId": "DASHBOARD_ACTIVE_FILTERS",
+            "name": "Dashboard active filters",
+            "widgetProperties": {},
+            "displayProperties":
+            {
+                "chartType": "active_filters",
+                "section": "layout_subheader",
+                "enabled": "true",
+                "fullBodyWidget": "true"
+            }
+        },
+        {
+            "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+            "sequence": 5.0,
+            "widgetDefinitionId": "firmnessSummaryWidget",
+            "name": "Firmness summary",
+            "widgetProperties": {},
+            "displayProperties":
+            {
+                "colSpan": "1",
+                "rowSpan": "22",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "carbon_chart",
+                "fullBodyWidget": "false",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        },
+        {
+            "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+            "sequence": 6.0,
+            "widgetDefinitionId": "ripenessSummaryWidget",
+            "name": "Ripeness summary",
+            "widgetProperties": {},
+            "displayProperties":
+            {
+                "colSpan": "1",
+                "rowSpan": "22",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "carbon_chart",
+                "fullBodyWidget": "false",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        },
+        {
+            "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+            "sequence": 7.0,
+            "widgetDefinitionId": "sweetnessSummaryWidget",
+            "name": "Sweetness summary",
+            "widgetProperties": {},
+            "displayProperties":
+            {
+                "colSpan": "1",
+                "rowSpan": "22",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "carbon_chart",
+                "fullBodyWidget": "false",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        },
+        {
+            "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+            "sequence": 8.0,
+            "widgetDefinitionId": "weightSummaryWidget",
+            "name": "Weight summary",
+            "widgetProperties": {},
+            "displayProperties":
+            {
+                "colSpan": "1",
+                "rowSpan": "22",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "carbon_chart",
+                "fullBodyWidget": "false",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        },
+        {
+            "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+            "sequence": 9.0,
+            "widgetDefinitionId": "inventorylot_count",
+            "name": "Inspetion count",
+            "widgetProperties": {},
+            "displayProperties":
+            {
+                "colSpan": "1",
+                "rowSpan": "10",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "summary",
+                "fullBodyWidget": "false",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        }
+    ],
+
+
+    "properties": [
+        {
+            "name": "breadcrumbEnabled",
+            "values": ["false"]
+        },
+        {
+            "name": "breadcrumbList",
+            "metaInformation": "layoutOption",
+            "values": ["{\"label\": \"Dashboard\", \"routeName\": \"/\"}"]
+        },
+        {
+            "name": "timestampEnabled",
+            "values": ["false"]
+        },
+        {
+            "name": "ivAssistantEnabled",
+            "metaInformation": "layoutOption",
+            "values": ["true"]
+        },
+        {
+            "name": "hideTitle",
+            "metaInformation": "layoutOption",
+            "values": ["true"]
+        },
+        {
+            "name": "state.empty.title",
+            "metaInformation": "layoutOption",
+            "values": ["No data"]
+        },
+        {
+            "name": "state.empty.body",
+            "metaInformation": "layoutOption",
+            "values": ["There is no data to display"]
+        },
+        {
+            "name": "state.empty.image",
+            "metaInformation": "layoutOption",
+            "values": ["dataEmpty"]
+        },
+        {
+            "name": "state.empty.link.label",
+            "metaInformation": "layoutOption",
+            "values": ["Learn more"]
+        },
+        {
+            "name": "state.empty.link.href.type",
+            "metaInformation": "layoutOption",
+            "values": ["NEW_WINDOW"]
+        },
+        {
+            "name": "state.empty.link.href.path",
+            "metaInformation": "layoutOption",
+            "values": ["https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"]
+        }
+    ],
+    "version": 4
+}

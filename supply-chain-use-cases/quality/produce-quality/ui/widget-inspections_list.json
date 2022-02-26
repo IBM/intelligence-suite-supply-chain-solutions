@@ -1,0 +1,450 @@
+
+{
+    "offeringId": "SCO",
+    "id": "inspections_list",
+    "state": "ACTIVE",
+    "identifier": "inspections_list",
+    "type": "Dashboard_Widget",
+    "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+    "path": "/api",
+    "vendor": "IBM",
+    "defaultLanguage": "en",
+    "version": 1,
+    "descriptions":
+    {
+        "en":
+        {
+            "name": "Inspection list",
+            "language": "en",
+            "description": "Inspection list."
+        }
+    },
+    "devConfigurations": [
+        {
+            "name": "header.path",
+            "values": ["/template/CUSTOM_DASHBOARD_INVENTORY_VIEW_ALL_LAYOUT_TEMPLATE"],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "header.type",
+            "values": ["metric_header"],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "header.value",
+            "values": ["{{ totalCount }}"],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "header.title",
+            "values": ["Inspections"],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "header.tooltip",
+            "values": ["Inspections tooltip."],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "data.service",
+            "values": ["infohub"]
+        },
+        {
+            "name": "queries[0].fields",
+            "values": ["query allinspections($tenantId: String! $cursorId: String $sortBy: String = \"customAttributes.inspectionDateString\" $sortOrder: SortOrder = DESC $pageLength: Int = 20 $locationCityFilter: BooleanExp = { CONSTANT_VALUE: true } $locationFilter: BooleanExp = { CONSTANT_VALUE: true } $categoryFilter: BooleanExp = { CONSTANT_VALUE: true } $inventoryPlannerCodeFilter: BooleanExp = { CONSTANT_VALUE: true } ) { inspections: businessObjects(simpleFilter: { type: InventoryLot, tenantId: $tenantId } advancedFilter: { AND: [$locationFilter $locationCityFilter $categoryFilter $inventoryPlannerCodeFilter] } hint: { viewId: \"graph\" } cursorParams: { first: $pageLength after: $cursorId sort: { fieldPath: $sortBy, order: $sortOrder } } ) { totalCount pageInfo { hasNextPage endCursor } edges { cursor object { ...on InventoryLot { product { partNumber name } location { locationIdentifier locationName } customAttributes {supplierString inspectionDateString tsLotCodeString firmnessStatusString sweetnessStatusString ripenessStatusString weightStatusString } sourceLink } } } } } "],
+            "metaInformation": "infohub.fields"
+        },
+        {
+            "name": "queries[0].variables.tenantId",
+            "values": ["{{ tenantId }}"],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "queries[0].variables.sortBy",
+            "values": ["{{ allInspections.sort.by }}"],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "queries[0].variables.sortOrder",
+            "values": ["{{ allInspections.sort.order }}"],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "queries[0].variables.pageLength",
+            "values": ["{{ allInspections.pageLength }}"],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "queries[0].variables.cursorId",
+            "values": ["{{ cursorId }}"],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "queries[0].variables.locationFilter",
+            "values": ["{ \"EQUALS_ANY\": [ {\"SELECT\": \"location.id\", \"type\": \"STRING\" }, { \"VALUES\": {{custom.appliedFilters.Location.ids}}, \"type\": \"STRING\" } ] }"],
+            "metaInformation": "infohub.variable.dynamicExpr"
+        },
+        {
+            "name": "queries[0].variables.inventoryPlannerCodeFilter",
+            "values": ["{ \"EQUALS_ANY\": [ {\"SELECT\": \"plannerCode\", \"type\": \"STRING\" }, { \"VALUES\": {{custom.appliedFilters.PlannerCode.ids}}, \"type\": \"STRING\" } ] }"],
+            "metaInformation": "infohub.variable.dynamicExpr"
+        },
+        {
+            "name": "queries[0].variables.categoryFilter",
+            "values": ["{ \"EQUALS_ANY\": [ {\"SELECT\": \"product.category.id\", \"type\": \"STRING\" }, { \"VALUES\": {{custom.appliedFilters.Category.ids}}, \"type\": \"STRING\" } ] }"],
+            "metaInformation": "infohub.variable.dynamicExpr"
+        },
+        {
+            "name": "queries[0].variables.locationCityFilter",
+            "values": ["{\"EQUALS_ANY\":[{\"SELECT\":\"location.city\",\"type\":\"STRING\"},{\"VALUES\":{{custom.appliedFilters.LocationCity.ids}},\"type\":\"STRING\"}]}"],
+            "metaInformation": "infohub.variable.dynamicExpr"
+        },
+        {
+            "name": "columnSorted",
+            "values": ["allInspections"],
+            "metaInformation": "stateScope"
+        },
+        {
+            "name": "allInspections.sort",
+            "values": ["refreshData", "refreshSavedState"],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "custom.appliedFilters",
+            "values": ["refreshData"],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "horizontalScroll.enable",
+            "values": ["true"],
+            "metaInformation": "tableOption"
+        },
+        {
+            "name": "pagination.enable",
+            "values": ["true"],
+            "metaInformation": "tableOption"
+        },
+        {
+            "name": "pageInput.enable",
+            "values": ["true"],
+            "metaInformation": "tableOption"
+        },
+        {
+            "name": "pageChanged",
+            "values": ["allInspections"],
+            "metaInformation": "stateScope"
+        },
+        {
+            "name": "allInspections.page",
+            "values": ["refreshData"],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "allInspections.pageLength",
+            "values": ["refreshData"],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "stickyTableHeader",
+            "values": ["false"],
+            "metaInformation": "tableOption"
+        },
+        {
+            "name": "stripes",
+            "values": ["false"],
+            "metaInformation": "tableOption"
+        },
+        {
+            "name": "configurable",
+            "values": ["false"],
+            "metaInformation": "tableOption"
+        },
+        {
+            "name": "columns[0].cell.label",
+            "values": ["{{ product.name }}"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].header.label",
+            "values": ["Product ID"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].sortable",
+            "values": ["true"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].cell.customTemplate",
+            "values": ["linkTpl"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].cell.href.type",
+            "values": ["LAYOUT_TEMPLATE"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].cell.href.id",
+            "values": ["DEFAULT_INVENTORY_DETAIL_LAYOUT_TEMPLATE"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].cell.href.params",
+            "values": ["inventoryId={{ id }},hiddenLayoutSections=queue"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].sequence",
+            "values": ["0"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[1].cell.label",
+            "values": ["{{ customAttributes.supplierString }}"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[1].header.label",
+            "values": ["Supplier"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[1].sortable",
+            "values": ["true"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[1].cell.customTemplate",
+            "values": ["stringTpl"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[1].sequence",
+            "values": ["1"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[2].cell.label",
+            "values": ["{{ location.locationName }}"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[2].header.label",
+            "values": ["Location"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[2].sortable",
+            "values": ["true"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[2].cell.customTemplate",
+            "values": ["stringTpl"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[2].sequence",
+            "values": ["2"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[3].cell.label",
+            "values": ["{{ customAttributes.inspectionDateString }}"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[3].header.label",
+            "values": ["Inspection date"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[3].sortable",
+            "values": ["true"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[3].cell.customTemplate",
+            "values": ["dateTpl"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[3].sequence",
+            "values": ["3"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[4].cell.label",
+            "values": ["{{ customAttributes.firmnessStatusString }}"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[4].header.label",
+            "values": ["Firmness"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[4].sortable",
+            "values": ["true"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[4].cell.customTemplate",
+            "values": ["stringTpl"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[4].sequence",
+            "values": ["4"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[5].cell.label",
+            "values": ["{{ customAttributes.ripenessStatusString }}"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[5].header.label",
+            "values": ["Ripeness"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[5].sortable",
+            "values": ["true"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[5].cell.customTemplate",
+            "values": ["stringTpl"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[5].sequence",
+            "values": ["5"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[6].cell.label",
+            "values": ["{{ customAttributes.sweetnessStatusString }}"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[6].header.label",
+            "values": ["Sweetness"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[6].sortable",
+            "values": ["true"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[6].cell.customTemplate",
+            "values": ["stringTpl"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[6].sequence",
+            "values": ["6"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[7].cell.label",
+            "values": ["{{ customAttributes.weightStatusString }}"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[7].header.label",
+            "values": ["Weight"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[7].sortable",
+            "values": ["true"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[7].cell.customTemplate",
+            "values": ["stringTpl"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[7].sequence",
+            "values": ["7"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[8].cell.label",
+            "values": ["view inspection form"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[8].header.label",
+            "values": ["Source"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[8].sortable",
+            "values": ["false"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[8].cell.customTemplate",
+            "values": ["linkTpl"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[8].sequence",
+            "values": ["8"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[8].cell.href.type",
+            "values": ["NEW_WINDOW"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[8].cell.href.path",
+            "values": ["{{ sourceLink }}"],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "transformation",
+            "values": [" { \"errors\": \"{{#? this.errors}}\", \"pageInfo\": \"{{this.data.inspections.pageInfo}}\", \"totalCount\": \"{{this.data.inspections.totalCount}}\", \"results\": { \"{{#each this.data.inspections.edges}}\": { \"cursor\": \"{{this.cursor}}\", \"product\": \"{{this.object.product}}\", \"location\": \"{{this.object.location}}\", \"lotCode\": \"{{this.object.lotCode}}\", \"customAttributes\": \"{{this.object.customAttributes}}\",  \"sourceLink\": \"{{this.object.sourceLink}}\" } } } "],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.title",
+            "values": ["No data"],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.body",
+            "values": ["There is no business data to display"],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.link.label",
+            "values": ["Learn more"],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.link.href.type",
+            "values": ["NEW_WINDOW"],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.link.href.path",
+            "values": ["https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"],
+            "metaInformation": "widgetOption"
+        }
+    ],
+    "userConfigurations": [
+        {
+            "name": "chartType",
+            "values": ["data_table"]
+        }
+    ],
+    "adminConfigurations": []
+}
