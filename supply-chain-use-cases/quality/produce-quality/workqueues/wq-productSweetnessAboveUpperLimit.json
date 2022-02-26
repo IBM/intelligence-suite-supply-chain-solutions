@@ -1,0 +1,83 @@
+
+{
+    "advancedFilter":
+    {
+        "EQUALS": [
+            {
+                "SELECT": "customAttributes.sweetnessStatusString",
+                "type": "STRING"
+            },
+            {
+                "VALUE": "HIGH",
+                "type": "STRING"
+            }
+        ]
+    },
+    "primaryBusinessObjectTypes": [
+        "InventoryLot"
+    ],
+    "logicalName": "productSweetnessAboveUpperLimit",
+    "description": "Produce sweetness above limit.",
+    "defaultCursorParams":
+    {
+        "sort": [
+            {
+                "fieldPath": "customAttributes.sweetnessFloat",
+                "order": "DESC"
+            }
+        ]
+    },
+    "priority": 100.0,
+    "columnsForWorkItemTitle": [
+        "InventoryLot.product.name",
+        "InventoryLot.location.locationIdentifier",
+        "InventoryLot.customAttributes.supplierString"
+    ],
+    "isGloballyVisible": true,
+    "detailedDescription": "Produce with a measured sweetness above the configured threshold.",
+    "defaultFieldsForSelect": [
+        "InventoryLot.product.name",
+        "InventoryLot.customAttributes.supplierString",
+        "InventoryLot.location.locationName",
+        "WorkItem.status",
+        "WorkItem.userAssigned",
+        "InventoryLot.customAttributes.inspectionDateString",
+        "InventoryLot.customAttributes.sweetnessFloat",
+        "InventoryLot.product.customAttributes.sweetnessUpperLimitFloat",
+        "WorkItem.updateReceived"
+    ],
+    "hint":
+    {
+        "viewId": "graph"
+    },
+    "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+    "simpleFilter":
+    {
+        "type": "InventoryLot"
+    },
+    "name": "Produce sweetness above limit",
+    "isSimple": true,
+    "applicableActionDefinitions": [
+        {
+            "id": "efeb8861-6257-4992-b54e-028d587d07be",
+            "type": "ActionDefinition"
+        },
+        {
+            "id": "3c152d19-a2bd-46bf-a026-4e49287a7906",
+            "type": "ActionDefinition"
+        },
+        {
+            "id": "9e02e80c-8303-4a61-bad7-0b8814747452",
+            "type": "ActionDefinition"
+        },
+        {
+            "id": "18083901-294b-4f8d-99dd-26c88ab2a1ec",
+            "type": "ActionDefinition"
+        },
+        {
+            "id": "329fb8c5-3166-4c39-8699-b903737d036b",
+            "type": "ActionDefinition"
+        }
+    ]
+}
+
