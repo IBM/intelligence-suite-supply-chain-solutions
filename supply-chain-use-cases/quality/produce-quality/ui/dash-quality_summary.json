@@ -139,6 +139,24 @@
                 "enabled": "true",
                 "section": "layout_body"
             }
+        },
+        {
+            "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+            "sequence": 10.0,
+            "widgetDefinitionId": "failedInspectionsByCategory",
+            "name": "Failed inspections by category",
+            "widgetProperties": {},
+            "displayProperties":
+            {
+                "colSpan": "3",
+                "rowSpan": "33",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "carbon_chart",
+                "fullBodyWidget": "false",
+                "enabled": "true",
+                "section": "layout_body"
+            }
         }
     ],
 
