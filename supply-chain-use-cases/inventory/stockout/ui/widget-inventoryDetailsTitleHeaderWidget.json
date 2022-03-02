@@ -1,0 +1,76 @@
+{
+  "offeringId": "SCO",
+  "id": "inventoryDetailsTitleHeaderWidget",
+  "state": "ACTIVE",
+  "identifier": "inventoryDetailsTitleHeaderWidget",
+  "type": "Dashboard_Widget",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "descriptions": {
+    "en": {
+      "name": "Inventory detail title",
+      "language": "en",
+      "description": "Inventory page detail title widget"
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "title.viewId",
+      "values": ["textTpl"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "title.label",
+      "values": ["WIDGET_DEFINITION.INVENTORY_DETAILS_TITLE.TITLE"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "title.translationParamObj.partNumber",
+      "values": ["{{partNumber}}"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "title.translationParamObj.locationIdentifier",
+      "values": ["{{locationIdentifier}}"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "data.service",
+      "values": ["infohub"]
+    },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query InventoryDetail($tenantId: String, $inventoryId: String) { inventoryTitle: businessObjects(hint: {viewId: \"graph\"}, simpleFilter: {tenantId: $tenantId, type: Inventory}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"id\", type: STRING}, {VALUE: $inventoryId, type: STRING}]}]}) { totalCount edges { object { ... on Inventory { product { partNumber } location { locationIdentifier } } } } } } "
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.inventoryId",
+      "values": ["{{ inventoryId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": ["refreshData"],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{\"errors\":\"{{#? this.errors}}\", \"pageInfo\":\"{{this.data.inventoryTitle.pageInfo}}\", \"totalCount\":\"{{this.data.inventoryTitle.totalCount}}\", \"locationIdentifier\":\"{{this.data.inventoryTitle.edges[0].object.location.locationIdentifier}}\", \"partNumber\":\"{{this.data.inventoryTitle.edges[0].object.product.partNumber}}\"}"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [{ "name": "chartType", "values": ["page_title"] }],
+  "adminConfigurations": []
+}

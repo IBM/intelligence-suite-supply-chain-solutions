@@ -1,0 +1,189 @@
+{
+  "offeringId": "SCO",
+  "id": "inventoryLatePlannedDeliverySummaryWidget",
+  "state": "ACTIVE",
+  "identifier": "inventoryLatePlannedDeliverySummaryWidget",
+  "type": "Dashboard_Widget",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "descriptions": {
+    "en": {
+      "name": "Inventory Metrics",
+      "language": "en",
+      "description": "View average days of supply, inventory turns, items without demand and aging inventory."
+    }
+  },
+  "descriptions": {
+    "en": {
+      "name": "Late planned delivery",
+      "language": "en",
+      "description": "Late planned delivery."
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "header.type",
+      "values": ["text_header"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.title",
+      "values": ["COMMON.ORDER_LINES_WITH_LATE_PLANNED_DELIVERY"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.tooltip",
+      "values": [
+        "COMMON.INBOUND_ORDER_LINES_PLANNED_DELIVERY_TOOLTIP"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "icons[0].type",
+      "values": ["kebab_menu"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "icons[0].options[0]",
+      "values": ["move"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "draggable",
+      "values": [true],
+      "metaInformation": "widgetOption"
+    },
+    { "name": "data.service", "values": ["infohub"] },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query latePlannedDeliveryMetrics($tenantId: String, $categoryFilter: BooleanExp = {CONSTANT_VALUE: true}, $customerFilter: BooleanExp = {CONSTANT_VALUE: true}, $supplierFilter: BooleanExp = {CONSTANT_VALUE: true}, $originFilter: BooleanExp = {CONSTANT_VALUE: true}, $destinationFilter: BooleanExp = {CONSTANT_VALUE: true}) { totalLatePlannedDelivery: businessObjects(advancedFilter: {AND: [{GREATER_THAN: [{SELECT: \"plannedDeliveryDelay\", type: FLOAT}, {VALUE: \"0.0\", type: FLOAT}]}, {NOT: {EQUALS: [{SELECT: \"deliveryStatusByDate\", type: STRING}, {type: STRING, VALUE: \"FULLY_DELIVERED\"}]}}, {EQUALS: [{SELECT: \"order.orderType\", type: STRING}, {type: STRING, VALUE: \"INBOUND\"}]}, $categoryFilter, $customerFilter, $supplierFilter, $originFilter, $destinationFilter]}, cursorParams: {first: 0}, hint: {viewId: \"graph\"}, simpleFilter: {tenantId: $tenantId, type: OrderLine}) { totalCount }}"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.categoryFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"product.category.id\", \"type\": \"STRING\" }, { \"VALUES\": {{ inventory.appliedFilters.Category.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.customerFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"order.buyer.id\", \"type\": \"STRING\" }, { \"VALUES\": {{ inventory.appliedFilters.Customer.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.supplierFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"order.vendor.id\", \"type\": \"STRING\" }, { \"VALUES\": {{ inventory.appliedFilters.Supplier.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.originFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"order.shipFromInstructionLocation.id\", \"type\": \"STRING\" }, { \"VALUES\": {{ inventory.appliedFilters.Origin.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.destinationFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"order.shipToLocation.id\", \"type\": \"STRING\" }, { \"VALUES\": {{ inventory.appliedFilters.Destination.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "items[0].count.label",
+      "values": ["{{ totalLatePlannedDeliveryCount }}"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].units.direction",
+      "values": ["horizontal"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].units.label",
+      "values": ["COMMON.ORDER_LINES"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].count.customTemplate",
+      "values": ["linkTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].count.href.type",
+      "values": ["LAYOUT_TEMPLATE"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].count.href.id",
+      "values": ["inventoryLatePlannedDeliveryViewAllLayoutTemplate"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].count.href.labelType",
+      "values": ["numberTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "inventory.appliedFilters",
+      "values": ["refreshData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": ["refreshData"],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{ \"totalCount\": [\"{{this.data.totalLatePlannedDelivery.totalCount}}\" ], \"errors\": \"{{#? this.errors}}\", \"pageInfo\": \"{}\", \"results\": [ { \"totalLatePlannedDeliveryCount\":\"{{this.data.totalLatePlannedDelivery.totalCount}}\" }] }"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.title",
+      "values": ["COMMON.EMPTY_TITLE"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.body",
+      "values": ["COMMON.EMPTY_BODY"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": ["COMMON.EMPTY_LINK_LABEL"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": ["NEW_WINDOW"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [{ "name": "chartType", "values": ["summary"] }],
+  "adminConfigurations": []
+}

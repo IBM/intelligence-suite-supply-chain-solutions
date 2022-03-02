@@ -1,0 +1,122 @@
+{
+  "offeringId": "SCO",
+  "id": "orderOutboundTabsTabPanelWidget",
+  "state": "ACTIVE",
+  "identifier": "orderOutboundTabsTabPanelWidget",
+  "type": "Dashboard_Widget",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "descriptions": {
+    "en": {
+      "name": "Order Detail Tabs",
+      "language": "en",
+      "description": "Order Detail Outbound Tabs"
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "resizeToContent",
+      "values": ["true"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "data.service",
+      "values": ["infohub"]
+    },
+    {
+      "name": "tabSelected",
+      "values": ["orderDetail"],
+      "metaInformation": "stateScope"
+    },
+    {
+      "name": "orderDetail.tab.referenceId",
+      "values": ["refreshTabData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "orderDetail.tabs",
+      "values": ["refreshTabData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "draggable",
+      "values": ["false"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "tabs[0].label",
+      "values": ["COMMON.ORDER_LINES"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[0].referenceId",
+      "values": ["ORDER_DETAIL_OUTBOUND_TABS_TABLE_ORDER_LINES"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[0].referenceType",
+      "values": ["widget_definition"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[1].label",
+      "values": ["COMMON.PRODUCTS"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[1].referenceId",
+      "values": ["ORDER_DETAIL_OUTBOUND_TABS_TABLE_PRODUCTS"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[1].referenceType",
+      "values": ["widget_definition"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[2].label",
+      "values": ["COMMON.SHIPMENTS"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[2].referenceId",
+      "values": ["ORDER_DETAIL_OUTBOUND_TABS_TABLE_SHIPMENTS"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[2].referenceType",
+      "values": ["widget_definition"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[3].label",
+      "values": ["COMMON.SHIPMENT_LINES"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[3].referenceId",
+      "values": ["ORDER_DETAIL_OUTBOUND_TABS_TABLE_SHIPMENT_LINES"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[3].referenceType",
+      "values": ["widget_definition"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabPageLength",
+      "values": [10],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [
+    {
+      "name": "chartType",
+      "values": ["tab_panel"]
+    }
+  ],
+  "adminConfigurations": []
+}

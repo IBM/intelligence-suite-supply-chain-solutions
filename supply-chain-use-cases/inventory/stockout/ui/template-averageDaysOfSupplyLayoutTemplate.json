@@ -1,0 +1,92 @@
+{
+  "id": "averageDaysOfSupplyLayoutTemplate",
+  "offeringId": "SCO",
+  "state": "ACTIVE",
+  "sequence": 0,
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "type": "View_All_Layout",
+  "widgets": [
+    {
+      "id": "averageDaysOfSupplyViewAllListWidget",
+      "layoutId": "averageDaysOfSupplyLayoutTemplate",
+      "sequence": 0,
+      "widgetDefinitionId": "averageDaysOfSupplyViewAllListWidget",
+      "name": "Average days of supply",
+      "creator": "samsmith@ibm.com",
+      "createdDate": "2020-11-06T06:08:12.548Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "chartType": "data_table",
+        "fullBodyWidget": "true",
+        "enabled": "true",
+        "section": "layout_body"
+      }
+    }
+  ],
+  "defaultLanguage": "en",
+  "descriptions": {
+    "en": {
+      "name": "Average days of supply",
+      "language": "en",
+      "description": "Average days of supply"
+    }
+  },
+  "properties": [
+    {
+      "name": "breadcrumbEnabled",
+      "values": ["true"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "breadcrumbList",
+      "values": [
+        "{\"label\": \"COMMON.AVERAGE_DAYS_OF_SUPPLY\", \"routeName\": \"/template/averageDaysOfSupplyLayoutTemplate\"}"
+      ],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "timestampEnabled",
+      "values": [false],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "ivAssistantEnabled",
+      "values": ["true"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.title",
+      "values": ["COMMON.EMPTY_TITLE"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.body",
+      "metaInformation": "layoutOption",
+      "values": ["COMMON.EMPTY_BODY"]
+    },
+    {
+      "name": "state.empty.image",
+      "metaInformation": "layoutOption",
+      "values": ["dataEmpty"]
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": ["COMMON.EMPTY_LINK_LABEL"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": ["NEW_WINDOW"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "layoutOption"
+    }
+  ],
+  "version": 1
+}

@@ -1,0 +1,85 @@
+{
+  "offeringId": "SCO",
+  "id": "inventoryDetailProcessorWidget",
+  "state": "ACTIVE",
+  "identifier": "inventoryDetailProcessorWidget",
+  "type": "Dashboard_Widget",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "descriptions": {
+    "en": {
+      "name": "hidden widget",
+      "language": "en",
+      "description": "hidden widget for getting extra attributes on inventory details page"
+    }
+  },
+  "devConfigurations": [
+    { "name": "data.service", "values": ["infohub"] },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query hiddenAttributes($tenantId: String, $inventoryId: String) { hiddenAttributes: businessObjects(simpleFilter: {tenantId: $tenantId, type: Inventory}, hint: {viewId: \"graph\"}, advancedFilter: {EQUALS: [{SELECT: \"id\", type: STRING}, {VALUE: $inventoryId, type: STRING}]} ) { totalCount pageInfo { hasNextPage endCursor } edges { object { ... on Inventory { id product { id } location { id } } } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.inventoryId",
+      "values": ["{{ inventoryId  }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "draggable",
+      "values": ["false"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": ["refreshData"],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "state.empty.title",
+      "values": ["COMMON.EMPTY_TITLE"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.body",
+      "values": ["COMMON.EMPTY_BODY"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": ["COMMON.EMPTY_LINK_LABEL"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": ["NEW_WINDOW"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{ \"errors\": \"{{#? this.errors}}\", \"totalCount\": \"{{this.data.hiddenAttributes.totalCount}}\", \"pageInfo\": \"{{ this.data.hiddenAttributes.pageInfo }}\",\"results\": { \"{{#each this.data.hiddenAttributes.edges}}\": { \"inventoryId\":\"{{this.object.id}}\", \"productId\": \"{{this.object.product.id}}\", \"locationId\": \"{{this.object.location.id}}\" } } }"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [{ "name": "chartType", "values": ["processor"] }],
+  "adminConfigurations": []
+}

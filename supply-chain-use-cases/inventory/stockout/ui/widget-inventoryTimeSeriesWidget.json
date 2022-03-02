@@ -1,0 +1,540 @@
+{
+  "offeringId": "SCO",
+  "id": "inventoryTimeSeriesWidget",
+  "state": "ACTIVE",
+  "identifier": "inventoryTimeSeriesWidget",
+  "type": "Dashboard_Widget",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "descriptions": {
+    "en": {
+      "name": "Supply and demand trend lines over time",
+      "language": "en",
+      "description": "View the behavior of your stocked items over a period of time"
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "header.type",
+      "values": ["text_header"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.title",
+      "values": ["WIDGET_DEFINITION.TIME_SERIES_INVENTORY_DETAIL.HEADER_TITLE"],
+      "metaInformation": "widgetOption"
+    },
+    { "name": "colSpan", "values": ["4"], "metaInformation": "widgetOption" },
+    { "name": "rowSpan", "values": ["50"], "metaInformation": "widgetOption" },
+    {
+      "name": "draggable",
+      "values": ["false"],
+      "metaInformation": "widgetOption"
+    },
+    { "name": "data.service", "values": ["infohub"] },
+    {
+      "name": "queries[0].processor",
+      "values": ["EDGES"],
+      "metaInformation": "infohub.processor"
+    },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query TSFilterCurrentInventory($tenantId: String, $inventoryId: BooleanExp = {CONSTANT_VALUE: true} ) { businessObjects( simpleFilter: {tenantId: $tenantId, type: Inventory}, hint: {viewId: \"graph\"} advancedFilter: {AND: [ $inventoryId ]} ) { totalCount edges { object { ... on Inventory { id quantity inventoryType quantityUpperThreshold quantityLowerThreshold quantityUnits class } } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.inventoryId",
+      "values": [
+        "{ \"EQUALS_ANY\": [ { \"SELECT\": \"id\", \"type\": \"STRING\" }, { \"VALUES\": \"{{ inventoryId }}\", \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[1].processor",
+      "values": ["OBJECT_AGGREGATIONS"],
+      "metaInformation": "infohub.processor"
+    },
+    {
+      "name": "queries[1].fields",
+      "values": [
+        "query TSSupplyPlan($tenantId: String, $locationId: BooleanExp = {CONSTANT_VALUE: true}, $productId: BooleanExp = {CONSTANT_VALUE: true}, $today: String, $oneMonthFromToday: String) { businessObjects(advancedFilter: {AND: [ {CONTAINS_ANY: [{SELECT: \"planParentType\", type: STRING}, {type: STRING, VALUES: [\"PLAN\"]}]}, {GREATER_EQUALS: [{SELECT: \"startDate\", type: STRING}, {type: STRING, VALUE: $today}]}, {LESS_EQUALS: [{SELECT: \"startDate\", type: STRING}, {type: STRING, VALUE: $oneMonthFromToday}]}, $locationId, $productId]}, aggregationParams: {dimension: {fieldPath: \"startDate\", type: STRING, calendarInterval: \"1d\"}, paginationParams: { first: 30, sort: {fieldPath: \"startDate\", order: ASC}}, reduce: {expression: {fieldPath: \"quantity\", operator: SUM, type: INT}, output: {resultAlias: \"Supply plan\", type: INT}}}, cursorParams: {first: 0}, hint: {viewId: \"graph\"}, simpleFilter: {tenantId: $tenantId, type: SupplyPlan}) { aggregationResultsTotalCount aggregationResults { dimensionValues { name value } values { name numValue } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[1].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[1].variables.today",
+      "values": ["{{ today }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[1].variables.oneMonthFromToday",
+      "values": ["{{ oneMonthFromToday }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[1].variables.locationId",
+      "values": [
+        "{ \"EQUALS_ANY\": [ { \"SELECT\": \"location.id\", \"type\": \"STRING\" }, { \"VALUES\": \"{{ locationId }}\", \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[1].variables.productId",
+      "values": [
+        "{ \"EQUALS_ANY\": [ { \"SELECT\": \"product.id\", \"type\": \"STRING\" }, { \"VALUES\": \"{{ productId }}\", \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[2].processor",
+      "values": ["OBJECT_AGGREGATIONS"],
+      "metaInformation": "infohub.processor"
+    },
+    {
+      "name": "queries[2].fields",
+      "values": [
+        "query TSDemandPlan($tenantId: String, $locationId: BooleanExp = {CONSTANT_VALUE: true}, $productId: BooleanExp = {CONSTANT_VALUE: true}, $today: String, $oneMonthFromToday: String) { businessObjects(advancedFilter: { AND: [ {CONTAINS_ANY: [{SELECT: \"planParentType\", type: STRING}, {type: STRING, VALUES: [\"PLAN\"]}]}, {GREATER_EQUALS: [{SELECT: \"startDate\", type: STRING}, {type: STRING, VALUE: $today}]}, {LESS_EQUALS: [{SELECT: \"startDate\", type: STRING}, {type: STRING, VALUE: $oneMonthFromToday}]}, $locationId, $productId]}, aggregationParams: {dimension: {fieldPath: \"startDate\", type: STRING, calendarInterval: \"1d\"}, paginationParams: { first: 30, sort: {fieldPath: \"startDate\", order: ASC}}, reduce: {expression: {fieldPath: \"quantity\", operator: SUM, type: INT}, output: {resultAlias: \"Demand plan\", type: INT}}}, cursorParams: {first: 0}, hint: {viewId: \"graph\"}, simpleFilter: {tenantId: $tenantId, type: DemandPlan}) { aggregationResultsTotalCount aggregationResults { dimensionValues { name value } values { name numValue } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[2].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[2].variables.today",
+      "values": ["{{ today }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[2].variables.oneMonthFromToday",
+      "values": ["{{ oneMonthFromToday }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[2].variables.locationId",
+      "values": [
+        "{ \"EQUALS_ANY\": [ { \"SELECT\": \"location.id\", \"type\": \"STRING\" }, { \"VALUES\": \"{{ locationId }}\", \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[2].variables.productId",
+      "values": [
+        "{ \"EQUALS_ANY\": [ { \"SELECT\": \"product.id\", \"type\": \"STRING\" }, { \"VALUES\": \"{{ productId }}\", \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[3].processor",
+      "values": ["OBJECT_AGGREGATIONS"],
+      "metaInformation": "infohub.processor"
+    },
+    {
+      "name": "queries[3].fields",
+      "values": [
+        "query TSOnOrder($tenantId: String, $locationId: BooleanExp = {CONSTANT_VALUE: true}, $productId: BooleanExp = {CONSTANT_VALUE: true}, $today: String, $oneMonthFromToday: String) { businessObjects(advancedFilter: { AND: [{CONTAINS_ANY: [ {SELECT: \"planParentType\", type: STRING}, {type: STRING, VALUES: [\"PO_PLACED\", \"PO_SCHEDULED\", \"PO_RELEASED\"]}]}, {GREATER_EQUALS: [{SELECT: \"startDate\", type: STRING}, {type: STRING, VALUE: $today}]}, {LESS_EQUALS: [{SELECT: \"startDate\", type: STRING}, {type: STRING, VALUE: $oneMonthFromToday}]}, $locationId, $productId ]}, aggregationParams: {dimension: {fieldPath: \"startDate\", type: STRING, calendarInterval: \"1d\"}, paginationParams: { first: 30, sort: {fieldPath: \"startDate\", order: ASC}}, reduce: {expression: {fieldPath: \"quantity\", operator: SUM, type: INT}, output: {resultAlias: \"On order\", type: INT}}}, cursorParams: {first: 0}, hint: {viewId: \"graph\"}, simpleFilter: {tenantId: $tenantId, type: SupplyPlan}) { aggregationResultsTotalCount aggregationResults { dimensionValues { name value } values { name numValue } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[3].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[3].variables.today",
+      "values": ["{{ today }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[3].variables.oneMonthFromToday",
+      "values": ["{{ oneMonthFromToday }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[3].variables.locationId",
+      "values": [
+        "{ \"EQUALS_ANY\": [ { \"SELECT\": \"location.id\", \"type\": \"STRING\" }, { \"VALUES\": \"{{ locationId }}\", \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[3].variables.productId",
+      "values": [
+        "{ \"EQUALS_ANY\": [ { \"SELECT\": \"product.id\", \"type\": \"STRING\" }, { \"VALUES\": \"{{ productId }}\", \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[4].processor",
+      "values": ["OBJECT_AGGREGATIONS"],
+      "metaInformation": "infohub.processor"
+    },
+    {
+      "name": "queries[4].fields",
+      "values": [
+        "query TSInTransit($tenantId: String, $locationId: BooleanExp = {CONSTANT_VALUE: true}, $productId: BooleanExp = {CONSTANT_VALUE: true}, $today: String, $oneMonthFromToday: String) { businessObjects(advancedFilter: {AND: [ {CONTAINS_ANY: [{SELECT: \"planParentType\", type: STRING}, {type: STRING, VALUES: [\"INTRANSIT\"]}]}, {GREATER_EQUALS: [{SELECT: \"startDate\", type: STRING}, {type: STRING, VALUE: $today}]}, {LESS_EQUALS: [{SELECT: \"startDate\", type: STRING}, {type: STRING, VALUE: $oneMonthFromToday}]}, $locationId, $productId]}, aggregationParams: {dimension: {fieldPath: \"startDate\", type: STRING, calendarInterval: \"1d\"}, paginationParams: { first: 30, sort: {fieldPath: \"startDate\", order: ASC}}, reduce: {expression: {fieldPath: \"quantity\", operator: SUM, type: INT}, output: {resultAlias: \"In transit\", type: INT}}}, cursorParams: {first: 0}, hint: {viewId: \"graph\"}, simpleFilter: {tenantId: $tenantId, type: SupplyPlan}) { aggregationResultsTotalCount aggregationResults { dimensionValues { name value } values { name numValue } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[4].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[4].variables.today",
+      "values": ["{{ today }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[4].variables.oneMonthFromToday",
+      "values": ["{{ oneMonthFromToday }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[4].variables.locationId",
+      "values": [
+        "{ \"EQUALS_ANY\": [ { \"SELECT\": \"location.id\", \"type\": \"STRING\" }, { \"VALUES\": \"{{ locationId }}\", \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[4].variables.productId",
+      "values": [
+        "{ \"EQUALS_ANY\": [ { \"SELECT\": \"product.id\", \"type\": \"STRING\" }, { \"VALUES\": \"{{ productId }}\", \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[5].processor",
+      "values": ["OBJECT_AGGREGATIONS"],
+      "metaInformation": "infohub.processor"
+    },
+    {
+      "name": "queries[5].fields",
+      "values": [
+        "query TSSalesOrders($tenantId: String, $locationId: BooleanExp = {CONSTANT_VALUE: true}, $productId: BooleanExp = {CONSTANT_VALUE: true}, $today: String, $oneMonthFromToday: String) { businessObjects(advancedFilter: {AND: [ {CONTAINS_ANY: [{SELECT: \"planParentType\", type: STRING}, {type: STRING, VALUES: [\"SCHEDULED\", \"ALLOCATED\", \"OPEN_ORDER\", \"RSRV_ORDER\", \"BACKORDER\"]}]}, {GREATER_EQUALS: [{SELECT: \"startDate\", type: STRING}, {type: STRING, VALUE: $today}]}, {LESS_EQUALS: [{SELECT: \"startDate\", type: STRING}, {type: STRING, VALUE: $oneMonthFromToday}]}, $locationId, $productId]}, aggregationParams: {dimension: {fieldPath: \"startDate\", type: STRING, calendarInterval: \"1d\"}, paginationParams: { first: 30, sort: {fieldPath: \"startDate\", order: ASC}}, reduce: {expression: {fieldPath: \"quantity\", operator: SUM, type: INT}, output: {resultAlias: \"Sales orders\", type: INT}}}, cursorParams: {first: 0}, hint: {viewId: \"graph\"}, simpleFilter: {tenantId: $tenantId, type: DemandPlan}) { aggregationResultsTotalCount aggregationResults { dimensionValues { name value } values { name numValue } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[5].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[5].variables.today",
+      "values": ["{{ today }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[5].variables.oneMonthFromToday",
+      "values": ["{{ oneMonthFromToday }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[5].variables.locationId",
+      "values": [
+        "{ \"EQUALS_ANY\": [ { \"SELECT\": \"location.id\", \"type\": \"STRING\" }, { \"VALUES\": \"{{ locationId }}\", \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[5].variables.productId",
+      "values": [
+        "{ \"EQUALS_ANY\": [ { \"SELECT\": \"product.id\", \"type\": \"STRING\" }, { \"VALUES\": \"{{ productId }}\", \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[6].processor",
+      "values": ["OBJECT_AGGREGATIONS"],
+      "metaInformation": "infohub.processor"
+    },
+    {
+      "name": "queries[6].fields",
+      "values": [
+        "query TSPrediction($tenantId: String, $locationId: BooleanExp = {CONSTANT_VALUE: true}, $productId: BooleanExp = {CONSTANT_VALUE: true}, $today: String, $oneMonthFromToday: String) { businessObjects(simpleFilter: {tenantId: $tenantId, type: DemandPlan}, advancedFilter: {AND: [ {CONTAINS_ANY: [{SELECT: \"planParentType\", type: STRING}, {VALUES: [\"STERLING_PLAN\"], type: STRING}]}, {GREATER_EQUALS: [{SELECT: \"startDate\", type: STRING}, {type: STRING, VALUE: $today}]}, {LESS_EQUALS: [{SELECT: \"startDate\", type: STRING}, {type: STRING, VALUE: $oneMonthFromToday}]}, $locationId, $productId]}, aggregationParams: {dimension: {fieldPath: \"startDate\", type: STRING, calendarInterval: \"1d\"}, paginationParams: { first: 30, sort: {fieldPath: \"startDate\", order: ASC}}, reduce: {expression: {fieldPath: \"quantity\", operator: SUM, type: INT}, output: {resultAlias: \"Predicted demand plan\", type: INT}}}, cursorParams: {first: 0}, hint: {viewId: \"graph\"}) { aggregationResultsTotalCount aggregationResults { dimensionValues { name value } values { name numValue } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[6].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[6].variables.today",
+      "values": ["{{ today }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[6].variables.oneMonthFromToday",
+      "values": ["{{ oneMonthFromToday }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[6].variables.locationId",
+      "values": [
+        "{ \"EQUALS_ANY\": [ { \"SELECT\": \"location.id\", \"type\": \"STRING\" }, { \"VALUES\": \"{{ locationId }}\", \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[6].variables.productId",
+      "values": [
+        "{ \"EQUALS_ANY\": [ { \"SELECT\": \"product.id\", \"type\": \"STRING\" }, { \"VALUES\": \"{{ productId }}\", \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "upperThreshold",
+      "values": ["WIDGET_DEFINITION.TIME_SERIES_WIDGET.UPPER_THRESHOLD"],
+      "metaInformation": "supplyDemandChartOption"
+    },
+    {
+      "name": "lowerThreshold",
+      "values": ["WIDGET_DEFINITION.TIME_SERIES_WIDGET.LOWER_THRESHOLD"],
+      "metaInformation": "supplyDemandChartOption"
+    },
+    {
+      "name": "supplyDemandChart[0].name",
+      "values": ["Qty"],
+      "metaInformation": "supplyDemandChartOption"
+    },
+    {
+      "name": "supplyDemandChart[0].label",
+      "values": ["COMMON.QUANTITY"],
+      "metaInformation": "supplyDemandChartOption"
+    },
+    {
+      "name": "supplyDemandChart[1].name",
+      "values": ["Date"],
+      "metaInformation": "supplyDemandChartOption"
+    },
+    {
+      "name": "supplyDemandChart[1].label",
+      "values": ["COMMON.DATE"],
+      "metaInformation": "supplyDemandChartOption"
+    },
+    {
+      "name": "supplyDemandChart[2].name",
+      "values": ["quantityUpperThreshold"],
+      "metaInformation": "supplyDemandChartOption"
+    },
+    {
+      "name": "supplyDemandChart[2].label",
+      "values": ["INVENTORY.QUANTITY_UPPER_THRESHOLD"],
+      "metaInformation": "supplyDemandChartOption"
+    },
+    {
+      "name": "supplyDemandChart[3].name",
+      "values": ["quantityLowerThreshold"],
+      "metaInformation": "supplyDemandChartOption"
+    },
+    {
+      "name": "supplyDemandChart[3].label",
+      "values": ["INVENTORY.QUANTITY_LOWER_THRESHOLD"],
+      "metaInformation": "supplyDemandChartOption"
+    },
+    {
+      "name": "supplyDemandTableHeader[0]",
+      "values": ["COMMON.SUPPLY_PLANS"],
+      "metaInformation": "supplyDemandChartOption"
+    },
+    {
+      "name": "supplyDemandTableHeader[1]",
+      "values": ["COMMON.DEMAND_PLANS"],
+      "metaInformation": "supplyDemandChartOption"
+    },
+    {
+      "name": "supplyDemandTableHeader[2]",
+      "values": ["WIDGET_DEFINITION.TIME_SERIES_WIDGET.PREDICTED_DEMAND_PLAN"],
+      "metaInformation": "supplyDemandChartOption"
+    },
+    {
+      "name": "supplyDemandTableHeader[3]",
+      "values": ["WIDGET_DEFINITION.TIME_SERIES_WIDGET.PLANNED_INVENTORY"],
+      "metaInformation": "supplyDemandChartOption"
+    },
+    {
+      "name": "supplyDemandTableHeader[4]",
+      "values": ["WIDGET_DEFINITION.TIME_SERIES_WIDGET.ON_ORDER"],
+      "metaInformation": "supplyDemandChartOption"
+    },
+    {
+      "name": "supplyDemandTableHeader[5]",
+      "values": ["COMMON.SHIPMENT_STATUS.IN_TRANSIT"],
+      "metaInformation": "supplyDemandChartOption"
+    },
+    {
+      "name": "supplyDemandTableHeader[6]",
+      "values": ["WIDGET_DEFINITION.TIME_SERIES_WIDGET.SALES_ORDERS"],
+      "metaInformation": "supplyDemandChartOption"
+    },
+    {
+      "name": "supplyDemandTableHeader[7]",
+      "values": ["WIDGET_DEFINITION.TIME_SERIES_WIDGET.ON_HAND_INVENTORY"],
+      "metaInformation": "supplyDemandChartOption"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": ["refreshData"],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "lineChartOptions.axes.bottom.mapsTo",
+      "values": ["date"],
+      "metaInformation": "supplyDemandChartOption"
+    },
+    {
+      "name": "lineChartOptions.axes.bottom.scaleType",
+      "values": ["time"],
+      "metaInformation": "supplyDemandChartOption"
+    },
+    {
+      "name": "lineChartOptions.axes.bottom.includeZero",
+      "values": ["false"],
+      "metaInformation": "supplyDemandChartOption"
+    },
+    {
+      "name": "lineChartOptions.axes.left.mapsTo",
+      "values": ["value"],
+      "metaInformation": "supplyDemandChartOption"
+    },
+    {
+      "name": "lineChartOptions.axes.left.scaleType",
+      "values": ["linear"],
+      "metaInformation": "supplyDemandChartOption"
+    },
+    {
+      "name": "lineChartOptions.axes.left.thresholds",
+      "values": ["null"],
+      "metaInformation": "supplyDemandChartOption"
+    },
+    {
+      "name": "lineChartOptions.curve",
+      "values": ["curveMonotoneX"],
+      "metaInformation": "supplyDemandChartOption"
+    },
+    {
+      "name": "lineChartOptions.tooltip.showTotal",
+      "values": ["false"],
+      "metaInformation": "supplyDemandChartOption"
+    },
+    {
+      "name": "daysToDisplay",
+      "values": ["30"],
+      "metaInformation": "supplyDemandChartOption"
+    },
+    {
+      "name": "viewAllLinkParams[0].path",
+      "values": ["productId={{ partNumber }}"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "viewAllLinkParams[1].path",
+      "values": ["nodes={{ locationIdentifier }}"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "viewAllLinkParams[2].path",
+      "values": ["UOM={{ results[0].quantityUnits }}"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "viewAllLinkParams[3].path",
+      "values": ["productClass={{ results[0].class }}"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "viewAllLinkNavPath.path",
+      "values": ["/inventory-hub/inventory/sku"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "defaultDisplayingLegends[0]",
+      "values": ["WIDGET_DEFINITION.TIME_SERIES_WIDGET.ON_HAND_INVENTORY"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "widgetDestroyed",
+      "values": ["clearData", "clearStates"],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "clearStates",
+      "values": ["drilldownRowData"],
+      "metaInformation": "eventPayload"
+    },
+    {
+      "name": "showFooter",
+      "values": ["false"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "locationId",
+      "values": ["refreshData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "productId",
+      "values": ["refreshData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "inventoryId",
+      "values": ["refreshData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "state.empty.title",
+      "values": ["COMMON.EMPTY_TITLE"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.body",
+      "values": ["COMMON.EMPTY_BODY"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": ["COMMON.EMPTY_LINK_LABEL"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": ["NEW_WINDOW"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [
+    { "name": "chartType", "values": ["time_series_chart_v2"] }
+  ],
+  "adminConfigurations": []
+}

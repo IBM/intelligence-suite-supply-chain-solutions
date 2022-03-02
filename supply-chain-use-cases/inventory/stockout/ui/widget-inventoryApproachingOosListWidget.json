@@ -1,0 +1,434 @@
+{
+  "offeringId": "SCO",
+  "id": "inventoryApproachingOosListWidget",
+  "state": "ACTIVE",
+  "identifier": "inventoryApproachingOosListWidget",
+  "type": "Dashboard_Widget",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "descriptions": {
+    "en": {
+      "name": "COMMON.INVENTORY_AOOS",
+      "language": "en",
+      "description": "View inventory approaching out of stock"
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "header.path",
+      "values": [
+        "/template/inventoryApproachingOosViewAllLayoutTemplate"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.type",
+      "values": ["metric_header"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.title",
+      "values": ["COMMON.INVENTORY_AOOS"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.tooltip",
+      "values": ["COMMON.INVENTORY_APPROACHING_OOS_TOOLTIP"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.value",
+      "values": ["{{ totalCount }}"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "icons[0].type",
+      "values": ["kebab_menu"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "icons[0].options[0]",
+      "values": ["move"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "colSpan",
+      "values": ["2"],
+      "metaInformation": "widgetOption",
+      "sensitive": false,
+      "readonly": true,
+      "required": false
+    },
+    {
+      "name": "rowSpan",
+      "values": ["2"],
+      "metaInformation": "widgetOption",
+      "sensitive": false,
+      "readonly": true,
+      "required": false
+    },
+    {
+      "name": "data.service",
+      "values": ["infohub"],
+      "sensitive": false,
+      "readonly": true,
+      "required": true
+    },
+    {
+      "name": "queries[0].processor",
+      "values": ["EDGES"],
+      "metaInformation": "infohub.processor",
+      "sensitive": false,
+      "readonly": true,
+      "required": true
+    },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query InventoryApproachingOOS( $tenantId: String $cursorId: String $locationFilter: BooleanExp = { CONSTANT_VALUE: true } $inventoryPlannerCodeFilter: BooleanExp = { CONSTANT_VALUE: true } $categoryFilter: BooleanExp = { CONSTANT_VALUE: true } $productStatusFilter: BooleanExp = { CONSTANT_VALUE: true } $sortBy: String = \"quantityBelowLowerThreshold\" $sortOrder: SortOrder = DESC ) { inventoryApproachingOOS: businessObjects( advancedFilter: { AND: [ { GREATER_THAN: [ { SELECT: \"quantityBelowLowerThreshold\", type: INT } { type: INT, VALUE: \"0\" } ] } { GREATER_THAN: [ { SELECT: \"quantity\", type: INT } { type: INT, VALUE: \"0\" } ] } { EQUALS: [ { SELECT: \"inventoryType\", type: STRING } { type: STRING, VALUE: \"PRODUCT\" } ] } $locationFilter $inventoryPlannerCodeFilter $categoryFilter $productStatusFilter ] } cursorParams: { after: $cursorId first: 8 sort: { fieldPath: $sortBy, order: $sortOrder } } hint: { viewId: \"graph\" } simpleFilter: { tenantId: $tenantId, type: Inventory } ) { totalCount pageInfo { hasNextPage endCursor } edges { cursor object { ... on Inventory { id product { id partNumber name } location { id locationIdentifier locationName locationType } quantityBelowLowerThreshold daysOfSupply expectedLeadTime class segment inventoryParentType quantity quantityUnits } } } } }"
+      ],
+      "metaInformation": "infohub.fields",
+      "sensitive": false,
+      "readonly": true,
+      "required": true
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic",
+      "sensitive": false,
+      "readonly": true,
+      "required": true
+    },
+    {
+      "name": "queries[0].variables.sortBy",
+      "values": ["{{ InventoryApproachingOOS.sort.by }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.sortOrder",
+      "values": ["{{ InventoryApproachingOOS.sort.order }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.cursorId",
+      "values": ["{{ cursorId }}"],
+      "metaInformation": "infohub.variable.dynamic",
+      "sensitive": false,
+      "readonly": true,
+      "required": true
+    },
+    {
+      "name": "queries[0].variables.locationFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"location.id\", \"type\": \"STRING\" }, { \"VALUES\": {{ inventory.appliedFilters.Location.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.inventoryPlannerCodeFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"plannerCode\", \"type\": \"STRING\" }, { \"VALUES\": {{ inventory.appliedFilters.PlannerCode.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.categoryFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"product.category.id\", \"type\": \"STRING\" }, { \"VALUES\": {{ inventory.appliedFilters.Category.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.productStatusFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"product.status\", \"type\": \"STRING\" }, { \"VALUES\": {{ inventory.appliedFilters.ProductStatus.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "columnSorted",
+      "values": ["InventoryApproachingOOS"],
+      "metaInformation": "stateScope"
+    },
+    {
+      "name": "InventoryApproachingOOS.sort",
+      "values": ["refreshData", "refreshSavedState"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "inventory.appliedFilters",
+      "values": ["refreshData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "draggable",
+      "values": ["true"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "horizontalScroll.enable",
+      "values": ["false"],
+      "metaInformation": "tableOption"
+    },
+    {
+      "name": "showFooter",
+      "values": ["true"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "widget.footer.customTemplate",
+      "values": ["linkTpl"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "widget.footer.label",
+      "values": ["View all"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "widget.footer.href.type",
+      "values": ["LAYOUT_TEMPLATE"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "widget.footer.href.id",
+      "values": ["inventoryApproachingOosViewAllLayoutTemplate"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "pagination.enable",
+      "values": ["false"],
+      "metaInformation": "tableOption"
+    },
+    {
+      "name": "selectableRow.enable",
+      "values": ["false"],
+      "metaInformation": "tableOption"
+    },
+    {
+      "name": "stickyTableHeader",
+      "values": ["false"],
+      "metaInformation": "tableOption"
+    },
+    {
+      "name": "stripes",
+      "values": ["false"],
+      "metaInformation": "tableOption"
+    },
+    {
+      "name": "configurable",
+      "values": ["false"],
+      "metaInformation": "tableOption"
+    },
+    {
+      "name": "columns[0].cell.label",
+      "values": ["{{ product.partNumber }}"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[0].header.label",
+      "values": ["INVENTORY.PRODUCT.ID"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[0].sortable",
+      "values": ["false"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[0].cell.customTemplate",
+      "values": ["linkTpl"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[0].cell.href.type",
+      "values": ["LAYOUT_TEMPLATE"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[0].cell.href.id",
+      "values": ["inventoryDetailLayoutTemplate"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[0].cell.href.params",
+      "values": ["inventoryId={{ id }},hiddenLayoutSections=queue"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[0].hidden",
+      "values": ["false"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[0].sequence",
+      "values": ["0"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[1].cell.label",
+      "values": ["{{ product.name }}"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[1].header.label",
+      "values": ["INVENTORY.PRODUCT.NAME"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[1].sortable",
+      "values": ["false"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[1].cell.customTemplate",
+      "values": ["textTpl"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[1].hidden",
+      "values": ["false"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[1].sequence",
+      "values": ["1"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[2].cell.label",
+      "values": ["{{ quantityBelowLowerThreshold }}"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[2].header.label",
+      "values": ["INVENTORY.LOW_QUANTITY"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[2].sortable",
+      "values": ["true"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[2].cell.customTemplate",
+      "values": ["numberTpl"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[2].hidden",
+      "values": ["false"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[2].sequence",
+      "values": ["2"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[3].cell.label",
+      "values": ["{{ location.locationIdentifier }}"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[3].header.label",
+      "values": ["COMMON.LOCATION"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[3].sortable",
+      "values": ["false"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[3].cell.customTemplate",
+      "values": ["textTpl"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[3].hidden",
+      "values": ["false"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[3].sequence",
+      "values": ["3"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[4].cell.label",
+      "values": ["{{ daysOfSupply }}"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[4].header.label",
+      "values": ["INVENTORY.DAYS_OF_SUPPLY"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[4].sortable",
+      "values": ["false"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[4].cell.customTemplate",
+      "values": ["numberTpl"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[4].hidden",
+      "values": ["false"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[4].sequence",
+      "values": ["4"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": ["loadState", "refreshData"],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{ \"errors\": \"{{#? this.errors}}\", \"pageInfo\": \"{{this.data.inventoryApproachingOOS.pageInfo}}\", \"totalCount\": \"{{this.data.inventoryApproachingOOS.totalCount}}\", \"results\": { \"{{#each this.data.inventoryApproachingOOS.edges}}\": { \"cursor\": \"{{this.cursor}}\", \"id\": \"{{this.object.id}}\", \"product\": \"{{this.object.product}}\", \"location\": \"{{this.object.location}}\", \"quantityBelowLowerThreshold\": \"{{this.object.quantityBelowLowerThreshold}}\",  \"daysOfSupply\": \"{{this.object.daysOfSupply}}\", \"expectedLeadTime\": \"{{this.object.expectedLeadTime}}\", \"class\": \"{{this.object.class}}\", \"segment\": \"{{this.object.segment}}\", \"inventoryParentType\": \"{{this.object.inventoryParentType}}\", \"quantity\": \"{{this.object.quantity}}\", \"quantityUnits\": \"{{this.object.quantityUnits}}\" } } }"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.title",
+      "values": ["COMMON.EMPTY_TITLE"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.body",
+      "values": ["COMMON.EMPTY_BODY"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": ["COMMON.EMPTY_LINK_LABEL"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": ["NEW_WINDOW"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [{ "name": "chartType", "values": ["data_table"] }],
+  "adminConfigurations": []
+}

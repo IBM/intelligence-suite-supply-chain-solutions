@@ -1,0 +1,495 @@
+{
+  "offeringId": "SCO",
+  "id": "inventoryOutboundNumberCustomerKpiViewAllListWidget",
+  "state": "ACTIVE",
+  "identifier": "inventoryOutboundNumberCustomerKpiViewAllListWidget",
+  "type": "Dashboard_Widget",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "descriptions": {
+    "en": {
+      "name": "Inventory details number of customers view all",
+      "language": "en",
+      "description": "Inventory details number of customers view all"
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "header.type",
+      "values": ["metric_header"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.title",
+      "values": ["COMMON.CUSTOMERS"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.value",
+      "values": ["{{ totalCount }}"],
+      "metaInformation": "widgetOption"
+    },
+    { "name": "data.service", "values": ["infohub"] },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query Customers($tenantId: String, $locationId: String, $productId: String, $cursorId: String, $pageLength: Int = 10, $sortBy: String = \"buyer.id\", $sortOrder: SortOrder = DESC) { Customers: businessObjects(cursorParams: {first: $pageLength, after: $cursorId, sort: {fieldPath: $sortBy, order: $sortOrder}}, hint: {viewId: \"graph\"}, simpleFilter: {tenantId: $tenantId, type: Organization}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"orgType\", type: STRING}, {VALUE: \"CUSTOMER\", type: STRING}]}, {REFERENCED_BY: {type: Order, fieldName: \"buyer\", criteria: {AND: [{EQUALS: [{SELECT: \"orderType\", type: STRING}, {VALUE: \"OUTBOUND\", type: STRING}]}, {EQUALS: [{SELECT: \"orderLines.product.id\", type: STRING}, {VALUE: $productId, type: STRING}]}, {EQUALS: [{SELECT: \"shipFromInstructionLocation.id\", type: STRING}, {VALUE: $locationId, type: STRING}]}]}}}]}) { totalCount pageInfo { hasNextPage endCursor } edges { cursor object { ... on Organization { id name organizationIdentifier orgType division location { locationName locationIdentifier city stateProvince country geo postalCode address1 address2 } } } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.sortBy",
+      "values": ["{{ Customers.sort.by }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.sortOrder",
+      "values": ["{{ Customers.sort.order }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.pageLength",
+      "values": ["{{ Customers.pageLength }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.cursorId",
+      "values": ["{{ cursorId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.productId",
+      "values": ["{{ productId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.locationId",
+      "values": ["{{ locationId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "resizeToContent",
+      "values": ["false"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "draggable",
+      "values": ["false"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "showFooter",
+      "values": ["false"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "horizontalScroll.enable",
+      "values": ["true"],
+      "metaInformation": "tableOption"
+    },
+    {
+      "name": "pagination.enable",
+      "values": [true],
+      "metaInformation": "tableOption"
+    },
+    {
+      "name": "pageInput.enable",
+      "values": [true],
+      "metaInformation": "tableOption"
+    },
+    {
+      "name": "selectableRow.enable",
+      "values": ["false"],
+      "metaInformation": "tableOption"
+    },
+    {
+      "name": "stickyTableHeader",
+      "values": ["false"],
+      "metaInformation": "tableOption"
+    },
+    {
+      "name": "stripes",
+      "values": ["false"],
+      "metaInformation": "tableOption"
+    },
+    {
+      "name": "configurable",
+      "values": ["false"],
+      "metaInformation": "tableOption"
+    },
+    {
+      "name": "columns[0].cell.label",
+      "values": ["{{ name }}"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[0].header.label",
+      "values": ["COMMON.CUSTOMER_NAME"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[0].sortable",
+      "values": ["false"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[0].cell.customTemplate",
+      "values": ["textTpl"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[0].sequence",
+      "values": ["0"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[1].cell.label",
+      "values": ["{{ organizationIdentifier }}"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[1].header.label",
+      "values": ["COMMON.CUSTOMER_ID"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[1].sortable",
+      "values": ["true"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[1].cell.customTemplate",
+      "values": ["textTpl"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[1].sequence",
+      "values": ["1"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[2].cell.label",
+      "values": ["{{ location.locationIdentifier }}"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[2].header.label",
+      "values": ["COMMON.LOCATION_ID"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[2].sortable",
+      "values": ["false"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[2].cell.customTemplate",
+      "values": ["textTpl"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[2].sequence",
+      "values": ["2"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[3].cell.label",
+      "values": ["{{ location.locationName }}"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[3].header.label",
+      "values": ["COMMON.LOCATION_NAME"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[3].sortable",
+      "values": [false],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[3].cell.customTemplate",
+      "values": ["textTpl"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[3].sequence",
+      "values": ["3"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[4].cell.label",
+      "values": ["{{ location.city }}"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[4].header.label",
+      "values": ["COMMON.LOCATION_CITY"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[4].sortable",
+      "values": ["false"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[4].cell.customTemplate",
+      "values": ["textTpl"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[4].sequence",
+      "values": ["4"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[5].cell.label",
+      "values": ["{{ location.stateProvince }}"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[5].header.label",
+      "values": ["COMMON.LOCATION_STATE_PROVINCE"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[5].sortable",
+      "values": ["false"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[5].cell.customTemplate",
+      "values": ["textTpl"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[5].sequence",
+      "values": ["5"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[6].cell.label",
+      "values": ["{{ location.country }}"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[6].header.label",
+      "values": ["COMMON.LOCATION_COUNTRY"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[6].sortable",
+      "values": ["false"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[6].cell.customTemplate",
+      "values": ["textTpl"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[6].sequence",
+      "values": ["6"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[7].cell.label",
+      "values": ["{{ location.address1 }}"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[7].header.label",
+      "values": ["COMMON.LOCATION_ADDRESS_1"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[7].sortable",
+      "values": ["false"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[7].cell.customTemplate",
+      "values": ["textTpl"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[7].sequence",
+      "values": ["7"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[8].cell.label",
+      "values": ["{{ location.address2 }}"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[8].header.label",
+      "values": ["COMMON.LOCATION_ADDRESS_2"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[8].sortable",
+      "values": ["false"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[8].cell.customTemplate",
+      "values": ["textTpl"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[8].sequence",
+      "values": ["8"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[9].cell.label",
+      "values": ["{{ location.postalCode }}"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[9].header.label",
+      "values": ["COMMON.LOCATION_POSTAL_CODE"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[9].sortable",
+      "values": ["false"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[9].cell.customTemplate",
+      "values": ["textTpl"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[9].sequence",
+      "values": ["9"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[10].cell.label",
+      "values": ["{{ location.geo }}"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[10].header.label",
+      "values": ["COMMON.LOCATION_GEO"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[10].sortable",
+      "values": ["false"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[10].cell.customTemplate",
+      "values": ["textTpl"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[10].sequence",
+      "values": ["10"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[11].cell.label",
+      "values": ["{{ division }}"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[11].header.label",
+      "values": ["COMMON.ORGANIZATION_DIVISION"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[11].sortable",
+      "values": ["false"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[11].cell.customTemplate",
+      "values": ["textTpl"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[11].sequence",
+      "values": ["11"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "Customers.page",
+      "values": ["refreshData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "Customers.pageLength",
+      "values": ["refreshData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "Customers.sort",
+      "values": ["refreshData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "pageChanged",
+      "values": ["Customers"],
+      "metaInformation": "stateScope"
+    },
+    {
+      "name": "columnSorted",
+      "values": ["Customers"],
+      "metaInformation": "stateScope"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": ["refreshData"],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{ \"errors\": \"{{#? this.errors}}\", \"pageInfo\": \"{{this.data.Customers.pageInfo}}\", \"totalCount\": \"{{this.data.Customers.totalCount}}\", \"results\": { \"{{#each this.data.Customers.edges}}\": { \"cursor\": \"{{this.cursor}}\", \"id\": \"{{this.object.id}}\", \"name\": \"{{this.object.name}}\", \"location\": \"{{this.object.location}}\", \"organizationIdentifier\": \"{{this.object.organizationIdentifier}}\", \"orgType\": \"{{this.object.orgType}}\", \"division\": \"{{this.object.division}}\" } } }"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.title",
+      "values": ["COMMON.EMPTY_TITLE"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.body",
+      "metaInformation": "widgetOption",
+      "values": ["COMMON.EMPTY_BODY"]
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": ["COMMON.EMPTY_LINK_LABEL"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": ["NEW_WINDOW"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [{ "name": "chartType", "values": ["data_table"] }],
+  "adminConfigurations": []
+}

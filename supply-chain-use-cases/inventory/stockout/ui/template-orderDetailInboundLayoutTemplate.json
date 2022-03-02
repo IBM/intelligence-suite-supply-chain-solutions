@@ -1,0 +1,202 @@
+{
+  "id": "orderDetailInboundLayoutTemplate",
+  "offeringId": "SCO",
+  "state": "ACTIVE",
+  "sequence": 0,
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "type": "Details",
+  "widgets": [
+    {
+      "id": "orderDetailTitleHeaderWidget",
+      "layoutId": "orderDetailInboundLayoutTemplate",
+      "sequence": 0,
+      "widgetDefinitionId": "orderDetailTitleHeaderWidget",
+      "name": "Title",
+      "creator": "samsmith@ibm.com",
+      "createdDate": "2021-07-12T17:33:20.997Z",
+      "parentWidgetId": "",
+      "widgetProperties": {},
+      "displayProperties": {
+        "chartType": "page_title",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "layout_title"
+      }
+    },
+    {
+      "id": "orderDetailInboundAccordionWidget",
+      "layoutId": "orderDetailInboundLayoutTemplate",
+      "sequence": 1,
+      "widgetDefinitionId": "orderDetailInboundAccordionWidget",
+      "name": "Order Detail Accordion",
+      "creator": "samsmith@ibm.com",
+      "createdDate": "2021-06-10T00:00:00.000Z",
+      "parentWidgetId": "",
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "4",
+        "rowSpan": "14",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "grid_details",
+        "fullBodyWidget": "true",
+        "enabled": "true",
+        "section": "layout_body"
+      }
+    },
+    {
+      "id": "orderInboundTotalOrderLinesMetricsSummaryWidget",
+      "layoutId": "orderDetailInboundLayoutTemplate",
+      "sequence": 2,
+      "widgetDefinitionId": "orderInboundTotalOrderLinesMetricsSummaryWidget",
+      "name": "Order Detail Total Order Lines Metrics",
+      "creator": "samsmith@ibm.com",
+      "createdDate": "2021-06-10T00:00:00.000Z",
+      "parentWidgetId": "",
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "3",
+        "rowSpan": "11",
+        "xPos": "0",
+        "yPos": "11",
+        "chartType": "summary",
+        "fullBodyWidget": "true",
+        "enabled": "true",
+        "section": "layout_body"
+      }
+    },
+    {
+      "id": "orderInboundProductsMetricsSummaryWidget",
+      "layoutId": "orderDetailInboundLayoutTemplate",
+      "sequence": 3,
+      "widgetDefinitionId": "orderInboundProductsMetricsSummaryWidget",
+      "name": "Order Detail Products Metric",
+      "creator": "samsmith@ibm.com",
+      "createdDate": "2021-06-10T00:00:00.000Z",
+      "parentWidgetId": "",
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "1",
+        "rowSpan": "11",
+        "xPos": "3",
+        "yPos": "11",
+        "chartType": "summary",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "layout_body"
+      }
+    },
+    {
+      "id": "orderInboundTotalShipmentsMetricsSummaryWidget",
+      "layoutId": "orderDetailInboundLayoutTemplate",
+      "sequence": 4,
+      "widgetDefinitionId": "orderInboundTotalShipmentsMetricsSummaryWidget",
+      "name": "Order Detail Total Shipments Metrics",
+      "creator": "samsmith@ibm.com",
+      "createdDate": "2021-06-10T00:00:00.000Z",
+      "parentWidgetId": "",
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "4",
+        "rowSpan": "11",
+        "xPos": "0",
+        "yPos": "22",
+        "chartType": "summary",
+        "fullBodyWidget": "true",
+        "enabled": "true",
+        "section": "layout_body"
+      }
+    },
+    {
+      "id": "orderInboundTabsTabPanelWidget,
+      "layoutId": "orderDetailInboundLayoutTemplate",
+      "sequence": 5,
+      "widgetDefinitionId": "orderInboundTabsTabPanelWidget,
+      "name": "Order Detail Tabs",
+      "creator": "samsmith@ibm.com",
+      "createdDate": "2021-06-10T00:00:00.000Z",
+      "parentWidgetId": "",
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "4",
+        "rowSpan": "20",
+        "xPos": "0",
+        "yPos": "36",
+        "chartType": "tab_panel",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "layout_body"
+      }
+    }
+  ],
+  "defaultLanguage": "en",
+  "descriptions": {
+    "en": {
+      "name": "Order Details",
+      "language": "en",
+      "description": "Order Detail Inbound"
+    }
+  },
+  "properties": [
+    {
+      "name": "breadcrumbEnabled",
+      "values": [true],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "breadcrumbList",
+      "values": [
+        "{\"label\": \"TEMPLATE.orderDetailInboundLayoutTemplate.BREADCRUMB\", \"routeName\": \"/template/orderDetailInboundLayoutTemplate\"}"
+      ],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "hasTitleWidget",
+      "metaInformation": "layoutOption",
+      "values": ["true"]
+    },
+    {
+      "name": "timestampEnabled",
+      "values": ["false"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "ivAssistantEnabled",
+      "metaInformation": "layoutOption",
+      "values": ["true"]
+    },
+    {
+      "name": "state.empty.title",
+      "values": ["COMMON.EMPTY_TITLE"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.body",
+      "values": ["COMMON.EMPTY_BODY"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.image",
+      "values": ["dataEmpty"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": ["COMMON.EMPTY_LINK_LABEL"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": ["NEW_WINDOW"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "layoutOption"
+    }
+  ],
+  "version": 1
+}

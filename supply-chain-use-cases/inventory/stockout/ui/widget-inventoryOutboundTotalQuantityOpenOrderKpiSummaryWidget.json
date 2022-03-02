@@ -1,0 +1,120 @@
+{
+  "offeringId": "SCO",
+  "id": "inventoryOutboundTotalQuantityOpenOrderKpiSummaryWidget",
+  "state": "ACTIVE",
+  "identifier": "inventoryOutboundTotalQuantityOpenOrderKpiSummaryWidget",
+  "type": "Dashboard_Widget",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "descriptions": {
+    "en": {
+      "name": "Inventory Details Total Quantity on Open Orders",
+      "language": "en",
+      "description": "Inventory Details Total Quantity on Open Orders"
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "header.type",
+      "values": ["text_header"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.title",
+      "values": ["COMMON.TOTAL_QUANTITY_OF_OPEN_ORDERS"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "draggable",
+      "values": ["false"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "resizeToContent",
+      "values": ["true"],
+      "metaInformation": "widgetOption"
+    },
+    { "name": "data.service", "values": ["infohub"] },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query TotalQuantityOnOpenOrders($tenantId: String, $locationId: String, $productId: String) {totalQuantityOnOpenOrders: businessObjects(hint: {viewId: \"graph\"}, simpleFilter: {tenantId: $tenantId, type: OrderLine}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"product.id\", type: STRING}, {VALUE: $productId, type: STRING}]}, {EQUALS: [{SELECT: \"order.orderType\", type: STRING}, {VALUE: \"OUTBOUND\", type: STRING}]}, {OR: [{EQUALS: [{SELECT: \"shipmentStatusByDate\", type: STRING}, {VALUE: \"NOT_SHIPPED\", type: STRING}]}, {EQUALS: [{SELECT: \"shipmentStatusByDate\", type: STRING}, {VALUE: \"NOT_PLANNED\", type: STRING}]}]}, {EQUALS: [{SELECT: \"shipFromInstructionLocation.id\", type: STRING}, {VALUE: $locationId, type: STRING}]}]}, aggregationParams: {dimension: {fieldPath: \"product.id\", type: STRING}, reduce: {output: {resultAlias: \"openOrdersQuantity\", type: FLOAT}, expression: {fieldPath: \"quantity\", operator: SUM, type: FLOAT}}}) { aggregationResults { values { name numValue }}}}"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.productId",
+      "values": ["{{ productId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.locationId",
+      "values": ["{{ locationId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "items[0].count.label",
+      "values": ["{{ totalQuantityOnOpenOrders }}"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].count.href.labelType",
+      "values": ["numberTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "locationId",
+      "values": ["refreshData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "productId",
+      "values": ["refreshData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "state.empty.title",
+      "values": ["COMMON.EMPTY_TITLE"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.body",
+      "values": ["COMMON.EMPTY_BODY"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": ["COMMON.EMPTY_LINK_LABEL"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": ["NEW_WINDOW"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{\"errors\":\"{{#? this.errors}}\", \"pageInfo\":{}, \"totalCount\":{}, \"results\":[{\"totalQuantityOnOpenOrders\":\"{{ this.data.totalQuantityOnOpenOrders.aggregationResults.length ?this.data.totalQuantityOnOpenOrders.aggregationResults[0].values[0].numValue : 0  }}\"}]}"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [{ "name": "chartType", "values": ["summary"] }],
+  "adminConfigurations": []
+}

@@ -1,0 +1,518 @@
+{
+  "id": "inventoryDetailLayoutTemplate",
+  "offeringId": "SCO",
+  "state": "ACTIVE",
+  "sequence": 0,
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "type": "Details",
+  "identifier": "inventoryDetailLayoutTemplate",
+  "widgets": [
+    {
+      "id": "inventoryDetailsTitleHeaderWidget",
+      "layoutId": "inventoryDetailLayoutTemplate",
+      "sequence": 0,
+      "widgetDefinitionId": "inventoryDetailsTitleHeaderWidget",
+      "name": "Title",
+      "creator": "samsmith@ibm.com",
+      "createdDate": "2021-07-12T17:33:20.997Z",
+      "parentWidgetId": "",
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "2",
+        "rowSpan": "2",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "page_title",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "layout_title"
+      }
+    },
+    {
+      "id": "inventoryDetailsAccordionWidget",
+      "layoutId": "inventoryDetailLayoutTemplate",
+      "sequence": 0,
+      "widgetDefinitionId": "inventoryDetailsAccordionWidget",
+      "name": "Inventory Details Accordion",
+      "creator": "samsmith@ibm.com",
+      "createdDate": "2021-06-10T00:00:00.000Z",
+      "parentWidgetId": "",
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "6",
+        "rowSpan": "12",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "grid_details",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "inventory_grid_details"
+      }
+    },
+    {
+      "id": "inventoryDetailInboundNumberSuppliersKpiSummaryWidget",
+      "layoutId": "inventoryDetailLayoutTemplate",
+      "sequence": 0,
+      "widgetDefinitionId": "inventoryDetailInboundNumberSuppliersKpiSummaryWidget",
+      "name": "Inventory Details Number of customers Metrics",
+      "creator": "samsmith@ibm.com",
+      "createdDate": "2021-06-10T00:00:00.000Z",
+      "parentWidgetId": "",
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "1",
+        "rowSpan": "6",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "summary",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "total_inbound_orders"
+      }
+    },
+    {
+      "id": "inventoryInboundNumberOpenOrdersKpiSummaryWidget",
+      "layoutId": "inventoryDetailLayoutTemplate",
+      "sequence": 1,
+      "widgetDefinitionId": "inventoryInboundNumberOpenOrdersKpiSummaryWidget",
+      "name": "Inventory Details Number of open orders Metrics",
+      "creator": "samsmith@ibm.com",
+      "createdDate": "2021-06-10T00:00:00.000Z",
+      "parentWidgetId": "",
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "1",
+        "rowSpan": "6",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "summary",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "total_inbound_orders"
+      }
+    },
+    {
+      "id": "inventoryInboundNumberOpenOrderLinesKpiSummaryWidget",
+      "layoutId": "inventoryDetailLayoutTemplate",
+      "sequence": 2,
+      "widgetDefinitionId": "inventoryInboundNumberOpenOrderLinesKpiSummaryWidget",
+      "name": "Inventory Details Number of open order lines Metrics",
+      "creator": "samsmith@ibm.com",
+      "createdDate": "2021-06-10T00:00:00.000Z",
+      "parentWidgetId": "",
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "1",
+        "rowSpan": "6",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "summary",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "total_inbound_orders"
+      }
+    },
+    {
+      "id": "inventoryInboundTotalQuantityOpenOrdersKpiSummaryWidget",
+      "layoutId": "inventoryDetailLayoutTemplate",
+      "sequence": 3,
+      "widgetDefinitionId": "inventoryInboundTotalQuantityOpenOrdersKpiSummaryWidget",
+      "name": "Inventory Details Total quantity on open orders",
+      "creator": "samsmith@ibm.com",
+      "createdDate": "2021-06-10T00:00:00.000Z",
+      "parentWidgetId": "",
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "1",
+        "rowSpan": "6",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "summary",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "total_inbound_orders"
+      }
+    },
+    {
+      "id": "inventoryInboundTotalQuantityInTransitKpiSummaryWidget",
+      "layoutId": "inventoryDetailLayoutTemplate",
+      "sequence": 4,
+      "widgetDefinitionId": "inventoryInboundTotalQuantityInTransitKpiSummaryWidget",
+      "name": "Inventory Details Total quantity in-transit",
+      "creator": "samsmith@ibm.com",
+      "createdDate": "2021-06-10T00:00:00.000Z",
+      "parentWidgetId": "",
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "1",
+        "rowSpan": "6",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "summary",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "total_inbound_orders"
+      }
+    },
+    {
+      "id": "inventoryInboundQuantityPurchasedLastThirtyKpiSummaryWidget",
+      "layoutId": "inventoryDetailLayoutTemplate",
+      "sequence": 5,
+      "widgetDefinitionId": "inventoryInboundQuantityPurchasedLastThirtyKpiSummaryWidget",
+      "name": "Inventory Details Quantity purchased in last 30 days",
+      "creator": "samsmith@ibm.com",
+      "createdDate": "2021-06-10T00:00:00.000Z",
+      "parentWidgetId": "",
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "1",
+        "rowSpan": "6",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "summary",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "total_inbound_orders"
+      }
+    },
+    {
+      "id": "inventoryNumberCustomersKpiSummaryWidget",
+      "layoutId": "inventoryDetailLayoutTemplate",
+      "sequence": 0,
+      "widgetDefinitionId": "inventoryNumberCustomersKpiSummaryWidget",
+      "name": "Number of Customers",
+      "creator": "samsmith@ibm.com",
+      "createdDate": "2021-06-10T00:00:00.000Z",
+      "parentWidgetId": "",
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "1",
+        "rowSpan": "6",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "summary",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "total_outbound_orders"
+      }
+    },
+    {
+      "id": "inventoryOutboundNumberOpenOrdersKpiSummaryWidget",
+      "layoutId": "inventoryDetailLayoutTemplate",
+      "sequence": 1,
+      "widgetDefinitionId": "inventoryOutboundNumberOpenOrdersKpiSummaryWidget",
+      "name": "Number of Open Orders",
+      "creator": "samsmith@ibm.com",
+      "createdDate": "2021-06-10T00:00:00.000Z",
+      "parentWidgetId": "",
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "1",
+        "rowSpan": "6",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "summary",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "total_outbound_orders"
+      }
+    },
+    {
+      "id": "inventoryOutboundNumberOpenOrderLinesKpiSummaryWidget",
+      "layoutId": "inventoryDetailLayoutTemplate",
+      "sequence": 2,
+      "widgetDefinitionId": "inventoryOutboundNumberOpenOrderLinesKpiSummaryWidget",
+      "name": "Number of Open Orders Lines",
+      "creator": "samsmith@ibm.com",
+      "createdDate": "2021-06-10T00:00:00.000Z",
+      "parentWidgetId": "",
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "1",
+        "rowSpan": "6",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "summary",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "total_outbound_orders"
+      }
+    },
+    {
+      "id": "inventoryOutboundTotalQuantityOpenOrderKpiSummaryWidget",
+      "layoutId": "inventoryDetailLayoutTemplate",
+      "sequence": 3,
+      "widgetDefinitionId": "inventoryOutboundTotalQuantityOpenOrderKpiSummaryWidget",
+      "name": "Total Quantity on Open Orders",
+      "creator": "samsmith@ibm.com",
+      "createdDate": "2021-06-10T00:00:00.000Z",
+      "parentWidgetId": "",
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "1",
+        "rowSpan": "6",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "summary",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "total_outbound_orders"
+      }
+    },
+    {
+      "id": "inventoryOutboundTotalQuantityInTransitKpiSummaryWidget",
+      "layoutId": "inventoryDetailLayoutTemplate",
+      "sequence": 4,
+      "widgetDefinitionId": "inventoryOutboundTotalQuantityInTransitKpiSummaryWidget",
+      "name": "Total Quantity in Transit",
+      "creator": "samsmith@ibm.com",
+      "createdDate": "2021-06-10T00:00:00.000Z",
+      "parentWidgetId": "",
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "1",
+        "rowSpan": "6",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "summary",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "total_outbound_orders"
+      }
+    },
+    {
+      "id": "inventoryOutboundQuantityPurchasedLastThirtyDaysKpiSummaryWidget",
+      "layoutId": "inventoryDetailLayoutTemplate",
+      "sequence": 5,
+      "widgetDefinitionId": "inventoryOutboundQuantityPurchasedLastThirtyDaysKpiSummaryWidget",
+      "name": "Quantity Purchased in Last 30 Day",
+      "creator": "samsmith@ibm.com",
+      "createdDate": "2021-06-10T00:00:00.000Z",
+      "parentWidgetId": "",
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "1",
+        "rowSpan": "6",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "summary",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "total_outbound_orders"
+      }
+    },
+    {
+      "id": "inventoryTimeSeriesWidget",
+      "layoutId": "inventoryDetailLayoutTemplate",
+      "sequence": 0,
+      "widgetDefinitionId": "inventoryTimeSeriesWidget",
+      "name": "Supply and demand trend lines over time",
+      "creator": "samsmith@ibm.com",
+      "createdDate": "2020-08-26T19:58:22.154Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "6",
+        "rowSpan": "48",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "time_series_chart_v2",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "metrics_and_insights"
+      }
+    },
+    {
+      "id": "inventoryDetailsTabsTabPanelWidget,
+      "layoutId": "inventoryDetailLayoutTemplate",
+      "sequence": 0,
+      "widgetDefinitionId": "inventoryDetailsTabsTabPanelWidget,
+      "name": "Inventory Details Metrics",
+      "creator": "samsmith@ibm.com",
+      "createdDate": "2021-06-10T00:00:00.000Z",
+      "parentWidgetId": "",
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "6",
+        "rowSpan": "21",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "tab_panel",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "inventory_overview"
+      }
+    },
+    {
+      "id": "inventoryDetailProcessorWidget",
+      "layoutId": "inventoryDetailLayoutTemplate",
+      "sequence": 0,
+      "widgetDefinitionId": "inventoryDetailProcessorWidget",
+      "name": "Hidden attributes for inventory details",
+      "creator": "samsmith@ibm.com",
+      "createdDate": "2020-08-26T19:58:22.154Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "0",
+        "rowSpan": "0",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "processor",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "layout_hidden"
+      }
+    }
+  ],
+  "defaultLanguage": "en",
+  "descriptions": {
+    "en": {
+      "name": "Inventory detail view",
+      "language": "en",
+      "description": "Default inventory  detail drilldown"
+    }
+  },
+  "properties": [
+    {
+      "name": "gridConfig.maxCols",
+      "metaInformation": "layoutOption",
+      "values": ["6"]
+    },
+    {
+      "name": "accordions[0].id",
+      "values": ["inventory_grid_details"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "accordions[0].expanded",
+      "values": [true],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "accordions[0].title",
+      "values": ["TEMPLATE.inventoryDetailLayoutTemplate.INVENTORY_DETAILS"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "accordions[1].id",
+      "values": ["total_inbound_orders"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "accordions[1].expanded",
+      "values": [false],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "accordions[1].title",
+      "values": ["TEMPLATE.inventoryDetailLayoutTemplate.TOTAL_INBOUND_ORDERS"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "accordions[2].id",
+      "values": ["total_outbound_orders"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "accordions[2].expanded",
+      "values": [false],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "accordions[2].title",
+      "values": ["COMMON.TOTAL_OUTBOUND_ORDERS"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "accordions[3].id",
+      "values": ["metrics_and_insights"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "accordions[3].expanded",
+      "values": [false],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "accordions[3].title",
+      "values": ["TEMPLATE.inventoryDetailLayoutTemplate.METRICS_AND_INSIGHTS"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "accordions[4].id",
+      "values": ["inventory_overview"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "accordions[4].expanded",
+      "values": [false],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "accordions[4].title",
+      "values": ["TEMPLATE.inventoryDetailLayoutTemplate.INVENTORY_OVERVIEW"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "breadcrumbEnabled",
+      "values": [true],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "breadcrumbList",
+      "values": [
+        "{\"label\": \"COMMON.INVENTORY\", \"routeName\": \"/template/inventoryDetailLayoutTemplate\"}"
+      ],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "timestampEnabled",
+      "values": [false],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "hasTitleWidget",
+      "values": ["true"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "ivAssistantEnabled",
+      "values": [true],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.title",
+      "values": ["COMMON.EMPTY_TITLE"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.body",
+      "values": ["COMMON.EMPTY_BODY"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.image",
+      "values": ["dataEmpty"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": ["COMMON.EMPTY_LINK_LABEL"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": ["NEW_WINDOW"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "layoutOption"
+    }
+  ],
+  "version": 1
+}
