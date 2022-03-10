@@ -29,13 +29,13 @@
     * The input data are in folder `data`
     * Figures generated in the experimentation or analysis are stored in folder `figs`
   
-### Possible Runs
+## Possible Runs
 
 * **Demo**: Run `InfoHub.ipynb`, followed by interactive `Upsert-AOOS-Priority-Score-Demo.ipynb` (requires active SCIS account)
 * **Basic**: Run `InfoHub.ipynb`, followed by interactive `Upsert-AOOS-Priority-Score.ipynb` (requires active SCIS account)
 * **Experimentation**: `AOOS-Priority-Score.ipynb` - interactive notebook for understanding the business logic
 
-### Prerequisites
+## Prerequisites
 
 * Active SCIS account required for **Demo** and **Basic** runs
   * Add your credentials to `credentials.json-example` and rename it to `credentials.json`
@@ -45,7 +45,7 @@
 * Assign the work items to yourself/someone (or move them to pending).
   * Only when assigned, work item objects are created, and one can calculate the priority score.
 
-### Contact
+## Contact
 
 * Kamesh `kameshwaran.s@in.ibm.com`
 * Pankaj `pankajdayama@in.ibm.com`
