@@ -1,0 +1,16 @@
+    {
+        "updateReceived": "2021-11-24T12:00:01+0000",
+        "logicalName": "MakeInventoryUnavailable",
+        "description": "<html> <head> <meta http-equiv=Content-Type content=\"text/html; charset=utf-8\"> <meta name=Generator content=\"Microsoft Word 15 (filtered)\"> <link rel=\"stylesheet\" href=\"https://unpkg.com/carbon-components/css/carbon-components.min.css\" /> <style> section.description-list { flex-shrink: 4; margin-right: 1rem; } section.role-action-list { flex-shrink: 1; } .content-container { display: flex; } </style> </head> <body lang=EN-US style='word-wrap:break-word'> <div class=\"content-container\"> <section class=\"bx--structured-list description-list\"> <div class=\"bx--structured-list-thead\"> <div class=\"bx--structured-list-row bx--structured-list-row--header-row\"> <div class=\"bx--structured-list-th\">Description</div> </div> </div> <div class=\"bx--structured-list-tbody\"> <div class=\"bx--structured-list-row\"> <div class=\"bx--structured-list-td\">Update inventory availability for a specific product ID and location.</div> </div> </div> </section>  <section class=\"bx--structured-list role-action-list\"> <div class=\"bx--structured-list-thead\"> <div class=\"bx--structured-list-row bx--structured-list-row--header-row\"> <div class=\"bx--structured-list-th\">Role</div> <div class=\"bx--structured-list-th\">Action</div> </div> </div> <div class=\"bx--structured-list-tbody\"> <div class=\"bx--structured-list-row\"> <div class=\"bx--structured-list-td\">Supply chain analyst</div> <div class=\"bx--structured-list-td\">The supply chain analyst provides a reason for selecting this resolution to enhance future recommendations. <br /> A request form is pre-populated with information. The analyst provides the remaining details and sends the request to the supply chain manager. </div> </div> <div class=\"bx--structured-list-row\"> <div class=\"bx--structured-list-td\">Supply chain manager</div> <div class=\"bx--structured-list-td\">The manager either approves or declines the request. <br /> If the manager approved the request, they update the availability of the product in the inventory system.</div> </div> <div class=\"bx--structured-list-row\"> <div class=\"bx--structured-list-td\">Supply chain analyst</div> <div class=\"bx--structured-list-td\">If the manager declined the request, the analyst selects a different resolution.</div> </div> </div> </section> </div> </body> </html>",
+        "shortDescription": "Resolution time: About 1 day",
+        "type": "ActionDefinition",
+        "enabled": true,
+        "isGloballyVisible": true,
+        "shortDescriptionInfo": "Update inventory availability for a specific product ID and location.",
+        "createReceived": "2021-08-24T09:59:42+0000",
+        "descriptionContentType": "HTML",
+        "tenantId": "a6d7246f-9ed9-4cd3-82e0-2973ef0fd2f6",
+        "name": "Update inventory availability",
+        "subType": "Resolution",
+        "id": "9e02e80c-8303-4a61-bad7-0b8814747452"
+    }

@@ -1,0 +1,33 @@
+
+{
+    "externalWorkflowDefinition":
+    {
+        "id": "70c0ec9c-cd1f-459b-8a37-f5d52eb3784f",
+        "type": "ExternalWorkflowDefinition"
+    },
+    "updateReceived": "2021-11-24T11:58:45+0000",
+    "logicalName": "PlaceNewSupplyOrder",
+    "description": "<html> <head> <meta http-equiv=Content-Type content=\"text/html; charset=utf-8\"> <meta name=Generator content=\"Microsoft Word 15 (filtered)\"> <link rel=\"stylesheet\" href=\"https://unpkg.com/carbon-components/css/carbon-components.min.css\" /> <style> section.description-list { flex-shrink: 4; margin-right: 1rem; } section.role-action-list { flex-shrink: 1; } .content-container { display: flex; } </style> </head> <body lang=EN-US style='word-wrap:break-word'> <div class=\"content-container\"> <section class=\"bx--structured-list description-list\"> <div class=\"bx--structured-list-thead\"> <div class=\"bx--structured-list-row bx--structured-list-row--header-row\"> <div class=\"bx--structured-list-th\">Description</div> </div> </div> <div class=\"bx--structured-list-tbody\"> <div class=\"bx--structured-list-row\"> <div class=\"bx--structured-list-td\">Place a new inbound order for a product that is either approaching out of stock or already out of stock.</div> </div> </div> </section> <section class=\"bx--structured-list role-action-list\"> <div class=\"bx--structured-list-thead\"> <div class=\"bx--structured-list-row bx--structured-list-row--header-row\"> <div class=\"bx--structured-list-th\">Role</div> <div class=\"bx--structured-list-th\">Action</div> </div> </div> <div class=\"bx--structured-list-tbody\"> <div class=\"bx--structured-list-row\"> <div class=\"bx--structured-list-td\">Supply chain analyst</div> <div class=\"bx--structured-list-td\">The supply chain analyst provides a reason for selecting this resolution to enhance future recommendations. <br /> A request form is pre-populated with information. The analyst provides the remaining details and sends the request to the buyer. </div> </div> <div class=\"bx--structured-list-row\"> <div class=\"bx--structured-list-td\">Buyer</div> <div class=\"bx--structured-list-td\">The buyer either approves or declines the request. <br /> If the buyer approved the request, they place the order, add it to the order management system, and include information about it within their response to the analyst. </div> </div> <div class=\"bx--structured-list-row\"> <div class=\"bx--structured-list-td\">Supply chain analyst</div> <div class=\"bx--structured-list-td\">If the buyer declined the request, the analyst selects a different resolution. </div> </div> </div> </section> </div> </body> </html>",
+    "shortDescription": "Resolution time: About 3 days",
+    "type": "ActionDefinition",
+    "enabled": true,
+    "externalWorkflowDefinitionParams": [
+        {
+            "name": "container",
+            "value": "PNO4"
+        },
+        {
+            "name": "model",
+            "value": "Place New Order"
+        }
+    ],
+    "isGloballyVisible": true,
+    "shortDescriptionInfo": "Place a new inbound order for a product that is either approaching out of stock or already out of stock.",
+    "createReceived": "2021-08-05T07:24:11+0000",
+    "descriptionContentType": "HTML",
+    "tenantId": "a6d7246f-9ed9-4cd3-82e0-2973ef0fd2f6",
+    "name": "Place new inbound order",
+    "overrideId": "94204fc0-ee4e-492e-97a5-d50dbe34784b",
+    "subType": "Resolution",
+    "id": "3c152d19-a2bd-46bf-a026-4e49287a7906"
+}

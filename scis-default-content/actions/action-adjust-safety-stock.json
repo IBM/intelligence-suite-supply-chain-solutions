@@ -1,0 +1,17 @@
+
+{
+    "updateReceived": "2021-11-24T12:01:01+0000",
+    "logicalName": "AdjustSafetyStock",
+    "description": "<html><head> <meta http-equiv=Content-Type content=\"text/html; charset=utf-8\"> <meta name=Generator content=\"Microsoft Word 15 (filtered)\"> <link rel=\"stylesheet\" href=\"https://unpkg.com/carbon-components/css/carbon-components.min.css\" /> <style> section.description-list { flex-shrink: 4; margin-right: 1rem; }section.role-action-list { flex-shrink: 1; }.content-container { display: flex; } </style> </head><body lang=EN-US style='word-wrap:break-word'><div class=\"content-container\"> <section class=\"bx--structured-list description-list\"> <div class=\"bx--structured-list-thead\"> <div class=\"bx--structured-list-row bx--structured-list-row--header-row\"> <div class=\"bx--structured-list-th\">Description</div> </div> </div><div class=\"bx--structured-list-tbody\"> <div class=\"bx--structured-list-row\"> <div class=\"bx--structured-list-td\">Adjust the safety stock of a product ID at a specific location. </div> </div> </div></section><section class=\"bx--structured-list\"> <div class=\"bx--structured-list-thead\"> <div class=\"bx--structured-list-row bx--structured-list-row--header-row\"> <div class=\"bx--structured-list-th\">Role</div> <div class=\"bx--structured-list-th\">Action</div> </div> </div> <div class=\"bx--structured-list-tbody\"> <div class=\"bx--structured-list-row\"> <div class=\"bx--structured-list-td\">Supply chain analyst</div> <div class=\"bx--structured-list-td\">The supply chain analyst provides a reason for selecting this resolution to enhance future recommendations. A request form is pre-populated with information. The analyst provides the remaining details and sends the request to the supply chain manager. </div> </div> <div class=\"bx--structured-list-row\"> <div class=\"bx--structured-list-td\">Supply chain manager</div> <div class=\"bx--structured-list-td\">The manager either approves or declines the request. If the manager approved the request, they update the safety stock quantity in the inventory system </div> </div> <div class=\"bx--structured-list-row\"> <div class=\"bx--structured-list-td\">Supply chain analyst</div> <div class=\"bx--structured-list-td\">If the manager declined the request, the analyst selects a different resolution.</div> </div> </div> </section></div></body></html>",
+    "shortDescription": "Resolution time: About 1 day",
+    "type": "ActionDefinition",
+    "enabled": true,
+    "isGloballyVisible": true,
+    "shortDescriptionInfo": "Adjust the safety stock of a product ID at a specific location.",
+    "createReceived": "2021-08-24T10:00:47+0000",
+    "descriptionContentType": "HTML",
+    "tenantId": "a6d7246f-9ed9-4cd3-82e0-2973ef0fd2f6",
+    "name": "Adjust safety stock",
+    "subType": "Resolution",
+    "id": "18083901-294b-4f8d-99dd-26c88ab2a1ec"
+}

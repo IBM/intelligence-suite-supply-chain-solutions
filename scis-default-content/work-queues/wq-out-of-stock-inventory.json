@@ -1,0 +1,104 @@
+    {
+        "advancedFilter":
+        {
+            "AND": [
+                {
+                    "LESS_EQUALS": [
+                        {
+                            "type": "FLOAT",
+                            "SELECT": "quantity"
+                        },
+                        {
+                            "VALUE": "0",
+                            "type": "FLOAT"
+                        }
+                    ]
+                },
+                {
+                    "EQUALS": [
+                        {
+                            "type": "STRING",
+                            "SELECT": "inventoryType"
+                        },
+                        {
+                            "VALUE": "PRODUCT",
+                            "type": "STRING"
+                        }
+                    ]
+                }
+            ]
+        },
+        "updateReceived": "2021-11-30T05:59:23+0000",
+        "primaryBusinessObjectTypes": [
+            "Inventory"
+        ],
+        "logicalName": "outOfStockInventory",
+        "description": "Inventory with no remaining stock.",
+        "defaultCursorParams":
+        {
+            "sort": [
+                {
+                    "fieldPath": "product.partNumber",
+                    "order": "ASC"
+                }
+            ]
+        },
+        "priority": 100.0,
+        "type": "WorkQueueDefinition",
+        "columnsForWorkItemTitle": [
+            "Inventory.product.partNumber",
+            "Inventory.location.locationIdentifier"
+        ],
+        "enabled": true,
+        "isGloballyVisible": true,
+        "detailedDescription": "Inventory with an on-hand quantity of less than 1.",
+        "defaultFieldsForSelect": [
+            "Inventory.product.partNumber",
+            "Inventory.product.name",
+            "WorkItem.status",
+            "WorkItem.userAssigned",
+            "Inventory.location.locationIdentifier",
+            "Inventory.location.locationName",
+            "Inventory.quantity",
+            "Inventory.quantityUnits",
+            "Inventory.product.category.name",
+            "Inventory.plannerCode",
+            "Inventory.product.plannerCode",
+            "WorkItem.updateReceived"
+        ],
+        "createReceived": "2021-07-26T14:30:12Z",
+        "hint":
+        {
+            "viewId": "graph"
+        },
+        "tenantId": "a6d7246f-9ed9-4cd3-82e0-2973ef0fd2f6",
+        "simpleFilter":
+        {
+            "type": "Inventory"
+        },
+        "name": "Out of stock inventory",
+        "isSimple": true,
+        "id": "3ee8b2af-a7ba-4a7c-9e08-54aebee23c7f",
+        "applicableActionDefinitions": [
+            {
+                "id": "efeb8861-6257-4992-b54e-028d587d07be",
+                "type": "ActionDefinition"
+            },
+            {
+                "id": "3c152d19-a2bd-46bf-a026-4e49287a7906",
+                "type": "ActionDefinition"
+            },
+            {
+                "id": "9e02e80c-8303-4a61-bad7-0b8814747452",
+                "type": "ActionDefinition"
+            },
+            {
+                "id": "18083901-294b-4f8d-99dd-26c88ab2a1ec",
+                "type": "ActionDefinition"
+            },
+            {
+                "id": "329fb8c5-3166-4c39-8699-b903737d036b",
+                "type": "ActionDefinition"
+            }
+        ]
+    }

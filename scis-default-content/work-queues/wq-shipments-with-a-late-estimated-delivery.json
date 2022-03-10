@@ -1,0 +1,109 @@
+
+{
+    "advancedFilter":
+    {
+        "AND": [
+            {
+                "GREATER_THAN": [
+                    {
+                        "type": "FLOAT",
+                        "SELECT": "estimatedDeliveryDelay"
+                    },
+                    {
+                        "VALUE": "0",
+                        "type": "FLOAT"
+                    }
+                ]
+            },
+            {
+                "UNEQUALS": [
+                    {
+                        "type": "STRING",
+                        "SELECT": "statusByDate"
+                    },
+                    {
+                        "VALUE": "DELIVERED",
+                        "type": "STRING"
+                    }
+                ]
+            },
+            {
+                "EQUALS": [
+                    {
+                        "type": "STRING",
+                        "SELECT": "shipmentType"
+                    },
+                    {
+                        "VALUE": "INBOUND",
+                        "type": "STRING"
+                    }
+                ]
+            }
+        ]
+    },
+    "updateReceived": "2021-11-30T06:10:48+0000",
+    "primaryBusinessObjectTypes": [
+        "Shipment"
+    ],
+    "logicalName": "shipmentsWithALateEstimatedDelivery",
+    "description": "Inbound supply shipments with a late estimated delivery.",
+    "defaultCursorParams":
+    {
+        "sort": [
+            {
+                "fieldPath": "estimatedDeliveryDelay",
+                "order": "DESC"
+            }
+        ]
+    },
+    "priority": 70.0,
+    "type": "WorkQueueDefinition",
+    "enabled": true,
+    "isGloballyVisible": true,
+    "detailedDescription": "Inbound supply shipments with an estimated date or time of arrival that occurs after the committed time of arrival.",
+    "defaultFieldsForSelect": [
+        "Shipment.shipmentIdentifier",
+        "WorkItem.status",
+        "WorkItem.userAssigned",
+        "Shipment.vendor.organizationIdentifier",
+        "Shipment.vendor.name",
+        "Shipment.carrier.organizationIdentifier",
+        "Shipment.carrier.name",
+        "Shipment.shipFromLocation.locationIdentifier",
+        "Shipment.shipFromLocation.locationName",
+        "Shipment.shipToLocation.locationIdentifier",
+        "Shipment.shipToLocation.locationName",
+        "Shipment.estimatedDeliveryDelay",
+        "Shipment.estimatedTimeOfArrival",
+        "Shipment.revisedEstimatedTimeOfArrival",
+        "Shipment.committedTimeOfArrival",
+        "WorkItem.updateReceived"
+    ],
+    "createReceived": "2021-09-03T02:55:16+0000",
+    "hint":
+    {
+        "viewId": "graph"
+    },
+    "tenantId": "a6d7246f-9ed9-4cd3-82e0-2973ef0fd2f6",
+    "simpleFilter":
+    {
+        "type": "Shipment"
+    },
+    "name": "Shipments with a late estimated delivery",
+    "isSimple": true,
+    "id": "7f31bb63-3954-4a29-92d0-5322b18efd3d",
+    "applicableActionDefinitions": [
+        {
+            "id": "efeb8861-6257-4992-b54e-028d587d07be",
+            "type": "ActionDefinition"
+        },
+        {
+            "id": "3c152d19-a2bd-46bf-a026-4e49287a7906",
+            "type": "ActionDefinition"
+        },
+        {
+            "id": "329fb8c5-3166-4c39-8699-b903737d036b",
+            "type": "ActionDefinition"
+        }
+    ]
+}

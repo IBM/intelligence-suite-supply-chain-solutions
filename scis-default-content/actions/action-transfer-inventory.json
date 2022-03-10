@@ -1,0 +1,33 @@
+
+{
+    "externalWorkflowDefinition":
+    {
+        "id": "70c0ec9c-cd1f-459b-8a37-f5d52eb3784f",
+        "type": "ExternalWorkflowDefinition"
+    },
+    "updateReceived": "2021-11-24T11:56:31+0000",
+    "logicalName": "TransferInventory",
+    "description": "<html> <head> <meta http-equiv=Content-Type content=\"text/html; charset=utf-8\"> <meta name=Generator content=\"Microsoft Word 15 (filtered)\"> <link rel=\"stylesheet\" href=\"https://unpkg.com/carbon-components/css/carbon-components.min.css\" /> <style> section.description-list { flex-shrink: 4; margin-right: 1rem; } section.role-action-list { flex-shrink: 1; } .content-container { display: flex; } </style> </head> <body lang=EN-US style='word-wrap:break-word'> <div class=\"content-container\"> <section class=\"bx--structured-list description-list\"> <div class=\"bx--structured-list-thead\"> <div class=\"bx--structured-list-row bx--structured-list-row--header-row\"> <div class=\"bx--structured-list-th\">Description</div> </div> </div> <div class=\"bx--structured-list-tbody\"> <div class=\"bx--structured-list-row\"> <div class=\"bx--structured-list-td\">Request product transfer from one or more locations.</div> </div> </div> </section> <section class=\"bx--structured-list role-action-list\"> <div class=\"bx--structured-list-thead\"> <div class=\"bx--structured-list-row bx--structured-list-row--header-row\"> <div class=\"bx--structured-list-th\">Role</div> <div class=\"bx--structured-list-th\">Action</div> </div> </div> <div class=\"bx--structured-list-tbody\"> <div class=\"bx--structured-list-row\"> <div class=\"bx--structured-list-td\">Supply chain analyst</div> <div class=\"bx--structured-list-td\">The supply chain analyst provides a reason for selecting this resolution to enhance future recommendations. <br /> The analyst selects one or more locations to transfer the product from based on available quantity. <br /> A request form is pre-populated with information. The analyst provides the remaining details and sends the request to the location manager. <br /> </div> </div> <div class=\"bx--structured-list-row\"> <div class=\"bx--structured-list-td\">Location manager</div> <div class=\"bx--structured-list-td\">The manager either approves or declines the request.</div> </div> <div class=\"bx--structured-list-row\"> <div class=\"bx--structured-list-td\">Supply chain analyst</div> <div class=\"bx--structured-list-td\">If the manager approved the request, the analyst completes the transfer request form and sends it to the carrier. <br /> If the manager declined the request, the analyst either requests a transfer to a different location manager or selects another resolution. </div> </div> <div class=\"bx--structured-list-row\"> <div class=\"bx--structured-list-td\">Carrier</div> <div class=\"bx--structured-list-td\">The carrier determines whether the request can be fulfilled. </div> </div> <div class=\"bx--structured-list-row\"> <div class=\"bx--structured-list-td\">Supply chain analyst</div> <div class=\"bx--structured-list-td\"> If the carrier determined that the request couldn't be fulfilled, the analyst contacts a different carrier or selects another resolution and informs the location manager.</div> </div> </div> </section> </div> </body> </html>",
+    "shortDescription": "Resolution time: About 5 to 8 days",
+    "type": "ActionDefinition",
+    "enabled": true,
+    "externalWorkflowDefinitionParams": [
+        {
+            "name": "container",
+            "value": "TIF6"
+        },
+        {
+            "name": "model",
+            "value": "Transfer Inventory"
+        }
+    ],
+    "isGloballyVisible": true,
+    "shortDescriptionInfo": "Request product transfer from one or more locations.",
+    "createReceived": "2021-08-05T07:23:45+0000",
+    "descriptionContentType": "HTML",
+    "tenantId": "a6d7246f-9ed9-4cd3-82e0-2973ef0fd2f6",
+    "name": "Transfer inventory",
+    "overrideId": "eb347a89-d741-4602-8daa-792fa061b8f2",
+    "subType": "Resolution",
+    "id": "efeb8861-6257-4992-b54e-028d587d07be"
+}
