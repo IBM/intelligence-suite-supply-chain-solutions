@@ -1,0 +1,17 @@
+
+{
+    "updateReceived": "2021-11-24T12:02:08+0000",
+    "logicalName": "ExpediteOrder",
+    "description": "<html> <head> <meta http-equiv=Content-Type content=\"text/html; charset=utf-8\"> <meta name=Generator content=\"Microsoft Word 15 (filtered)\"> <link rel=\"stylesheet\" href=\"https://unpkg.com/carbon-components/css/carbon-components.min.css\" /> <style> section.description-list { flex-shrink: 4; margin-right: 1rem; } section.role-action-list { flex-shrink: 1; } .content-container { display: flex; } </style> </head> <body lang=EN-US style='word-wrap:break-word'> <div class=\"content-container\"> <section class=\"bx--structured-list description-list\"> <div class=\"bx--structured-list-thead\"> <div class=\"bx--structured-list-row bx--structured-list-row--header-row\"> <div class=\"bx--structured-list-th\">Description</div> </div> </div> <div class=\"bx--structured-list-tbody\"> <div class=\"bx--structured-list-row\"> <div class=\"bx--structured-list-td\">Expedite an inbound order for a product that is either approaching out of stock or already out of stock.</div> </div> </div> </section> <section class=\"bx--structured-list role-action-list\"> <div class=\"bx--structured-list-thead\"> <div class=\"bx--structured-list-row bx--structured-list-row--header-row\"> <div class=\"bx--structured-list-th\">Role</div> <div class=\"bx--structured-list-th\">Action</div> </div> </div> <div class=\"bx--structured-list-tbody\"> <div class=\"bx--structured-list-row\"> <div class=\"bx--structured-list-td\">Supply chain analyst</div> <div class=\"bx--structured-list-td\">The supply chain analyst provides a reason for selecting this resolution to enhance future recommendations. A request form is pre-populated with information. The analyst provides the remaining details and sends the request to the buyer.</div> </div> <div class=\"bx--structured-list-row\"> <div class=\"bx--structured-list-td\">Buyer</div> <div class=\"bx--structured-list-td\">The buyer either approves or declines the request. If the buyer approved the request, they coordinate a new arrival date with the supplier, update it within the order management system, and include it within their response to the analyst.</div> </div> <div class=\"bx--structured-list-row\"> <div class=\"bx--structured-list-td\">Supply chain analyst</div> <div class=\"bx--structured-list-td\">If the buyer declined the request, the analyst selects a different resolution.</div> </div> </div> </section> </div> </body> </html>",
+    "shortDescription": "Resolution time: About 1 day",
+    "type": "ActionDefinition",
+    "enabled": true,
+    "isGloballyVisible": true,
+    "shortDescriptionInfo": "Expedite an inbound order for a product that is either approaching out of stock or already out of stock.",
+    "createReceived": "2021-08-24T10:01:02+0000",
+    "descriptionContentType": "HTML",
+    "tenantId": "a6d7246f-9ed9-4cd3-82e0-2973ef0fd2f6",
+    "name": "Expedite inbound order",
+    "subType": "Resolution",
+    "id": "329fb8c5-3166-4c39-8699-b903737d036b"
+}

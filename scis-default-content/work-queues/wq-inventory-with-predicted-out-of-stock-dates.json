@@ -1,0 +1,87 @@
+    {
+        "advancedFilter":
+        {
+            "AND": [
+                {
+                    "EXISTS": [
+                        {
+                            "SELECT": "nextStockoutStartDate",
+                            "type": "STRING"
+                        }
+                    ]
+                },
+                {
+                    "EQUALS": [
+                        {
+                            "SELECT": "inventoryType",
+                            "type": "STRING"
+                        },
+                        {
+                            "VALUE": "PRODUCT",
+                            "type": "STRING"
+                        }
+                    ]
+                }
+            ]
+        },
+        "updateReceived": "2021-12-23T08:21:26+0000",
+        "primaryBusinessObjectTypes": [
+            "Inventory"
+        ],
+        "logicalName": "predictedFutureStockout",
+        "description": "Inventory with one or more predicted out of stock events in the next 30 days",
+        "defaultCursorParams":
+        {
+            "sort": [
+                {
+                    "fieldPath": "nextStockoutStartDate",
+                    "order": "ASC"
+                }
+            ]
+        },
+        "priority": 70.0,
+        "type": "WorkQueueDefinition",
+        "columnsForWorkItemTitle": [
+            "Inventory.product.partNumber",
+            "Inventory.location.locationIdentifier"
+        ],
+        "enabled": true,
+        "isGloballyVisible": true,
+        "detailedDescription": "This work queue uses machine learning and analytics to monitor the demand plan, supply plan, and on-hand inventory of a product by location to predict future out of stock dates. Predicted out of stock events are identified when the amount of inventory is going to be less than the defined threshold within the next 30 days",
+        "defaultFieldsForSelect": [
+            "Inventory.product.partNumber",
+            "Inventory.product.name",
+            "WorkItem.status",
+            "WorkItem.userAssigned",
+            "Inventory.location.locationIdentifier",
+            "Inventory.location.locationName",
+            "Inventory.nextStockoutStartDate",
+            "Inventory.nextStockoutEndDate",
+            "Inventory.nextStockoutDuration",
+            "Inventory.nextStockoutQuantity",
+            "Inventory.quantityUnits",
+            "Inventory.product.category.name",
+            "Inventory.plannerCode",
+            "Inventory.product.plannerCode",
+            "WorkItem.updateReceived"
+        ],
+        "createReceived": "2021-12-02T20:56:14+0000",
+        "tenantId": "bb937633-25aa-4733-8086-058db5b0a3dc",
+        "simpleFilter":
+        {
+            "type": "Inventory"
+        },
+        "name": "Inventory with predicted out of stock dates",
+        "isSimple": true,
+        "id": "8ede6b8d-7552-4aa4-a72e-98f50d551026",
+        "applicableActionDefinitions": [
+            {
+                "id": "efeb8861-6257-4992-b54e-028d587d07be",
+                "type": "ActionDefinition"
+            },
+            {
+                "id": "3c152d19-a2bd-46bf-a026-4e49287a7906",
+                "type": "ActionDefinition"
+            }
+        ]
+    }
