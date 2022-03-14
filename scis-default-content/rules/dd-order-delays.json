@@ -1,0 +1,484 @@
+
+{
+    "instructions":
+    {
+        "sendObjectUpsertEvents":
+        {
+            "objects":
+            {
+                "id":
+                {
+                    "SELECT": "eventDetails.businessObject.id"
+                },
+                "type":
+                {
+                    "SELECT": "eventDetails.businessObject.type"
+                }
+            },
+            "map": [
+                {
+                    "sequence": "0",
+                    "expression":
+                    {
+                        "QUERY":
+                        {
+                            "hint": "orderflow",
+                            "output_local":
+                            {
+                                "resultAlias": "current_order",
+                                "fields": [
+                                    "plannedShipDate",
+                                    "requestedShipDate",
+                                    "plannedDeliveryDate",
+                                    "requestedDeliveryDate"
+                                ]
+                            }
+                        }
+                    }
+                },
+                {
+                    "output":
+                    {
+                        "resultFieldPath": "plannedShipDelay",
+                        "resultType": "Float"
+                    },
+                    "sequence": "1",
+                    "expression":
+                    {
+                        "DIVIDE": [
+                            {
+                                "minus": [
+                                    {
+                                        "SELECT_local": "current_order.plannedShipDate",
+                                        "TYPE": "date"
+                                    },
+                                    {
+                                        "SELECT_local": "current_order.requestedShipDate",
+                                        "TYPE": "date"
+                                    }
+                                ]
+                            },
+                            {
+                                "VALUE": "3600",
+                                "TYPE": "int"
+                            }
+                        ]
+                    },
+                    "if":
+                    {
+                        "AND": [
+                            {
+                                "EXISTS": [
+                                    {
+                                        "TYPE": "date",
+                                        "SELECT_LOCAL": "current_order.plannedShipDate"
+                                    }
+                                ]
+                            },
+                            {
+                                "EXISTS": [
+                                    {
+                                        "TYPE": "date",
+                                        "SELECT_LOCAL": "current_order.requestedShipDate"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "output":
+                    {
+                        "resultFieldPath": "plannedDeliveryDelay",
+                        "resultType": "Float"
+                    },
+                    "sequence": "2",
+                    "expression":
+                    {
+                        "DIVIDE": [
+                            {
+                                "minus": [
+                                    {
+                                        "SELECT_local": "current_order.plannedDeliveryDate",
+                                        "TYPE": "date"
+                                    },
+                                    {
+                                        "SELECT_local": "current_order.requestedDeliveryDate",
+                                        "TYPE": "date"
+                                    }
+                                ]
+                            },
+                            {
+                                "VALUE": "3600",
+                                "TYPE": "int"
+                            }
+                        ]
+                    },
+                    "if":
+                    {
+                        "AND": [
+                            {
+                                "EXISTS": [
+                                    {
+                                        "TYPE": "date",
+                                        "SELECT_LOCAL": "current_order.plannedDeliveryDate"
+                                    }
+                                ]
+                            },
+                            {
+                                "EXISTS": [
+                                    {
+                                        "TYPE": "date",
+                                        "SELECT_LOCAL": "current_order.requestedDeliveryDate"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "sequence": "3",
+                    "expression":
+                    {
+                        "QUERY":
+                        {
+                            "reduce":
+                            {
+                                "expression":
+                                {
+                                    "fieldPath": "shipments.actualShipDate",
+                                    "operator": "MAX"
+                                },
+                                "output_local":
+                                {
+                                    "resultAlias": "max_actualShipDate"
+                                }
+                            },
+                            "hint": "orderflow"
+                        }
+                    },
+                    "if":
+                    {
+                        "EXISTS": [
+                            {
+                                "TYPE": "date",
+                                "SELECT_LOCAL": "current_order.requestedShipDate"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "output":
+                    {
+                        "resultFieldPath": "actualShipDelay",
+                        "resultType": "Float"
+                    },
+                    "sequence": "4",
+                    "expression":
+                    {
+                        "DIVIDE": [
+                            {
+                                "minus": [
+                                    {
+                                        "SELECT_local": "max_actualShipDate",
+                                        "TYPE": "date"
+                                    },
+                                    {
+                                        "SELECT_local": "current_order.requestedShipDate",
+                                        "TYPE": "date"
+                                    }
+                                ]
+                            },
+                            {
+                                "VALUE": "3600",
+                                "TYPE": "int"
+                            }
+                        ]
+                    },
+                    "if":
+                    {
+                        "EXISTS": [
+                            {
+                                "TYPE": "date",
+                                "SELECT_LOCAL": "max_actualShipDate"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "sequence": "5",
+                    "expression":
+                    {
+                        "QUERY":
+                        {
+                            "reduce":
+                            {
+                                "expression":
+                                {
+                                    "fieldPath": "shipments.estimatedTimeOfArrival",
+                                    "operator": "MAX"
+                                },
+                                "output_local":
+                                {
+                                    "resultAlias": "max_estimatedTimeOfArrival"
+                                }
+                            },
+                            "hint": "orderflow"
+                        }
+                    },
+                    "if":
+                    {
+                        "EXISTS": [
+                            {
+                                "TYPE": "date",
+                                "SELECT_LOCAL": "current_order.requestedDeliveryDate"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "output":
+                    {
+                        "resultFieldPath": "estimatedDeliveryDelay",
+                        "resultType": "Float"
+                    },
+                    "sequence": "6",
+                    "expression":
+                    {
+                        "DIVIDE": [
+                            {
+                                "minus": [
+                                    {
+                                        "SELECT_local": "max_estimatedTimeOfArrival",
+                                        "TYPE": "date"
+                                    },
+                                    {
+                                        "SELECT_local": "current_order.requestedDeliveryDate",
+                                        "TYPE": "date"
+                                    }
+                                ]
+                            },
+                            {
+                                "VALUE": "3600",
+                                "TYPE": "int"
+                            }
+                        ]
+                    },
+                    "if":
+                    {
+                        "EXISTS": [
+                            {
+                                "TYPE": "date",
+                                "SELECT_LOCAL": "max_estimatedTimeOfArrival"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "sequence": "7",
+                    "expression":
+                    {
+                        "QUERY":
+                        {
+                            "reduce":
+                            {
+                                "expression":
+                                {
+                                    "fieldPath": "shipments.actualTimeOfArrival",
+                                    "operator": "MAX"
+                                },
+                                "output_local":
+                                {
+                                    "resultAlias": "max_actualTimeOfArrival"
+                                }
+                            },
+                            "hint": "orderflow"
+                        }
+                    },
+                    "if":
+                    {
+                        "EXISTS": [
+                            {
+                                "TYPE": "date",
+                                "SELECT_LOCAL": "current_order.requestedDeliveryDate"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "output":
+                    {
+                        "resultFieldPath": "actualDeliveredDelay",
+                        "resultType": "Float"
+                    },
+                    "sequence": "8",
+                    "expression":
+                    {
+                        "DIVIDE": [
+                            {
+                                "minus": [
+                                    {
+                                        "SELECT_local": "max_actualTimeOfArrival",
+                                        "TYPE": "date"
+                                    },
+                                    {
+                                        "SELECT_local": "current_order.requestedDeliveryDate",
+                                        "TYPE": "date"
+                                    }
+                                ]
+                            },
+                            {
+                                "VALUE": "3600",
+                                "TYPE": "int"
+                            }
+                        ]
+                    },
+                    "if":
+                    {
+                        "EXISTS": [
+                            {
+                                "TYPE": "date",
+                                "SELECT_LOCAL": "max_actualTimeOfArrival"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "ifEvent":
+        {
+            "AND": [
+                {
+                    "EQUALS": [
+                        {
+                            "TYPE": "String",
+                            "SELECT": "eventCode"
+                        },
+                        {
+                            "VALUE": "objectUpsertedEvent",
+                            "TYPE": "String"
+                        }
+                    ]
+                },
+                {
+                    "EQUALS": [
+                        {
+                            "TYPE": "String",
+                            "SELECT": "objectType"
+                        },
+                        {
+                            "VALUE": "Order",
+                            "TYPE": "String"
+                        }
+                    ]
+                },
+                {
+                    "OR": [
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.changedFieldPaths.plannedShipDate"
+                                }
+                            ]
+                        },
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.changedFieldPaths.requestedShipDate"
+                                }
+                            ]
+                        },
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.changedFieldPaths.plannedDeliveryDate"
+                                }
+                            ]
+                        },
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.changedFieldPaths.requestedDeliveryDate"
+                                }
+                            ]
+                        },
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.changedFieldPaths.shipments.actualShipDate"
+                                }
+                            ]
+                        },
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.changedFieldPaths.shipments.estimatedTimeOfArrival"
+                                }
+                            ]
+                        },
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.changedFieldPaths.shipments.actualTimeOfArrival"
+                                }
+                            ]
+                        },
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.changedFieldPaths.shipments.id"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "updatedBy": "29dc3d37-0895-40d0-915c-b9440d5eda1d",
+    "objectTypeSetByRule": "*",
+    "liveTimestamp": 1.64721907076E12,
+    "logicalName": "CaculateLateOrder",
+    "version": 1.0,
+    "createdAt": "2021-06-23T08:00:39Z",
+    "isGloballyVisible": true,
+    "ruleType": "DERIVED",
+    "name": "Late  Order",
+    "fieldsSetByRule": [
+        {
+            "fieldName": "actualDeliveredDelay",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "plannedShipDelay",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "estimatedDeliveryDelay",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "plannedDeliveryDelay",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "actualShipDelay",
+            "fieldType": "Float"
+        }
+    ],
+    "ruleId": "8bd65191-782e-4360-b82a-d7f31d51bf29",
+    "updatedAt": "2021-06-23T08:00:39Z",
+    "status":
+    {
+        "code": "live",
+        "details": "Version 1.0 of this rule is live and processing"
+    }
+}

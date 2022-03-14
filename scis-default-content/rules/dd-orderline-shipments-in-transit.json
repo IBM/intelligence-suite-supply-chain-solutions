@@ -1,0 +1,167 @@
+
+{
+    "instructions":
+    {
+        "sendObjectUpsertEvents":
+        {
+            "objects":
+            {
+                "id":
+                {
+                    "SELECT": "eventDetails.businessObject.id"
+                },
+                "type":
+                {
+                    "SELECT": "eventDetails.businessObject.type"
+                }
+            },
+            "map": [
+                {
+                    "sequence": "1",
+                    "nestedUpserts":
+                    {
+                        "nestedPath": "eventDetails.changedData.orderLines",
+                        "objects":
+                        {
+                            "id":
+                            {
+                                "SELECT": "id"
+                            }
+                        },
+                        "map": [
+                            {
+                                "sequence": "0",
+                                "expression":
+                                {
+                                    "QUERY":
+                                    {
+                                        "reduce":
+                                        {
+                                            "expression":
+                                            {
+                                                "fieldPath": "shipmentLines.type",
+                                                "operator": "COUNT"
+                                            },
+                                            "output_local":
+                                            {
+                                                "resultAlias": "shipMentLine_count_StatusByDate"
+                                            }
+                                        },
+                                        "hint": "orderflow",
+                                        "dimension": "shipmentLines.statusByDate"
+                                    }
+                                }
+                            },
+                            {
+                                "output":
+                                {
+                                    "resultFieldPath": "shipmentsInTransit",
+                                    "resultType": "Int"
+                                },
+                                "sequence": "1",
+                                "expression":
+                                {
+                                    "SELECT_local": "shipMentLine_count_StatusByDate.IN_TRANSIT",
+                                    "TYPE": "INT"
+                                },
+                                "breakOnMatch": "true",
+                                "if":
+                                {
+                                    "EXISTS": [
+                                        {
+                                            "TYPE": "INT",
+                                            "SELECT_LOCAL": "shipMentLine_count_StatusByDate.IN_TRANSIT"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "output":
+                                {
+                                    "resultFieldPath": "shipmentsInTransit",
+                                    "resultType": "Int"
+                                },
+                                "sequence": "2",
+                                "expression":
+                                {
+                                    "VALUE": "0",
+                                    "TYPE": "int"
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "ifEvent":
+        {
+            "AND": [
+                {
+                    "EQUALS": [
+                        {
+                            "TYPE": "String",
+                            "SELECT": "eventCode"
+                        },
+                        {
+                            "VALUE": "objectUpsertedEvent",
+                            "TYPE": "String"
+                        }
+                    ]
+                },
+                {
+                    "EQUALS": [
+                        {
+                            "TYPE": "String",
+                            "SELECT": "objectType"
+                        },
+                        {
+                            "VALUE": "Order",
+                            "TYPE": "String"
+                        }
+                    ]
+                },
+                {
+                    "OR": [
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.changedFieldPath.orderLines.shipmentLines.id"
+                                }
+                            ]
+                        },
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.changedFieldPaths.orderLines.shipmentLines.statusByDate"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "updatedBy": "29dc3d37-0895-40d0-915c-b9440d5eda1d",
+    "objectTypeSetByRule": "*",
+    "liveTimestamp": 1.6472198664E12,
+    "version": 1.0,
+    "createdAt": "2021-06-23T07:54:13Z",
+    "isGloballyVisible": true,
+    "ruleType": "DERIVED",
+    "name": "orderLine_shipmentsInTransit_rule",
+    "fieldsSetByRule": [
+        {
+            "fieldName": "shipmentsInTransit",
+            "fieldType": "Int"
+        }
+    ],
+    "ruleId": "31be1fa1-2607-4ce8-bbf3-d20ad02bfd69",
+    "updatedAt": "2021-06-23T07:54:13Z",
+    "status":
+    {
+        "code": "live",
+        "details": "Version 1.0 of this rule is live and processing"
+    }
+}

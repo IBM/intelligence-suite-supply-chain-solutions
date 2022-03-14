@@ -1,0 +1,195 @@
+
+{
+    "instructions":
+    {
+        "sendObjectUpsertEvents":
+        {
+            "objects":
+            {
+                "id":
+                {
+                    "SELECT": "eventDetails.businessObject.id"
+                },
+                "type":
+                {
+                    "SELECT": "eventDetails.businessObject.type"
+                }
+            },
+            "map": [
+                {
+                    "sequence": "1",
+                    "nestedUpserts":
+                    {
+                        "nestedPath": "eventDetails.businessObject.shipmentLines",
+                        "objects":
+                        {
+                            "id":
+                            {
+                                "SELECT": "id"
+                            }
+                        },
+                        "map": [
+                            {
+                                "output":
+                                {
+                                    "resultFieldPath": "statusByDate",
+                                    "resultType": "String"
+                                },
+                                "sequence": "0",
+                                "expression":
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.businessObject.statusByDate"
+                                }
+                            },
+                            {
+                                "output":
+                                {
+                                    "resultFieldPath": "actualShipDate",
+                                    "resultType": "String"
+                                },
+                                "sequence": "1",
+                                "expression":
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.businessObject.actualShipDate"
+                                }
+                            },
+                            {
+                                "output":
+                                {
+                                    "resultFieldPath": "estimatedTimeOfArrival",
+                                    "resultType": "String"
+                                },
+                                "sequence": "2",
+                                "expression":
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.businessObject.estimatedTimeOfArrival"
+                                }
+                            },
+                            {
+                                "output":
+                                {
+                                    "resultFieldPath": "actualTimeOfArrival",
+                                    "resultType": "String"
+                                },
+                                "sequence": "3",
+                                "expression":
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.businessObject.actualTimeOfArrival"
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "ifEvent":
+        {
+            "AND": [
+                {
+                    "EQUALS": [
+                        {
+                            "TYPE": "STRING",
+                            "SELECT": "eventCode"
+                        },
+                        {
+                            "VALUE": "objectAdhocUpsertedEvent",
+                            "TYPE": "STRING"
+                        }
+                    ]
+                },
+                {
+                    "EQUALS": [
+                        {
+                            "TYPE": "STRING",
+                            "SELECT": "objectType"
+                        },
+                        {
+                            "VALUE": "Shipment",
+                            "TYPE": "STRING"
+                        }
+                    ]
+                },
+                {
+                    "OR": [
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "STRING",
+                                    "SELECT": "eventDetails.changedFieldPaths.statusByDate"
+                                }
+                            ]
+                        },
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "STRING",
+                                    "SELECT": "eventDetails.changedFieldPaths.shipmentLines.id"
+                                }
+                            ]
+                        },
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.changedFieldPaths.actualShipDate"
+                                }
+                            ]
+                        },
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.changedFieldPaths.estimatedTimeOfArrival"
+                                }
+                            ]
+                        },
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.changedFieldPaths.actualTimeOfArrival"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "createdAt": "2021-06-23T07:44:26Z",
+    "isGloballyVisible": true,
+    "objectTypeSetByRule": "*",
+    "ruleType": "DERIVED",
+    "name": "shipmenLine_statusByDate_rule",
+    "fieldsSetByRule": [
+        {
+            "fieldName": "estimatedTimeOfArrival",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "actualTimeOfArrival",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "actualShipDate",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "statusByDate",
+            "fieldType": "String"
+        }
+    ],
+    "liveTimestamp": 1.647192580307E12,
+    "ruleId": "81616545-0866-4a46-bb92-1c2539d8c20b",
+    "version": 1.0,
+    "updatedAt": "2021-06-23T07:44:26Z",
+    "status":
+    {
+        "code": "live",
+        "details": "Version 1.0 of this rule is live and processing"
+    }
+}

@@ -1,0 +1,540 @@
+
+{
+    "instructions":
+    {
+        "sendObjectUpsertEvents":
+        {
+            "objects":
+            {
+                "id":
+                {
+                    "SELECT": "eventDetails.businessObject.id"
+                },
+                "type":
+                {
+                    "SELECT": "eventDetails.businessObject.type"
+                }
+            },
+            "map": [
+                {
+                    "sequence": 1.0,
+                    "nestedUpserts":
+                    {
+                        "nestedPath": "eventDetails.changedData.orderLines",
+                        "objects":
+                        {
+                            "id":
+                            {
+                                "SELECT": "id"
+                            }
+                        },
+                        "map": [
+                            {
+                                "sequence": 0.0,
+                                "expression":
+                                {
+                                    "QUERY":
+                                    {
+                                        "reduce":
+                                        {
+                                            "expression":
+                                            {
+                                                "fieldPath": "shipmentLines.type",
+                                                "operator": "COUNT"
+                                            },
+                                            "output_local":
+                                            {
+                                                "resultAlias": "shipMentLine_count_StatusByDate"
+                                            }
+                                        },
+                                        "hint": "orderflow",
+                                        "dimension": "shipmentLines.statusByDate"
+                                    }
+                                }
+                            },
+                            {
+                                "sequence": 1.0,
+                                "expression":
+                                {
+                                    "QUERY":
+                                    {
+                                        "reduce":
+                                        {
+                                            "expression":
+                                            {
+                                                "fieldPath": "shipmentLines.type",
+                                                "operator": "COUNT"
+                                            },
+                                            "output_local":
+                                            {
+                                                "resultAlias": "current_shipMentLine_count"
+                                            }
+                                        },
+                                        "hint": "orderflow"
+                                    }
+                                }
+                            },
+                            {
+                                "sequence": 2.0,
+                                "expression":
+                                {
+                                    "QUERY":
+                                    {
+                                        "hint": "orderflow",
+                                        "output_local":
+                                        {
+                                            "resultAlias": "orderline_plannedShipDate",
+                                            "fields": [
+                                                "plannedShipDate"
+                                            ]
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "sequence": 3.0,
+                                "expression":
+                                {
+                                    "Value": 0.0,
+                                    "TYPE": "INT"
+                                },
+                                "if":
+                                {
+                                    "NOT_EXISTS": [
+                                        {
+                                            "SELECT_local": "current_shipMentLine_count",
+                                            "TYPE": "INT"
+                                        }
+                                    ]
+                                },
+                                "output_local":
+                                {
+                                    "resultAlias": "current_shipMentLine_count"
+                                }
+                            },
+                            {
+                                "output":
+                                {
+                                    "resultFieldPath": "shipmentStatusByDate",
+                                    "resultType": "String"
+                                },
+                                "sequence": 4.0,
+                                "expression":
+                                {
+                                    "VALUE": "NOT_SHIPPED",
+                                    "TYPE": "STRING"
+                                },
+                                "breakOnmatch": true,
+                                "if":
+                                {
+                                    "AND": [
+                                        {
+                                            "EQUALS": [
+                                                {
+                                                    "SELECT_local": "current_shipMentLine_count",
+                                                    "TYPE": "Int"
+                                                },
+                                                {
+                                                    "VALUE": 0.0,
+                                                    "TYPE": "Int"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "EXISTS": [
+                                                {
+                                                    "TYPE": "String",
+                                                    "SELECT_LOCAL": "orderline_plannedShipDate.plannedShipDate"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "sequence": 5.0,
+                                "expression":
+                                {
+                                    "ADD": [
+                                        {
+                                            "SELECT_local": "shipMentLine_count_StatusByDate.IN_TRANSIT",
+                                            "TYPE": "INT"
+                                        },
+                                        {
+                                            "SELECT_local": "shipMentLine_count_StatusByDate.DELIVERED",
+                                            "TYPE": "INT"
+                                        }
+                                    ]
+                                },
+                                "if":
+                                {
+                                    "AND": [
+                                        {
+                                            "EXISTS": [
+                                                {
+                                                    "SELECT_local": "shipMentLine_count_StatusByDate.IN_TRANSIT",
+                                                    "TYPE": "INT"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "EXISTS": [
+                                                {
+                                                    "SELECT_local": "shipMentLine_count_StatusByDate.DELIVERED",
+                                                    "TYPE": "INT"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "output_local":
+                                {
+                                    "resultAlias": "sum_DELIVERED_and_IN_TRANSIT"
+                                }
+                            },
+                            {
+                                "output":
+                                {
+                                    "resultFieldPath": "shipmentStatusByDate",
+                                    "resultType": "String"
+                                },
+                                "sequence": 6.0,
+                                "expression":
+                                {
+                                    "VALUE": "FULLY_SHIPPED",
+                                    "TYPE": "STRING"
+                                },
+                                "breakOnmatch": true,
+                                "if":
+                                {
+                                    "AND": [
+                                        {
+                                            "GREATER_THAN": [
+                                                {
+                                                    "SELECT_local": "current_shipMentLine_count",
+                                                    "TYPE": "INT"
+                                                },
+                                                {
+                                                    "Value": 0.0,
+                                                    "TYPE": "INT"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "OR": [
+                                                {
+                                                    "AND": [
+                                                        {
+                                                            "EXISTS": [
+                                                                {
+                                                                    "SELECT_local": "sum_DELIVERED_and_IN_TRANSIT",
+                                                                    "TYPE": "INT"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "GREATER_EQUALS": [
+                                                                {
+                                                                    "SELECT_local": "sum_DELIVERED_and_IN_TRANSIT",
+                                                                    "TYPE": "INT"
+                                                                },
+                                                                {
+                                                                    "SELECT_local": "current_shipMentLine_count",
+                                                                    "TYPE": "INT"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "AND": [
+                                                        {
+                                                            "EXISTS": [
+                                                                {
+                                                                    "SELECT_local": "shipMentLine_count_StatusByDate.DELIVERED",
+                                                                    "TYPE": "INT"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "GREATER_EQUALS": [
+                                                                {
+                                                                    "SELECT_local": "shipMentLine_count_StatusByDate.DELIVERED",
+                                                                    "TYPE": "INT"
+                                                                },
+                                                                {
+                                                                    "SELECT_local": "current_shipMentLine_count",
+                                                                    "TYPE": "INT"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "AND": [
+                                                        {
+                                                            "EXISTS": [
+                                                                {
+                                                                    "SELECT_local": "shipMentLine_count_StatusByDate.IN_TRANSIT",
+                                                                    "TYPE": "INT"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "GREATER_EQUALS": [
+                                                                {
+                                                                    "SELECT_local": "shipMentLine_count_StatusByDate.IN_TRANSIT",
+                                                                    "TYPE": "INT"
+                                                                },
+                                                                {
+                                                                    "SELECT_local": "current_shipMentLine_count",
+                                                                    "TYPE": "INT"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "output":
+                                {
+                                    "resultFieldPath": "shipmentStatusByDate",
+                                    "resultType": "String"
+                                },
+                                "sequence": 7.0,
+                                "expression":
+                                {
+                                    "VALUE": "PARTIALLY_SHIPPED",
+                                    "TYPE": "STRING"
+                                },
+                                "breakOnmatch": true,
+                                "if":
+                                {
+                                    "OR": [
+                                        {
+                                            "AND": [
+                                                {
+                                                    "EXISTS": [
+                                                        {
+                                                            "SELECT_local": "sum_DELIVERED_and_IN_TRANSIT",
+                                                            "TYPE": "INT"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "GREATER_THAN": [
+                                                        {
+                                                            "SELECT_local": "sum_DELIVERED_and_IN_TRANSIT",
+                                                            "TYPE": "INT"
+                                                        },
+                                                        {
+                                                            "Value": 0.0,
+                                                            "TYPE": "INT"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "AND": [
+                                                {
+                                                    "EXISTS": [
+                                                        {
+                                                            "SELECT_local": "shipMentLine_count_StatusByDate.IN_TRANSIT",
+                                                            "TYPE": "INT"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "GREATER_THAN": [
+                                                        {
+                                                            "SELECT_local": "shipMentLine_count_StatusByDate.IN_TRANSIT",
+                                                            "TYPE": "INT"
+                                                        },
+                                                        {
+                                                            "Value": 0.0,
+                                                            "TYPE": "INT"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "AND": [
+                                                {
+                                                    "EXISTS": [
+                                                        {
+                                                            "SELECT_local": "shipMentLine_count_StatusByDate.DELIVERED",
+                                                            "TYPE": "INT"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "GREATER_THAN": [
+                                                        {
+                                                            "SELECT_local": "shipMentLine_count_StatusByDate.DELIVERED",
+                                                            "TYPE": "INT"
+                                                        },
+                                                        {
+                                                            "Value": 0.0,
+                                                            "TYPE": "INT"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "output":
+                                {
+                                    "resultFieldPath": "shipmentStatusByDate",
+                                    "resultType": "String"
+                                },
+                                "sequence": 8.0,
+                                "expression":
+                                {
+                                    "VALUE": "NOT_PLANNED",
+                                    "TYPE": "STRING"
+                                },
+                                "breakOnmatch": true,
+                                "if":
+                                {
+                                    "NOT_EXISTS": [
+                                        {
+                                            "TYPE": "String",
+                                            "SELECT_LOCAL": "orderline_plannedShipDate.plannedShipDate"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "output":
+                                {
+                                    "resultFieldPath": "shipmentStatusByDate",
+                                    "resultType": "String"
+                                },
+                                "sequence": 9.0,
+                                "expression":
+                                {
+                                    "VALUE": "NOT_SHIPPED",
+                                    "TYPE": "STRING"
+                                },
+                                "breakOnmatch": true,
+                                "if":
+                                {
+                                    "AND": [
+                                        {
+                                            "EXISTS": [
+                                                {
+                                                    "SELECT_local": "shipMentLine_count_StatusByDate.NOT_SHIPPED",
+                                                    "TYPE": "INT"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "GREATER_EQUALS": [
+                                                {
+                                                    "SELECT_local": "shipMentLine_count_StatusByDate.NOT_SHIPPED",
+                                                    "TYPE": "INT"
+                                                },
+                                                {
+                                                    "SELECT_local": "current_shipMentLine_count",
+                                                    "TYPE": "INT"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "ifEvent":
+        {
+            "AND": [
+                {
+                    "EQUALS": [
+                        {
+                            "TYPE": "String",
+                            "SELECT": "eventCode"
+                        },
+                        {
+                            "VALUE": "objectUpsertedEvent",
+                            "TYPE": "String"
+                        }
+                    ]
+                },
+                {
+                    "EQUALS": [
+                        {
+                            "TYPE": "String",
+                            "SELECT": "objectType"
+                        },
+                        {
+                            "VALUE": "Order",
+                            "TYPE": "String"
+                        }
+                    ]
+                },
+                {
+                    "OR": [
+                        {
+                            "EXISTS": [
+                                {
+                                    "select": "eventDetails.changedFieldPaths.orderLines.id",
+                                    "type": "String"
+                                }
+                            ]
+                        },
+                        {
+                            "EXISTS": [
+                                {
+                                    "type": "String",
+                                    "SELECT": "eventDetails.changedFieldPaths.orderLines.shipmentLines.statusByDate"
+                                }
+                            ]
+                        },
+                        {
+                            "EXISTS": [
+                                {
+                                    "type": "String",
+                                    "SELECT": "eventDetails.changedFieldPaths.orderLines.plannedShipDate"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "updatedBy": "HAL9000",
+    "objectTypeSetByRule": "*",
+    "liveTimestamp": 1.64721908589E12,
+    "version": 1.0,
+    "createdAt": "2021-06-18T02:12:36Z",
+    "isGloballyVisible": true,
+    "ruleType": "DERIVED",
+    "name": "Orderline.shipmentStatusByDate",
+    "tenantId": "a6d7246f-9ed9-4cd3-82e0-2973ef0fd2f6",
+    "fieldsSetByRule": [
+        {
+            "fieldName": "shipmentStatusByDate",
+            "fieldType": "String"
+        }
+    ],
+    "ruleId": "72f29144-bfcb-45d3-b896-38e3095499a4",
+    "updatedAt": "2021-06-18T02:12:36Z",
+    "status":
+    {
+        "code": "live",
+        "details": "Version 1.0 of this rule is live and processing"
+    }
+}

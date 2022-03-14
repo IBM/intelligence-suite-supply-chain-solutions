@@ -1,0 +1,390 @@
+
+{
+    "instructions":
+    {
+        "sendObjectUpsertEvents":
+        {
+            "objects":
+            {
+                "id":
+                {
+                    "SELECT": "eventDetails.businessObject.id"
+                },
+                "type":
+                {
+                    "SELECT": "eventDetails.businessObject.type"
+                }
+            },
+            "map": [
+                {
+                    "output":
+                    {
+                        "resultFieldPath": "predictedDeliveryDelay",
+                        "resultType": "float"
+                    },
+                    "sequence": "1",
+                    "expression":
+                    {
+                        "DIVIDE": [
+                            {
+                                "minus": [
+                                    {
+                                        "TYPE": "Date",
+                                        "SELECT": "eventDetails.businessObject.predictedTimeOfArrival"
+                                    },
+                                    {
+                                        "TYPE": "Date",
+                                        "SELECT": "eventDetails.businessObject.committedTimeOfArrival"
+                                    }
+                                ]
+                            },
+                            {
+                                "VALUE": "3600",
+                                "TYPE": "int"
+                            }
+                        ]
+                    },
+                    "if":
+                    {
+                        "OR": [
+                            {
+                                "AND": [
+                                    {
+                                        "EXISTS": [
+                                            {
+                                                "TYPE": "String",
+                                                "SELECT": "eventDetails.changedFieldPaths.predictedTimeOfArrival"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "EXISTS": [
+                                            {
+                                                "TYPE": "String",
+                                                "SELECT": "eventDetails.businessObject.predictedTimeOfArrival"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "EXISTS": [
+                                    {
+                                        "TYPE": "String",
+                                        "SELECT": "eventDetails.changedFieldPaths.committedTimeOfArrival"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "output":
+                    {
+                        "resultFieldPath": "actualDeliveryDelay",
+                        "resultType": "float"
+                    },
+                    "sequence": "2",
+                    "expression":
+                    {
+                        "DIVIDE": [
+                            {
+                                "minus": [
+                                    {
+                                        "TYPE": "Date",
+                                        "SELECT": "eventDetails.businessObject.actualTimeOfArrival"
+                                    },
+                                    {
+                                        "TYPE": "Date",
+                                        "SELECT": "eventDetails.businessObject.committedTimeOfArrival"
+                                    }
+                                ]
+                            },
+                            {
+                                "VALUE": "3600",
+                                "TYPE": "int"
+                            }
+                        ]
+                    },
+                    "if":
+                    {
+                        "OR": [
+                            {
+                                "AND": [
+                                    {
+                                        "EXISTS": [
+                                            {
+                                                "TYPE": "String",
+                                                "SELECT": "eventDetails.changedFieldPaths.actualTimeOfArrival"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "EXISTS": [
+                                            {
+                                                "TYPE": "String",
+                                                "SELECT": "eventDetails.businessObject.actualTimeOfArrival"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "EXISTS": [
+                                    {
+                                        "TYPE": "String",
+                                        "SELECT": "eventDetails.changedFieldPaths.committedTimeOfArrival"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "output":
+                    {
+                        "resultFieldPath": "estimatedDeliveryDelay",
+                        "resultType": "float"
+                    },
+                    "sequence": "3",
+                    "expression":
+                    {
+                        "DIVIDE": [
+                            {
+                                "minus": [
+                                    {
+                                        "TYPE": "Date",
+                                        "SELECT": "eventDetails.businessObject.revisedEstimatedTimeOfArrival"
+                                    },
+                                    {
+                                        "TYPE": "Date",
+                                        "SELECT": "eventDetails.businessObject.committedTimeOfArrival"
+                                    }
+                                ]
+                            },
+                            {
+                                "VALUE": "3600",
+                                "TYPE": "int"
+                            }
+                        ]
+                    },
+                    "breakOnMatch": "true",
+                    "if":
+                    {
+                        "OR": [
+                            {
+                                "AND": [
+                                    {
+                                        "EXISTS": [
+                                            {
+                                                "TYPE": "String",
+                                                "SELECT": "eventDetails.changedFieldPaths.revisedEstimatedTimeOfArrival"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "EXISTS": [
+                                            {
+                                                "TYPE": "String",
+                                                "SELECT": "eventDetails.businessObject.revisedEstimatedTimeOfArrival"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "EXISTS": [
+                                    {
+                                        "TYPE": "String",
+                                        "SELECT": "eventDetails.changedFieldPaths.committedTimeOfArrival"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "output":
+                    {
+                        "resultFieldPath": "estimatedDeliveryDelay",
+                        "resultType": "float"
+                    },
+                    "sequence": "4",
+                    "expression":
+                    {
+                        "DIVIDE": [
+                            {
+                                "minus": [
+                                    {
+                                        "TYPE": "Date",
+                                        "SELECT": "eventDetails.businessObject.estimatedTimeOfArrival"
+                                    },
+                                    {
+                                        "TYPE": "Date",
+                                        "SELECT": "eventDetails.businessObject.committedTimeOfArrival"
+                                    }
+                                ]
+                            },
+                            {
+                                "VALUE": "3600",
+                                "TYPE": "int"
+                            }
+                        ]
+                    },
+                    "if":
+                    {
+                        "OR": [
+                            {
+                                "AND": [
+                                    {
+                                        "EXISTS": [
+                                            {
+                                                "TYPE": "String",
+                                                "SELECT": "eventDetails.changedFieldPaths.estimatedTimeOfArrival"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "EXISTS": [
+                                            {
+                                                "TYPE": "String",
+                                                "SELECT": "eventDetails.businessObject.estimatedTimeOfArrival"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "NOT_EXISTS": [
+                                            {
+                                                "TYPE": "String",
+                                                "SELECT": "eventDetails.businessObject.revisedEstimatedTimeOfArrival"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "EXISTS": [
+                                    {
+                                        "TYPE": "String",
+                                        "SELECT": "eventDetails.changedFieldPaths.committedTimeOfArrival"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "ifEvent":
+        {
+            "AND": [
+                {
+                    "EQUALS": [
+                        {
+                            "TYPE": "String",
+                            "SELECT": "eventCode"
+                        },
+                        {
+                            "VALUE": "objectAdhocUpsertedEvent",
+                            "TYPE": "String"
+                        }
+                    ]
+                },
+                {
+                    "EQUALS": [
+                        {
+                            "TYPE": "String",
+                            "SELECT": "objectType"
+                        },
+                        {
+                            "VALUE": "Shipment",
+                            "TYPE": "String"
+                        }
+                    ]
+                },
+                {
+                    "EXISTS": [
+                        {
+                            "TYPE": "String",
+                            "SELECT": "eventDetails.businessObject.committedTimeOfArrival"
+                        }
+                    ]
+                },
+                {
+                    "OR": [
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.changedFieldPaths.revisedEstimatedTimeOfArrival"
+                                }
+                            ]
+                        },
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.changedFieldPaths.estimatedTimeOfArrival"
+                                }
+                            ]
+                        },
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.changedFieldPaths.predictedTimeOfArrival"
+                                }
+                            ]
+                        },
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.changedFieldPaths.actualTimeOfArrival"
+                                }
+                            ]
+                        },
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.changedFieldPaths.committedTimeOfArrival"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "updatedBy": "29dc3d37-0895-40d0-915c-b9440d5eda1d",
+    "objectTypeSetByRule": "*",
+    "liveTimestamp": 1.647218991587E12,
+    "version": 1.0,
+    "createdAt": "2021-06-23T08:21:25Z",
+    "isGloballyVisible": true,
+    "ruleType": "DERIVED",
+    "tenantId": "a6d7246f-9ed9-4cd3-82e0-2973ef0fd2f6",
+    "name": "delivered_rule_late_shipment",
+    "fieldsSetByRule": [
+        {
+            "fieldName": "estimatedDeliveryDelay",
+            "fieldType": "float"
+        },
+        {
+            "fieldName": "actualDeliveryDelay",
+            "fieldType": "float"
+        },
+        {
+            "fieldName": "predictedDeliveryDelay",
+            "fieldType": "float"
+        }
+    ],
+    "ruleId": "d8023940-5699-4943-a5be-67ef98680f46",
+    "updatedAt": "2021-06-23T08:21:25Z",
+    "status":
+    {
+        "code": "live",
+        "details": "Version 1.0 of this rule is live and processing"
+    }
+}

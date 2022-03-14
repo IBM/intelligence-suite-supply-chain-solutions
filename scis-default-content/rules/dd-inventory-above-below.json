@@ -1,0 +1,256 @@
+
+{
+    "instructions":
+    {
+        "sendObjectUpsertEvents":
+        {
+            "objects":
+            {
+                "id":
+                {
+                    "SELECT": "eventDetails.businessObject.id"
+                },
+                "type":
+                {
+                    "SELECT": "eventDetails.businessObject.type"
+                }
+            },
+            "map": [
+                {
+                    "sequence": "1",
+                    "expression":
+                    {
+                        "QUERY":
+                        {
+                            "hint": "inventoryflow",
+                            "output_local":
+                            {
+                                "resultAlias": "current_inventory",
+                                "fields": [
+                                    "daysOfSupplyLowerThreshold",
+                                    "daysOfSupplyUpperThreshold",
+                                    "daysOfSupply",
+                                    "quantityLowerThreshold",
+                                    "quantityUpperThreshold",
+                                    "quantity"
+                                ]
+                            }
+                        }
+                    }
+                },
+                {
+                    "output":
+                    {
+                        "resultFieldPath": "daysOfSupplyBelowLowerThreshold",
+                        "resultType": "int"
+                    },
+                    "sequence": "2",
+                    "expression":
+                    {
+                        "max": [
+                            {
+                                "minus": [
+                                    {
+                                        "TYPE": "int",
+                                        "SELECT_LOCAL": "current_inventory.daysOfSupplyLowerThreshold"
+                                    },
+                                    {
+                                        "TYPE": "int",
+                                        "SELECT_LOCAL": "current_inventory.daysOfSupply"
+                                    }
+                                ]
+                            },
+                            {
+                                "VALUE": "0",
+                                "TYPE": "int"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "output":
+                    {
+                        "resultFieldPath": "daysOfSupplyAboveUpperThreshold",
+                        "resultType": "int"
+                    },
+                    "sequence": "3",
+                    "expression":
+                    {
+                        "max": [
+                            {
+                                "minus": [
+                                    {
+                                        "TYPE": "int",
+                                        "SELECT_LOCAL": "current_inventory.daysOfSupply"
+                                    },
+                                    {
+                                        "TYPE": "int",
+                                        "SELECT_LOCAL": "current_inventory.daysOfSupplyUpperThreshold"
+                                    }
+                                ]
+                            },
+                            {
+                                "VALUE": "0",
+                                "TYPE": "int"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "output":
+                    {
+                        "resultFieldPath": "quantityBelowLowerThreshold",
+                        "resultType": "int"
+                    },
+                    "sequence": "4",
+                    "expression":
+                    {
+                        "max": [
+                            {
+                                "minus": [
+                                    {
+                                        "TYPE": "int",
+                                        "SELECT_LOCAL": "current_inventory.quantityLowerThreshold"
+                                    },
+                                    {
+                                        "TYPE": "int",
+                                        "SELECT_LOCAL": "current_inventory.quantity"
+                                    }
+                                ]
+                            },
+                            {
+                                "VALUE": "0",
+                                "TYPE": "int"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "output":
+                    {
+                        "resultFieldPath": "quantityAboveUpperThreshold",
+                        "resultType": "int"
+                    },
+                    "sequence": "5",
+                    "expression":
+                    {
+                        "max": [
+                            {
+                                "minus": [
+                                    {
+                                        "TYPE": "int",
+                                        "SELECT_LOCAL": "current_inventory.quantity"
+                                    },
+                                    {
+                                        "TYPE": "int",
+                                        "SELECT_LOCAL": "current_inventory.quantityUpperThreshold"
+                                    }
+                                ]
+                            },
+                            {
+                                "VALUE": "0",
+                                "TYPE": "int"
+                            }
+                        ]
+                    },
+                    "breakOnMatch": "true"
+                }
+            ]
+        },
+        "ifEvent":
+        {
+            "AND": [
+                {
+                    "EQUALS": [
+                        {
+                            "TYPE": "String",
+                            "SELECT": "eventCode"
+                        },
+                        {
+                            "VALUE": "objectUpsertedEvent",
+                            "TYPE": "String"
+                        }
+                    ]
+                },
+                {
+                    "EQUALS": [
+                        {
+                            "TYPE": "String",
+                            "SELECT": "objectType"
+                        },
+                        {
+                            "VALUE": "Inventory",
+                            "TYPE": "String"
+                        }
+                    ]
+                },
+                {
+                    "OR": [
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.changedFieldPaths.daysOfSupplyLowerThreshold"
+                                }
+                            ]
+                        },
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.changedFieldPaths.daysOfSupplyUpperThreshold"
+                                }
+                            ]
+                        },
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.changedFieldPaths.daysOfSupply"
+                                }
+                            ]
+                        },
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.changedFieldPaths.quantityLowerThreshold"
+                                }
+                            ]
+                        },
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.changedFieldPaths.quantityUpperThreshold"
+                                }
+                            ]
+                        },
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.changedFieldPaths.quantity"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "createdAt": "2020-06-30T10:25:12Z",
+    "isGloballyVisible": true,
+    "ruleType": "DERIVED",
+    "name": "Inventory Update Threshold",
+    "tenantId": "a6d7246f-9ed9-4cd3-82e0-2973ef0fd2f6",
+    "liveTimestamp": 1.647219250982E12,
+    "ruleId": "f00c583d-ddc2-4365-9030-2330982fb8a2",
+    "version": 1.0,
+    "updatedAt": "2020-06-30T10:25:12Z",
+    "status":
+    {
+        "code": "live",
+        "details": "Version 1.0 of this rule is live and processing"
+    }
+}

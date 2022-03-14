@@ -1,0 +1,397 @@
+
+{
+    "instructions":
+    {
+        "throttling":
+        {
+            "window": "15.minutes",
+            "enabled": "false"
+        },
+        "sendObjectUpsertEvents":
+        {
+            "objects":
+            {
+                "id":
+                {
+                    "SELECT": "eventDetails.businessObject.id"
+                },
+                "type":
+                {
+                    "SELECT": "eventDetails.businessObject.type"
+                }
+            },
+            "map": [
+                {
+                    "sequence": "1",
+                    "expression":
+                    {
+                        "QUERY":
+                        {
+                            "reduce":
+                            {
+                                "expression":
+                                {
+                                    "fieldPath": "orderlineValue",
+                                    "operator": "SUM"
+                                },
+                                "output_local":
+                                {
+                                    "resultAlias": "current_shortageRevenue"
+                                }
+                            },
+                            "advancedFilter":
+                            {
+                                "AND": [
+                                    {
+                                        "EQUALS": [
+                                            {
+                                                "FIELD": "productItem.id",
+                                                "TYPE": "String"
+                                            },
+                                            {
+                                                "TYPE": "String",
+                                                "SELECT": "eventDetails.businessObject.id"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "EQUALS": [
+                                            {
+                                                "FIELD": "type",
+                                                "TYPE": "String"
+                                            },
+                                            {
+                                                "VALUE": "OrderAllocation",
+                                                "TYPE": "String"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "GREATER_THAN": [
+                                            {
+                                                "FIELD": "quantityShort",
+                                                "TYPE": "float"
+                                            },
+                                            {
+                                                "VALUE": "0",
+                                                "type": "float"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            "hint": "productflow"
+                        }
+                    },
+                    "if":
+                    {
+                        "AND": [
+                            {
+                                "EXISTS": [
+                                    {
+                                        "TYPE": "STRING",
+                                        "SELECT": "eventDetails.changedFieldPaths.orderAllocations.orderlineValue"
+                                    }
+                                ]
+                            },
+                            {
+                                "EXISTS": [
+                                    {
+                                        "TYPE": "STRING",
+                                        "SELECT": "eventDetails.changedFieldPaths.orderAllocations.quantityShort"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "output":
+                    {
+                        "resultFieldPath": "shortageRevenue",
+                        "resultType": "float"
+                    },
+                    "sequence": "2",
+                    "expression":
+                    {
+                        "TYPE": "float",
+                        "SELECT_LOCAL": "current_shortageRevenue"
+                    },
+                    "if":
+                    {
+                        "AND": [
+                            {
+                                "EXISTS": [
+                                    {
+                                        "TYPE": "STRING",
+                                        "SELECT": "eventDetails.changedFieldPaths.orderAllocations.orderlineValue"
+                                    }
+                                ]
+                            },
+                            {
+                                "EXISTS": [
+                                    {
+                                        "TYPE": "STRING",
+                                        "SELECT": "eventDetails.changedFieldPaths.orderAllocations.quantityShort"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "sequence": "3",
+                    "expression":
+                    {
+                        "QUERY":
+                        {
+                            "reduce":
+                            {
+                                "expression":
+                                {
+                                    "fieldPath": "quantityRequired",
+                                    "operator": "SUM"
+                                },
+                                "output_local":
+                                {
+                                    "resultAlias": "current_quantityNeeded"
+                                }
+                            },
+                            "advancedFilter":
+                            {
+                                "AND": [
+                                    {
+                                        "EQUALS": [
+                                            {
+                                                "FIELD": "productItem.id",
+                                                "TYPE": "String"
+                                            },
+                                            {
+                                                "TYPE": "String",
+                                                "SELECT": "eventDetails.businessObject.id"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "EQUALS": [
+                                            {
+                                                "FIELD": "type",
+                                                "TYPE": "String"
+                                            },
+                                            {
+                                                "VALUE": "OrderAllocation",
+                                                "TYPE": "String"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "GREATER_THAN": [
+                                            {
+                                                "FIELD": "quantityShort",
+                                                "TYPE": "float"
+                                            },
+                                            {
+                                                "VALUE": "0",
+                                                "type": "float"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            "hint": "productflow"
+                        }
+                    },
+                    "if":
+                    {
+                        "EXISTS": [
+                            {
+                                "TYPE": "STRING",
+                                "SELECT": "eventDetails.changedFieldPaths.orderAllocations.quantityShort"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "output":
+                    {
+                        "resultFieldPath": "quantityNeeded",
+                        "resultType": "float"
+                    },
+                    "sequence": "4",
+                    "expression":
+                    {
+                        "TYPE": "STRING",
+                        "SELECT_LOCAL": "current_quantityNeeded"
+                    },
+                    "if":
+                    {
+                        "EXISTS": [
+                            {
+                                "TYPE": "STRING",
+                                "SELECT": "eventDetails.changedFieldPaths.orderAllocations.quantityShort"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "sequence": "5",
+                    "expression":
+                    {
+                        "QUERY":
+                        {
+                            "reduce":
+                            {
+                                "expression":
+                                {
+                                    "fieldPath": "quantityAllocated",
+                                    "operator": "SUM"
+                                },
+                                "output_local":
+                                {
+                                    "resultAlias": "current_quantityAllocated"
+                                }
+                            },
+                            "advancedFilter":
+                            {
+                                "AND": [
+                                    {
+                                        "EQUALS": [
+                                            {
+                                                "FIELD": "productItem.id",
+                                                "TYPE": "String"
+                                            },
+                                            {
+                                                "TYPE": "String",
+                                                "SELECT": "eventDetails.businessObject.id"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "EQUALS": [
+                                            {
+                                                "FIELD": "type",
+                                                "TYPE": "String"
+                                            },
+                                            {
+                                                "VALUE": "OrderAllocation",
+                                                "TYPE": "String"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "GREATER_THAN": [
+                                            {
+                                                "FIELD": "quantityShort",
+                                                "TYPE": "float"
+                                            },
+                                            {
+                                                "VALUE": "0",
+                                                "type": "float"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            "hint": "productflow"
+                        }
+                    },
+                    "if":
+                    {
+                        "EXISTS": [
+                            {
+                                "TYPE": "STRING",
+                                "SELECT": "eventDetails.changedFieldPaths.orderAllocations.quantityShort"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "output":
+                    {
+                        "resultFieldPath": "quantityAllocated",
+                        "resultType": "float"
+                    },
+                    "sequence": "6",
+                    "expression":
+                    {
+                        "TYPE": "STRING",
+                        "SELECT_LOCAL": "current_quantityAllocated"
+                    },
+                    "breakOnMatch": "true",
+                    "if":
+                    {
+                        "EXISTS": [
+                            {
+                                "TYPE": "STRING",
+                                "SELECT": "eventDetails.changedFieldPaths.orderAllocations.quantityShort"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "ifEvent":
+        {
+            "AND": [
+                {
+                    "EQUALS": [
+                        {
+                            "TYPE": "STRING",
+                            "SELECT": "eventCode"
+                        },
+                        {
+                            "VALUE": "objectUpsertedEvent",
+                            "TYPE": "STRING"
+                        }
+                    ]
+                },
+                {
+                    "EQUALS": [
+                        {
+                            "TYPE": "STRING",
+                            "SELECT": "objectType"
+                        },
+                        {
+                            "VALUE": "Product",
+                            "TYPE": "STRING"
+                        }
+                    ]
+                },
+                {
+                    "OR": [
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "STRING",
+                                    "SELECT": "eventDetails.changedFieldPaths.orderAllocation.orderlineValue"
+                                }
+                            ]
+                        },
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "STRING",
+                                    "SELECT": "eventDetails.changedFieldPaths.orderAllocations.quantityShort"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "createdAt": "2020-09-24T12:04:30Z",
+    "isGloballyVisible": true,
+    "ruleType": "DERIVED",
+    "name": "Product Combined rule",
+    "tenantId": "a6d7246f-9ed9-4cd3-82e0-2973ef0fd2f6",
+    "liveTimestamp": 1.646756429034E12,
+    "ruleId": "195887d3-9053-4c88-9d12-d8d7b202b1d5",
+    "version": 1.0,
+    "updatedAt": "2020-09-24T12:04:30Z",
+    "status":
+    {
+        "code": "live",
+        "details": "Version 1.0 of this rule is live and processing"
+    }
+}

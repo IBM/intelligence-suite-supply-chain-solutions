@@ -1,0 +1,185 @@
+
+{
+    "instructions":
+    {
+        "sendObjectUpsertEvents":
+        {
+            "objects":
+            {
+                "id":
+                {
+                    "SELECT": "eventDetails.businessObject.id"
+                },
+                "type":
+                {
+                    "SELECT": "eventDetails.businessObject.type"
+                }
+            },
+            "map": [
+                {
+                    "sequence": "1",
+                    "nestedUpserts":
+                    {
+                        "nestedPath": "eventDetails.changedData.orderLines",
+                        "objects":
+                        {
+                            "id":
+                            {
+                                "SELECT": "id"
+                            }
+                        },
+                        "map": [
+                            {
+                                "output":
+                                {
+                                    "resultFieldPath": "shipmentlinesQuantity",
+                                    "resultType": "float"
+                                },
+                                "sequence": "1",
+                                "expression":
+                                {
+                                    "QUERY":
+                                    {
+                                        "reduce":
+                                        {
+                                            "expression":
+                                            {
+                                                "fieldPath": "shipmentLines.quantity",
+                                                "operator": "SUM"
+                                            }
+                                        },
+                                        "hint": "orderflow"
+                                    }
+                                }
+                            },
+                            {
+                                "sequence": "2",
+                                "expression":
+                                {
+                                    "QUERY":
+                                    {
+                                        "hint": "orderflow",
+                                        "output_local":
+                                        {
+                                            "resultAlias": "current_orderLine",
+                                            "fields": [
+                                                "quantity"
+                                            ]
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "output":
+                                {
+                                    "resultFieldPath": "openQuantity",
+                                    "resultType": "float"
+                                },
+                                "sequence": "3",
+                                "expression":
+                                {
+                                    "minus": [
+                                        {
+                                            "TYPE": "float",
+                                            "SELECT_LOCAL": "current_orderLine.quantity"
+                                        },
+                                        {
+                                            "TYPE": "float",
+                                            "SELECT_LOCAL": "shipmentlinesQuantity"
+                                        }
+                                    ]
+                                },
+                                "breakOnMatch": "true",
+                                "if":
+                                {
+                                    "EXISTS": [
+                                        {
+                                            "TYPE": "float",
+                                            "SELECT_LOCAL": "shipmentlinesQuantity"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "output":
+                                {
+                                    "resultFieldPath": "openQuantity",
+                                    "resultType": "float"
+                                },
+                                "sequence": "4",
+                                "expression":
+                                {
+                                    "TYPE": "float",
+                                    "SELECT_LOCAL": "current_orderLine.quantity"
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "ifEvent":
+        {
+            "AND": [
+                {
+                    "EQUALS": [
+                        {
+                            "TYPE": "STRING",
+                            "SELECT": "eventCode"
+                        },
+                        {
+                            "VALUE": "objectUpsertedEvent",
+                            "TYPE": "STRING"
+                        }
+                    ]
+                },
+                {
+                    "EQUALS": [
+                        {
+                            "TYPE": "STRING",
+                            "SELECT": "objectType"
+                        },
+                        {
+                            "VALUE": "Order",
+                            "TYPE": "STRING"
+                        }
+                    ]
+                },
+                {
+                    "OR": [
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "STRING",
+                                    "SELECT": "eventDetails.changedFieldPaths.orderLines.quantity"
+                                }
+                            ]
+                        },
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "STRING",
+                                    "SELECT": "eventDetails.changedFieldPaths.orderLines.shipmentLines.quantity"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "createdAt": "2020-09-24T12:05:26Z",
+    "isGloballyVisible": true,
+    "ruleType": "DERIVED",
+    "name": "Order.OrderLine.openQuantity",
+    "tenantId": "a6d7246f-9ed9-4cd3-82e0-2973ef0fd2f6",
+    "liveTimestamp": 1.647219195595E12,
+    "ruleId": "022a0d53-110a-4a01-80f7-0c5d41b8acc7",
+    "version": 2.0,
+    "updatedAt": "2020-11-20T06:49:45Z",
+    "status":
+    {
+        "code": "live",
+        "details": "Version 2.0 of this rule is live and processing"
+    }
+}

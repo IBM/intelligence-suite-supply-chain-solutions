@@ -1,0 +1,183 @@
+
+{
+    "instructions":
+    {
+        "sendObjectUpsertEvents":
+        {
+            "objects":
+            {
+                "id":
+                {
+                    "SELECT": "eventDetails.businessObject.id"
+                },
+                "type":
+                {
+                    "SELECT": "eventDetails.businessObject.type"
+                }
+            },
+            "map": [
+                {
+                    "output":
+                    {
+                        "resultFieldPath": "statusByDate",
+                        "resultType": "String"
+                    },
+                    "sequence": 1.0,
+                    "expression":
+                    {
+                        "VALUE": "DELIVERED"
+                    },
+                    "if":
+                    {
+                        "EXISTS": [
+                            {
+                                "TYPE": "String",
+                                "SELECT": "eventDetails.businessObject.actualTimeOfArrival"
+                            }
+                        ]
+                    },
+                    "breakOnMatch": true
+                },
+                {
+                    "output":
+                    {
+                        "resultFieldPath": "statusByDate",
+                        "resultType": "String"
+                    },
+                    "sequence": 2.0,
+                    "expression":
+                    {
+                        "VALUE": "IN_TRANSIT"
+                    },
+                    "if":
+                    {
+                        "AND": [
+                            {
+                                "EXISTS": [
+                                    {
+                                        "TYPE": "String",
+                                        "SELECT": "eventDetails.businessObject.actualShipDate"
+                                    }
+                                ]
+                            },
+                            {
+                                "NOT_EXISTS": [
+                                    {
+                                        "TYPE": "String",
+                                        "SELECT": "eventDetails.businessObject.actualTimeOfArrival"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "breakOnMatch": true
+                },
+                {
+                    "output":
+                    {
+                        "resultFieldPath": "statusByDate",
+                        "resultType": "String"
+                    },
+                    "sequence": 3.0,
+                    "expression":
+                    {
+                        "VALUE": "NOT_SHIPPED"
+                    },
+                    "if":
+                    {
+                        "NOT_EXISTS": [
+                            {
+                                "TYPE": "String",
+                                "SELECT": "eventDetails.businessObject.actualShipDate"
+                            }
+                        ]
+                    },
+                    "breakOnMatch": true
+                }
+            ]
+        },
+        "ifEvent":
+        {
+            "AND": [
+                {
+                    "EQUALS": [
+                        {
+                            "TYPE": "String",
+                            "SELECT": "eventCode"
+                        },
+                        {
+                            "VALUE": "objectAdhocUpsertedEvent",
+                            "TYPE": "String"
+                        }
+                    ]
+                },
+                {
+                    "EQUALS": [
+                        {
+                            "TYPE": "String",
+                            "SELECT": "eventDetails.businessObject.type"
+                        },
+                        {
+                            "VALUE": "Shipment",
+                            "TYPE": "String"
+                        }
+                    ]
+                },
+                {
+                    "or": [
+                        {
+                            "EQUALS": [
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.businessObject.createReceived"
+                                },
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.businessObject.updateReceived"
+                                }
+                            ]
+                        },
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.changedFieldPaths.actualTimeOfArrival"
+                                }
+                            ]
+                        },
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.changedFieldPaths.actualShipDate"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "updatedBy": "HAL9000",
+    "objectTypeSetByRule": "*",
+    "liveTimestamp": 1.647218942372E12,
+    "version": 1.0,
+    "createdAt": "2021-06-18T02:10:29Z",
+    "isGloballyVisible": true,
+    "ruleType": "DERIVED",
+    "name": "Shipment-statusByDate",
+    "tenantId": "a6d7246f-9ed9-4cd3-82e0-2973ef0fd2f6",
+    "fieldsSetByRule": [
+        {
+            "fieldName": "statusByDate",
+            "fieldType": "String"
+        }
+    ],
+    "ruleId": "e60f2d67-5634-47b8-880c-ed669b555ab0",
+    "updatedAt": "2021-06-18T02:10:29Z",
+    "status":
+    {
+        "code": "live",
+        "details": "Version 1.0 of this rule is live and processing"
+    }
+}

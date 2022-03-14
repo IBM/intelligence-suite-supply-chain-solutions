@@ -1,0 +1,160 @@
+
+{
+    "instructions":
+    {
+        "sendObjectUpsertEvents":
+        {
+            "objects":
+            {
+                "id":
+                {
+                    "SELECT": "eventDetails.businessObject.order.id"
+                },
+                "type":
+                {
+                    "VALUE": "Order",
+                    "TYPE": "String"
+                }
+            },
+            "map": [
+                {
+                    "output":
+                    {
+                        "resultFieldPath": "shipmentsInTransit",
+                        "resultType": "Int"
+                    },
+                    "sequence": "1",
+                    "expression":
+                    {
+                        "QUERY":
+                        {
+                            "reduce":
+                            {
+                                "expression":
+                                {
+                                    "fieldPath": "type",
+                                    "operator": "COUNT"
+                                }
+                            },
+                            "advancedFilter":
+                            {
+                                "AND": [
+                                    {
+                                        "EQUALS": [
+                                            {
+                                                "FIELD": "order.id",
+                                                "TYPE": "String"
+                                            },
+                                            {
+                                                "TYPE": "String",
+                                                "SELECT": "eventDetails.businessObject.order.id"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "EQUALS": [
+                                            {
+                                                "FIELD": "type",
+                                                "TYPE": "String"
+                                            },
+                                            {
+                                                "VALUE": "OrderLine",
+                                                "TYPE": "String"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "GREATER_THAN": [
+                                            {
+                                                "FIELD": "shipmentsInTransit",
+                                                "TYPE": "int"
+                                            },
+                                            {
+                                                "VALUE": "0",
+                                                "TYPE": "int"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            "hint": "objectwarehouse-adhoc"
+                        }
+                    }
+                }
+            ]
+        },
+        "ifEvent":
+        {
+            "AND": [
+                {
+                    "EQUALS": [
+                        {
+                            "TYPE": "String",
+                            "SELECT": "eventCode"
+                        },
+                        {
+                            "VALUE": "objectAdhocUpsertedEvent",
+                            "TYPE": "String"
+                        }
+                    ]
+                },
+                {
+                    "EQUALS": [
+                        {
+                            "TYPE": "String",
+                            "SELECT": "objectType"
+                        },
+                        {
+                            "VALUE": "OrderLine",
+                            "TYPE": "String"
+                        }
+                    ]
+                },
+                {
+                    "OR": [
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.changedFieldPaths.shipmentsInTransit"
+                                }
+                            ]
+                        },
+                        {
+                            "EQUALS": [
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.businessObject.upsertTag"
+                                },
+                                {
+                                    "VALUE": "remove",
+                                    "TYPE": "String"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "createdAt": "2021-06-23T07:51:04Z",
+    "isGloballyVisible": true,
+    "objectTypeSetByRule": "Order",
+    "ruleType": "DERIVED",
+    "name": "order_shipmentsInTransit_rule",
+    "fieldsSetByRule": [
+        {
+            "fieldName": "shipmentsInTransit",
+            "fieldType": "Int"
+        }
+    ],
+    "liveTimestamp": 1.646756439987E12,
+    "ruleId": "d0c1573a-d83f-4ce8-be70-828faa9304de",
+    "version": 3.0,
+    "updatedAt": "2022-03-01T10:11:22Z",
+    "status":
+    {
+        "code": "live",
+        "details": "Version 3.0 of this rule is live and processing"
+    }
+}

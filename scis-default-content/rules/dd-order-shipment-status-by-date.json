@@ -1,0 +1,335 @@
+
+{
+    "instructions":
+    {
+        "sendObjectUpsertEvents":
+        {
+            "objects":
+            {
+                "id":
+                {
+                    "SELECT": "eventDetails.businessObject.id"
+                },
+                "type":
+                {
+                    "SELECT": "eventDetails.businessObject.type"
+                }
+            },
+            "map": [
+                {
+                    "sequence": "1",
+                    "expression":
+                    {
+                        "QUERY":
+                        {
+                            "reduce":
+                            {
+                                "expression":
+                                {
+                                    "fieldPath": "orderLines.type",
+                                    "operator": "COUNT"
+                                },
+                                "output_local":
+                                {
+                                    "resultAlias": "orderLines_shipmentStatusByDate_count"
+                                }
+                            },
+                            "hint": "orderflow",
+                            "dimension": "orderLines.shipmentStatusByDate"
+                        }
+                    }
+                },
+                {
+                    "sequence": "2",
+                    "expression":
+                    {
+                        "QUERY":
+                        {
+                            "reduce":
+                            {
+                                "expression":
+                                {
+                                    "fieldPath": "orderLines.type",
+                                    "operator": "COUNT"
+                                },
+                                "output_local":
+                                {
+                                    "resultAlias": "lineCount"
+                                }
+                            },
+                            "hint": "orderflow"
+                        }
+                    }
+                },
+                {
+                    "output":
+                    {
+                        "resultFieldPath": "shipmentStatusByDate",
+                        "resultType": "String"
+                    },
+                    "sequence": "3",
+                    "expression":
+                    {
+                        "VALUE": "FULLY_SHIPPED",
+                        "TYPE": "String"
+                    },
+                    "breakOnMatch": "true",
+                    "if":
+                    {
+                        "AND": [
+                            {
+                                "GREATER_EQUALS": [
+                                    {
+                                        "TYPE": "int",
+                                        "SELECT_LOCAL": "orderLines_shipmentStatusByDate_count.FULLY_SHIPPED"
+                                    },
+                                    {
+                                        "TYPE": "int",
+                                        "SELECT_LOCAL": "lineCount"
+                                    }
+                                ]
+                            },
+                            {
+                                "GREATER_THAN": [
+                                    {
+                                        "TYPE": "int",
+                                        "SELECT_LOCAL": "lineCount"
+                                    },
+                                    {
+                                        "VALUE": "0",
+                                        "TYPE": "int"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "output":
+                    {
+                        "resultFieldPath": "shipmentStatusByDate",
+                        "resultType": "String"
+                    },
+                    "sequence": "4",
+                    "expression":
+                    {
+                        "VALUE": "PARTIALLY_SHIPPED",
+                        "TYPE": "String"
+                    },
+                    "breakOnMatch": "true",
+                    "if":
+                    {
+                        "OR": [
+                            {
+                                "GREATER_THAN": [
+                                    {
+                                        "TYPE": "int",
+                                        "SELECT_LOCAL": "orderLines_shipmentStatusByDate_count.FULLY_SHIPPED"
+                                    },
+                                    {
+                                        "VALUE": "0",
+                                        "TYPE": "int"
+                                    }
+                                ]
+                            },
+                            {
+                                "GREATER_THAN": [
+                                    {
+                                        "TYPE": "int",
+                                        "SELECT_LOCAL": "orderLines_shipmentStatusByDate_count.PARTIALLY_SHIPPED"
+                                    },
+                                    {
+                                        "VALUE": "0",
+                                        "TYPE": "int"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "sequence": "5",
+                    "expression":
+                    {
+                        "QUERY":
+                        {
+                            "advancedFilter":
+                            {
+                                "AND": [
+                                    {
+                                        "EQUALS": [
+                                            {
+                                                "FIELD": "type",
+                                                "TYPE": "String"
+                                            },
+                                            {
+                                                "VALUE": "Order",
+                                                "TYPE": "String"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "EQUALS": [
+                                            {
+                                                "FIELD": "id",
+                                                "TYPE": "String"
+                                            },
+                                            {
+                                                "TYPE": "String",
+                                                "SELECT": "eventDetails.businessObject.id"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            "hint": "orderflow",
+                            "output_local":
+                            {
+                                "resultAlias": "order_plannedShipDate",
+                                "fields": [
+                                    "plannedShipDate"
+                                ]
+                            }
+                        }
+                    }
+                },
+                {
+                    "output":
+                    {
+                        "resultFieldPath": "shipmentStatusByDate",
+                        "resultType": "String"
+                    },
+                    "sequence": "6",
+                    "expression":
+                    {
+                        "VALUE": "NOT_PLANNED",
+                        "TYPE": "String"
+                    },
+                    "if":
+                    {
+                        "NOT_EXISTS": [
+                            {
+                                "SELECT_LOCAL": "order_plannedShipDate.plannedShipDate"
+                            }
+                        ]
+                    },
+                    "breakOnMatch": "true"
+                },
+                {
+                    "output":
+                    {
+                        "resultFieldPath": "shipmentStatusByDate",
+                        "resultType": "String"
+                    },
+                    "sequence": "7",
+                    "expression":
+                    {
+                        "VALUE": "NOT_SHIPPED",
+                        "TYPE": "String"
+                    },
+                    "if":
+                    {
+                        "AND": [
+                            {
+                                "GREATER_EQUALS": [
+                                    {
+                                        "TYPE": "int",
+                                        "SELECT_LOCAL": "orderLines_shipmentStatusByDate_count.NOT_SHIPPED"
+                                    },
+                                    {
+                                        "TYPE": "int",
+                                        "SELECT_LOCAL": "lineCount"
+                                    }
+                                ]
+                            },
+                            {
+                                "GREATER_THAN": [
+                                    {
+                                        "TYPE": "int",
+                                        "SELECT_LOCAL": "lineCount"
+                                    },
+                                    {
+                                        "VALUE": "0",
+                                        "TYPE": "int"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "breakOnMatch": "true"
+                }
+            ]
+        },
+        "ifEvent":
+        {
+            "AND": [
+                {
+                    "EQUALS": [
+                        {
+                            "TYPE": "String",
+                            "SELECT": "eventCode"
+                        },
+                        {
+                            "VALUE": "objectUpsertedEvent",
+                            "TYPE": "String"
+                        }
+                    ]
+                },
+                {
+                    "EQUALS": [
+                        {
+                            "TYPE": "String",
+                            "SELECT": "objectType"
+                        },
+                        {
+                            "VALUE": "Order",
+                            "TYPE": "String"
+                        }
+                    ]
+                },
+                {
+                    "OR": [
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.changedFieldPaths.orderLines.shipmentStatusByDate"
+                                }
+                            ]
+                        },
+                        {
+                            "EXISTS": [
+                                {
+                                    "TYPE": "String",
+                                    "SELECT": "eventDetails.changedFieldPaths.plannedShipDate"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "updatedBy": "HAL9000",
+    "objectTypeSetByRule": "*",
+    "liveTimestamp": 1.647192598053E12,
+    "version": 1.0,
+    "createdAt": "2021-06-18T02:24:29Z",
+    "isGloballyVisible": true,
+    "ruleType": "DERIVED",
+    "tenantId": "a6d7246f-9ed9-4cd3-82e0-2973ef0fd2f6",
+    "name": "Order-shipmentStatusByDate",
+    "fieldsSetByRule": [
+        {
+            "fieldName": "shipmentStatusByDate",
+            "fieldType": "String"
+        }
+    ],
+    "ruleId": "e399270e-8789-4e36-8841-bd71d23b38e8",
+    "updatedAt": "2021-06-18T02:24:29Z",
+    "status":
+    {
+        "code": "live",
+        "details": "Version 1.0 of this rule is live and processing"
+    }
+}
