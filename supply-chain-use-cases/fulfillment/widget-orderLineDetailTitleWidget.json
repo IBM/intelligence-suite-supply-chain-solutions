@@ -1,0 +1,76 @@
+{
+  "offeringId": "SCO",
+  "id": "orderLineDetailTitleWidget",
+  "state": "ACTIVE",
+  "identifier": "orderLineDetailTitleWidget",
+  "type": "Dashboard_Widget",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "descriptions": {
+    "en": {
+      "name": "Orderline detail title",
+      "language": "en",
+      "description": "Orderline page detail title widget"
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "title.viewId",
+      "values": ["textTpl"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "title.label",
+      "values": ["WIDGET_DEFINITION.ORDER_LINE_DETAIL_TITLE.TITLE"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "title.translationParamObj.orderIdentifier",
+      "values": ["{{orderIdentifier}}"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "title.translationParamObj.orderType",
+      "values": ["{{orderType}}"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "data.service",
+      "values": ["infohub"]
+    },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query OrderLineDetailTabs( $tenantId: String $orderlineId: String ) { orderlineTitle: businessObjects( hint: { viewId: \"graph\" } simpleFilter: { tenantId: $tenantId, type: OrderLine } advancedFilter: { EQUALS: [ { SELECT: \"id\", type: STRING} { VALUE: $orderlineId, type: STRING} ] } ) { totalCount edges { object { ... on OrderLine { id order { orderIdentifier orderType } } } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.orderlineId",
+      "values": ["{{ orderLineId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": ["refreshData"],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{\"errors\":\"{{#? this.errors}}\", \"pageInfo\":\"{{this.data.inventory.pageInfo}}\", \"totalCount\":\"{{this.data.orderlineTitle.totalCount}}\", \"orderIdentifier\":\"{{this.data.orderlineTitle.edges[0].object.order.orderIdentifier}}\", \"orderType\":\"{{this.data.orderlineTitle.edges[0].object.order.orderType}}\"}"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [{ "name": "chartType", "values": ["page_title"] }],
+  "adminConfigurations": []
+}
