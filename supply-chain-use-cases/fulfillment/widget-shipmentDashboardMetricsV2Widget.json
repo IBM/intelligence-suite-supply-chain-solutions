@@ -1,0 +1,224 @@
+{
+  "offeringId": "SCO",
+  "id": "shipmentDashboardMetricsV2Widget",
+  "state": "ACTIVE",
+  "identifier": "shipmentDashboardMetricsV2Widget",
+  "type": "Dashboard_Widget",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "descriptions": {
+    "en": {
+      "name": "Shipment Metrics",
+      "language": "en",
+      "description": "shipment visibility metrics."
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "icons[0].type",
+      "values": ["kebab_menu"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "icons[0].options[0]",
+      "values": ["move"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.type",
+      "values": ["text_header"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.title",
+      "values": ["COMMON.TOTAL_INBOUND_SHIPMENTS"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.tooltip",
+      "values": [
+        "WIDGET_DEFINITION.SCO_SVI_DASHBOARD_METRICS_V2.TOOLTIP"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "draggable",
+      "values": [true],
+      "metaInformation": "widgetOption"
+    },
+    { "name": "data.service", "values": ["infohub"] },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query dashboardMetrics($tenantId: String, $customerNameFilter: BooleanExp = {CONSTANT_VALUE: true}, $customerIdFilter: BooleanExp = {CONSTANT_VALUE: true}, $supplierNameFilter: BooleanExp = {CONSTANT_VALUE: true}, $supplierIdFilter: BooleanExp = {CONSTANT_VALUE: true}, $carrierNameFilter: BooleanExp = {CONSTANT_VALUE: true}, $carrierIdFilter: BooleanExp = {CONSTANT_VALUE: true}, $categoryFilter: BooleanExp = { CONSTANT_VALUE: true }, $originNameFilter: BooleanExp = {CONSTANT_VALUE: true}, $originIdFilter: BooleanExp = {CONSTANT_VALUE: true}, $destinationNameFilter: BooleanExp = {CONSTANT_VALUE: true}, $destinationIdFilter: BooleanExp = {CONSTANT_VALUE: true}) { totalShipmentMetrics: businessObjects( simpleFilter: { tenantId: $tenantId, type: Shipment }, advancedFilter: { AND: [{ EQUALS: [{ SELECT: \"shipmentType\", type: STRING}, {VALUE: \"INBOUND\", type: STRING}]}, { OR: [{ EQUALS: [{ SELECT: \"statusByDate\", type: STRING }, { VALUE: \"IN_TRANSIT\", type: STRING }]}, {EQUALS: [{SELECT: \"statusByDate\", type: STRING}, {VALUE: \"DELIVERED\", type: STRING}]}]}, $customerNameFilter, $customerIdFilter, $supplierNameFilter, $supplierIdFilter, $carrierNameFilter, $carrierIdFilter, $categoryFilter, $originNameFilter, $originIdFilter, $destinationNameFilter, $destinationIdFilter]}, hint: {viewId: \"graph\"}, cursorParams: {first: 0}) { totalCount }  }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.customerNameFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"buyer.id\", \"type\": \"STRING\" }, { \"VALUES\": {{ hubFilter.appliedFilters.CustomerName.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.customerIdFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"buyer.id\", \"type\": \"STRING\" }, { \"VALUES\": {{ hubFilter.appliedFilters.CustomerID.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.supplierNameFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"vendor.id\", \"type\": \"STRING\" }, { \"VALUES\": {{ hubFilter.appliedFilters.SupplierName.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.supplierIdFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"vendor.id\", \"type\": \"STRING\" }, { \"VALUES\": {{ hubFilter.appliedFilters.SupplierID.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.carrierNameFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"carrier.id\", \"type\": \"STRING\" }, { \"VALUES\": {{ hubFilter.appliedFilters.CarrierName.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.carrierIdFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"carrier.id\", \"type\": \"STRING\" }, { \"VALUES\": {{ hubFilter.appliedFilters.CarrierID.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.categoryFilter",
+      "values": [
+      "{ \"EQUALS_ANY\": [ {\"SELECT\": \"shipmentLines.orderLine.product.name\", \"type\": \"STRING\" }, { \"VALUES\": {{ hubFilter.appliedFilters.ProductCategory.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.originNameFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"shipFromLocation.id\", \"type\": \"STRING\" }, { \"VALUES\": {{ hubFilter.appliedFilters.ShipFromLocationName.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.originIdFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"shipFromLocation.id\", \"type\": \"STRING\" }, { \"VALUES\": {{ hubFilter.appliedFilters.ShipFromLocationID.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.destinationNameFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"shipToLocation.id\", \"type\": \"STRING\" }, { \"VALUES\": {{ hubFilter.appliedFilters.ShipToLocationName.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.destinationIdFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"shipToLocation.id\", \"type\": \"STRING\" }, { \"VALUES\": {{ hubFilter.appliedFilters.ShipToLocationID.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "items[0].count.href.labelType",
+      "values": ["numberTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].count.label",
+      "values": ["{{ totalShipmentMetricsCount }}"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].units.label",
+      "values": ["COMMON.SHIPMENTS"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].units.direction",
+      "values": ["horizontal"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].count.customTemplate",
+      "values": ["linkTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].count.href.type",
+      "values": ["LAYOUT_TEMPLATE"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].count.href.id",
+      "values": ["totalShipmentsViewAllLayoutTemplate"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "hubFilter.appliedFilters",
+      "values": ["refreshData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": ["refreshData"],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{ \"totalCount\": [\"{{this.data.totalShipmentMetrics.totalCount}}\" ], \"errors\": \"{{#? this.errors}}\", \"pageInfo\": \"{}\", \"results\": [ { \"totalShipmentMetricsCount\": \"{{this.data.totalShipmentMetrics.totalCount}}\" } ] }"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.title",
+      "values": ["COMMON.EMPTY_TITLE"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.body",
+      "values": ["COMMON.EMPTY_BODY"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": ["COMMON.EMPTY_LINK_LABEL"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": ["NEW_WINDOW"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [{ "name": "chartType", "values": ["summary"] }],
+  "adminConfigurations": []
+}

@@ -1,0 +1,91 @@
+{
+  "id": "totalShipmentsViewAllLayoutTemplate",
+  "offeringId": "SCO",
+  "state": "ACTIVE",
+  "sequence": 0,
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "type": "Dashboard_Layout",
+  "defaultLanguage": "en",
+  "descriptions": {
+    "en": {
+      "name": "COMMON.TOTAL_INBOUND_SHIPMENTS",
+      "language": "en",
+      "description": "Supply shipments list"
+    }
+  },
+  "widgets": [
+    {
+      "offeringId": "SCO",
+      "id": "totalShipmentsViewAllWidget",
+      "layoutId": "totalShipmentsViewAllLayoutTemplate",
+      "sequence": 0,
+      "widgetDefinitionId": "totalShipmentsViewAllWidget",
+      "name": "Supply shipments list",
+      "parentWidgetId": "",
+      "widgetProperties": {},
+      "displayProperties": {
+        "chartType": "data_table",
+        "fullBodyWidget": "true",
+        "enabled": "true",
+        "section": "layout_body"
+      }
+    }
+  ],
+  "properties": [
+    {
+      "name": "breadcrumbEnabled",
+      "values": [true],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "breadcrumbList",
+      "values": [
+        "{\"label\": \"COMMON.TOTAL_INBOUND_SHIPMENTS\", \"routeName\": \"/template/totalShipmentsViewAllLayoutTemplate\"}"
+      ],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "timestampEnabled",
+      "values": [false],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "ivAssistantEnabled",
+      "values": [true],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.title",
+      "values": ["COMMON.EMPTY_TITLE"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.body",
+      "metaInformation": "layoutOption",
+      "values": ["COMMON.EMPTY_BODY"]
+    },
+    {
+      "name": "state.empty.image",
+      "metaInformation": "layoutOption",
+      "values": ["dataEmpty"]
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": ["COMMON.EMPTY_LINK_LABEL"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": ["NEW_WINDOW"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "layoutOption"
+    }
+  ],
+  "version": 1
+}

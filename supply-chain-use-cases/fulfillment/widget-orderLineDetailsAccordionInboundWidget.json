@@ -1,0 +1,340 @@
+{
+  "offeringId": "SCO",
+  "id": "orderLineDetailsAccordionInboundWidget",
+  "state": "ACTIVE",
+  "identifier": "orderLineDetailsAccordionInboundWidget",
+  "type": "Dashboard_Widget",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "descriptions": {
+    "en": {
+      "name": "Order Line Detail",
+      "language": "en",
+      "description": "View Order Line Detail"
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "header.type",
+      "values": ["text_header"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.title",
+      "values": ["COMMON.ORDERLINE_DETAILS"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "icons[0].type",
+      "values": ["accordion"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "icons[0].options.collapsedRows",
+      "values": ["3"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "resizeToContent",
+      "values": ["true"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "draggable",
+      "values": ["false"],
+      "metaInformation": "widgetOption"
+    },
+    { "name": "data.service", "values": ["infohub"] },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query inBoundOrderlineDetail( $tenantId: String!, $orderLineId: String! ) { orderlineDetail: businessObjects( hint: { viewId: \"graph\"}, simpleFilter: { tenantId: $tenantId, type: OrderLine }, advancedFilter: { AND: [{ EQUALS: [{ SELECT: \"id\", type: STRING }, { VALUE: $orderLineId, type: STRING } ] }, { EQUALS: [ { SELECT: \"order.orderType\", type: STRING }, { VALUE: \"INBOUND\", type: STRING }]}]}) { totalCount edges { object { ... on OrderLine { id product { name partNumber category { name } } order { orderIdentifier orderType buyer { name organizationIdentifier } vendor { name organizationIdentifier } shipFromInstructionLocation { locationName locationIdentifier } shipToLocation { locationName locationIdentifier } } orderLineIdentifier orderLineNumber status deliveryStatusByDate shipmentStatusByDate createdDate requestedShipDate plannedShipDate quantity quantityUnits } } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.orderLineId",
+      "values": ["{{ orderLineId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "item[0].name",
+      "values": ["orderType"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[0].title",
+      "values": ["ORDER.ORDER_TYPE"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[1].name",
+      "values": ["orderIdentifier"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[1].title",
+      "values": ["ORDER.ORDER_IDENTIFIER"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[2].name",
+      "values": ["orderLineNumber"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[2].title",
+      "values": ["ORDER_LINE.ORDER_LINE_NUMBER"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[3].name",
+      "values": ["orderLineStatus"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[3].title",
+      "values": ["ORDER_LINE.STATUS"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[4].name",
+      "values": ["deliveryStatusByDate"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[4].title",
+      "values": ["ORDER_LINE.DELIVERY_STATUS_BY_DATE"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[5].name",
+      "values": ["shipmentStatusByDate"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[5].title",
+      "values": ["ORDER_LINE.SHIPMENT_STATUS_BY_DATE"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[6].name",
+      "values": ["productName"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[6].title",
+      "values": ["ORDER_LINE.PRODUCT.NAME"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[7].name",
+      "values": ["productID"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[7].title",
+      "values": ["ORDER_LINE.PRODUCT.PART_NUMBER"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[8].name",
+      "values": ["productCategory"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[8].title",
+      "values": ["ORDER_LINE.PRODUCT.CATEGORY.NAME"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[9].name",
+      "values": ["customerName"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[9].title",
+      "values": ["ORDER_LINE.ORDER.BUYER.NAME"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[10].name",
+      "values": ["customerID"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[10].title",
+      "values": ["ORDER_LINE.ORDER.BUYER.ORGANIZATION_IDENTIFIER"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[11].name",
+      "values": ["supplierName"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[11].title",
+      "values": ["ORDER_LINE.ORDER.VENDOR.NAME"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[12].name",
+      "values": ["supplierID"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[12].title",
+      "values": ["ORDER_LINE.ORDER.VENDOR.ORGANIZATION_IDENTIFIER"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[13].name",
+      "values": ["shipFromLocationName"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[13].title",
+      "values": ["ORDER_LINE.ORDER.SHIP_FROM_INSTRUCTION_LOCATION.LOCATION_NAME"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[14].name",
+      "values": ["shipFromLocationID"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[14].title",
+      "values": ["ORDER_LINE.ORDER.SHIP_FROM_INSTRUCTION_LOCATION.LOCATION_IDENTIFIER"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[15].name",
+      "values": ["shipToLocationName"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[15].title",
+      "values": ["ORDER_LINE.ORDER.SHIP_TO_LOCATION.LOCATION_NAME"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[16].name",
+      "values": ["shipToLocationID"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[16].title",
+      "values": ["ORDER_LINE.ORDER.SHIP_TO_LOCATION.LOCATION_IDENTIFIER"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[17].name",
+      "values": ["dateCreated"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[17].title",
+      "values": ["ORDER_LINE.CREATED_DATE"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[17].customTemplate",
+      "values": ["dateTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[18].name",
+      "values": ["requestedShipDate"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[18].title",
+      "values": ["ORDER_LINE.REQUESTED_SHIP_DATE"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[18].customTemplate",
+      "values": ["dateTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[19].name",
+      "values": ["plannedShipDate"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[19].title",
+      "values": ["ORDER_LINE.PLANNED_SHIP_DATE"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[19].customTemplate",
+      "values": ["dateTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[20].name",
+      "values": ["quantityWithUnits"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[20].title",
+      "values": ["ORDER_LINE.QUANTITY"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": ["refreshData"],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "drilldownRowData.row",
+      "values": ["refreshData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{ \"errors\": \"{{#? this.errors}}\", \"totalCount\": \"{{this.data.orderlineDetail.totalCount}}\", \"pageInfo\": \"{{this.data.orderlineDetail.pageInfo}}\", \"results\": { \"{{#each data.orderlineDetail.edges}}\": {\"orderType\": \"{{this.object.order.orderType}}\", \"orderIdentifier\": \"{{this.object.order.orderIdentifier}}\", \"orderLineNumber\": \"{{this.object.orderLineNumber}}\", \"orderLineStatus\": \"{{this.object.status}}\", \"deliveryStatusByDate\": \"{{this.object.deliveryStatusByDate}}\", \"shipmentStatusByDate\": \"{{this.object.shipmentStatusByDate}}\", \"productName\": \"{{this.object.product.name}}\", \"productID\": \"{{this.object.product.partNumber}}\", \"productCategory\": \"{{this.object.product.category.name}}\", \"customerName\": \"{{this.object.order.buyer.name}}\", \"customerID\": \"{{this.object.order.buyer.organizationIdentifier}}\", \"supplierName\": \"{{this.object.order.vendor.name}}\", \"supplierID\": \"{{this.object.order.vendor.organizationIdentifier}}\", \"shipFromLocationName\": \"{{this.object.order.shipFromInstructionLocation.locationName}}\", \"shipFromLocationID\": \"{{this.object.order.shipFromInstructionLocation.locationIdentifier}}\", \"shipToLocationName\": \"{{this.object.order.shipToLocation.locationName}}\", \"shipToLocationID\": \"{{this.object.order.shipToLocation.locationIdentifier}}\", \"dateCreated\": \"{{this.object.createdDate}}\", \"requestedShipDate\": \"{{this.object.requestedShipDate}}\", \"plannedShipDate\": \"{{this.object.plannedShipDate}}\", \"quantityWithUnits\": \"{{this.object.quantity.toString() + ' ' + (this.object.quantityUnits!=null? this.object.quantityUnits.toString() : '')}}\" } } }"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.title",
+      "values": ["COMMON.EMPTY_TITLE"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.body",
+      "values": ["COMMON.EMPTY_BODY"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": ["COMMON.EMPTY_LINK_LABEL"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": ["NEW_WINDOW"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [{ "name": "chartType", "values": ["grid_details"] }],
+  "adminConfigurations": []
+}

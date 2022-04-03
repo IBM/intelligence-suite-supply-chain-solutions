@@ -1,0 +1,117 @@
+{
+  "offeringId": "SCO",
+  "id": "shipmentMapInboundWidget",
+  "state": "ACTIVE",
+  "identifier": "shipmentMapInboundWidget",
+  "type": "Dashboard_Widget",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "descriptions": {
+    "en": {
+      "name": "Inbound Shipment Map",
+      "language": "en",
+      "description": "Inbound Shipment Map"
+    }
+  },
+
+  "devConfigurations": [
+    {
+      "name": "header.type",
+      "values": ["text_header"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.title",
+      "values": ["Shipment location"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "data.service",
+      "values": ["infohub"]
+    },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query ShipmentDetail($tenantId: String!, $shipmentId: String!) { shipmentDetail: businessObjects(hint: {viewId: \"graph\"}, simpleFilter: {tenantId: $tenantId, type: Shipment}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"id\", type: STRING}, {VALUE: $shipmentId, type: STRING}]}]}) { totalCount edges { cursor object { ... on Shipment { shipmentIdentifier Origin: shipFromLocation { locationName locationIdentifier coordinates } Destination: shipToLocation { locationName locationIdentifier coordinates } } } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.shipmentId",
+      "values": ["{{ shipmentId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "mapProvider",
+      "values": ["openStreetMap"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "mapControl.zoom",
+      "values": ["true"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "mapControl.fullscreen",
+      "values": ["true"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "dataStreamsOptions[0].id",
+      "values": ["shipment"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "dataStreamsOptions[0].label",
+      "values": ["Inbound Shipment"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "dataStreamsOptions[0].startLocation.tooltip",
+      "values": ["startLocationIdentifier"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "dataStreamsOptions[0].startLocation.key",
+      "values": ["origin"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "dataStreamsOptions[0].endLocation.tooltip",
+      "values": ["endLocationIdentifier"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "dataStreamsOptions[0].endLocation.key",
+      "values": ["destination"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "dataStreamsOptions[0].color",
+      "values": ["purple"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{ \"errors\": \"{{#? this.errors}}\", \"totalCount\": \"{{ this.data.shipmentDetail.totalCount }}\", \"results\": {\"shipment\":{\"{{ #each this.data.shipmentDetail.edges }}\": {\"id\": \"{{ this.object.shipmentIdentifier }}\", \"origin\": \"{{ this.object.Origin.coordinates }}\", \"destination\": \"{{ this.object.Destination.coordinates }}\", \"startLocationIdentifier\": \"Ship from {{ this.object.Origin.locationIdentifier }}\", \"endLocationIdentifier\": \"Ship to {{ this.object.Destination.locationIdentifier }}\" }}}}"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": ["refreshData"],
+      "metaInformation": "eventSubscription"
+    }
+  ],
+  "userConfigurations": [{ "name": "chartType", "values": ["map"] }],
+  "adminConfigurations": []
+}
