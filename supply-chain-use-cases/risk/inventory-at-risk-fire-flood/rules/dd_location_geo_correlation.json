@@ -1,0 +1,213 @@
+
+{
+    "name": "Correlation rule - Location and Severe Weather",
+    "tenantId": "2c358084-d86d-4f4d-ba5d-8ddb009f4d97",
+    "instructions":
+    {
+        "sendObjectUpsertEvents":
+        {
+            "objects":
+            {
+                "type":
+                {
+                    "value": "CorrelationIssue"
+                }
+            },
+            "map": [
+                {
+                    "sequence": "1.0",
+                    "outputManyIfNotNull":
+                    {
+                        "businessObjectCoordinates": "SELECT_LOCAL(point.coordinates)",
+                        "externalEventRadiusUnit": "SELECT_LOCAL(circle.radiusUnit)",
+                        "globalIdentifiers[name=id].value": "CONCATENATE(SELECT_LOCAL(point.id),SELECT_LOCAL(circle.id))",
+                        "businessObjectCoordinatesFieldPath": "VALUE(coordinates)",
+                        "startDate": "SELECT_LOCAL(circle.start)",
+                        "externalEventRadius": "SELECT_LOCAL(circle.radius)",
+                        "externalEventLocationCoordinates": "SELECT_LOCAL(circle.locationCoordinates)",
+                        "expirationDate": "SELECT_LOCAL(circle.forecastedEnd)"
+                    },
+                    "if":
+                    {
+                        "POINTS_IN_CIRCLES":
+                        {
+                            "pointsInCirclesBatchInterval": "3.minutes",
+                            "circle":
+                            {
+                                "origin": "SELECT(locationCoordinates)",
+                                "radius": "SELECT(radius)",
+                                "radiusUnit": "SELECT(radiusUnit)",
+                                "objectType": "ExternalEvent"
+                            },
+                            "point":
+                            {
+                                "criteria":
+                                {
+                                    "AND": [
+                                        {
+                                            "EQUALS":
+                                            {
+                                                "VALUE": "Location",
+                                                "SELECT": "type"
+                                            }
+                                        },
+                                        {
+                                            "EQUALS":
+                                            {
+                                                "VALUE": "true",
+                                                "SELECT": "includeInCorrelation"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "businessObjectCoordinatesFieldPath": "coordinates",
+                                "objectType": "Location"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "ifEvent":
+        {
+            "OR": [
+                {
+                    "AND": [
+                        {
+                            "EQUALS": [
+                                {
+                                    "TYPE": "STRING",
+                                    "SELECT": "eventCode"
+                                },
+                                {
+                                    "VALUE": "objectAdhocUpsertedEvent",
+                                    "TYPE": "STRING"
+                                }
+                            ]
+                        },
+                        {
+                            "EQUALS": [
+                                {
+                                    "TYPE": "STRING",
+                                    "SELECT": "eventDetails.businessObject.type"
+                                },
+                                {
+                                    "VALUE": "Location",
+                                    "TYPE": "STRING"
+                                }
+                            ]
+                        },
+                        {
+                            "AND": [
+                                {
+                                    "OR": [
+                                        {
+                                            "EXISTS": [
+                                                {
+                                                    "TYPE": "STRING",
+                                                    "SELECT": "eventDetails.changedFieldPaths.coordinates"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "EXISTS": [
+                                                {
+                                                    "TYPE": "STRING",
+                                                    "SELECT": "eventDetails.changedFieldPaths.includeInCorrelation"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "AND": [
+                        {
+                            "EQUALS": [
+                                {
+                                    "TYPE": "STRING",
+                                    "SELECT": "eventCode"
+                                },
+                                {
+                                    "VALUE": "objectAdhocUpsertedEvent",
+                                    "TYPE": "STRING"
+                                }
+                            ]
+                        },
+                        {
+                            "EQUALS": [
+                                {
+                                    "TYPE": "STRING",
+                                    "SELECT": "eventDetails.businessObject.type"
+                                },
+                                {
+                                    "VALUE": "ExternalEvent",
+                                    "TYPE": "STRING"
+                                }
+                            ]
+                        },
+                        {
+                            "AND": [
+                                {
+                                    "OR": [
+                                        {
+                                            "EXISTS": [
+                                                {
+                                                    "TYPE": "STRING",
+                                                    "SELECT": "eventDetails.changedFieldPaths.locationCoordinates"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "EXISTS": [
+                                                {
+                                                    "TYPE": "STRING",
+                                                    "SELECT": "eventDetails.changedFieldPaths.radius"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "EXISTS": [
+                                                {
+                                                    "TYPE": "STRING",
+                                                    "SELECT": "eventDetails.changedFieldPaths.radiusUnit"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "EXISTS": [
+                                                {
+                                                    "TYPE": "STRING",
+                                                    "SELECT": "eventDetails.changedFieldPaths.forecastedEnd"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "EXISTS": [
+                                                {
+                                                    "TYPE": "STRING",
+                                                    "SELECT": "eventDetails.changedFieldPaths.start"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "EXISTS": [
+                                                {
+                                                    "TYPE": "STRING",
+                                                    "SELECT": "eventDetails.changedFieldPaths.actualEnd"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
