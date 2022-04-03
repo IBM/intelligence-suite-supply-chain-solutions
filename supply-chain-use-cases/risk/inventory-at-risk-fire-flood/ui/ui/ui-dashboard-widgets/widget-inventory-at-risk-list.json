@@ -1,0 +1,463 @@
+
+{
+    "offeringId": "SCO",
+    "id": "inventory_at_risk_table",
+    "state": "ACTIVE",
+    "identifier": "inventory_at_risk_table",
+    "type": "Dashboard_Widget",
+    "tenantId": "bb937633-25aa-4733-8086-058db5b0a3dc",
+    "path": "/api",
+    "vendor": "IBM",
+    "defaultLanguage": "en",
+    "version": 1,
+    "descriptions":
+    {
+        "en":
+        {
+            "name": "Inventory at risk",
+            "description": "Inventory stocked at locations under advisory"
+        }
+    },
+    "devConfigurations": [
+        {
+            "name": "header.path",
+            "values": [
+                "/template/inventory_at_risk_table_view_all_layout_template"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "header.type",
+            "values": [
+                "metric_header"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "header.value",
+            "values": [
+                "{{ totalCount }}"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "header.title",
+            "values": [
+                "Inventory at risk"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "header.tooltip",
+            "values": [
+                "Inventory at locations under a severe weather advisory."
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "icons[0].type",
+            "values": [
+                "kebab_menu"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "icons[0].options[0]",
+            "values": [
+                "move"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "data.service",
+            "values": [
+                "infohub"
+            ]
+        },
+        {
+            "name": "queries[0].fields",
+            "values": [
+                "query InventoryPosition( $tenantId: String! $cursorId: String $sortBy: String = \"id\" $sortOrder: SortOrder = DESC ) {businessObjects(simpleFilter: { type: Inventory, tenantId: $tenantId }advancedFilter: {AND: [{ REFERENCED_BY:{type:GeoCorrelationIssue fieldName: \"businessObject\" referencePath: \"location\" criteria: { AND: [ { EQUALS: [ { SELECT: \"isCurrentlyMeetingCorrelationCriteria\", type:BOOLEAN },{ VALUE: \"true\", type: BOOLEAN } ] } ] } } } ] } hint: { viewId: \"graph\" } cursorParams: { first: 10 after: $cursorId sort: { fieldPath: $sortBy, order: $sortOrder } } ) { totalCount pageInfo { hasNextPage } edges { cursor object { ... on Inventory { id quantity product { name partNumber } location { locationName locationIdentifier city }}}}}}"
+            ],
+            "metaInformation": "infohub.fields"
+        },
+        {
+            "name": "queries[0].variables.tenantId",
+            "values": [
+                "{{ tenantId }}"
+            ],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "queries[0].variables.sortBy",
+            "values": [
+                "{{ inventoryPosition.sort.by }}"
+            ],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "queries[0].variables.sortOrder",
+            "values": [
+                "{{ inventoryPosition.sort.order }}"
+            ],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "queries[0].variables.cursorId",
+            "values": [
+                "{{ cursorId }}"
+            ],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "columnSorted",
+            "values": [
+                "inventoryPosition"
+            ],
+            "metaInformation": "stateScope"
+        },
+        {
+            "name": "inventoryPosition.sort",
+            "values": [
+                "refreshData",
+                "refreshSavedState"
+            ],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "custom.appliedFilters",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "draggable",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "horizontalScroll.enable",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableOption"
+        },
+        {
+            "name": "showFooter",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "widget.footer.customTemplate",
+            "values": [
+                "linkTpl"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "widget.footer.label",
+            "values": [
+                "View all"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "widget.footer.href.type",
+            "values": [
+                "LAYOUT_TEMPLATE"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "widget.footer.href.id",
+            "values": [
+                "inventory_at_risk_table_view_all_layout_template"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "pagination.enable",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableOption"
+        },
+        {
+            "name": "stickyTableHeader",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableOption"
+        },
+        {
+            "name": "stripes",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableOption"
+        },
+        {
+            "name": "configurable",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableOption"
+        },
+        {
+            "name": "columns[0].cell.label",
+            "values": [
+                "{{ product.partNumber }}"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].header.label",
+            "values": [
+                "Product"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].sortable",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].sequence",
+            "values": [
+                "0"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].cell.customTemplate",
+            "values": [
+                "linkTpl"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].cell.href.type",
+            "values": [
+                "LAYOUT_TEMPLATE"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].cell.href.id",
+            "values": [
+                "DEFAULT_INVENTORY_DETAIL_LAYOUT_TEMPLATE"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].cell.href.params",
+            "values": [
+                "inventoryId={{ id }},hiddenLayoutSections=queue"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[1].cell.label",
+            "values": [
+                "{{ product.name }}"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[1].header.label",
+            "values": [
+                "Name"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[1].sortable",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[1].sequence",
+            "values": [
+                "1"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[2].cell.label",
+            "values": [
+                "{{ location.locationIdentifier }}"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[2].header.label",
+            "values": [
+                "Location"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[2].sortable",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[2].sequence",
+            "values": [
+                "2"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[3].cell.label",
+            "values": [
+                "{{ location.city }}"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[3].header.label",
+            "values": [
+                "City"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[3].sortable",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[3].sequence",
+            "values": [
+                "3"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "widgetInitialized",
+            "values": [
+                "loadState",
+                "refreshData"
+            ],
+            "metaInformation": "eventSubscription"
+        },
+        {
+            "name": "widgetInitialized",
+            "values": [
+                "loadState",
+                "refreshData"
+            ],
+            "metaInformation": "eventSubscription"
+        },
+        {
+            "name": "columns[4].cell.label",
+            "values": [
+                "{{ quantity }}"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[4].header.label",
+            "values": [
+                "Quantity"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[4].sortable",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[4].sequence",
+            "values": [
+                "4"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "widgetInitialized",
+            "values": [
+                "loadState",
+                "refreshData"
+            ],
+            "metaInformation": "eventSubscription"
+        },
+        {
+            "name": "widgetInitialized",
+            "values": [
+                "loadState",
+                "refreshData"
+            ],
+            "metaInformation": "eventSubscription"
+        },
+        {
+            "name": "transformation",
+            "values": [
+                " { \"errors\": \"{{#?this.errors}}\", \"pageInfo\": \"{{this.data.businessObjects.pageInfo}}\", \"totalCount\": \"{{this.data.businessObjects.totalCount}}\", \"results\": { \"{{#each this.data.businessObjects.edges}}\": { \"cursor\": \"{{this.cursor}}\", \"location\": \"{{this.object.location}}\", \"product\": \"{{this.object.product}}\", \"quantity\": \"{{this.object.quantity}}\", \"id\": \"{{this.object.id}}\" } } } "
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.title",
+            "values": [
+                "No data"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.body",
+            "values": [
+                "There is no business data to display"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.link.label",
+            "values": [
+                "Learn more"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.link.href.type",
+            "values": [
+                "NEW_WINDOW"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.link.href.path",
+            "values": [
+                "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+            ],
+            "metaInformation": "widgetOption"
+        }
+    ],
+    "userConfigurations": [
+        {
+            "name": "chartType",
+            "values": [
+                "data_table"
+            ]
+        }
+    ],
+    "adminConfigurations": []
+}

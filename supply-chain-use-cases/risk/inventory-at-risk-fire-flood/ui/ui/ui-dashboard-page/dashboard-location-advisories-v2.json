@@ -1,0 +1,200 @@
+
+{
+    "id": "location_advisories_v10",
+    "offeringId": "SCO",
+    "state": "ACTIVE",
+    "sequence": 5.0,
+    "tenantId": "bb937633-25aa-4733-8086-058db5b0a3dc",
+    "type": "Dashboard",
+    "widgets": [
+        {
+            "offeringId": "SCO",
+            "tenantId": "bb937633-25aa-4733-8086-058db5b0a3dc",
+            "layoutId": "location_advisories",
+            "sequence": 0.0,
+            "widgetDefinitionId": "DASHBOARD_STARRED_QUEUES",
+            "name": "Starred work queues",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "colSpan": "2",
+                "rowSpan": "24",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "work_queue_table",
+                "fullBodyWidget": "false",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "bb937633-25aa-4733-8086-058db5b0a3dc",
+            "layoutId": "location_advisories",
+            "sequence": 0.0,
+            "widgetDefinitionId": "active_severe_weather_table",
+            "name": "Active severe weather",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties":
+            {
+                "colSpan": "2",
+                "rowSpan": "24",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "data_table",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "bb937633-25aa-4733-8086-058db5b0a3dc",
+            "layoutId": "location_advisories",
+            "sequence": 1.0,
+            "widgetDefinitionId": "location_advisories_table",
+            "name": "Location advisories",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties":
+            {
+                "colSpan": "2",
+                "rowSpan": "24",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "data_table",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "bb937633-25aa-4733-8086-058db5b0a3dc",
+            "layoutId": "location_advisories",
+            "sequence": 2.0,
+            "widgetDefinitionId": "inventory_at_risk_table",
+            "name": "Material at risk",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties":
+            {
+                "colSpan": "2",
+                "rowSpan": "24",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "data_table",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "bb937633-25aa-4733-8086-058db5b0a3dc",
+            "layoutId": "location_advisories",
+            "sequence": 3.0,
+            "widgetDefinitionId": "location_advisories_map",
+            "name": "Location advisory map",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties":
+            {
+                "colSpan": "4",
+                "rowSpan": "36",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "map",
+                "fullBodyWidget": "true",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        }
+    ],
+    "defaultLanguage": "en",
+    "descriptions":
+    {
+        "en":
+        {
+            "name": "Location advisories",
+            "language": "en",
+            "description": "Location advisories"
+        }
+    },
+    "properties": [
+        {
+            "name": "breadcrumbEnabled",
+            "values": [
+                "false"
+            ]
+        },
+        {
+            "name": "breadcrumbList",
+            "metaInformation": "layoutOption",
+            "values": [
+                "{\"label\": \"Dashboard\", \"routeName\": \"/\"}"
+            ]
+        },
+        {
+            "name": "timestampEnabled",
+            "values": [
+                "false"
+            ]
+        },
+        {
+            "name": "ivAssistantEnabled",
+            "metaInformation": "layoutOption",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "hideTitle",
+            "metaInformation": "layoutOption",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "state.empty.title",
+            "metaInformation": "layoutOption",
+            "values": [
+                "No data"
+            ]
+        },
+        {
+            "name": "state.empty.body",
+            "metaInformation": "layoutOption",
+            "values": [
+                "There is no data to display"
+            ]
+        },
+        {
+            "name": "state.empty.image",
+            "metaInformation": "layoutOption",
+            "values": [
+                "dataEmpty"
+            ]
+        },
+        {
+            "name": "state.empty.link.label",
+            "metaInformation": "layoutOption",
+            "values": [
+                "Learn more"
+            ]
+        },
+        {
+            "name": "state.empty.link.href.type",
+            "metaInformation": "layoutOption",
+            "values": [
+                "NEW_WINDOW"
+            ]
+        },
+        {
+            "name": "state.empty.link.href.path",
+            "metaInformation": "layoutOption",
+            "values": [
+                "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+            ]
+        }
+    ],
+    "version": 2
+}

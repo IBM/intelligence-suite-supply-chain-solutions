@@ -1,0 +1,214 @@
+
+{
+    "offeringId": "SCO",
+    "id": "SCO_WEATHER_MAP",
+    "state": "ACTIVE",
+    "identifier": "SCO_WEATHER_MAP",
+    "type": "Dashboard_Widget",
+    "tenantId": "bb937633-25aa-4733-8086-058db5b0a3dc",
+    "path": "/api",
+    "vendor": "IBM",
+    "defaultLanguage": "en",
+    "version": 1,
+    "descriptions":
+    {
+        "en":
+        {
+            "name": "Weather event map",
+            "language": "en",
+            "description": "Weather event map"
+        }
+    },
+    "devConfigurations": [
+        {
+            "name": "header.type",
+            "values": [
+                "text_header"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "header.title",
+            "values": [
+                "Weather Event Location test"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "icons[0].type",
+            "values": [
+                "kebab_menu"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "icons[0].options[0]",
+            "values": [
+                "move"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "colSpan",
+            "values": [
+                "4"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "rowSpan",
+            "values": [
+                "4"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "data.service",
+            "values": [
+                "infohub"
+            ]
+        },
+        {
+            "name": "queries[0].processor",
+            "values": [
+                "EDGES"
+            ],
+            "metaInformation": "infohub.processor"
+        },
+        {
+            "name": "queries[0].fields",
+            "values": [
+                "query weatherEvents( $tenantId:String, $id:String ){ businessObjects( simpleFilter: {tenantId: $tenantId, type: ExternalEvent}, advancedFilter: { AND: [ { EQUALS: [ {SELECT: \"id\", type: STRING }, { VALUE: $id, type: STRING} ] } ] }, hint: {viewId: \"graph\"}, cursorParams: {first: 20}) { totalCount edges { object { ... on ExternalEvent { id subject areaCounty stateProvince country description start forecastedEnd createReceived updateReceived severity status locationCoordinates radius eventSource attribution actualEnd } } } } }"
+            ],
+            "metaInformation": "infohub.fields"
+        },
+        {
+            "name": "queries[0].variables.tenantId",
+            "values": [
+                "{{ tenantId }}"
+            ],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "queries[0].variables.id",
+            "values": [
+                "{{ weatherId }}"
+            ],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "draggable",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "horizontalScroll.enable",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableOption"
+        },
+        {
+            "name": "hubFilter.appliedFilters",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "mapLocations.page",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "mapLocations.pageLength",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "mapLocations.sort",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "widgetInitialized",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "eventSubscription"
+        },
+        {
+            "name": "transformation",
+            "values": [
+                "{\"errors\":\"{{#? this.errors}}\",\"totalCount\":\"{{this.data.businessObjects.totalCount}}\",\"results\": {\"weatherData\":{\"{{#each this.data.businessObjects.edges}}\":{\"id\":\"{{this.object.id}}\",\"locationCoordinates\":\"{{this.object.locationCoordinates}}\",\"startLocationTooltip\":\"{{this.object.description}}\"}}}}"
+            ],
+            "metaInformation": "widgetOption"
+        },
+		        {
+            "name": "mapProvider",
+            "values": [
+                "openStreetMap"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "mapControl.zoom",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "dataStreamsOptions[0].id",
+            "values": [
+                "weatherData"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "dataStreamsOptions[0].label",
+            "values": [
+                "Weather data points"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "dataStreamsOptions[0].startLocation.tooltip",
+            "values": [
+                "startLocationTooltip"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "dataStreamsOptions[0].startLocation.key",
+            "values": [
+                "locationCoordinates"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "dataStreamsOptions[0].color",
+            "values": [
+                "purple"
+            ],
+            "metaInformation": "widgetOption"
+        }
+    ],
+    "userConfigurations": [
+        {
+            "name": "chartType",
+            "values": [
+                "map"
+            ]
+        }
+    ],
+    "adminConfigurations": []
+}

@@ -1,0 +1,183 @@
+
+{
+    "offeringId": "SCO",
+    "id": "location_advisories_map_v2",
+    "state": "ACTIVE",
+    "identifier": "location_advisories_map_v2",
+    "type": "Dashboard_Widget",
+    "tenantId": "2c358084-d86d-4f4d-ba5d-8ddb009f4d97",
+    "path": "/api",
+    "vendor": "IBM",
+    "defaultLanguage": "en",
+    "version": 1,
+    "descriptions":
+    {
+        "en":
+        {
+            "name": "Location advisories map",
+            "language": "en",
+            "description": "Location advisories map"
+        }
+    },
+    "devConfigurations": [
+        {
+            "name": "header.value",
+            "values": [
+                "{{ totalCount }}"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "data.service",
+            "values": [
+                "infohub"
+            ]
+        },
+        {
+            "name": "queries[0].fields",
+            "values": [
+                "query LocationPositionMap( $tenantId:String! ) { businessObjects( simpleFilter: { type:Location, tenantId:$tenantId },advancedFilter:{AND:[ {REFERENCED_BY:{type:GeoCorrelationIssue fieldName:\"businessObject\" criteria:{AND:[{EQUALS:[{SELECT:\"isCurrentlyMeetingCorrelationCriteria\",type:BOOLEAN},{VALUE:\"true\",type:BOOLEAN}]}]}}} ]},hint:{viewId:\"graph\"},cursorParams:{first:50 }){totalCount edges {cursor object{...on Location{ id coordinates locationIdentifier locationName city stateProvince }}}}}"
+            ],
+            "metaInformation": "infohub.fields"
+        },
+        {
+            "name": "transformation",
+            "values": [
+                "{\"errors\":\"{{#? this.errors}}\",\"totalCount\":\"{{this.data.businessObjects.totalCount}}\",\"results\": {\"locationData\":{\"{{#each this.data.businessObjects.edges}}\":{\"id\":\"{{this.object.id}}\",\"coordinates\":\"{{this.object.coordinates}}\",\"toolTip\":\"{{this.object.locationName}}\"}}}}"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "queries[0].variables.tenantId",
+            "values": [
+                "{{ tenantId }}"
+            ],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "queries[0].variables.now",
+            "values": [
+                "{{ now }}"
+            ],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "draggable",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "horizontalScroll.enable",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableOption"
+        },
+        {
+            "name": "hubFilter.appliedFilters",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "severeWeather.page",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "severeWeather.pageLength",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "severeWeather.sort",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "widgetInitialized",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "eventSubscription"
+        },
+        {
+            "name": "mapProvider",
+            "values": [
+                "openStreetMap"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "mapControl.zoom",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "mapControl.fullscreen",
+            "values": ["true"],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "mapControl.legend.isOverlay",
+            "values": ["true"],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "dataStreamsOptions[0].id",
+            "values": [
+                "locationData"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "dataStreamsOptions[0].label",
+            "values": [
+                "Locations at risk"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "dataStreamsOptions[0].startLocation.tooltip",
+            "values": [
+                "toolTip"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "dataStreamsOptions[0].startLocation.key",
+            "values": [
+                "coordinates"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "dataStreamsOptions[0].color",
+            "values": [
+                "orange"
+            ],
+            "metaInformation": "widgetOption"
+        }
+
+    ],
+    "userConfigurations": [
+        {
+            "name": "chartType",
+            "values": [
+                "map"
+            ]
+        }
+    ],
+    "adminConfigurations": []
+}

@@ -1,0 +1,89 @@
+
+{
+    "advancedFilter":
+    {
+        "OR": [
+            {
+                "EQUALS": [
+                    {
+                        "SELECT": "location.locationIdentifier",
+                        "type": "STRING"
+                    },
+                    {
+                        "VALUE": "US Depot 011",
+                        "type": "STRING"
+                    }
+                ]
+            },
+            {
+                "EQUALS": [
+                    {
+                        "SELECT": "location.locationIdentifier",
+                        "type": "STRING"
+                    },
+                    {
+                        "VALUE": "US Depot 022",
+                        "type": "STRING"
+                    }
+                ]
+            },
+            {
+                "EQUALS": [
+                    {
+                        "SELECT": "location.locationIdentifier",
+                        "type": "STRING"
+                    },
+                    {
+                        "VALUE": "US Depot 025",
+                        "type": "STRING"
+                    }
+                ]
+            }
+        ]
+    },
+    "primaryBusinessObjectTypes": [
+        "Inventory"
+    ],
+    "logicalName": "inventoryAtRisk",
+    "description": "Inventory at stocking locations currently under an advisory ",
+    "defaultCursorParams":
+    {
+        "first": 20,
+        "sort": [
+            {
+                "fieldPath": "id",
+                "order": "ASC"
+            }
+        ]
+    },
+    "priority": 75.0,
+    "enabled": true,
+    "columnsForWorkItemTitle": [
+        "location.partNumber",
+        "location.locationIdentifier",
+        "product.name"
+    ],
+    "isGloballyVisible": false,
+    "detailedDescription": "Inventory stocked at locations currently under a severe weather advisory",
+    "defaultFieldsForSelect": [
+        "Inventory.product.partNumber",
+        "Inventory.product.name",
+        "Inventory.quantity",
+        "WorkItem.priority",
+        "WorkItem.status",
+        "WorkItem.userAssigned"
+    ],
+    "hint":
+    {
+        "viewId": "graph"
+    },
+    "name": "Inventory at risk",
+    "simpleFilter":
+    {
+        "type": "Inventory"
+    },
+    "tenantId": "bb937633-25aa-4733-8086-058db5b0a3dc",
+    "isSimple": false,
+    "applicableActionDefinitions": [],
+    "isComplete": true
+}

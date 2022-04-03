@@ -1,0 +1,466 @@
+
+{
+    "offeringId": "SCO",
+    "id": "MY_QUEUES",
+    "state": "ACTIVE",
+    "identifier": "DASHBOARD_STARRED_QUEUES",
+    "type": "Dashboard_Widget",
+    "tenantId": "2c358084-d86d-4f4d-ba5d-8ddb009f4d97",
+    "path": "/api",
+    "vendor": "IBM",
+    "defaultLanguage": "en",
+    "version": 1,
+    "descriptions":
+    {
+        "en":
+        {
+            "name": "Dashboard starred queues",
+            "description": "Dashboard starred queues"
+        }
+    },
+    "devConfigurations": [
+        {
+            "name": "data.service",
+            "values": [
+                "infohub"
+            ]
+        },
+        {
+            "name": "queries[0].fields",
+            "values": [
+                "query StarredWorkQueues($tenantId: String, $starredQueueIds: [String] = [], $cursorId: String, $sortBy: String = \"name\", $sortOrder: SortOrder = ASC) { starredWorkQueues: businessObjects( simpleFilter: { type: WorkQueueDefinition, tenantId: $tenantId }, cursorParams: {after: $cursorId, first: 50, sort: {fieldPath: $sortBy, order: $sortOrder}}, advancedFilter: { EQUALS_ANY: [ { SELECT: \"id\", type: STRING } { VALUES: $starredQueueIds, type: STRING } ] } ) { totalCount pageInfo { hasNextPage endCursor } edges { cursor object { ... on WorkQueueDefinition { name id detailedDescription simpleFilter advancedFilter hint logicalName counts { currentOpenCount } priority value: priority primaryBusinessObjectTypes } } } } }"
+            ],
+            "metaInformation": "infohub.fields"
+        },
+        {
+            "name": "queries[0].variables.tenantId",
+            "values": [
+                "{{ tenantId }}"
+            ],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "queries[0].variables.starredQueueIds",
+            "values": [
+                "{{ userPreferences.starredWorkQueues }}"
+            ],
+            "metaInformation": "infohub.variable.dynamicExpr"
+        },
+        {
+            "name": "queries[0].variables.sortBy",
+            "values": [
+                "{{ StarredWorkQueues.sort.by }}"
+            ],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "queries[0].variables.sortOrder",
+            "values": [
+                "{{ StarredWorkQueues.sort.order }}"
+            ],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "draggable",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "icons[0].type",
+            "values": [
+                "kebab_menu"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "icons[0].options[0]",
+            "values": [
+                "move"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "horizontalScroll.enable",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "tableOption"
+        },
+        {
+            "name": "showFooter",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "widget.footer.customTemplate",
+            "values": [
+                "linkTpl"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "widget.footer.label",
+            "values": [
+                "COMMON.VIEW_ALL"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "widget.footer.href.type",
+            "values": [
+                "LAYOUT_TEMPLATE"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "widget.footer.href.context",
+            "values": [
+                "WORK_QUEUE"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "widget.footer.href.id",
+            "values": [
+                "default_work_queues_layout"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "selectableRow.enable",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableOption"
+        },
+        {
+            "name": "size",
+            "values": [
+                "md"
+            ],
+            "metaInformation": "tableOption"
+        },
+        {
+            "name": "header.title",
+            "values": [
+                "WIDGET_DEFINITION.DASHBOARD_STARRED_QUEUES.HEADER_TITLE"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "header.type",
+            "values": [
+                "text_header"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "columns[0].cell.customTemplate",
+            "values": [
+                "linkTpl"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].cell.label",
+            "values": [
+                "{{ name }}"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].cell.href.type",
+            "values": [
+                "LAYOUT_TEMPLATE"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].cell.href.id",
+            "values": [
+                "{{ workqueueLinkId }}"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].cell.href.params",
+            "values": [
+                "workQueueId={{ id }}"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].header.label",
+            "values": [
+                "COMMON.WORK_QUEUE"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].sortable",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].sequence",
+            "values": [
+                "0"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[1].cell.customTemplate",
+            "values": [
+                "priorityTpl"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[1].cell.label",
+            "values": [
+                "{{ priority }}"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[1].header.label",
+            "values": [
+                "COMMON.PRIORITY"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[1].sortable",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[1].sequence",
+            "values": [
+                "1"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[2].cell.label",
+            "values": [
+                "{{ currentOpenCount }}"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[2].header.label",
+            "values": [
+                "COMMON.ISSUES"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[2].cell.customTemplate",
+            "values": [
+                "numberTpl"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[2].sequence",
+            "values": [
+                "2"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[3].cell.customTemplate",
+            "values": [
+                "linkTpl"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[3].cell.href.type",
+            "values": [
+                "LAYOUT_TEMPLATE"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[3].cell.href.id",
+            "values": [
+                "SCO_WORK_ITEMS_LAYOUT_TEMPLATE"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[3].cell.href.params",
+            "values": [
+                "workQueueId={{ id }}"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[3].cell.href.labelType",
+            "values": [
+                "iconTpl"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[3].cell.href.labelOptions.icon",
+            "values": [
+                "arrow--up-right"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[3].cell.href.labelOptions.size",
+            "values": [
+                "lg"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[3].header.label",
+            "values": [
+                "COMMON.START_QUEUE"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[3].sortable",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[3].sequence",
+            "values": [
+                "3"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[4].cell.label",
+            "values": [
+                " "
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[4].cell.size",
+            "values": [
+                "sm"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[4].cell.tooltip",
+            "values": [
+                "{{ detailedDescription }}"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[4].cell.styleOptions.tooltipPlacement",
+            "values": [
+                "left"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[4].cell.customTemplate",
+            "values": [
+                "iconTpl"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[4].header.label",
+            "values": [
+                " "
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[4].sortable",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[4].sequence",
+            "values": [
+                "4"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "widgetInitialized",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "eventSubscription"
+        },
+        {
+            "name": "userPreferences.starredWorkQueues",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "columnSorted",
+            "values": [
+                "StarredWorkQueues"
+            ],
+            "metaInformation": "stateScope"
+        },
+        {
+            "name": "StarredWorkQueues.sort",
+            "values": [
+                "refreshData",
+                "refreshSavedState"
+            ],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "transformation",
+            "values": [
+                "{ \"errors\": \"{{#? this.errors}}\", \"totalCount\": \"{{this.data.starredWorkQueues.totalCount}}\", \"pageInfo\": \"{{this.data.starredWorkQueues.pageInfo}}\", \"results\": { \"{{#each this.data.starredWorkQueues.edges}}\": { \"cursor\": \"{{this.cursor}}\", \"id\": \"{{this.object.id}}\", \"detailedDescription\": \"{{this.object.detailedDescription}}\", \"simpleFilter\": \"{{this.object.simpleFilter}}\", \"advancedFilter\":\"{{this.object.advancedFilter}}\", \"name\": \"{{this.object.name}}\", \"logicalName\": \"{{this.object.logicalName}}\", \"priority\": \"{{this.object.priority}}\", \"currentOpenCount\": \"{{this.object.counts.currentOpenCount}}\", \"hint\":\"{{this.object.hint}}\", \"primaryBusinessObjectType\":\"{{this.object.primaryBusinessObjectTypes[0]}}\" } } }"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.title",
+            "values": [
+                "COMMON.NO_STARRED_WORK_QUEUES"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.body",
+            "values": [
+                "COMMON.STAR_A_WORK_QUEUE"
+            ],
+            "metaInformation": "widgetOption"
+        }
+    ],
+    "userConfigurations": [
+        {
+            "name": "chartType",
+            "values": [
+                "work_queue_table"
+            ]
+        }
+    ],
+    "adminConfigurations": []
+}

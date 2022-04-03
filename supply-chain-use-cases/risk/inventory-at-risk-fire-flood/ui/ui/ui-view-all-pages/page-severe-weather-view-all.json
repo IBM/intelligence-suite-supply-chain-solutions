@@ -1,0 +1,116 @@
+
+{
+    "id": "CUSTOM_DASHBOARD_WEATHER_VIEW_ALL_LAYOUT_TEMPLATE",
+    "offeringId": "SCO",
+    "state": "ACTIVE",
+    "sequence": 0.0,
+    "tenantId": "2c358084-d86d-4f4d-ba5d-8ddb009f4d97",
+    "type": "View_All_Layout",
+    "widgets": [
+        {
+            "offeringId": "SCO",
+            "tenantId": "bb937633-25aa-4733-8086-058db5b0a3dc",
+            "id": "ca4fcb70-993b-11ec-9784-37a16bed505b",
+            "layoutId": "CUSTOM_DASHBOARD_WEATHER_VIEW_ALL_LAYOUT_TEMPLATE",
+            "sequence": 0.0,
+            "widgetDefinitionId": "active_severe_weather_table_view_all",
+            "name": "active_severe_weather_table_view_all",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties":
+            {
+                "xPos": "0",
+                "yPos": "0",
+                "rowSpan": "80",
+                "colSpan": "4",
+                "chartType": "data_table",
+                "fullBodyWidget": "true",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        }
+    ],
+    "defaultLanguage": "en",
+    "descriptions":
+    {
+        "en":
+        {
+            "name": "All severe weather",
+            "language": "en",
+            "description": "All severe weather"
+        }
+    },
+    "properties": [
+        {
+            "name": "breadcrumbEnabled",
+            "metaInformation": "layoutOption",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "breadcrumbList",
+            "metaInformation": "layoutOption",
+            "values": [
+                "{\"label\": \"Location By weather\", \"routeName\": \"/template/CUSTOM_DASHBOARD_WEATHER_VIEW_ALL_LAYOUT_TEMPLATE\"}"
+            ]
+        },
+        {
+            "name": "timestampEnabled",
+            "metaInformation": "layoutOption",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "ivAssistantEnabled",
+            "metaInformation": "layoutOption",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "state.empty.title",
+            "metaInformation": "layoutOption",
+            "values": [
+                "No data"
+            ]
+        },
+        {
+            "name": "state.empty.body",
+            "metaInformation": "layoutOption",
+            "values": [
+                "There is no data to display"
+            ]
+        },
+        {
+            "name": "state.empty.image",
+            "metaInformation": "layoutOption",
+            "values": [
+                "dataEmpty"
+            ]
+        },
+        {
+            "name": "state.empty.link.label",
+            "metaInformation": "layoutOption",
+            "values": [
+                "Learn more"
+            ]
+        },
+        {
+            "name": "state.empty.link.href.type",
+            "metaInformation": "layoutOption",
+            "values": [
+                "NEW_WINDOW"
+            ]
+        },
+        {
+            "name": "state.empty.link.href.path",
+            "metaInformation": "layoutOption",
+            "values": [
+                "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+            ]
+        }
+    ],
+    "version": 1
+}

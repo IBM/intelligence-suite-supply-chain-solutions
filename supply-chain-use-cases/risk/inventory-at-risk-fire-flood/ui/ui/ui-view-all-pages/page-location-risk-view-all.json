@@ -1,0 +1,116 @@
+
+{
+    "id": "CUSTOM_DASHBOARD_LOCATION_VIEW_ALL_LAYOUT_TEMPLATE",
+    "offeringId": "SCO",
+    "state": "ACTIVE",
+    "sequence": 0.0,
+    "tenantId": "2c358084-d86d-4f4d-ba5d-8ddb009f4d97",
+    "type": "View_All_Layout",
+    "widgets": [
+        {
+            "offeringId": "SCO",
+            "tenantId": "2c358084-d86d-4f4d-ba5d-8ddb009f4d97",
+            "id": "c2f079f0-993c-11ec-986d-ef32b44ea868",
+            "layoutId": "CUSTOM_DASHBOARD_LOCATION_VIEW_ALL_LAYOUT_TEMPLATE",
+            "sequence": 0.0,
+            "widgetDefinitionId": "location_advisories_table_view_all",
+            "name": "location_advisories_table_view_all",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties":
+            {
+                "xPos": "0",
+                "yPos": "0",
+                "rowSpan": "80",
+                "colSpan": "4",
+                "chartType": "data_table",
+                "fullBodyWidget": "true",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        }
+    ],
+    "defaultLanguage": "en",
+    "descriptions":
+    {
+        "en":
+        {
+            "name": "Location advisories",
+            "language": "en",
+            "description": "Location advisories"
+        }
+    },
+    "properties": [
+        {
+            "name": "breadcrumbEnabled",
+            "metaInformation": "layoutOption",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "breadcrumbList",
+            "metaInformation": "layoutOption",
+            "values": [
+                "{\"label\": \"Location By weather\", \"routeName\": \"/template/CUSTOM_DASHBOARD_LOCATION_VIEW_ALL_LAYOUT_TEMPLATE\"}"
+            ]
+        },
+        {
+            "name": "timestampEnabled",
+            "metaInformation": "layoutOption",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "ivAssistantEnabled",
+            "metaInformation": "layoutOption",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "state.empty.title",
+            "metaInformation": "layoutOption",
+            "values": [
+                "No data"
+            ]
+        },
+        {
+            "name": "state.empty.body",
+            "metaInformation": "layoutOption",
+            "values": [
+                "There is no data to display"
+            ]
+        },
+        {
+            "name": "state.empty.image",
+            "metaInformation": "layoutOption",
+            "values": [
+                "dataEmpty"
+            ]
+        },
+        {
+            "name": "state.empty.link.label",
+            "metaInformation": "layoutOption",
+            "values": [
+                "Learn more"
+            ]
+        },
+        {
+            "name": "state.empty.link.href.type",
+            "metaInformation": "layoutOption",
+            "values": [
+                "NEW_WINDOW"
+            ]
+        },
+        {
+            "name": "state.empty.link.href.path",
+            "metaInformation": "layoutOption",
+            "values": [
+                "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+            ]
+        }
+    ],
+    "version": 1
+}
