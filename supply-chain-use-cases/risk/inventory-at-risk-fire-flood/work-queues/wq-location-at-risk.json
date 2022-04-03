@@ -1,0 +1,82 @@
+
+{
+    "advancedFilter":
+    {
+        "OR": [
+            {
+                "EQUALS": [
+                    {
+                        "SELECT": "locationIdentifier",
+                        "type": "STRING"
+                    },
+                    {
+                        "VALUE": "US Depot 011",
+                        "type": "STRING"
+                    }
+                ]
+            },
+            {
+                "EQUALS": [
+                    {
+                        "SELECT": "locationIdentifier",
+                        "type": "STRING"
+                    },
+                    {
+                        "VALUE": "US Depot 022",
+                        "type": "STRING"
+                    }
+                ]
+            },
+            {
+                "EQUALS": [
+                    {
+                        "SELECT": "locationIdentifier",
+                        "type": "STRING"
+                    },
+                    {
+                        "VALUE": "US Depot 025",
+                        "type": "STRING"
+                    }
+                ]
+            }
+        ]
+    },
+    "primaryBusinessObjectTypes": [
+        "Location"
+    ],
+    "logicalName": "LocationsAtRisk",
+    "description": "Locations under a severe weather advisory",
+    "defaultCursorParams":
+    {
+        "first": 20,
+        "sort": [
+            {
+                "fieldPath": "locationIdentifier",
+                "order": "ASC"
+            }
+        ]
+    },
+    "priority": 50.0,
+    "enabled": true,
+    "columnsForWorkItemTitle": [],
+    "isGloballyVisible": false,
+    "defaultFieldsForSelect": [
+        "Location.locationName",
+        "Location.city",
+        "Location.stateProvince",
+        "Location.country"
+    ],
+    "hint":
+    {
+        "viewId": "graph"
+    },
+    "name": "Locations at risk",
+    "simpleFilter":
+    {
+        "type": "Location"
+    },
+    "tenantId": "bb937633-25aa-4733-8086-058db5b0a3dc",
+    "isSimple": true,
+    "applicableActionDefinitions": [],
+    "isComplete": true
+}

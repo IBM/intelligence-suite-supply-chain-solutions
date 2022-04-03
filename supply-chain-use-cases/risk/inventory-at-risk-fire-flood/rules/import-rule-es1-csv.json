@@ -1,0 +1,30 @@
+{
+  "name": "ES1 COS import CSV",
+  "tenantId": "bb937633-25aa-4733-8086-058db5b0a3dc",
+  "instructions": {
+    "transform": {
+      "schema": "USE_DEFAULT",
+      "deleteTransformFileAfterRoutedToDestination": "true",
+      "transformedFilePrefixName": "csvTransform",
+      "sourceFormat": "csv"
+    },
+    "routeTo": {
+      "streamingIngest": {
+        "priority": "1"
+      },
+      "destinationType": "streamingIngest"
+    },
+    "source": {
+      "sourceType": "COS",
+      "COS": {
+        "bucketName": "scis-data-integration-poc",
+        "prefixName": "es1-csv-import",
+        "endpoint": "s3.private.us-east.cloud-object-storage.appdomain.cloud",
+        "instanceId": "crn:v1:bluemix:public:cloud-object-storage:global:a/b71dd425b79f870d5f642a93b57b5f38:e96ce872-e235-469e-af0d-21699f2e28bb::",
+        "bucketRegion": "us-east",
+        "secretName": "scis_poc_cos",
+        "isPublicUrl": "false"
+      }
+    }
+  }
+}
