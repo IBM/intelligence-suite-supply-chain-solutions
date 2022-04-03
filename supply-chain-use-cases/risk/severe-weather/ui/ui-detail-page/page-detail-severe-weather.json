@@ -1,0 +1,136 @@
+
+{
+    "id": "SEVERE_WEATHER_DETAILS_LAYOUT_TEMPLATE",
+    "offeringId": "SCO",
+    "state": "ACTIVE",
+    "sequence": 0.0,
+    "tenantId": "11d952cb-fc51-45ba-a760-67323792aa08",
+    "type": "Details",
+    "widgets": [
+        {
+            "offeringId": "SCO",
+            "tenantId": "11d952cb-fc51-45ba-a760-67323792aa08",
+            "id": "96b99da0-5470-11ec-804f-b31560cc9d64",
+            "layoutId": "SEVERE_WEATHER_DETAILS_LAYOUT_TEMPLATE",
+            "sequence": 0.0,
+            "widgetDefinitionId": "SEVERE_WEATHER_DETAILS_LIST_WIDGET",
+            "name": "Severe Weather updates",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties":
+            {
+                "colSpan": "4",
+                "rowSpan": "100",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "grid_details",
+                "fullBodyWidget": "false",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "11d952cb-fc51-45ba-a760-67323792aa08",
+            "id": "96b99da1-5470-11ec-804f-b31560cc9d64",
+            "layoutId": "SEVERE_WEATHER_DETAILS_LAYOUT_TEMPLATE",
+            "sequence": 1.0,
+            "widgetDefinitionId": "SCO_WEATHER_MAP",
+            "name": "SCO Weather Map",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties":
+            {
+                "colSpan": "4",
+                "rowSpan": "40",
+                "xPos": "0",
+                "yPos": "1",
+                "chartType": "map",
+                "fullBodyWidget": "false",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        }
+    ],
+    "defaultLanguage": "en",
+    "descriptions":
+    {
+        "en":
+        {
+            "name": "Severe weather",
+            "language": "en",
+            "description": "Severe Weather updates"
+        }
+    },
+    "properties": [
+        {
+            "name": "breadcrumbEnabled",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "breadcrumbList",
+            "metaInformation": "layoutOption",
+            "values": [
+                "{\"label\": \"Severe Weather updates\", \"routeName\": \"/template/SEVERE_WEATHER_LAYOUT_TEMPLATE\"}"
+            ]
+        },
+        {
+            "name": "timestampEnabled",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "ivAssistantEnabled",
+            "metaInformation": "layoutOption",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "state.empty.title",
+            "metaInformation": "layoutOption",
+            "values": [
+                "No data"
+            ]
+        },
+        {
+            "name": "state.empty.body",
+            "metaInformation": "layoutOption",
+            "values": [
+                "There is no data to display"
+            ]
+        },
+        {
+            "name": "state.empty.image",
+            "metaInformation": "layoutOption",
+            "values": [
+                "dataEmpty"
+            ]
+        },
+        {
+            "name": "state.empty.link.label",
+            "metaInformation": "layoutOption",
+            "values": [
+                "Learn more"
+            ]
+        },
+        {
+            "name": "state.empty.link.href.type",
+            "metaInformation": "layoutOption",
+            "values": [
+                "NEW_WINDOW"
+            ]
+        },
+        {
+            "name": "state.empty.link.href.path",
+            "metaInformation": "layoutOption",
+            "values": [
+                "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+            ]
+        }
+    ],
+    "version": 1
+}

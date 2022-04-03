@@ -1,0 +1,200 @@
+
+{
+    "id": "SEVERE_WEATHER_LAYOUT_TEMPLATE4",
+    "offeringId": "SCO",
+    "state": "ACTIVE",
+    "sequence": 4.0,
+    "tenantId": "bb937633-25aa-4733-8086-058db5b0a3dc",
+    "type": "Dashboard",
+    "widgets": [
+        {
+            "id": "SEVERE_WEATHER_FILTER",
+            "layoutId": "SEVERE_WEATHER_LAYOUT_TEMPLATE3",
+            "sequence": 0,
+            "widgetDefinitionId": "SEVERE_WEATHER_FILTER",
+            "name": "Inventory Dashboard Filter",
+            "creator": "samsmith@ibm.com",
+            "createdDate": "2020-11-12T05:33:19.003Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties":
+            {
+                "chartType": "filter",
+                "fullBodyWidget": "false",
+                "enabled": "true",
+                "section": "layout_header"
+            }
+        },
+        {
+            "id": "SEVERE_WEATHER_ACTIVE_FILTERS",
+            "layoutId": "SEVERE_WEATHER_LAYOUT_TEMPLATE3",
+            "sequence": 1,
+            "widgetDefinitionId": "SEVERE_WEATHER_ACTIVE_FILTERS",
+            "name": "Dashboard active filters",
+            "creator": "samsmith@ibm.com",
+            "createdDate": "2020-08-26T19:58:22.154Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties":
+            {
+                "chartType": "active_filters",
+                "section": "layout_subheader",
+                "enabled": "true",
+                "fullBodyWidget": "true"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "bb937633-25aa-4733-8086-058db5b0a3dc",
+            "id": "195bf6d0-5c4c-11ec-8f42-bd339ca7a800",
+            "layoutId": "SEVERE_WEATHER_LAYOUT_TEMPLATE3",
+            "sequence": 2,
+            "widgetDefinitionId": "SEVERE_WEATHER_LIST_WIDGET",
+            "name": "Severe Weather updates",
+            "creator": "270002RDJB",
+            "createdDate": "2021-12-13T19:37:25.437Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties":
+            {
+                "colSpan": "4",
+                "rowSpan": "100",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "data_table",
+                "fullBodyWidget": "true",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "bb937633-25aa-4733-8086-058db5b0a3dc",
+            "id": "ea288150-98ad-11ec-9b3b-97d0a2e70e12",
+            "layoutId": "SEVERE_WEATHER_LAYOUT_TEMPLATE3",
+            "sequence": 3,
+            "widgetDefinitionId": "SEVERE_WEATHER_MAP_WIDGET_V2",
+            "name": "Severe Weather updates",
+            "creator": "270002RDJB",
+            "createdDate": "2022-02-28T15:48:46.693Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties":
+            {
+                "colSpan": "4",
+                "rowSpan": "30",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "map",
+                "fullBodyWidget": "true",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "bb937633-25aa-4733-8086-058db5b0a3dc",
+            "id": "195bf6d1-5c4c-11ec-8f42-bd339ca7a800",
+            "layoutId": "SEVERE_WEATHER_LAYOUT_TEMPLATE3",
+            "sequence": 4,
+            "widgetDefinitionId": "FUTURE_WEATHER_LIST_WIDGET",
+            "name": "Severe Weather updates",
+            "creator": "270002RDJB",
+            "createdDate": "2021-12-13T19:37:25.437Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties":
+            {
+                "colSpan": "4",
+                "rowSpan": "100",
+                "xPos": "0",
+                "yPos": "1",
+                "chartType": "data_table",
+                "fullBodyWidget": "true",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        }
+    ],
+    "defaultLanguage": "en",
+    "descriptions":
+    {
+        "en":
+        {
+            "name": "Severe weather",
+            "language": "en",
+            "description": "Severe Weather updates"
+        }
+    },
+    "properties": [
+        {
+            "name": "breadcrumbEnabled",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "breadcrumbList",
+            "metaInformation": "layoutOption",
+            "values": [
+                "{\"label\": \"Severe Weather updates\", \"routeName\": \"/template/SEVERE_WEATHER_LAYOUT_TEMPLATE\"}"
+            ]
+        },
+        {
+            "name": "timestampEnabled",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "ivAssistantEnabled",
+            "metaInformation": "layoutOption",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "state.empty.title",
+            "metaInformation": "layoutOption",
+            "values": [
+                "No data"
+            ]
+        },
+        {
+            "name": "state.empty.body",
+            "metaInformation": "layoutOption",
+            "values": [
+                "There is no data to display"
+            ]
+        },
+        {
+            "name": "state.empty.image",
+            "metaInformation": "layoutOption",
+            "values": [
+                "dataEmpty"
+            ]
+        },
+        {
+            "name": "state.empty.link.label",
+            "metaInformation": "layoutOption",
+            "values": [
+                "Learn more"
+            ]
+        },
+        {
+            "name": "state.empty.link.href.type",
+            "metaInformation": "layoutOption",
+            "values": [
+                "NEW_WINDOW"
+            ]
+        },
+        {
+            "name": "state.empty.link.href.path",
+            "metaInformation": "layoutOption",
+            "values": [
+                "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+            ]
+        }
+    ],
+    "version": 2
+}

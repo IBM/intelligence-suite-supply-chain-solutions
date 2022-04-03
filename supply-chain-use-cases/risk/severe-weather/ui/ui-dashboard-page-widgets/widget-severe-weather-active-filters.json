@@ -1,0 +1,65 @@
+
+{
+    "offeringId": "SCO",
+    "id": "SEVERE_WEATHER_ACTIVE_FILTERS",
+    "state": "ACTIVE",
+    "identifier": "SEVERE_WEATHER_ACTIVE_FILTERS",
+    "type": "Dashboard_Widget",
+    "tenantId": "2c358084-d86d-4f4d-ba5d-8ddb009f4d97",
+    "path": "/api",
+    "vendor": "IBM",
+    "defaultLanguage": "en",
+    "version": 1,
+    "descriptions":
+    {
+        "en":
+        {
+            "name": "Dashboard Active Filters",
+            "language": "en",
+            "description": "Filter dashboard content."
+        }
+    },
+    "devConfigurations": [
+        {
+            "name": "data.service",
+            "values": [
+                "uihub"
+            ]
+        },
+        {
+            "name": "data.scope",
+            "values": [
+                "externalEvent.appliedFilters"
+            ]
+        },
+        {
+            "name": "filterChanged",
+            "values": [
+                "externalEvent"
+            ],
+            "metaInformation": "stateScope"
+        },
+        {
+            "name": "externalEvent.appliedFilters",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "stateSubscription"
+        }
+    ],
+    "userConfigurations": [
+        {
+            "name": "chartType",
+            "values": [
+                "active_filters"
+            ],
+            "description":
+            {
+                "name": "Select a visual to display the data",
+                "language": "en",
+                "description": "The type of visual display"
+            }
+        }
+    ],
+    "adminConfigurations": []
+}

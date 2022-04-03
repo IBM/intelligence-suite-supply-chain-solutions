@@ -1,0 +1,291 @@
+
+{
+    "offeringId": "SCO",
+    "id": "SEVERE_WEATHER_FILTER",
+    "state": "ACTIVE",
+    "identifier": "SEVERE_WEATHER_FILTER",
+    "type": "Dashboard_Widget",
+    "tenantId": "2c358084-d86d-4f4d-ba5d-8ddb009f4d97",
+    "path": "/api",
+    "vendor": "IBM",
+    "defaultLanguage": "en",
+    "version": 1,
+    "descriptions":
+    {
+        "en":
+        {
+            "name": "Dashboard Filter",
+            "language": "en",
+            "description": "Filter dashboard content."
+        }
+    },
+    "devConfigurations": [
+        {
+            "name": "data.service",
+            "values": [
+                "infohub"
+            ]
+        },
+        {
+            "name": "queries[0].processor",
+            "values": [
+                "EDGES"
+            ],
+            "metaInformation": "infohub.processor"
+        },
+        {
+            "name": "queries[0].fields",
+            "values": [
+                "query Country( $tenantId: String!, $typeAheadFilter: BooleanExp={ CONSTANT_VALUE: true } ) { businessObjects( simpleFilter: { type: ExternalEvent, tenantId: $tenantId, fieldNameForDistinctValues: \"country\" }, advancedFilter: { AND: [ $typeAheadFilter ] }, hint: { viewId: \"graph\" }, cursorParams: { first: 50, sort: { fieldPath: \"country\", order: ASC } } ) { totalCount pageInfo { hasNextPage } edges { cursor object { ...on ExternalEvent { id: country name: country } } } } }"
+            ],
+            "metaInformation": "infohub.fields"
+        },
+        {
+            "name": "queries[0].variables.tenantId",
+            "values": [
+                "{{ tenantId }}"
+            ],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "queries[0].variables.typeAheadFilter",
+            "values": [
+                "{ \"CONTAINS\": [ {\"SELECT\": \"country\", \"type\": \"STRING\" }, { \"VALUE\": \"{{ externalEvent.searchText }}\", \"type\": \"STRING\" } ] }"
+            ],
+            "metaInformation": "infohub.variable.dynamicExpr"
+        },
+        {
+            "name": "queries[1].processor",
+            "values": [
+                "EDGES"
+            ],
+            "metaInformation": "infohub.processor"
+        },
+        {
+            "name": "queries[1].fields",
+            "values": [
+                "query StateProvince( $tenantId: String!, $typeAheadFilter: BooleanExp={ CONSTANT_VALUE: true } ) { businessObjects( simpleFilter: { type: ExternalEvent, tenantId: $tenantId, fieldNameForDistinctValues: \"stateProvince\" }, advancedFilter: { AND: [ $typeAheadFilter ] }, hint: { viewId: \"graph\" }, cursorParams: { first: 50, sort: { fieldPath: \"stateProvince\", order: ASC } } ) { totalCount pageInfo { hasNextPage } edges { cursor object { ...on ExternalEvent { id: stateProvince name: stateProvince } } } } }"
+            ],
+            "metaInformation": "infohub.fields"
+        },
+        {
+            "name": "queries[1].variables.tenantId",
+            "values": [
+                "{{ tenantId }}"
+            ],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "queries[1].variables.typeAheadFilter",
+            "values": [
+                "{ \"CONTAINS\": [ {\"SELECT\": \"stateProvince\", \"type\": \"STRING\" }, { \"VALUE\": \"{{ externalEvent.searchText }}\", \"type\": \"STRING\" } ] }"
+            ],
+            "metaInformation": "infohub.variable.dynamicExpr"
+        },
+        {
+            "name": "queries[2].processor",
+            "values": [
+                "EDGES"
+            ],
+            "metaInformation": "infohub.processor"
+        },
+        {
+            "name": "queries[2].fields",
+            "values": [
+                "query Subject( $tenantId: String!, $typeAheadFilter: BooleanExp={ CONSTANT_VALUE: true } ) { businessObjects( simpleFilter: { type: ExternalEvent, tenantId: $tenantId, fieldNameForDistinctValues: \"subject\" }, advancedFilter: { AND: [ $typeAheadFilter ] }, hint: { viewId: \"graph\" }, cursorParams: { first: 50, sort: { fieldPath: \"subject\", order: ASC } } ) { totalCount pageInfo { hasNextPage } edges { cursor object { ...on ExternalEvent { id: subject name: subject } } } } }"
+            ],
+            "metaInformation": "infohub.fields"
+        },
+        {
+            "name": "queries[2].variables.tenantId",
+            "values": [
+                "{{ tenantId }}"
+            ],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "queries[2].variables.typeAheadFilter",
+            "values": [
+                "{ \"CONTAINS\": [ {\"SELECT\": \"subject\", \"type\": \"STRING\" }, { \"VALUE\": \"{{ externalEvent.searchText }}\", \"type\": \"STRING\" } ] }"
+            ],
+            "metaInformation": "infohub.variable.dynamicExpr"
+        },
+        {
+            "name": "filter.fields[0].id",
+            "values": [
+                "Country"
+            ],
+            "metaInformation": "filterOption"
+        },
+        {
+            "name": "filter.fields[0].label",
+            "values": [
+                "Country"
+            ],
+            "metaInformation": "filterOption"
+        },
+        {
+            "name": "filter.fields[0].required",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "filterOption"
+        },
+        {
+            "name": "filter.fields[0].multiSelect",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "filterOption"
+        },
+        {
+            "name": "filter.fields[1].id",
+            "values": [
+                "StateProvince"
+            ],
+            "metaInformation": "filterOption"
+        },
+        {
+            "name": "filter.fields[1].label",
+            "values": [
+                "State-Province"
+            ],
+            "metaInformation": "filterOption"
+        },
+        {
+            "name": "filter.fields[1].required",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "filterOption"
+        },
+        {
+            "name": "filter.fields[1].multiSelect",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "filterOption"
+        },
+        {
+            "name": "filter.fields[2].id",
+            "values": [
+                "Subject"
+            ],
+            "metaInformation": "filterOption"
+        },
+        {
+            "name": "filter.fields[2].label",
+            "values": [
+                "Subject"
+            ],
+            "metaInformation": "filterOption"
+        },
+        {
+            "name": "filter.fields[2].required",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "filterOption"
+        },
+        {
+            "name": "filter.fields[2].multiSelect",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "filterOption"
+        },
+        {
+            "name": "filter.title",
+            "values": [
+                "COMPONENT.FILTERS.FILTER_TITLE"
+            ],
+            "metaInformation": "filterOption"
+        },
+        {
+            "name": "filter.placeholders.search",
+            "values": [
+                "COMPONENT.FILTERS.SEARCH_PLACE_HOLDER"
+            ],
+            "metaInformation": "filterOption"
+        },
+        {
+            "name": "filter.placeholders.tags",
+            "values": [
+                "COMPONENT.FILTERS.NO_TAGS_MESSAGE_DETAILED"
+            ],
+            "metaInformation": "filterOption"
+        },
+        {
+            "name": "filter.selections",
+            "values": [
+                "{{externalEvent.appliedFilters}}"
+            ],
+            "metaInformation": "filterOption"
+        },
+        {
+            "name": "widgetInitialized",
+            "values": [
+                "loadState",
+                "refreshData"
+            ],
+            "metaInformation": "eventSubscription"
+        },
+        {
+            "name": "filterSearched",
+            "values": [
+                "externalEvent"
+            ],
+            "metaInformation": "stateScope"
+        },
+        {
+            "name": "filterChanged",
+            "values": [
+                "externalEvent"
+            ],
+            "metaInformation": "stateScope"
+        },
+        {
+            "name": "externalEvent.searchText",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "externalEvent.appliedFilters",
+            "values": [
+                "refreshSavedState"
+            ],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "configureState.buttonClicked",
+            "values": [
+                "open"
+            ],
+            "metaInformation": "eventSubscription"
+        },
+        {
+            "name": "externalEvent.appliedFilters",
+            "values": [
+                "refreshOptions"
+            ],
+            "metaInformation": "stateSubscription"
+        }
+    ],
+    "userConfigurations": [
+        {
+            "name": "chartType",
+            "values": [
+                "filter"
+            ],
+            "description":
+            {
+                "name": "Select a visual to display the data",
+                "language": "en",
+                "description": "The type of visual display"
+            }
+        }
+    ],
+    "adminConfigurations": []
+}

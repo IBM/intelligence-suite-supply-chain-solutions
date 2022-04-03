@@ -1,0 +1,466 @@
+
+{
+    "offeringId": "SCO",
+    "id": "SEVERE_WEATHER_DETAILS_LIST_WIDGET",
+    "state": "ACTIVE",
+    "identifier": "SEVERE_WEATHER_DETAILS_LIST_WIDGET",
+    "type": "Dashboard_Widget",
+    "tenantId": "2c358084-d86d-4f4d-ba5d-8ddb009f4d97",
+    "path": "/api",
+    "vendor": "IBM",
+    "defaultLanguage": "en",
+    "version": 1,
+    "descriptions":
+    {
+        "en":
+        {
+            "name": "Severe Weather Details",
+            "language": "en",
+            "description": "Weather Details"
+        }
+    },
+    "devConfigurations": [
+        {
+            "name": "resizeToContent",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "data.service",
+            "values": [
+                "infohub"
+            ]
+        },
+        {
+            "name": "queries[0].fields",
+            "values": [
+                "query weatherEvents( $tenantId:String, $id:String){ businessObjects( simpleFilter: {tenantId: $tenantId, type: ExternalEvent}, advancedFilter: { AND: [ { EQUALS: [ {SELECT: \"id\", type: STRING }, { VALUE: $id, type: STRING} ] } ] }, hint: {viewId: \"graph\"}, cursorParams: {first: 20}) { totalCount edges { object { ... on ExternalEvent { id subject areaCounty stateProvince country description start forecastedEnd createReceived updateReceived severity status locationCoordinates radius eventSource attribution actualEnd dateRaised} } } } } "
+            ],
+            "metaInformation": "infohub.fields"
+        },
+        {
+            "name": "queries[0].variables.tenantId",
+            "values": [
+                "{{ tenantId }}"
+            ],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "queries[0].variables.id",
+            "values": [
+                "{{ weatherId }}"
+            ],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "draggable",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "direction",
+            "values": [
+                "vertical"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "valueOption",
+            "values": [
+                "vertical"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "verticalScroll.enable",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[0].title",
+            "values": [
+                "Subject"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[0].name",
+            "values": [
+                "subject"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[1].title",
+            "values": [
+                "Area/County"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[1].name",
+            "values": [
+                "areaCounty"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[2].title",
+            "values": [
+                "State/Province"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[2].name",
+            "values": [
+                "stateProvince"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[3].title",
+            "values": [
+                "Country"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[3].name",
+            "values": [
+                "country"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[4].title",
+            "values": [
+                "Description"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[4].name",
+            "values": [
+                "description"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[5].title",
+            "values": [
+                "Date raised"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[5].name",
+            "values": [
+                "dateRaised"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[5].customTemplate",
+            "values": [
+                "dateTpl"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[5].dateFormat",
+            "values": [
+                "DD MMMM YYYY hh:mm"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[6].title",
+            "values": [
+                "Start"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[6].name",
+            "values": [
+                "start"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[6].customTemplate",
+            "values": [
+                "dateTpl"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[6].dateFormat",
+            "values": [
+                "DD MMMM YYYY hh:mm"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[7].title",
+            "values": [
+                "Forecasted end"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[7].name",
+            "values": [
+                "forecastedEnd"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[7].customTemplate",
+            "values": [
+                "dateTpl"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[7].dateFormat",
+            "values": [
+                "DD MMMM YYYY hh:mm"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[8].title",
+            "values": [
+                "Actual end"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[8].name",
+            "values": [
+                "actualEnd"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[8].customTemplate",
+            "values": [
+                "dateTpl"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[8].dateFormat",
+            "values": [
+                "DD MMMM YYYY hh:mm"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[9].title",
+            "values": [
+                "Created"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[9].name",
+            "values": [
+                "createReceived"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[9].customTemplate",
+            "values": [
+                "dateTpl"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[9].dateFormat",
+            "values": [
+                "DD MMMM YYYY hh:mm"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[10].title",
+            "values": [
+                "Updated"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[10].name",
+            "values": [
+                "updateReceived"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[10].customTemplate",
+            "values": [
+                "dateTpl"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[10].dateFormat",
+            "values": [
+                "DD MMMM YYYY hh:mm"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[11].title",
+            "values": [
+                "Severity"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[11].name",
+            "values": [
+                "severity"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[12].title",
+            "values": [
+                "Status"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[12].name",
+            "values": [
+                "status"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[13].title",
+            "values": [
+                "Location coordinates"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[13].name",
+            "values": [
+                "locationCoordinates"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[14].title",
+            "values": [
+                "Radius"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[14].name",
+            "values": [
+                "radius"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[15].title",
+            "values": [
+                "Event source"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[15].name",
+            "values": [
+                "eventSource"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[16].title",
+            "values": [
+                "Attribution"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "item[16].name",
+            "values": [
+                "attribution"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "widgetInitialized",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "eventSubscription"
+        },
+        {
+            "name": "state.empty.title",
+            "values": [
+                "No Data"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.body",
+            "values": [
+                "There is no business data to display"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.link.label",
+            "values": [
+                "Learn more"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.link.href.type",
+            "values": [
+                "NEW_WINDOW"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.link.href.path",
+            "values": [
+                "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "transformation",
+            "values": [
+                "{ \"errors\": \"{{#? this.data.errors}}\", \"totalCount\": \"{{this.data.businessObjects.totalCount}}\", \"results\": { \"{{#each this.data.businessObjects.edges}}\": { \"cursor\": \"{{this.cursor}}\", \"subject\": \"{{this.object.subject}}\", \"areaCounty\": \"{{this.object.areaCounty}}\", \"stateProvince\": \"{{this.object.stateProvince}}\", \"country\": \"{{this.object.country}}\", \"description\": \"{{this.object.description}}\", \"start\": \"{{this.object.start}}\", \"createReceived\": \"{{this.object.createReceived}}\", \"updateReceived\": \"{{this.object.updateReceived}}\", \"forecastedEnd\": \"{{this.object.forecastedEnd}}\", \"severity\": \"{{this.object.severity}}\", \"status\": \"{{this.object.status}}\", \"locationCoordinates\": \"{{this.object.locationCoordinates}}\", \"radius\": \"{{this.object.radius}}\", \"eventSource\": \"{{this.object.eventSource}}\", \"attribution\": \"{{this.object.attribution}}\", \"actualEnd\": \"{{this.object.actualEnd}}\", \"dateRaised\": \"{{this.object.dateRaised}}\", \"forecastedEnd\": \"{{this.object.forecastedEnd}}\" } } }"
+            ],
+            "metaInformation": "widgetOption"
+        }
+    ],
+    "userConfigurations": [
+        {
+            "name": "chartType",
+            "values": [
+                "grid_details"
+            ]
+        }
+    ],
+    "adminConfigurations": []
+}

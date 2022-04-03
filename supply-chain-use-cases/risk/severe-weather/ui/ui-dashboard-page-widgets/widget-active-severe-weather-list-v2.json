@@ -1,0 +1,712 @@
+
+{
+    "offeringId": "SCO",
+    "id": "SEVERE_WEATHER_LIST_WIDGET",
+    "state": "ACTIVE",
+    "identifier": "SEVERE_WEATHER_LIST_WIDGET",
+    "type": "Dashboard_Widget",
+    "tenantId": "2c358084-d86d-4f4d-ba5d-8ddb009f4d97",
+    "path": "/api",
+    "vendor": "IBM",
+    "defaultLanguage": "en",
+    "version": 1,
+    "descriptions":
+    {
+        "en":
+        {
+            "name": "Severe weather warnings",
+            "language": "en",
+            "description": "Severe weather warnings"
+        }
+    },
+    "devConfigurations": [
+        {
+            "name": "header.type",
+            "values": [
+                "metric_header"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "header.title",
+            "values": [
+                "Active severe weather warnings"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "header.value",
+            "values": [
+                "{{ totalCount }}"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "colSpan",
+            "values": [
+                "2"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "rowSpan",
+            "values": [
+                "2"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "resizeToContent",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "data.service",
+            "values": [
+                "infohub"
+            ]
+        },
+        {
+            "name": "queries[0].processor",
+            "values": [
+                "AGGREGATIONS_WITH_EDGES"
+            ],
+            "metaInformation": "infohub.processor"
+        },
+        {
+            "name": "queries[0].fields",
+            "values": [
+                "query severeWeatherList( $tenantId: String!, $now: String, $cursorId: String, $pageLength: Int, $sortBy: String=\"country\", $sortBy2: String=\"stateProvince\", $sortBy3: String=\"areaCounty\", $sortOrder: SortOrder=ASC, $countryFilter: BooleanExp={ CONSTANT_VALUE: true }, $stateProvinceFilter: BooleanExp={ CONSTANT_VALUE: true }, $subjectFilter: BooleanExp={ CONSTANT_VALUE: true } ) { severeWeather: businessObjects( simpleFilter: { tenantId: $tenantId, type: ExternalEvent }, advancedFilter: { AND: [ { GREATER_THAN: [ { VALUE: $now, type: STRING }, { SELECT: \"forecastedEnd\", type: STRING } ] }, { OR: [ { LESS_THAN: [ { SELECT: \"start\", type: STRING } { VALUE: $now, type: STRING },  ] }, { NOT: { EXISTS: [ { SELECT: \"start\", type: STRING } ] } } ] } $countryFilter $stateProvinceFilter $subjectFilter ] }, hint: { viewId: \"graph\" }, cursorParams: { after: $cursorId first: $pageLength, sort: [ { fieldPath: $sortBy, order: $sortOrder } { fieldPath: $sortBy2, order: $sortOrder } { fieldPath: $sortBy3, order: $sortOrder } ] } ) { totalCount pageInfo { endCursor hasNextPage } edges { cursor object { ...on ExternalEvent { id subject areaCounty stateProvince country description start forecastedEnd createReceived updateReceived } } } } }"
+            ],
+            "metaInformation": "infohub.fields"
+        },
+        {
+            "name": "queries[0].variables.tenantId",
+            "values": [
+                "{{ tenantId }}"
+            ],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "queries[0].variables.countryFilter",
+            "values": [
+                "{ \"EQUALS_ANY\": [ {\"SELECT\": \"country\", \"type\": \"STRING\" }, { \"VALUES\": {{ externalEvent.appliedFilters.Country.ids }}, \"type\": \"STRING\" } ] }"
+            ],
+            "metaInformation": "infohub.variable.dynamicExpr"
+        },
+        {
+            "name": "queries[0].variables.stateProvinceFilter",
+            "values": [
+                "{ \"EQUALS_ANY\": [ {\"SELECT\": \"stateProvince\", \"type\": \"STRING\" }, { \"VALUES\": {{ externalEvent.appliedFilters.StateProvince.ids }}, \"type\": \"STRING\" } ] }"
+            ],
+            "metaInformation": "infohub.variable.dynamicExpr"
+        },
+        {
+            "name": "queries[0].variables.subjectFilter",
+            "values": [
+                "{ \"EQUALS_ANY\": [ {\"SELECT\": \"subject\", \"type\": \"STRING\" }, { \"VALUES\": {{ externalEvent.appliedFilters.Subject.ids }}, \"type\": \"STRING\" } ] }"
+            ],
+            "metaInformation": "infohub.variable.dynamicExpr"
+        },
+        {
+            "name": "queries[0].variables.now",
+            "values": [
+                "{{ now }}"
+            ],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "queries[0].variables.pageLength",
+            "values": [
+                "{{ severeWeatherWarnings.pageLength }}"
+            ],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "queries[0].variables.cursorId",
+            "values": [
+                "{{ cursorId }}"
+            ],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "columnSorted",
+            "values": [
+                "severeWeatherWarnings"
+            ],
+            "metaInformation": "stateScope"
+        },
+        {
+            "name": "queries[0].variables.sortBy",
+            "values": [
+                "{{ severeWeatherWarnings.sort.by }}"
+            ],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "queries[0].variables.sortOrder",
+            "values": [
+                "{{ severeWeatherWarnings.sort.order }}"
+            ],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "severeWeatherWarnings.sort",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "severeWeatherWarnings.page",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "severeWeatherWarnings.pageLength",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "pageChanged",
+            "values": [
+                "severeWeatherWarnings"
+            ],
+            "metaInformation": "stateScope"
+        },
+        {
+            "name": "externalEvent.appliedFilters",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "draggable",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "showFooter",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableOption"
+        },
+        {
+            "name": "pagination.enable",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "tableOption"
+        },
+        {
+            "name": "pageInput.enable",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "tableOption"
+        },
+        {
+            "name": "horizontalScroll.enable",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "tableOption"
+        },
+        {
+            "name": "selectableRow.enable",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableOption"
+        },
+        {
+            "name": "stickyTableHeader",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableOption"
+        },
+        {
+            "name": "stripes",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableOption"
+        },
+        {
+            "name": "configurable",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableOption"
+        },
+        {
+            "name": "columns[0].cell.label",
+            "values": [
+                "{{ subject }}"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].header.label",
+            "values": [
+                "Subject"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].sortable",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].cell.customTemplate",
+            "values": [
+                "linkTpl"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].cell.href.type",
+            "values": [
+                "LAYOUT_TEMPLATE"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].cell.href.id",
+            "values": [
+                "SEVERE_WEATHER_DETAILS_LAYOUT_TEMPLATE"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].cell.href.params",
+            "values": [
+                "weatherId={{ id }},hiddenLayoutSections=queue"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].hidden",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].sequence",
+            "values": [
+                "0"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[1].cell.label",
+            "values": [
+                "{{ areaCounty }}"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[1].header.label",
+            "values": [
+                "Area County"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[1].sortable",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[1].cell.customTemplate",
+            "values": [
+                "textTpl"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[1].hidden",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[1].sequence",
+            "values": [
+                "1"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[2].cell.label",
+            "values": [
+                "{{ country }}"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[2].header.label",
+            "values": [
+                "Country"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[2].sortable",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[2].cell.customTemplate",
+            "values": [
+                "textTpl"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[2].hidden",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[2].sequence",
+            "values": [
+                "2"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[3].cell.label",
+            "values": [
+                "{{ stateProvince }}"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[3].header.label",
+            "values": [
+                "State/Province"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[3].sortable",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[3].cell.customTemplate",
+            "values": [
+                "textTpl"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[3].hidden",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[3].sequence",
+            "values": [
+                "3"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[4].cell.label",
+            "values": [
+                "{{ description }}"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[4].header.label",
+            "values": [
+                "Description"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[4].sortable",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[4].cell.customTemplate",
+            "values": [
+                "textTpl"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[4].hidden",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[4].sequence",
+            "values": [
+                "4"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[5].cell.label",
+            "values": [
+                "{{ start }}"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[5].header.label",
+            "values": [
+                "Start"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[5].sortable",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[5].cell.customTemplate",
+            "values": [
+                "dateTpl"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[5].hidden",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[5].sequence",
+            "values": [
+                "5"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[6].cell.label",
+            "values": [
+                "{{ forecastedEnd }}"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[6].header.label",
+            "values": [
+                "Forecasted end"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[6].sortable",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[6].cell.customTemplate",
+            "values": [
+                "dateTpl"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[6].hidden",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[6].sequence",
+            "values": [
+                "6"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[7].cell.label",
+            "values": [
+                "{{ createReceived }}"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[7].header.label",
+            "values": [
+                "Create received"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[7].sortable",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[7].cell.customTemplate",
+            "values": [
+                "dateTpl"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[7].hidden",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[7].sequence",
+            "values": [
+                "7"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[8].cell.label",
+            "values": [
+                "{{ updateReceived }}"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[8].header.label",
+            "values": [
+                "Update received"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[8].sortable",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[8].cell.customTemplate",
+            "values": [
+                "dateTpl"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[8].hidden",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[8].sequence",
+            "values": [
+                "8"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "widgetInitialized",
+            "values": [
+                "loadState",
+                "refreshData"
+            ],
+            "metaInformation": "eventSubscription"
+        },
+        {
+            "name": "transformation",
+            "values": [
+                "{\"errors\":\"{{#? this.data.errors}}\", \"pageInfo\":\"{{this.data.severeWeather.pageInfo}}\", \"totalCount\":\"{{this.data.severeWeather.totalCount}}\", \"results\":{\"{{#each this.data.severeWeather.edges}}\":{\"cursor\":\"{{this.cursor}}\", \"subject\":\"{{this.object.subject}}\", \"id\":\"{{this.object.id}}\", \"areaCounty\":\"{{this.object.areaCounty}}\", \"stateProvince\":\"{{this.object.stateProvince}}\", \"country\":\"{{this.object.country}}\", \"description\":\"{{this.object.description}}\", \"start\":\"{{this.object.start}}\", \"createReceived\":\"{{this.object.createReceived}}\", \"updateReceived\":\"{{this.object.updateReceived}}\", \"forecastedEnd\":\"{{this.object.forecastedEnd}}\"}}}"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.title",
+            "values": [
+                "No data"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.body",
+            "values": [
+                "There is no business data to display"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.link.label",
+            "values": [
+                "Learn more"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.link.href.type",
+            "values": [
+                "NEW_WINDOW"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.link.href.path",
+            "values": [
+                "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+            ],
+            "metaInformation": "widgetOption"
+        }
+    ],
+    "userConfigurations": [
+        {
+            "name": "chartType",
+            "values": [
+                "data_table"
+            ]
+        }
+    ],
+    "adminConfigurations": []
+}

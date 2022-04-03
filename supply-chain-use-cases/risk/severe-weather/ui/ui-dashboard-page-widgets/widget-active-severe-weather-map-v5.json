@@ -1,0 +1,228 @@
+
+{
+    "offeringId": "SCO",
+    "id": "SEVERE_WEATHER_MAP_WIDGET_V2",
+    "state": "ACTIVE",
+    "identifier": "SEVERE_WEATHER_MAP_WIDGET_V2",
+    "type": "Dashboard_Widget",
+    "tenantId": "bb937633-25aa-4733-8086-058db5b0a3dc",
+    "path": "/api",
+    "vendor": "IBM",
+    "defaultLanguage": "en",
+    "version": 1,
+    "descriptions":
+    {
+        "en":
+        {
+            "name": "Severe weather warnings",
+            "language": "en",
+            "description": "Severe weather warnings"
+        }
+    },
+    "devConfigurations": [
+        {
+            "name": "data.service",
+            "values": [
+                "infohub"
+            ]
+        },
+        {
+            "name": "queries[0].fields",
+            "values": [
+                "query severeWeatherMapList($tenantId: String!, $now: String, $sortBy: String=\"country\", $sortBy2: String=\"stateProvince\", $sortBy3: String=\"areaCounty\", $sortOrder: SortOrder=ASC, $countryFilter: BooleanExp = { CONSTANT_VALUE: true }, $stateProvinceFilter: BooleanExp = { CONSTANT_VALUE: true }, $subjectFilter: BooleanExp = { CONSTANT_VALUE: true }) {businessObjects(simpleFilter: {tenantId: $tenantId, type: ExternalEvent} advancedFilter: {AND: [{GREATER_THAN: [{VALUE: $now, type: STRING}, {SELECT: \"forecastedEnd\", type: STRING}]}, {OR: [{LESS_THAN: [{SELECT: \"start\", type: STRING}, {VALUE: $now, type: STRING}]}, {NOT: {EXISTS: [{SELECT: \"start\", type: STRING}]}}]}$countryFilter $stateProvinceFilter $subjectFilter]} hint: {viewId: \"graph\"} cursorParams: {first: 50, sort: [{fieldPath: $sortBy, order: $sortOrder} {fieldPath: $sortBy2, order: $sortOrder} {fieldPath: $sortBy3, order: $sortOrder}]}) {totalCount edges {object {...on ExternalEvent {id subject areaCounty stateProvince country description locationCoordinates start forecastedEnd createReceived updateReceived}}}}}"
+            ],
+            "metaInformation": "infohub.fields"
+        },
+        {
+            "name": "queries[0].processor",
+            "values": [
+                "EDGES"
+            ],
+            "metaInformation": "infohub.processor"
+        },
+        {
+            "name": "queries[0].variables.tenantId",
+            "values": [
+                "{{ tenantId }}"
+            ],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "queries[0].variables.countryFilter",
+            "values": [
+                "{ \"EQUALS_ANY\": [ {\"SELECT\": \"country\", \"type\": \"STRING\" }, { \"VALUES\": {{ externalEvent.appliedFilters.Country.ids }}, \"type\": \"STRING\" } ] }"
+            ],
+            "metaInformation": "infohub.variable.dynamicExpr"
+        },
+        {
+            "name": "queries[0].variables.stateProvinceFilter",
+            "values": [
+                "{ \"EQUALS_ANY\": [ {\"SELECT\": \"stateProvince\", \"type\": \"STRING\" }, { \"VALUES\": {{ externalEvent.appliedFilters.StateProvince.ids }}, \"type\": \"STRING\" } ] }"
+            ],
+            "metaInformation": "infohub.variable.dynamicExpr"
+        },
+        {
+            "name": "queries[0].variables.subjectFilter",
+            "values": [
+                "{ \"EQUALS_ANY\": [ {\"SELECT\": \"subject\", \"type\": \"STRING\" }, { \"VALUES\": {{ externalEvent.appliedFilters.Subject.ids }}, \"type\": \"STRING\" } ] }"
+            ],
+            "metaInformation": "infohub.variable.dynamicExpr"
+        },
+        {
+            "name": "queries[0].variables.now",
+            "values": [
+                "{{ now }}"
+            ],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "icons[0].type",
+            "values": [
+                "kebab_menu"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "icons[0].options[0]",
+            "values": [
+                "move"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "colSpan",
+            "values": [
+                "4"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "rowSpan",
+            "values": [
+                "4"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "externalEvent.appliedFilters",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "draggable",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "horizontalScroll.enable",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableOption"
+        },
+        {
+            "name": "hubFilter.appliedFilters",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "severeWeather.page",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "severeWeather.pageLength",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "severeWeather.sort",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "widgetInitialized",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "eventSubscription"
+        },
+        {
+            "name": "transformation",
+            "values": [
+                "{\"errors\":\"{{#? this.errors}}\",\"totalCount\":\"{{this.data.businessObjects.totalCount}}\",\"results\": {\"weatherData\":{\"{{#each this.data.businessObjects.edges}}\":{\"id\":\"{{this.object.id}}\",\"locationCoordinates\":\"{{this.object.locationCoordinates}}\",\"startLocationTooltip\":\"{{this.object.description}}\"}}}}"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "mapProvider",
+            "values": [
+                "openStreetMap"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "mapControl.zoom",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "dataStreamsOptions[0].id",
+            "values": [
+                "weatherData"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "dataStreamsOptions[0].label",
+            "values": [
+                "Weather data points"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "dataStreamsOptions[0].startLocation.tooltip",
+            "values": [
+                "startLocationTooltip"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "dataStreamsOptions[0].startLocation.key",
+            "values": [
+                "locationCoordinates"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "dataStreamsOptions[0].color",
+            "values": [
+                "purple"
+            ],
+            "metaInformation": "widgetOption"
+        }
+    ],
+    "userConfigurations": [
+        {
+            "name": "chartType",
+            "values": [
+                "map"
+            ]
+        }
+    ],
+    "adminConfigurations": []
+}
