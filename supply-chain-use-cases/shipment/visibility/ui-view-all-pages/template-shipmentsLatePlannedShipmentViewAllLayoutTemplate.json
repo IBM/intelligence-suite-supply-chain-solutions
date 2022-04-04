@@ -1,0 +1,96 @@
+{
+  "id": "shipmentsLatePlannedShipmentViewAllLayoutTemplate",
+  "offeringId": "SCO",
+  "state": "ACTIVE",
+  "sequence": 0,
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "type": "Dashboard_Layout",
+  "widgets": [
+    {
+      "id": "shipmentsLatePlannedShipmentViewAllListWidget",
+      "layoutId": "shipmentsLatePlannedShipmentViewAllLayoutTemplate",
+      "sequence": 0,
+      "widgetDefinitionId": "shipmentsLatePlannedShipmentViewAllListWidget",
+      "name": "Late planned shipment",
+      "creator": "samsmith@ibm.com",
+      "createdDate": "2020-09-15T19:58:22.154Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "xPos": 0,
+        "yPos": 0,
+        "rowSpan": 33,
+        "colSpan": 4,
+        "chartType": "data_table",
+        "fullBodyWidget": "true",
+        "enabled": "true",
+        "section": "layout_body"
+      }
+    }
+  ],
+  "defaultLanguage": "en",
+  "descriptions": {
+    "en": {
+      "name": "COMMON.ORDER_LINES_WITH_A_LATE_PLANNED_SHIPMENT",
+      "language": "en",
+      "description": "Late planned shipment list"
+    }
+  },
+  "properties": [
+    {
+      "name": "breadcrumbEnabled",
+      "values": [true],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "breadcrumbList",
+      "values": [
+        "{\"label\": \"COMMON.ORDER_LINES_WITH_A_LATE_PLANNED_SHIPMENT\", \"routeName\": \"/template/shipmentsLatePlannedShipmentViewAllLayoutTemplate\"}"
+      ],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "timestampEnabled",
+      "values": [false],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "ivAssistantEnabled",
+      "values": [true],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.title",
+      "values": ["COMMON.EMPTY_TITLE"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.body",
+      "metaInformation": "layoutOption",
+      "values": ["COMMON.EMPTY_BODY"]
+    },
+    {
+      "name": "state.empty.image",
+      "metaInformation": "layoutOption",
+      "values": ["dataEmpty"]
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": ["COMMON.EMPTY_LINK_LABEL"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": ["NEW_WINDOW"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "layoutOption"
+    }
+  ],
+  "version": 1
+}

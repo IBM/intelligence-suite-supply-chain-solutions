@@ -1,0 +1,93 @@
+{
+  "id": "shipmentsPastDueShipmentViewAllLayoutTemplate",
+  "offeringId": "SCO",
+  "state": "ACTIVE",
+  "sequence": 0,
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "type": "Dashboard_Layout",
+  "defaultLanguage": "en",
+  "descriptions": {
+    "en": {
+      "name": "COMMON.SHIPMENTS_WITH_A_PAST_DUE_DELIVERY",
+      "language": "en",
+      "description": "Past due shipments list"
+    }
+  },
+  "widgets": [
+    {
+      "offeringId": "SCO",
+      "id": "shipmentsPastDueShipmentViewAllWidget",
+      "layoutId": "shipmentsPastDueShipmentViewAllLayoutTemplate",
+      "sequence": 0,
+      "widgetDefinitionId": "shipmentsPastDueShipmentViewAllWidget",
+      "name": "Past due shipments list",
+      "creator": "samsmith@ibm.com",
+      "createdDate": "2021-05-24T15:59:16.266Z",
+      "parentWidgetId": "",
+      "widgetProperties": {},
+      "displayProperties": {
+        "chartType": "data_table",
+        "fullBodyWidget": "true",
+        "enabled": "true",
+        "section": "layout_body"
+      }
+    }
+  ],
+  "properties": [
+    {
+      "name": "breadcrumbEnabled",
+      "values": [true],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "breadcrumbList",
+      "values": [
+        "{\"label\": \"COMMON.SHIPMENTS_WITH_A_PAST_DUE_DELIVERY\", \"routeName\": \"/template/shipmentsPastDueShipmentViewAllLayoutTemplate\"}"
+      ],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "timestampEnabled",
+      "values": [false],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "ivAssistantEnabled",
+      "values": [true],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.title",
+      "values": ["COMMON.EMPTY_TITLE"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.body",
+      "metaInformation": "layoutOption",
+      "values": ["COMMON.EMPTY_BODY"]
+    },
+    {
+      "name": "state.empty.image",
+      "metaInformation": "layoutOption",
+      "values": ["dataEmpty"]
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": ["COMMON.EMPTY_LINK_LABEL"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": ["NEW_WINDOW"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "layoutOption"
+    }
+  ],
+  "version": 1
+}
