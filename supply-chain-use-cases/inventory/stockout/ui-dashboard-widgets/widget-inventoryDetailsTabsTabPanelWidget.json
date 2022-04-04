@@ -1,0 +1,229 @@
+{
+  "offeringId": "SCO",
+  "id": "inventoryDetailsTabsTabPanelWidget",
+  "state": "ACTIVE",
+  "identifier": "inventoryDetailsTabsTabPanelWidget",
+  "type": "Dashboard_Widget",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "descriptions": {
+    "en": {
+      "name": "Product Details Tabs",
+      "language": "en",
+      "description": "Product Details Tabs"
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "resizeToContent",
+      "values": ["true"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "data.service",
+      "values": ["infohub"]
+    },
+    {
+      "name": "tabSelected",
+      "values": ["inventoryDetails"],
+      "metaInformation": "stateScope"
+    },
+    {
+      "name": "inventoryDetails.tab.referenceId",
+      "values": ["refreshTabData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "inventoryDetails.tabs",
+      "values": ["refreshTabData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": ["clearStates", "refreshTabData"],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "clearStates",
+      "values": ["inventoryDetails.tab.referenceId"],
+      "metaInformation": "eventPayload"
+    },
+    {
+      "name": "draggable",
+      "values": ["false"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "tabs[0].label",
+      "values": ["COMMON.INBOUND_ORDERS"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[0].referenceId",
+      "values": ["INVENTORY_DETAILS_TABS_ORDER_INBOUND"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[0].referenceType",
+      "values": ["widget_definition"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[1].label",
+      "values": ["COMMON.INBOUND_ORDER_LINES"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[1].referenceId",
+      "values": ["INVENTORY_DETAILS_TABS_ORDERLINES_INBOUND"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[1].referenceType",
+      "values": ["widget_definition"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[2].label",
+      "values": ["COMMON.INBOUND_SHIPMENTS"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[2].referenceId",
+      "values": ["INVENTORY_DETAILS_TABS_SHIPMENTS_INBOUND"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[2].referenceType",
+      "values": ["widget_definition"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[3].label",
+      "values": ["COMMON.OUTBOUND_ORDERS"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[3].referenceId",
+      "values": ["INVENTORY_DETAILS_TABS_ORDER_OUTBOUND"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[3].referenceType",
+      "values": ["widget_definition"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[4].label",
+      "values": ["COMMON.OUTBOUND_ORDER_LINES"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[4].referenceId",
+      "values": ["INVENTORY_DETAILS_TABS_ORDERLINES_OUTBOUND"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[4].referenceType",
+      "values": ["widget_definition"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[5].label",
+      "values": ["COMMON.OUTBOUND_SHIPMENTS"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[5].referenceId",
+      "values": ["INVENTORY_DETAILS_TABS_SHIPMENTS_OUTBOUND"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[5].referenceType",
+      "values": ["widget_definition"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[6].label",
+      "values": ["COMMON.SUPPLY_PLANS"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[6].referenceId",
+      "values": ["INVENTORY_DETAILS_TABS_SUPPLY_PLAN"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[6].referenceType",
+      "values": ["widget_definition"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[7].label",
+      "values": ["COMMON.DEMAND_PLANS"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[7].referenceId",
+      "values": ["INVENTORY_DETAILS_TABS_DEMAND_PLAN"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabs[7].referenceType",
+      "values": ["widget_definition"],
+      "metaInformation": "tabOption"
+    },
+    {
+      "name": "tabPageLength",
+      "values": [10],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "locationId",
+      "values": ["refreshTabData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "productId",
+      "values": ["refreshTabData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "state.empty.title",
+      "values": ["COMMON.EMPTY_TITLE"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.body",
+      "values": ["COMMON.EMPTY_BODY"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": ["COMMON.EMPTY_LINK_LABEL"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": ["NEW_WINDOW"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [
+    {
+      "name": "chartType",
+      "values": ["tab_panel"]
+    }
+  ],
+  "adminConfigurations": []
+}

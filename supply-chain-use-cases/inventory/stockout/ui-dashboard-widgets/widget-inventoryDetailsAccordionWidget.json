@@ -1,0 +1,348 @@
+{
+  "offeringId": "SCO",
+  "id": "inventoryDetailsAccordionWidget",
+  "state": "ACTIVE",
+  "identifier": "inventoryDetailsAccordionWidget",
+  "type": "Dashboard_Widget",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "descriptions": {
+    "en": {
+      "name": "Inventory Details Accordion",
+      "language": "en",
+      "description": "Inventory Details Accordion"
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "resizeToContent",
+      "values": ["true"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "data.service",
+      "values": ["infohub"]
+    },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query InventoryDetailAccordion($tenantId: String, $inventoryId: String) { inventoryDetails: businessObjects(hint: {viewId: \"graph\"}, simpleFilter: {tenantId: $tenantId, type: Inventory}, advancedFilter: {EQUALS: [{SELECT: \"id\", type: STRING}, {VALUE: $inventoryId, type: STRING}]}) { totalCount pageInfo { endCursor hasNextPage } edges { object { ... on Inventory { product { id name value partNumber category { name } status plannerCode } location { id locationName locationIdentifier locationGroups { edges { object { ... on LocationGroup { locationGroupName locationGroupIdentifier } } } } } inventoryType plannerCode quantity quantityUnits value valueCurrency daysOfSupply quantityAboveUpperThreshold quantityBelowLowerThreshold daysOfSupplyAboveUpperThreshold daysOfSupplyBelowLowerThreshold velocityCode } } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.inventoryId",
+      "values": ["{{ inventoryId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "draggable",
+      "values": [false],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "direction",
+      "values": ["vertical"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[0].title",
+      "values": ["PRODUCT.PART_NUMBER"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[0].name",
+      "values": ["partNumber"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[1].title",
+      "values": ["COMMON.PRODUCT_NAME"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[1].name",
+      "values": ["productName"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[2].title",
+      "values": ["INVENTORY.PRODUCT.CATEGORY.NAME"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[2].name",
+      "values": ["productCategory"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[3].title",
+      "values": ["INVENTORY.PRODUCT.PLANNER_CODE"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[3].name",
+      "values": ["plannerCode"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[4].title",
+      "values": ["INVENTORY.LOCATION.LOCATION_NAME"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[4].name",
+      "values": ["locationName"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[5].title",
+      "values": ["INVENTORY.LOCATION.ID"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[5].name",
+      "values": ["locationId"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[6].title",
+      "values": ["INVENTORY.LOCATION_GROUP.LOCATION_GROUP_NAME"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[6].name",
+      "values": ["locationGroupName"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[7].title",
+      "values": ["INVENTORY.LOCATION_GROUP.LOCATION_GROUP_IDENTIFIER"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[7].name",
+      "values": ["locationGroupIdentifier"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[8].title",
+      "values": ["INVENTORY.PLANNER_CODE"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[8].name",
+      "values": ["InventoryPlannerCode"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[9].title",
+      "values": ["INVENTORY.INVENTORY_TYPE"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[9].name",
+      "values": ["inventoryType"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[10].title",
+      "values": ["INVENTORY.PRODUCT.STATUS"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[10].name",
+      "values": ["productStatus"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[11].title",
+      "values": ["INVENTORY.QUANTITY"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[11].name",
+      "values": ["quantity"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[11].customTemplate",
+      "values": ["numberTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[12].title",
+      "values": ["INVENTORY.QUANTITY_UNITS"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[12].name",
+      "values": ["quantityUnits"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[13].title",
+      "values": ["INVENTORY.INVENTORY_VALUE"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[13].name",
+      "values": ["value"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[13].customTemplate",
+      "values": ["numberTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[14].title",
+      "values": ["COMMON.VALUE_CURRENCY"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[14].name",
+      "values": ["valueCurrency"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[15].title",
+      "values": ["INVENTORY.DAYS_OF_SUPPLY"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[15].name",
+      "values": ["daysOfSupply"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[15].customTemplate",
+      "values": ["numberTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[16].title",
+      "values": ["INVENTORY.QUANTITY_ABOVE_UPPER_THRESHOLD"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[16].name",
+      "values": ["quantityAboveUpperThreshold"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[16].customTemplate",
+      "values": ["numberTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[17].title",
+      "values": ["INVENTORY.QUANTITY_BELOW_LOWER_THRESHOLD"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[17].name",
+      "values": ["quantityBelowLowerThreshold"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[17].customTemplate",
+      "values": ["numberTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[18].title",
+      "values": ["INVENTORY.DAYS_OF_SUPPLY_ABOVE_UPPER_THRESHOLD"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[18].name",
+      "values": ["daysOfSupplyAboveUpperThreshold"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[18].customTemplate",
+      "values": ["numberTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[19].title",
+      "values": ["INVENTORY.DAYS_OF_SUPPLY_BELOW_LOWER_THRESHOLD"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[19].name",
+      "values": ["daysOfSupplyBelowLowerThreshold"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[19].customTemplate",
+      "values": ["numberTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[20].title",
+      "values": ["INVENTORY.VELOCITY_CODE"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[20].name",
+      "values": ["velocityCode"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": ["refreshData"],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "state.empty.title",
+      "values": ["COMMON.EMPTY_TITLE"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.body",
+      "values": ["COMMON.EMPTY_BODY"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": ["COMMON.EMPTY_LINK_LABEL"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": ["NEW_WINDOW"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{\"errors\":\"{{#? this.errors}}\", \"pageInfo\":{}, \"totalCount\":\"{{this.data.inventoryDetails.totalCount}}\", \"results\":{\"{{#each this.data.inventoryDetails.edges}}\":{\"cursor\":\"{{this.cursor}}\", \"id\":\"{{this.object.product.id}}\", \"productName\":\"{{ this.object.product.name }}\", \"partNumber\":\"{{ this.object.product.partNumber }}\", \"productCategory\":\"{{ this.object.product.category.name }}\", \"plannerCode\":\"{{ this.object.product.plannerCode }}\", \"InventoryPlannerCode\":\"{{ this.object.plannerCode }}\", \"locationName\":\"{{ this.object.location.locationName }}\", \"locationId\":\"{{ this.object.location.locationIdentifier }}\", \"locationGroupName\":\"{{ this.object.location.locationGroups.edges.length ?this.object.location.locationGroups.edges[0].object.locationGroupName : '' }}\", \"locationGroupIdentifier\":\"{{ this.object.location.locationGroups.edges.length ?this.object.location.locationGroups.edges[0].object.locationGroupIdentifier :'' }}\", \"inventoryType\":\"{{ this.object.inventoryType }}\", \"productStatus\":\"{{ this.object.product.status }}\", \"quantity\":\"{{ this.object.quantity }}\", \"quantityUnits\":\"{{ this.object.quantityUnits }}\", \"value\":\"{{ this.object.product.value * this.object.quantity }}\", \"valueCurrency\":\"{{ this.object.valueCurrency }}\", \"daysOfSupply\":\"{{ this.object.daysOfSupply }}\", \"quantityAboveUpperThreshold\":\"{{ this.object.quantityAboveUpperThreshold }}\", \"quantityBelowLowerThreshold\":\"{{ this.object.quantityBelowLowerThreshold }}\", \"daysOfSupplyAboveUpperThreshold\":\"{{ this.object.daysOfSupplyAboveUpperThreshold }}\", \"daysOfSupplyBelowLowerThreshold\":\"{{ this.object.daysOfSupplyBelowLowerThreshold }}\", \"velocityCode\":\"{{ this.object.velocityCode }}\"}}}"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [
+    {
+      "name": "chartType",
+      "values": ["grid_details"]
+    }
+  ],
+  "adminConfigurations": []
+}

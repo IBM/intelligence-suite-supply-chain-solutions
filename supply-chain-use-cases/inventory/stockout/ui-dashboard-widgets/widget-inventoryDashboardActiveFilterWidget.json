@@ -1,0 +1,46 @@
+{
+  "offeringId": "SCO",
+  "id": "inventoryDashboardActiveFilterWidget",
+  "state": "ACTIVE",
+  "identifier": "inventoryDashboardActiveFilterWidget",
+  "type": "Dashboard_Widget",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "descriptions": {
+    "en": {
+      "name": "Dashboard Active Filters",
+      "description": "Filter dashboard content."
+    }
+  },
+  "devConfigurations": [
+    { "name": "data.service", "values": ["uihub"] },
+    { "name": "data.scope", "values": ["inventory.appliedFilters"] },
+    {
+      "name": "filterChanged",
+      "values": ["inventory"],
+      "metaInformation": "stateScope"
+    },
+    {
+      "name": "inventory.appliedFilters",
+      "values": ["refreshData"],
+      "metaInformation": "stateSubscription"
+    }
+  ],
+  "userConfigurations": [
+    {
+      "name": "chartType",
+      "values": ["active_filters"],
+      "descriptions": {
+        "en": {
+          "name": "Select a visual to display the data",
+          "language": "en",
+          "description": "The type of visual display"
+        }
+      }
+    }
+  ],
+  "adminConfigurations": []
+}

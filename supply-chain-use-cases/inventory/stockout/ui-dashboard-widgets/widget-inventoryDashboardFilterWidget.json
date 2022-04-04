@@ -1,0 +1,487 @@
+{
+  "offeringId": "SCO",
+  "id": "inventoryDashboardFilterWidget",
+  "state": "ACTIVE",
+  "identifier": "inventoryDashboardFilterWidget",
+  "type": "Dashboard_Widget",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "descriptions": {
+    "en": {
+      "name": "Dashboard Filter",
+      "language": "en",
+      "description": "Filter dashboard content."
+    }
+  },
+  "devConfigurations": [
+    { "name": "data.service", "values": ["infohub"] },
+    {
+      "name": "queries[0].processor",
+      "values": ["EDGES"],
+      "metaInformation": "infohub.processor"
+    },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query Location( $tenantId: String!, $typeAheadFilter: BooleanExp = { CONSTANT_VALUE: true } ) { businessObjects(simpleFilter: {type: Location, tenantId: $tenantId}, advancedFilter: {AND: [$typeAheadFilter, {EQUALS: [{SELECT: \"locationType\", type: STRING}, {VALUE: \"OPERATIONS\", type: STRING}]}]}, hint: {viewId: \"graph\"}, cursorParams: {first: 50}) { totalCount pageInfo { hasNextPage } edges { cursor object { ... on Location { id name: locationName locationType } } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.typeAheadFilter",
+      "values": [
+        "{ \"CONTAINS\": [ {\"SELECT\": \"locationName\", \"type\": \"STRING\" }, { \"VALUE\": \"{{ inventory.searchText }}\", \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[1].processor",
+      "values": ["EDGES"],
+      "metaInformation": "infohub.processor"
+    },
+    {
+      "name": "queries[1].fields",
+      "values": [
+        "query Category( $tenantId: String!, $typeAheadFilter: BooleanExp = { CONSTANT_VALUE: true } ) { businessObjects( simpleFilter: { type: Catalog, tenantId: $tenantId }, advancedFilter: { AND: [ { EQUALS: [ { type: STRING, SELECT: \"levelType\" }, { type: STRING, VALUE: \"CATEGORY\" } ] }, { EQUALS: [ { type: STRING, SELECT: \"catalogType\" }, { type: STRING, VALUE: \"PRODUCT\" } ] }, $typeAheadFilter ] }, hint: { viewId: \"graph\" }, cursorParams: { first: 50, sort: { fieldPath: \"name\", order: ASC } } ) { totalCount pageInfo { hasNextPage } edges { cursor object { ... on Catalog { id name } } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[1].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[1].variables.typeAheadFilter",
+      "values": [
+        "{ \"CONTAINS\": [ {\"SELECT\": \"name\", \"type\": \"STRING\" }, { \"VALUE\": \"{{ inventory.searchText }}\", \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[2].processor",
+      "values": ["EDGES"],
+      "metaInformation": "infohub.processor"
+    },
+    {
+      "name": "queries[2].fields",
+      "values": [
+        "query PlannerCode( $tenantId: String!, $typeAheadFilter: BooleanExp = { CONSTANT_VALUE: true } ) { businessObjects( simpleFilter: { type: Inventory, tenantId: $tenantId, fieldNameForDistinctValues: \"plannerCode\" }, advancedFilter: { AND: [ $typeAheadFilter ] }, hint: { viewId: \"graph\" }, cursorParams: { first: 50, sort: { fieldPath: \"plannerCode\", order: ASC } } ) { totalCount pageInfo { hasNextPage } edges { cursor object { ... on Inventory { id: plannerCode name: plannerCode } } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[2].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[2].variables.typeAheadFilter",
+      "values": [
+        "{ \"CONTAINS\": [ {\"SELECT\": \"plannerCode\", \"type\": \"STRING\" }, { \"VALUE\": \"{{ inventory.searchText }}\", \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[3].processor",
+      "values": ["EDGES"],
+      "metaInformation": "infohub.processor"
+    },
+    {
+      "name": "queries[3].fields",
+      "values": [
+        "query Customer( $tenantId: String!, $typeAheadFilter: BooleanExp = { CONSTANT_VALUE: true }, $sortBy: String = \"name\" ) { businessObjects( simpleFilter: { type: Organization, tenantId: $tenantId }, advancedFilter: { AND: [ $typeAheadFilter, { EQUALS: [ { SELECT: \"orgType\", type: STRING }, { VALUE: \"CUSTOMER\", type: STRING } ] } ] }, hint: { viewId: \"graph\" }, cursorParams: { first: 50, sort: {order: ASC, fieldPath: $sortBy } } ) { totalCount pageInfo { hasNextPage } edges { cursor object { ... on Organization { id name } } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[3].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[3].variables.typeAheadFilter",
+      "values": [
+        "{ \"CONTAINS\": [ {\"SELECT\": \"name\", \"type\": \"STRING\" }, { \"VALUE\": \"{{ inventory.searchText }}\", \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[4].processor",
+      "values": ["EDGES"],
+      "metaInformation": "infohub.processor"
+    },
+    {
+      "name": "queries[4].fields",
+      "values": [
+        "query ProductStatus( $tenantId: String!, $typeAheadFilter: BooleanExp = { CONSTANT_VALUE: true } ) { businessObjects( simpleFilter: { type: Product, tenantId: $tenantId, fieldNameForDistinctValues: \"status\" }, advancedFilter: { AND: [ { EQUALS: [ { type: STRING, SELECT: \"productType\" }, { type: STRING, VALUE: \"PRODUCT\" } ] }, $typeAheadFilter ] }, hint: { viewId: \"graph\" }, cursorParams: { first: 50, sort: { fieldPath: \"status\", order: ASC } } ) { totalCount pageInfo { hasNextPage endCursor } edges { cursor object { ... on Product { id: status name: status } } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[4].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[4].variables.typeAheadFilter",
+      "values": [
+        "{ \"CONTAINS\": [ {\"SELECT\": \"status\", \"type\": \"STRING\" }, { \"VALUE\": \"{{ inventory.searchText }}\", \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[5].processor",
+      "values": ["EDGES"],
+      "metaInformation": "infohub.processor"
+    },
+    {
+      "name": "queries[5].fields",
+      "values": [
+        "query Supplier( $tenantId: String!, $typeAheadFilter: BooleanExp = { CONSTANT_VALUE: true }, $sortBy: String = \"name\" ) { businessObjects( simpleFilter: { type: Organization, tenantId: $tenantId }, advancedFilter: { AND: [ $typeAheadFilter, { EQUALS: [ { SELECT: \"orgType\", type: STRING }, { VALUE: \"SUPPLIER\", type: STRING } ] } ] }, hint: { viewId: \"graph\" }, cursorParams: { first: 50, sort: { order: ASC, fieldPath: $sortBy } } ) { totalCount pageInfo { hasNextPage } edges { cursor object { ... on Organization { id name } } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[5].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[5].variables.typeAheadFilter",
+      "values": [
+        "{ \"CONTAINS\": [ {\"SELECT\": \"name\", \"type\": \"STRING\" }, { \"VALUE\": \"{{ inventory.searchText }}\", \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[6].processor",
+      "values": ["EDGES"],
+      "metaInformation": "infohub.processor"
+    },
+    {
+      "name": "queries[6].fields",
+      "values": [
+        "query Carrier( $tenantId: String!, $typeAheadFilter: BooleanExp = { CONSTANT_VALUE: true } , $sortBy: String = \"name\" ) { businessObjects(simpleFilter: { type: Organization, tenantId: $tenantId }, advancedFilter: { AND: [ $typeAheadFilter, { EQUALS: [ { SELECT: \"orgType\", type: STRING }, { VALUE: \"CARRIER\", type: STRING } ] } ] }, hint: { viewId: \"graph\" }, cursorParams: { first: 50, sort: { order: ASC, fieldPath: $sortBy } } ) { totalCount pageInfo { hasNextPage } edges { cursor object { ... on Organization { id name } } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[6].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[6].variables.typeAheadFilter",
+      "values": [
+        "{ \"CONTAINS\": [ {\"SELECT\": \"name\", \"type\": \"STRING\" }, { \"VALUE\": \"{{ inventory.searchText }}\", \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[7].processor",
+      "values": ["EDGES"],
+      "metaInformation": "infohub.processor"
+    },
+    {
+      "name": "queries[7].fields",
+      "values": [
+        "query Origin( $tenantId: String!, $typeAheadFilter: BooleanExp = { CONSTANT_VALUE: true }, $sortBy: String = \"locationName\") { businessObjects( simpleFilter: { type: Location, tenantId: $tenantId }, advancedFilter: {AND: [ $typeAheadFilter, { EQUALS: [ { SELECT: \"locationType\", type: STRING }, { VALUE: \"SUPPLIER\", type: STRING } ] } ] }, hint: { viewId: \"graph\" }, cursorParams: { first: 50, sort: { order: ASC, fieldPath: $sortBy } } ) { totalCount pageInfo { hasNextPage } edges { cursor object { ... on Location { id name: locationName } } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[7].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[7].variables.typeAheadFilter",
+      "values": [
+        "{ \"CONTAINS\": [ {\"SELECT\": \"locationName\", \"type\": \"STRING\" }, { \"VALUE\": \"{{ inventory.searchText }}\", \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[8].processor",
+      "values": ["EDGES"],
+      "metaInformation": "infohub.processor"
+    },
+    {
+      "name": "queries[8].fields",
+      "values": [
+        "query Destination( $tenantId: String!, $typeAheadFilter: BooleanExp = { CONSTANT_VALUE: true }, $sortBy: String = \"locationName\") { businessObjects( simpleFilter: { type: Location, tenantId: $tenantId }, advancedFilter: {AND: [ $typeAheadFilter, { EQUALS: [ { SELECT: \"locationType\", type: STRING }, { VALUE: \"OPERATIONS\", type: STRING } ] } ] }, hint: { viewId: \"graph\" }, cursorParams: { first: 50, sort: { order: ASC, fieldPath: $sortBy } } ) { totalCount pageInfo { hasNextPage } edges { cursor object { ... on Location { id name: locationName } } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[8].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[8].variables.typeAheadFilter",
+      "values": [
+        "{ \"CONTAINS\": [ {\"SELECT\": \"locationName\", \"type\": \"STRING\" }, { \"VALUE\": \"{{ inventory.searchText }}\", \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "filter.fields[0].id",
+      "values": ["Location"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[0].label",
+      "values": ["COMPONENT.FILTERS.INVENTORY_LOCATION"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[0].required",
+      "values": ["false"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[0].multiSelect",
+      "values": ["true"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[1].id",
+      "values": ["Category"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[1].label",
+      "values": ["COMMON.PRODUCT_CATEGORY"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[1].required",
+      "values": ["false"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[1].multiSelect",
+      "values": ["true"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[2].id",
+      "values": ["ProductStatus"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[2].label",
+      "values": ["COMPONENT.FILTERS.INVENTORY_STATUS"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[2].required",
+      "values": ["false"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[2].multiSelect",
+      "values": ["true"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[3].id",
+      "values": ["PlannerCode"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[3].label",
+      "values": ["COMMON.INVENTORY_PLANNER_CODE"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[3].required",
+      "values": ["false"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[3].multiSelect",
+      "values": ["true"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[4].id",
+      "values": ["Origin"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[4].label",
+      "values": ["COMPONENT.FILTERS.ORDER_ORIGIN"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[4].required",
+      "values": ["false"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[4].multiSelect",
+      "values": ["true"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[5].id",
+      "values": ["Destination"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[5].label",
+      "values": ["COMPONENT.FILTERS.ORDER_DESTINATION"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[5].required",
+      "values": ["false"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[5].multiSelect",
+      "values": ["true"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[6].id",
+      "values": ["Customer"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[6].label",
+      "values": ["COMMON.CUSTOMER"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[6].required",
+      "values": ["false"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[6].multiSelect",
+      "values": ["true"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[7].id",
+      "values": ["Carrier"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[7].label",
+      "values": ["COMMON.CARRIER"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[7].required",
+      "values": ["false"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[7].multiSelect",
+      "values": ["true"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[8].id",
+      "values": ["Supplier"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[8].label",
+      "values": ["COMMON.SUPPLIER"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[8].required",
+      "values": ["false"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[8].multiSelect",
+      "values": ["true"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.title",
+      "values": ["COMPONENT.FILTERS.FILTER_TITLE"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.placeholders.search",
+      "values": ["COMPONENT.FILTERS.SEARCH_PLACE_HOLDER"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.placeholders.tags",
+      "values": ["COMPONENT.FILTERS.NO_TAGS_MESSAGE_DETAILED"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.selections",
+      "values": ["{{inventory.appliedFilters}}"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": ["loadState", "refreshData"],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "filterSearched",
+      "values": ["inventory"],
+      "metaInformation": "stateScope"
+    },
+    {
+      "name": "filterChanged",
+      "values": ["inventory"],
+      "metaInformation": "stateScope"
+    },
+    {
+      "name": "inventory.searchText",
+      "values": ["refreshData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "inventory.appliedFilters",
+      "values": ["refreshSavedState"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "configureState.buttonClicked",
+      "values": ["open"],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "inventory.appliedFilters",
+      "values": ["refreshOptions"],
+      "metaInformation": "stateSubscription"
+    }
+  ],
+  "userConfigurations": [
+    {
+      "name": "chartType",
+      "values": ["filter"],
+      "descriptions": {
+        "en": {
+          "name": "Select a visual to display the data",
+          "language": "en",
+          "description": "The type of visual display"
+        }
+      }
+    }
+  ],
+  "adminConfigurations": []
+}

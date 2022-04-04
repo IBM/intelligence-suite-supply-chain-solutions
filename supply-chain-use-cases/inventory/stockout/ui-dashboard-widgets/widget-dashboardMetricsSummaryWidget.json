@@ -1,0 +1,230 @@
+{
+  "offeringId": "SCO",
+  "id": "dashboardMetricsSummaryWidget",
+  "state": "ACTIVE",
+  "identifier": "dashboardMetricsSummaryWidget",
+  "type": "Dashboard_Widget",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "descriptions": {
+    "en": {
+      "name": "Inventory Metrics",
+      "language": "en",
+      "description": "View average days of supply, inventory turns, items without demand and aging inventory."
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "header.type",
+      "values": ["text_header"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.title",
+      "values": ["WIDGET_DEFINITION.DASHBOARD_METRICS_V2.HEADER_TITLE"],
+      "metaInformation": "widgetOption"
+    },
+    { "name": "colSpan", "values": ["4"], "metaInformation": "widgetOption" },
+    { "name": "rowSpan", "values": ["1"], "metaInformation": "widgetOption" },
+    {
+      "name": "icons[0].type",
+      "values": ["kebab_menu"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "icons[0].options[0]",
+      "values": ["move"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "draggable",
+      "values": [true],
+      "metaInformation": "widgetOption"
+    },
+    { "name": "data.service", "values": ["infohub"] },
+    {
+      "name": "queries[0].processor",
+      "values": ["OBJECT_AGGREGATIONS"],
+      "metaInformation": "infohub.processor"
+    },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query dashboardMetrics($tenantId: String, $locationFilter: BooleanExp = { CONSTANT_VALUE: true }, $inventoryPlannerCodeFilter: BooleanExp = { CONSTANT_VALUE: true },  $categoryFilter: BooleanExp = { CONSTANT_VALUE: true }, $productStatusFilter: BooleanExp = { CONSTANT_VALUE: true }) {averageDaysOfSupply: businessObjects(advancedFilter: {AND: [{EQUALS: [{SELECT: \"inventoryType\", type: STRING}, {type: STRING, VALUE: \"PRODUCT\"}]}, {LESS_THAN: [{SELECT: \"daysOfSupply\", type: INT}, {type: INT, VALUE: \"366\"}]}, $locationFilter, $inventoryPlannerCodeFilter, $categoryFilter, $productStatusFilter]}, aggregationParams: {reduce: {expression: {fieldPath: \"daysOfSupply\", operator: AVG, type: FLOAT}, output: {resultAlias: \"avgDaysOfSupply\", type: FLOAT}}}, cursorParams: {first: 0}, hint: {viewId: \"graph\"}, simpleFilter: {tenantId: $tenantId, type: Inventory}) { totalCount edges { object { ... on Inventory { daysOfSupply } } } aggregationResultsTotalCount aggregationResults { dimensionValues { name value } values { name numValue } } } excessDaysOfSupply: businessObjects(advancedFilter: {AND: [{EQUALS: [{SELECT: \"inventoryType\", type: STRING}, {type: STRING, VALUE: \"PRODUCT\"}]}, {GREATER_THAN: [{SELECT: \"daysOfSupplyAboveUpperThreshold\", type: FLOAT}, {type: FLOAT, VALUE: \"0\"}]}, {LESS_THAN: [{SELECT: \"daysOfSupply\", type: INT}, {type: INT, VALUE: \"366\"}]}, $locationFilter, $inventoryPlannerCodeFilter, $categoryFilter, $productStatusFilter]}, cursorParams: {first: 0}, hint: {viewId: \"graph\"}, simpleFilter: {tenantId: $tenantId, type: Inventory}) { totalCount } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.now",
+      "values": ["{{ now }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.locationFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"location.id\", \"type\": \"STRING\" }, { \"VALUES\": {{ inventory.appliedFilters.Location.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.inventoryPlannerCodeFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"plannerCode\", \"type\": \"STRING\" }, { \"VALUES\": {{ inventory.appliedFilters.PlannerCode.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.categoryFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"product.category.id\", \"type\": \"STRING\" }, { \"VALUES\": {{ inventory.appliedFilters.Category.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.productStatusFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"product.status\", \"type\": \"STRING\" }, { \"VALUES\": {{ inventory.appliedFilters.ProductStatus.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "items[0].count.href.labelType",
+      "values": ["numberTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].count.label",
+      "values": ["{{ avgDaysOfSupplyCount }}"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].heading.label",
+      "values": ["COMMON.AVERAGE_DAYS_OF_SUPPLY"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].heading.tooltip",
+      "values": [
+        "WIDGET_DEFINITION.DASHBOARD_METRICS_V2.AVERAGE_DAYS_OF_SUPPLY_TOOLTIP"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].units.label",
+      "values": ["COMMON.DAYS"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].count.customTemplate",
+      "values": ["linkTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].count.href.type",
+      "values": ["LAYOUT_TEMPLATE"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].count.href.id",
+      "values": ["averageDaysOfSupplyLayoutTemplate"],
+
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[1].count.href.labelType",
+      "values": ["numberTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[1].count.label",
+      "values": ["{{ excessDaysOfSupplyCount }}"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[1].heading.label",
+      "values": ["COMMON.INVENTORY_WITH_EXCESS_DAYS_OF_SUPPLY"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[1].heading.tooltip",
+      "values": [
+        "WIDGET_DEFINITION.DASHBOARD_METRICS_V2.EXCESS_DAYS_OF_SUPPLY_TOOLTIP"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[1].units.label",
+      "values": ["COMMON.PRODUCTS"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[1].count.customTemplate",
+      "values": ["linkTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[1].count.href.type",
+      "values": ["LAYOUT_TEMPLATE"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[1].count.href.id",
+      "values": ["excessDaysOfSupplyLayoutTemplate"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "inventory.appliedFilters",
+      "values": ["refreshData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": ["refreshData"],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{ \"errors\": \"{{#? this.errors}}\", \"pageInfo\": \"{}\", \"totalCount\": [\"{{this.data.averageDaysOfSupply.totalCount}}\", \"{{this.data.excessDaysOfSupply.totalCount}}\"], \"results\": [ { \"excessDaysOfSupplyCount\": \"{{this.data.excessDaysOfSupply.totalCount}}\" }, { \"avgDaysOfSupplyCount\": \"{{this.data.averageDaysOfSupply.aggregationResults[0].values[0].numValue.toFixed()}}\" } ] }"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.title",
+      "values": ["COMMON.EMPTY_TITLE"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.body",
+      "values": ["COMMON.EMPTY_BODY"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": ["COMMON.EMPTY_LINK_LABEL"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": ["NEW_WINDOW"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [{ "name": "chartType", "values": ["summary"] }],
+  "adminConfigurations": []
+}

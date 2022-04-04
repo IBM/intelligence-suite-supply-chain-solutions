@@ -1,0 +1,440 @@
+{
+  "offeringId": "SCO",
+  "id": "shipmentDetailsAccordionInboundGridDetailsWidget",
+  "state": "ACTIVE",
+  "identifier": "shipmentDetailsAccordionInboundGridDetailsWidget",
+  "type": "Dashboard_Widget",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "descriptions": {
+    "en": {
+      "name": "Shipment Details",
+      "language": "en",
+      "description": "View Shipment Details"
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "header.type",
+      "values": ["text_header"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.title",
+      "values": ["COMMON.SHIPMENT_DETAILS"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "icons[0].type",
+      "values": ["accordion"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "icons[0].options.collapsedRows",
+      "values": ["3"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "resizeToContent",
+      "values": ["true"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "draggable",
+      "values": ["false"],
+      "metaInformation": "widgetOption"
+    },
+    { "name": "data.service", "values": ["infohub"] },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query ShipmentDetail($tenantId: String!, $shipmentId: String!) { shipmentDetail: businessObjects( hint: {viewId: \"graph\"} simpleFilter: {tenantId: $tenantId, type: Shipment} advancedFilter: {AND: [{EQUALS: [{SELECT: \"id\", type: STRING}, {VALUE: $shipmentId, type: STRING}]}, {EQUALS: [{SELECT: \"shipmentType\", type: STRING}, {VALUE: \"INBOUND\", type: STRING}]}]} ) { totalCount pageInfo { hasNextPage endCursor } edges { cursor object { ... on Shipment { id shipmentType shipmentIdentifier status statusByDate Origin: shipFromLocation { locationName locationIdentifier } Destination: shipToLocation { locationName locationIdentifier } Supplier: vendor { name organizationIdentifier } Customer: buyer { name organizationIdentifier } Carrier: carrier { name organizationIdentifier } dateCreated requestedTimeOfArrival committedTimeOfArrival actualShipDate estimatedTimeOfArrival revisedEstimatedTimeOfArrival predictedTimeOfArrival actualTimeOfArrival lineCount currentLocationCoordinates currentRegion sourceLink } } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.shipmentId",
+      "values": ["{{ shipmentId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "item[0].name",
+      "values": ["shipmentType"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[0].title",
+      "values": ["SHIPMENT.SHIPMENT_TYPE"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[1].name",
+      "values": ["shipmentIdentifier"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[1].title",
+      "values": ["SHIPMENT.SHIPMENT_IDENTIFIER"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[2].name",
+      "values": ["status"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[2].title",
+      "values": ["SHIPMENT.STATUS"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[3].name",
+      "values": ["statusByDate"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[3].title",
+      "values": ["SHIPMENT.STATUS_BY_DATE"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[4].name",
+      "values": ["Customer.organizationIdentifier"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[4].title",
+      "values": ["SHIPMENT.BUYER.ORGANIZATION_IDENTIFIER"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[5].name",
+      "values": ["Customer.name"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[5].title",
+      "values": ["SHIPMENT.BUYER.NAME"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[6].name",
+      "values": ["Supplier.organizationIdentifier"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[6].title",
+      "values": ["SHIPMENT.VENDOR.ORGANIZATION_IDENTIFIER"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[7].name",
+      "values": ["Supplier.name"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[7].title",
+      "values": ["SHIPMENT.VENDOR.NAME"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[8].name",
+      "values": ["Carrier.organizationIdentifier"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[8].title",
+      "values": ["SHIPMENT.CARRIER.ORGANIZATION_IDENTIFIER"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[9].name",
+      "values": ["Carrier.name"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[9].title",
+      "values": ["SHIPMENT.CARRIER.NAME"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[10].name",
+      "values": ["Origin.locationName"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[10].title",
+      "values": ["SHIPMENT.SHIP_FROM_LOCATION.LOCATION_NAME"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[11].name",
+      "values": ["Origin.locationIdentifier"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[11].title",
+      "values": ["SHIPMENT.SHIP_FROM_LOCATION.LOCATION_IDENTIFIER"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[12].name",
+      "values": ["Destination.locationName"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[12].title",
+      "values": ["SHIPMENT.SHIP_TO_LOCATION.LOCATION_NAME"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[13].name",
+      "values": ["Destination.locationIdentifier"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[13].title",
+      "values": ["SHIPMENT.SHIP_TO_LOCATION.LOCATION_IDENTIFIER"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[14].name",
+      "values": ["dateCreated"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[14].title",
+      "values": ["ORDER.DATE_CREATED"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[14].customTemplate",
+      "values": ["dateTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[15].name",
+      "values": ["requestedTimeOfArrival"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[15].title",
+      "values": ["SHIPMENT.REQUESTED_TIME_OF_ARRIVAL"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[15].customTemplate",
+      "values": ["dateTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[16].name",
+      "values": ["committedTimeOfArrival"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[16].title",
+      "values": ["SHIPMENT.COMMITTED_TIME_OF_ARRIVAL"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[16].customTemplate",
+      "values": ["dateTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[17].name",
+      "values": ["actualShipDate"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[17].title",
+      "values": ["SHIPMENT.ACTUAL_SHIP_DATE"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[17].customTemplate",
+      "values": ["dateTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[18].name",
+      "values": ["estimatedTimeOfArrival"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[18].title",
+      "values": ["SHIPMENT.ESTIMATED_TIME_OF_ARRIVAL"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[18].customTemplate",
+      "values": ["dateTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[19].name",
+      "values": ["revisedEstimatedTimeOfArrival"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[19].title",
+      "values": ["SHIPMENT.REVISED_ESTIMATED_TIME_OF_ARRIVAL"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[19].customTemplate",
+      "values": ["dateTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[20].name",
+      "values": ["predictedTimeOfArrival"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[20].title",
+      "values": ["SHIPMENT.PREDICTED_TIME_OF_ARRIVAL"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[20].customTemplate",
+      "values": ["dateTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[21].name",
+      "values": ["actualTimeOfArrival"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[21].title",
+      "values": ["SHIPMENT.ACTUAL_TIME_OF_ARRIVAL"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[21].customTemplate",
+      "values": ["dateTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[22].name",
+      "values": ["lineCount"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[22].title",
+      "values": ["SHIPMENT.LINE_COUNT"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[23].name",
+      "values": ["currentLocationCoordinates"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[23].title",
+      "values": ["SHIPMENT.CURRENT_LOCATION_COORDINATES"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[24].name",
+      "values": ["currentRegion"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[24].title",
+      "values": ["SHIPMENT.CURRENT_REGION"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[25].name",
+      "values": ["sourceLink"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[25].title",
+      "values": ["SHIPMENT.SOURCE_LINK"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[25].customTemplate",
+      "values": ["linkTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[25].linkType",
+      "values": ["NEW_WINDOW"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[25].label",
+      "values": ["COMMON.SOURCE"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[25].linkPath",
+      "values": ["sourceLink"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[25].enableTranslation",
+      "values": ["true"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": ["refreshData"],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "drilldownRowData.row",
+      "values": ["refreshData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{ \"errors\": \"{{#? this.errors}}\", \"totalCount\": \"{{this.data.shipmentDetail.totalCount}}\", \"pageInfo\": \"{{this.data.shipmentDetail.pageInfo}}\", \"results\": { \"{{#each data.shipmentDetail.edges}}\": {\"shipmentType\": \"{{this.object.shipmentType}}\", \"shipmentIdentifier\": \"{{this.object.shipmentIdentifier}}\", \"status\": \"{{this.object.status}}\", \"statusByDate\": \"{{this.object.statusByDate}}\", \"Destination\": \"{{this.object.Destination }}\", \"Origin\": \"{{this.object.Origin }}\", \"Supplier\": \"{{this.object.Supplier }}\", \"Customer\": \"{{this.object.Customer }}\", \"Carrier\": \"{{this.object.Carrier }}\", \"dateCreated\": \"{{this.object.dateCreated }}\", \"requestedTimeOfArrival\": \"{{this.object.requestedTimeOfArrival }}\", \"committedTimeOfArrival\": \"{{this.object.committedTimeOfArrival }}\", \"actualShipDate\": \"{{this.object.actualShipDate }}\", \"estimatedTimeOfArrival\": \"{{this.object.estimatedTimeOfArrival }}\", \"revisedEstimatedTimeOfArrival\": \"{{this.object.revisedEstimatedTimeOfArrival }}\", \"predictedTimeOfArrival\": \"{{this.object.predictedTimeOfArrival }}\", \"actualTimeOfArrival\": \"{{this.object.actualTimeOfArrival }}\", \"lineCount\": \"{{this.object.lineCount }}\", \"currentLocationCoordinates\": \"{{this.object.currentLocationCoordinates }}\", \"currentRegion\": \"{{this.object.currentRegion }}\", \"sourceLink\": \"{{this.object.sourceLink }}\" } } }"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.title",
+      "values": ["COMMON.EMPTY_TITLE"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.body",
+      "values": ["COMMON.EMPTY_BODY"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": ["COMMON.EMPTY_LINK_LABEL"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": ["NEW_WINDOW"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [{ "name": "chartType", "values": ["grid_details"] }],
+  "adminConfigurations": []
+}

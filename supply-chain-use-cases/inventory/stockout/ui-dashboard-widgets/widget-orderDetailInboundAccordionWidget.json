@@ -1,0 +1,285 @@
+{
+  "offeringId": "SCO",
+  "id": "orderDetailInboundAccordionWidget",
+  "state": "ACTIVE",
+  "identifier": "orderDetailInboundAccordionWidget",
+  "type": "Dashboard_Widget",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "descriptions": {
+    "en": {
+      "name": "Order Detail Accordion",
+      "language": "en",
+      "description": "Order Detail Inbound Accordion"
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "header.type",
+      "values": ["text_header"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.title",
+      "values": ["COMMON.ORDER_DETAILS"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "icons[0].type",
+      "values": ["accordion"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "icons[0].options.collapsedRows",
+      "values": ["3"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "resizeToContent",
+      "values": ["true"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "draggable",
+      "values": ["false"],
+      "metaInformation": "widgetOption"
+    },
+    { "name": "data.service", "values": ["infohub"] },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query OrderDetailAccordion($tenantId: String, $orderId: String) { orderDetails: businessObjects( hint: {viewId: \"graph\"}, simpleFilter: {tenantId: $tenantId, type: Order}, advancedFilter: { AND: [ {EQUALS: [{SELECT: \"orderType\", type: STRING}, {VALUE: \"INBOUND\", type: STRING}]}, {EQUALS: [{SELECT: \"id\", type: STRING}, {VALUE: $orderId, type: STRING}]} ] } ) { edges { object { ... on Order { orderIdentifier buyer { name organizationIdentifier } vendor { name organizationIdentifier } shipFromInstructionLocation { locationName locationIdentifier } shipToLocation { locationName locationIdentifier } orderType orderStatus deliveryStatusByDate shipmentStatusByDate createdDate requestedShipDate plannedShipDate } } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.orderId",
+      "values": ["{{ orderId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "item[0].name",
+      "values": ["order.orderIdentifier"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[0].title",
+      "values": ["ORDER.ORDER_IDENTIFIER"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[1].name",
+      "values": ["order.buyer.name"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[1].title",
+      "values": ["ORDER.BUYER.NAME"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[2].name",
+      "values": ["order.buyer.organizationIdentifier"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[2].title",
+      "values": ["ORDER.BUYER.ORGANIZATION_IDENTIFIER"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[3].name",
+      "values": ["order.vendor.name"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[3].title",
+      "values": ["ORDER.VENDOR.NAME"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[4].name",
+      "values": ["order.vendor.organizationIdentifier"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[4].title",
+      "values": ["ORDER.VENDOR.ORGANIZATION_IDENTIFIER"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[5].name",
+      "values": ["order.shipFromInstructionLocation.locationName"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[5].title",
+      "values": ["ORDER.SHIP_FROM_INSTRUCTION_LOCATION.LOCATION_NAME"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[6].name",
+      "values": ["order.shipFromInstructionLocation.locationIdentifier"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[6].title",
+      "values": ["ORDER.SHIP_FROM_INSTRUCTION_LOCATION.LOCATION_IDENTIFIER"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[7].name",
+      "values": ["order.shipToLocation.locationName"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[7].title",
+      "values": ["ORDER.SHIP_TO_LOCATION.LOCATION_NAME"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[8].name",
+      "values": ["order.shipToLocation.locationIdentifier"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[8].title",
+      "values": ["ORDER.SHIP_TO_LOCATION.LOCATION_IDENTIFIER"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[9].name",
+      "values": ["order.orderType"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[9].title",
+      "values": ["ORDER.ORDER_TYPE"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[10].name",
+      "values": ["order.orderStatus"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[10].title",
+      "values": ["COMMON.ORDER_STATUS"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[11].name",
+      "values": ["order.deliveryStatusByDate"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[11].title",
+      "values": ["ORDER.DELIVERY_STATUS_BY_DATE"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[12].name",
+      "values": ["order.shipmentStatusByDate"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[12].title",
+      "values": ["ORDER.SHIPMENT_STATUS_BY_DATE"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[13].name",
+      "values": ["order.createdDate"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[13].title",
+      "values": ["ORDER.CREATED_DATE"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[13].customTemplate",
+      "values": ["dateTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[14].name",
+      "values": ["order.requestedShipDate"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[14].title",
+      "values": ["ORDER.REQUESTED_SHIP_DATE"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[14].customTemplate",
+      "values": ["dateTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[15].name",
+      "values": ["order.plannedShipDate"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[15].title",
+      "values": ["ORDER.PLANNED_SHIP_DATE"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[15].customTemplate",
+      "values": ["dateTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": ["refreshData"],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{ \"errors\": \"{{#? this.errors}}\", \"results\": { \"{{#each data.orderDetails.edges}}\": { \"order\": \"{{this.object}}\" } } }"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.title",
+      "values": ["COMMON.EMPTY_TITLE"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.body",
+      "values": ["COMMON.EMPTY_BODY"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": ["COMMON.EMPTY_LINK_LABEL"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": ["NEW_WINDOW"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [{ "name": "chartType", "values": ["grid_details"] }],
+  "adminConfigurations": []
+}

@@ -1,0 +1,137 @@
+{
+  "offeringId": "SCO",
+  "id": "inventoryDetailInboundNumberSuppliersKpiSummaryWidget",
+  "state": "ACTIVE",
+  "identifier": "inventoryDetailInboundNumberSuppliersKpiSummaryWidget",
+  "type": "Dashboard_Widget",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "descriptions": {
+    "en": {
+      "name": "Inventory Details Number of Suppliers",
+      "language": "en",
+      "description": "Inventory Details Number of Suppliers"
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "header.type",
+      "values": ["text_header"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.title",
+      "values": ["COMMON.SUPPLIERS"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "draggable",
+      "values": ["false"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "resizeToContent",
+      "values": ["true"],
+      "metaInformation": "widgetOption"
+    },
+    { "name": "data.service", "values": ["infohub"] },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query NumberOfSuppliers($tenantId: String, $locationId: String, $productId: String) { numberOfSuppliers: businessObjects(hint: {viewId: \"graph\"}, simpleFilter: {tenantId: $tenantId, type: Order}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"orderType\", type: STRING}, {VALUE: \"INBOUND\", type: STRING}]}, {EQUALS: [{SELECT: \"orderLines.product.id\", type: STRING}, {VALUE: $productId, type: STRING}]}, {EQUALS: [{SELECT: \"shipToLocation.id\", type: STRING}, {VALUE: $locationId, type: STRING}]}]}, , aggregationParams: {paginationParams: {first: 100}, dimension: {fieldPath: \"shipToLocation.id\", type: STRING}, reduce: {expression: {operator: COUNT, fieldPath: \"vendor.id\", type: STRING}, output: {resultAlias: \"numberOfSuppliers\", type: INT}}}) { aggregationResultsTotalCount aggregationResults { dimensionValues { name value }}}}"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.productId",
+      "values": ["{{ productId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.locationId",
+      "values": ["{{ locationId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "items[0].count.label",
+      "values": ["{{ numberOfSuppliers }}"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].count.customTemplate",
+      "values": ["linkTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].count.href.type",
+      "values": ["LAYOUT_TEMPLATE"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].count.href.id",
+      "values": [
+        "inventoryInboundNumberSuppliersViewAllLayoutTemplate"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].count.href.params",
+      "values": ["productId={{ productId }},locationId={{ locationId }}"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "locationId",
+      "values": ["refreshData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "productId",
+      "values": ["refreshData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "state.empty.title",
+      "values": ["COMMON.EMPTY_TITLE"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.body",
+      "values": ["COMMON.EMPTY_BODY"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": ["COMMON.EMPTY_LINK_LABEL"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": ["NEW_WINDOW"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{\"errors\":\"{{#? this.errors}}\", \"pageInfo\":{}, \"totalCount\":{}, \"results\":[{\"numberOfSuppliers\":\"{{ this.data.numberOfSuppliers.aggregationResults.length ?this.data.numberOfSuppliers.aggregationResultsTotalCount : 0 }}\"}]}"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [{ "name": "chartType", "values": ["summary"] }],
+  "adminConfigurations": []
+}

@@ -1,0 +1,153 @@
+{
+  "offeringId": "SCO",
+  "id": "orderOutboundTotalOrderLinesMetricsSummaryWidget",
+  "state": "ACTIVE",
+  "identifier": "orderOutboundTotalOrderLinesMetricsSummaryWidget",
+  "type": "Dashboard_Widget",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "descriptions": {
+    "en": {
+      "name": "Order Detail Total Order Lines Metrics",
+      "language": "en",
+      "description": "Order Detail Outbound Total Order Lines Metrics"
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "resizeToContent",
+      "values": ["true"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.type",
+      "values": ["text_header"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.title",
+      "values": ["COMMON.TOTAL_ORDER_LINES"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "draggable",
+      "values": ["false"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "data.service",
+      "values": ["infohub"]
+    },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query TotalOrderLinesMetrics($tenantId: String, $orderId:String) { orderLinesNotDelivered: businessObjects( hint: {viewId: \"graph\"}, simpleFilter: {tenantId: $tenantId, type: OrderLine}, aggregationParams: { dimension: {fieldPath: \"order.id\", type: STRING}, reduce: { output: {resultAlias: \"orderLinesNotDelivered\", type: INT}, expression: {fieldPath: \"id\", operator: COUNT, type: INT} } }, advancedFilter: { AND: [ {EQUALS: [{SELECT: \"deliveryStatusByDate\", type: STRING}, {VALUE: \"NOT_DELIVERED\", type: STRING}]}, {EQUALS: [{SELECT: \"order.orderType\", type: STRING}, {VALUE: \"OUTBOUND\", type: STRING}]}, {EQUALS: [{SELECT: \"order.id\", type: STRING}, {VALUE: $orderId , type: STRING}]} ] } ) { aggregationResults { values { name numValue } } } orderLinesPartiallyDelivered: businessObjects( hint: {viewId: \"graph\"}, simpleFilter: {tenantId: $tenantId, type: OrderLine}, aggregationParams: { dimension: {fieldPath: \"order.id\", type: STRING}, reduce: { output: {resultAlias: \"orderLinesPartiallyDelivered\", type: INT}, expression: {fieldPath: \"id\", operator: COUNT, type: INT} } }, advancedFilter: { AND: [ {EQUALS: [{SELECT: \"deliveryStatusByDate\", type: STRING}, {VALUE: \"PARTIALLY_DELIVERED\", type: STRING}]}, {EQUALS: [{SELECT: \"order.orderType\", type: STRING}, {VALUE: \"OUTBOUND\", type: STRING}]}, {EQUALS: [{SELECT: \"order.id\", type: STRING}, {VALUE: $orderId , type: STRING}]}, ] } ) { aggregationResults { values { name numValue } } } orderLinesFullyDelivered: businessObjects( hint: {viewId: \"graph\"}, simpleFilter: {tenantId: $tenantId, type: OrderLine}, aggregationParams: { dimension: {fieldPath: \"order.id\", type: STRING}, reduce: { output: {resultAlias: \"orderLinesFullyDelivered\", type: INT}, expression: {fieldPath: \"id\", operator: COUNT, type: INT} } }, advancedFilter: { AND: [{EQUALS: [{SELECT: \"deliveryStatusByDate\", type: STRING}, {VALUE: \"FULLY_DELIVERED\", type: STRING}]}, {EQUALS: [{SELECT: \"order.orderType\", type: STRING}, {VALUE: \"OUTBOUND\", type: STRING}]}, {EQUALS: [{SELECT: \"order.id\", type: STRING}, {VALUE: $orderId , type: STRING}]}, ] } ) { aggregationResults { values { name numValue } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.orderId",
+      "values": ["{{ orderId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "items[0].heading.label",
+      "values": ["COMMON.SHIPMENT_STATUS.NOT_DELIVERED"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].count.label",
+      "values": ["{{ orderLinesNotDelivered }}"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].count.href.labelType",
+      "values": ["numberTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[1].heading.label",
+      "values": ["COMMON.SHIPMENT_STATUS.PARTIALLY_DELIVERED"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[1].count.label",
+      "values": ["{{ orderLinesPartiallyDelivered }}"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[1].count.href.labelType",
+      "values": ["numberTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[2].heading.label",
+      "values": ["COMMON.SHIPMENT_STATUS.FULLY_DELIVERED"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[2].count.label",
+      "values": ["{{ orderLinesFullyDelivered }}"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[2].count.href.labelType",
+      "values": ["numberTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": ["refreshData"],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{ \"errors\":\"{{#? this.errors}}\", \"pageInfo\":{}, \"totalCount\":{}, \"results\":[{ \"orderLinesNotDelivered\":\"{{ this.data.orderLinesNotDelivered.aggregationResults.length ? this.data.orderLinesNotDelivered.aggregationResults[0].values[0].numValue : 0 }}\"}, {\"orderLinesPartiallyDelivered\":\"{{ this.data.orderLinesPartiallyDelivered.aggregationResults.length ? this.data.orderLinesPartiallyDelivered.aggregationResults[0].values[0].numValue : 0 }}\"}, {\"orderLinesFullyDelivered\":\"{{ this.data.orderLinesFullyDelivered.aggregationResults.length ? this.data.orderLinesFullyDelivered.aggregationResults[0].values[0].numValue : 0 }}\"}] }"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.title",
+      "values": ["COMMON.EMPTY_TITLE"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.body",
+      "values": ["COMMON.EMPTY_BODY"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": ["COMMON.EMPTY_LINK_LABEL"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": ["NEW_WINDOW"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [
+    {
+      "name": "chartType",
+      "values": ["summary"]
+    }
+  ],
+  "adminConfigurations": []
+}

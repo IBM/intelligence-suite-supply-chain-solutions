@@ -1,0 +1,130 @@
+{
+  "offeringId": "SCO",
+  "id": "shipmentMetricsInboundSummaryWidget",
+  "state": "ACTIVE",
+  "identifier": "shipmentMetricsInboundSummaryWidget",
+  "type": "Dashboard_Widget",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "descriptions": {
+    "en": {
+      "name": "Shipment Metrics",
+      "language": "en",
+      "description": "View Number of shipment lines, Product and Quantity"
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "header.type",
+      "values": ["text_header"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.title",
+      "values": ["COMMON.SHIPMENT_METRICS"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "draggable",
+      "values": ["false"],
+      "metaInformation": "widgetOption"
+    },
+    { "name": "data.service", "values": ["infohub"] },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query Shipmentlines($tenantId: String!, $shipmentId: String!) { shipmentlines: businessObjects(hint: {viewId: \"graph\"}, simpleFilter: {tenantId: $tenantId, type: ShipmentLine}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"shipment.id\", type: STRING}, {VALUE: $shipmentId, type: STRING}]}, {EQUALS: [{SELECT: \"shipment.shipmentType\", type: STRING}, {VALUE: \"INBOUND\", type: STRING}]}]}, aggregationParams: {dimension: {fieldPath: \"shipment.id\", type: STRING}, reduce: {expression: {fieldPath: \"id\", operator: COUNT, type: INT}, output: {resultAlias: \"totalShipmentLines\", type: INT}}}) { totalCount aggregationResults { values { name value } } } productCount: businessObjects(hint: {viewId: \"graph\"}, simpleFilter: {tenantId: $tenantId, type: ShipmentLine}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"shipment.id\", type: STRING}, {VALUE: $shipmentId, type: STRING}]}, {EQUALS: [{SELECT: \"shipment.shipmentType\", type: STRING}, {VALUE: \"INBOUND\", type: STRING}]}]}, aggregationParams: {dimension: {fieldPath: \"shipment.id\", type: STRING}, reduce: {expression: {fieldPath: \"orderLine.product.id\", operator: COUNT, type: INT}, output: {resultAlias: \"totalProductsForThatShipment\", type: INT}}}) { aggregationResults { values { name value } } } totalProductQty: businessObjects(hint: {viewId: \"graph\"}, simpleFilter: {tenantId: $tenantId, type: ShipmentLine}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"shipment.id\", type: STRING}, {VALUE: $shipmentId, type: STRING}]}, {EQUALS: [{SELECT: \"shipment.shipmentType\", type: STRING}, {VALUE: \"INBOUND\", type: STRING}]}]}, aggregationParams: {dimension: {fieldPath: \"shipment.id\", type: STRING}, reduce: {expression: {fieldPath: \"orderLine.quantity\", operator: SUM, type: INT}, output: {resultAlias: \"totalProductQuantity\", type: INT}}}) { aggregationResults { values { name value } } } } "
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.shipmentId",
+      "values": ["{{ shipmentId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "items[0].count.label",
+      "values": ["{{ inventoryCount }}"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].heading.label",
+      "values": ["COMMON.SHIPMENT_LINES"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[1].count.label",
+      "values": ["{{ productCount }}"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[1].heading.label",
+      "values": ["COMMON.PRODUCTS"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[2].count.label",
+      "values": ["{{ totalProductQty }}"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[2].heading.label",
+      "values": ["COMMON.TOTAL_PRODUCT_QUANTITY"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": ["refreshData"],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "drilldownRowData.row",
+      "values": ["refreshData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{\"errors\":\"{{#? this.errors}}\", \"pageInfo\":{}, \"totalCount\":{}, \"results\":[{\"inventoryCount\":\"{{ this.data.shipmentlines.totalCount }}\"}, {\"productCount\":\"{{ this.data.productCount.aggregationResults.length ?this.data.productCount.aggregationResults[0].values[0].value : 0 }}\"}, {\"totalProductQty\":\"{{ this.data.totalProductQty.aggregationResults.length ?this.data.totalProductQty.aggregationResults[0].values[0].value : 0 }}\"} ]}"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.title",
+      "values": ["COMMON.EMPTY_TITLE"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.body",
+      "values": ["COMMON.EMPTY_BODY"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": ["COMMON.EMPTY_LINK_LABEL"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": ["NEW_WINDOW"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [{ "name": "chartType", "values": ["summary"] }],
+  "adminConfigurations": []
+}
