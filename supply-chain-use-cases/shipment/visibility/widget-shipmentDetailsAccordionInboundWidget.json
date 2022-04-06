@@ -1,0 +1,490 @@
+{
+  "offeringId": "SCO",
+  "id": "shipmentDetailsAccordionInboundWidget",
+  "state": "ACTIVE",
+  "identifier": "shipmentDetailsAccordionInboundWidget",
+  "type": "Dashboard_Widget",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "descriptions": {
+    "en": {
+      "name": "Shipment Details",
+      "language": "en",
+      "description": "View Shipment Details"
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "resizeToContent",
+      "values": ["true"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "draggable",
+      "values": ["false"],
+      "metaInformation": "widgetOption"
+    },
+    { "name": "data.service", "values": ["infohub"] },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query ShipmentDetail($tenantId: String!, $shipmentId: String!) { shipmentDetail: businessObjects( hint: {viewId: \"graph\"} simpleFilter: {tenantId: $tenantId, type: Shipment} advancedFilter: {AND: [{EQUALS: [{SELECT: \"id\", type: STRING}, {VALUE: $shipmentId, type: STRING}]}, {EQUALS: [{SELECT: \"shipmentType\", type: STRING}, {VALUE: \"INBOUND\", type: STRING}]}]} ) { totalCount pageInfo { hasNextPage endCursor } edges { cursor object { ... on Shipment { id shipmentType shipmentIdentifier status statusByDate Origin: shipFromLocation { locationName locationIdentifier } Destination: shipToLocation { locationName locationIdentifier } Supplier: vendor { id name organizationIdentifier } Customer: buyer { id name organizationIdentifier } Carrier: carrier { id name organizationIdentifier } dateCreated requestedTimeOfArrival committedTimeOfArrival actualShipDate estimatedTimeOfArrival revisedEstimatedTimeOfArrival predictedTimeOfArrival actualTimeOfArrival lineCount currentLocationCoordinates currentRegion sourceLink houseAirwayBill airwayMasterNumber parcelTrackingNumber billOfLadingNumber manifest transportMode weight } } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.shipmentId",
+      "values": ["{{ shipmentId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "item[0].name",
+      "values": ["shipmentIdentifier"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[0].title",
+      "values": [
+        "WIDGET_DEFINITION.SHIPMENT_DETAILS_ACCORDION.SHIPMENT_IDENTIFIER"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[1].name",
+      "values": ["Origin.locationIdentifier"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[1].title",
+      "values": ["WIDGET_DEFINITION.SHIPMENT_DETAILS_ACCORDION.SHIP_FROM"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[2].name",
+      "values": ["requestedTimeOfArrival"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[2].title",
+      "values": [
+        "WIDGET_DEFINITION.SHIPMENT_SEARCH_RESULTS.REQUESTED_TIME_OF_ARRIVAL"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[2].customTemplate",
+      "values": ["dateTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[3].name",
+      "values": ["houseAirwayBill"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[3].title",
+      "values": [
+        "WIDGET_DEFINITION.SHIPMENT_DETAILS_ACCORDION.HOUSE_AIRWAY_BILL"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[4].name",
+      "values": ["shipmentType"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[4].title",
+      "values": ["COMMON.SHIPMENT_TYPE"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[5].name",
+      "values": ["Destination.locationName"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[5].title",
+      "values": ["WIDGET_DEFINITION.SHIPMENT_DETAILS_ACCORDION.SHIP_TO"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[6].name",
+      "values": ["committedTimeOfArrival"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[6].title",
+      "values": [
+        "WIDGET_DEFINITION.SHIPMENT_SEARCH_RESULTS.COMMITTED_TIME_OF_ARRIVAL"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[6].customTemplate",
+      "values": ["dateTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[7].name",
+      "values": ["airwayMasterNumber"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[7].title",
+      "values": [
+        "WIDGET_DEFINITION.SHIPMENT_DETAILS_ACCORDION.AIRWAY_MASTER_NUMBER"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[8].name",
+      "values": ["statusByDate"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[8].title",
+      "values": ["COMMON.SHIPMENT_STATUS_BY_DATE"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[9].name",
+      "values": ["sourceLink"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[9].title",
+      "values": ["WIDGET_DEFINITION.SHIPMENT_DETAILS_ACCORDION.SOURCE_LINK"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[9].customTemplate",
+      "values": ["linkTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[9].linkType",
+      "values": ["NEW_WINDOW"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[9].label",
+      "values": ["COMMON.SOURCE"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[9].linkPath",
+      "values": ["sourceLink"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[9].enableTranslation",
+      "values": ["true"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[10].name",
+      "values": ["estimatedTimeOfArrival"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[10].title",
+      "values": ["COMMON.ESTIMATED_TIME_OF_ARRIVAL"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[10].customTemplate",
+      "values": ["dateTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[11].name",
+      "values": ["parcelTrackingNumber"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[11].title",
+      "values": [
+        "WIDGET_DEFINITION.SHIPMENT_DETAILS_ACCORDION.PARCEL_TRACKING_NUMBER"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[12].name",
+      "values": ["Customer"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[12].title",
+      "values": ["COMMON.CUSTOMER"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[12].customTemplate",
+      "values": ["linkTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[12].linkType",
+      "values": ["template"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[12].linkPath",
+      "values": ["customerTemplateLink"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[12].linkParams",
+      "values": ["organizationId={{ results[0].customerId }}"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[13].name",
+      "values": ["dateCreated"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[13].title",
+      "values": ["WIDGET_DEFINITION.SHIPMENT_DETAILS_ACCORDION.CREATED_DATE"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[13].customTemplate",
+      "values": ["dateTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[14].name",
+      "values": ["revisedEstimatedTimeOfArrival"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[14].title",
+      "values": [
+        "WIDGET_DEFINITION.SHIPMENT_DETAILS_ACCORDION.REVISED_EST_TIME_OF_ARRIVAL"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[14].customTemplate",
+      "values": ["dateTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[15].name",
+      "values": ["billOfLadingNumber"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[15].title",
+      "values": [
+        "WIDGET_DEFINITION.SHIPMENT_DETAILS_ACCORDION.BILL_OF_LADING_NUMBER"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[16].name",
+      "values": ["Supplier"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[16].title",
+      "values": ["COMMON.SUPPLIER"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[16].customTemplate",
+      "values": ["linkTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[16].linkType",
+      "values": ["template"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[16].linkPath",
+      "values": ["supplierTemplateLink"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[16].linkParams",
+      "values": ["organizationId={{ results[0].supplierId }}"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[17].name",
+      "values": ["actualShipDate"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[17].title",
+      "values": ["WIDGET_DEFINITION.SHIPMENT_SEARCH_RESULTS.ACTUAL_SHIP_DATE"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[17].customTemplate",
+      "values": ["dateTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[18].name",
+      "values": ["predictedTimeOfArrival"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[18].title",
+      "values": [
+        "WIDGET_DEFINITION.SHIPMENT_DETAILS_ACCORDION.PREDICTED_TIME_OF_ARRIVAL"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[18].customTemplate",
+      "values": ["dateTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[19].name",
+      "values": ["manifest"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[19].title",
+      "values": ["WIDGET_DEFINITION.SHIPMENT_DETAILS_ACCORDION.MANIFEST"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[20].name",
+      "values": ["Carrier"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[20].title",
+      "values": ["COMMON.CARRIER"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[20].customTemplate",
+      "values": ["linkTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[20].linkType",
+      "values": ["template"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[20].linkPath",
+      "values": ["carrierTemplateLink"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[20].linkParams",
+      "values": ["organizationId={{ results[0].carrierId }}"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[21].name",
+      "values": ["actualTimeOfArrival"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[21].title",
+      "values": [
+        "WIDGET_DEFINITION.SHIPMENT_SEARCH_RESULTS.ACTUAL_TIME_OF_ARRIVAL"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[21].customTemplate",
+      "values": ["dateTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[22].name",
+      "values": ["transportMode"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[22].title",
+      "values": ["WIDGET_DEFINITION.SHIPMENT_DETAILS_ACCORDION.TRANSPORT_MODE"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[23].name",
+      "values": ["weight"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[23].title",
+      "values": ["WIDGET_DEFINITION.SHIPMENT_DETAILS_ACCORDION.WEIGHT"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[23].customTemplate",
+      "values": ["numberTpl"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "columnCount",
+      "values": ["4"],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": ["refreshData"],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "drilldownRowData.row",
+      "values": ["refreshData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{ \"errors\": \"{{#? this.errors}}\", \"totalCount\": \"{{this.data.shipmentDetail.totalCount}}\", \"pageInfo\": \"{{this.data.shipmentDetail.pageInfo}}\", \"results\": { \"{{#each data.shipmentDetail.edges}}\": {\"shipmentType\": \"{{this.object.shipmentType}}\", \"shipmentIdentifier\": \"{{this.object.shipmentIdentifier}}\", \"id\": \"{{this.object.id}}\",\"status\": \"{{this.object.status}}\", \"statusByDate\": \"{{this.object.statusByDate}}\", \"Destination\": \"{{this.object.Destination }}\", \"Origin\": \"{{this.object.Origin }}\",\"supplierId\": \"{{this.object.Supplier.id}}\", \"carrierId\": \"{{this.object.Carrier.id}}\", \"customerId\": \"{{this.object.Customer.id }}\", \"Supplier\": \"{{this.object.Supplier.organizationIdentifier}}, {{this.object.Supplier.name}}\", \"Customer\": \"{{this.object.Customer.organizationIdentifier }}, {{this.object.Customer.name}}\", \"Carrier\": \"{{this.object.Carrier.organizationIdentifier}}, {{this.object.Carrier.name}}\", \"dateCreated\": \"{{this.object.dateCreated }}\", \"requestedTimeOfArrival\": \"{{this.object.requestedTimeOfArrival }}\", \"committedTimeOfArrival\": \"{{this.object.committedTimeOfArrival }}\", \"actualShipDate\": \"{{this.object.actualShipDate }}\", \"estimatedTimeOfArrival\": \"{{this.object.estimatedTimeOfArrival }}\", \"revisedEstimatedTimeOfArrival\": \"{{this.object.revisedEstimatedTimeOfArrival }}\", \"predictedTimeOfArrival\": \"{{this.object.predictedTimeOfArrival }}\", \"actualTimeOfArrival\": \"{{this.object.actualTimeOfArrival }}\", \"lineCount\": \"{{this.object.lineCount }}\", \"currentLocationCoordinates\": \"{{this.object.currentLocationCoordinates }}\", \"currentRegion\": \"{{this.object.currentRegion }}\", \"sourceLink\": \"{{this.object.sourceLink }}\",\"supplierTemplateLink\": \"defaultSupplierDetailLayoutTemplate\",\"carrierTemplateLink\": \"defaultCarrierDetailLayoutTemplate\",\"customerTemplateLink\": \"defaultCustomerDetailLayoutTemplate\", \"houseAirwayBill\": \"{{this.object.houseAirwayBill }}\", \"airwayMasterNumber\": \"{{this.object.airwayMasterNumber }}\", \"parcelTrackingNumber\": \"{{this.object.parcelTrackingNumber }}\", \"billOfLadingNumber\": \"{{this.object.billOfLadingNumber }}\", \"manifest\": \"{{this.object.manifest }}\", \"transportMode\": \"{{this.object.transportMode }}\", \"weight\": \"{{this.object.weight }}\" } } }"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.title",
+      "values": ["COMMON.EMPTY_TITLE"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.body",
+      "values": ["COMMON.EMPTY_BODY"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": ["COMMON.EMPTY_LINK_LABEL"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": ["NEW_WINDOW"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [{ "name": "chartType", "values": ["grid_details"] }],
+  "adminConfigurations": []
+}
