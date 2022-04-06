@@ -1,0 +1,176 @@
+{
+  "id": "defaultShipmentVisibility",
+  "offeringId": "SCO",
+  "state": "ACTIVE",
+  "sequence": 0,
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "type": "Dashboard",
+  "creator": "samsmith@ibm.com",
+  "widgets": [
+    {
+      "id": "dashboardFilterWidget",
+      "layoutId": "defaultShipmentVisibility",
+      "sequence": 0.0,
+      "widgetDefinitionId": "dashboardFilterWidget",
+      "name": "SVI Dashboard Filter",
+      "creator": "samsmith@ibm.com",
+      "createdDate": "2020-11-12T05:33:19.003Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "chartType": "filter",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "layout_header"
+      }
+    },
+    {
+      "id": "dashboardActiveFiltersWidget",
+      "layoutId": "defaultShipmentVisibility",
+      "sequence": 1.0,
+      "widgetDefinitionId": "dashboardActiveFiltersWidget",
+      "name": "Dashboard active filters",
+      "creator": "samsmith@ibm.com",
+      "createdDate": "2020-08-26T19:58:22.154Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "chartType": "active_filters",
+        "section": "layout_subheader",
+        "enabled": "true",
+        "fullBodyWidget": "true"
+      }
+    },
+    {
+      "id": "totalInboundShipmentsSummaryWidget",
+      "layoutId": "defaultShipmentVisibility",
+      "sequence": 0,
+      "widgetDefinitionId": "totalInboundShipmentsSummaryWidget",
+      "name": "SVI Metrics",
+      "creator": "samsmith@ibm.com",
+      "createdDate": "2020-11-12T05:33:19.003Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": 4,
+        "rowSpan": 6,
+        "xPos": 0,
+        "yPos": 0,
+        "chartType": "summary",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "layout_body"
+      }
+    },
+    {
+      "id": "dashboardIntransitShipmentsListWidget",
+      "layoutId": "defaultShipmentVisibility",
+      "sequence": 0,
+      "widgetDefinitionId": "dashboardIntransitShipmentsListWidget",
+      "name": "in transit shipments",
+      "creator": "samsmith@ibm.com",
+      "createdDate": "2020-11-12T05:33:19.003Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": 2,
+        "rowSpan": 18,
+        "xPos": 0,
+        "yPos": 6,
+        "chartType": "data_table",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "layout_body"
+      }
+    },
+    {
+      "id": "dashboardShipmentsInTransitMap",
+      "layoutId": "defaultShipmentVisibility",
+      "sequence": 0,
+      "widgetDefinitionId": "dashboardShipmentsInTransitMap",
+      "name": "SVI Map",
+      "creator": "samsmith@ibm.com",
+      "createdDate": "2021-02-19T19:16:02.583Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": 2,
+        "rowSpan": 18,
+        "xPos": 2,
+        "yPos": 6,
+        "chartType": "map",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "layout_body"
+      }
+    }
+  ],
+  "defaultLanguage": "en",
+  "descriptions": {
+    "en": {
+      "name": "Shipment visibility",
+      "language": "en",
+      "description": "Default Shipment visibility Dashboard"
+    }
+  },
+  "properties": [
+    {
+      "name": "breadcrumbEnabled",
+      "values": [true],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "breadcrumbList",
+      "values": ["{\"label\": \"COMMON.DASHBOARD\", \"routeName\": \"/\"}"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "timestampEnabled",
+      "values": [false],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "ivAssistantEnabled",
+      "values": [true],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "hideTitle",
+      "values": ["true"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.title",
+      "values": ["COMMON.EMPTY_TITLE"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.body",
+      "metaInformation": "layoutOption",
+      "values": ["COMMON.EMPTY_BODY"]
+    },
+    {
+      "name": "state.empty.image",
+      "metaInformation": "layoutOption",
+      "values": ["dataEmpty"]
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": ["COMMON.EMPTY_LINK_LABEL"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": ["NEW_WINDOW"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "layoutOption"
+    }
+  ],
+  "version": 1
+}
