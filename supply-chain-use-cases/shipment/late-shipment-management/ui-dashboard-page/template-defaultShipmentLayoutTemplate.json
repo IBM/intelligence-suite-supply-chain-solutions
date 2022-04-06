@@ -7,10 +7,10 @@
   "type": "Dashboard",
   "widgets": [
     {
-      "id": "SCO_SVI_DASHBOARD_FILTER",
+      "id": "dashboardFilterWidget",
       "layoutId": "defaultShipmentLayoutTemplate",
       "sequence": 0.0,
-      "widgetDefinitionId": "SCO_SVI_DASHBOARD_FILTER",
+      "widgetDefinitionId": "dashboardFilterWidget",
       "name": "SVI Dashboard Filter",
       "creator": "samsmith@ibm.com",
       "createdDate": "2020-11-12T05:33:19.003Z",
@@ -24,10 +24,10 @@
       }
     },
     {
-      "id": "SCO_SVI_DASHBOARD_ACTIVE_FILTERS",
+      "id": "dashboardActiveFiltersWidget",
       "layoutId": "defaultShipmentLayoutTemplate",
       "sequence": 1.0,
-      "widgetDefinitionId": "SCO_SVI_DASHBOARD_ACTIVE_FILTERS",
+      "widgetDefinitionId": "dashboardActiveFiltersWidget",
       "name": "Dashboard active filters",
       "creator": "samsmith@ibm.com",
       "createdDate": "2020-08-26T19:58:22.154Z",
