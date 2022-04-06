@@ -1,0 +1,138 @@
+{
+    "offeringId": "SCO",
+    "id": "orderLineDetailInboundTabsWidget",
+    "state": "ACTIVE",
+    "identifier": "orderLineDetailInboundTabsWidget",
+    "type": "Dashboard_Widget",
+    "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+    "path": "/api",
+    "vendor": "IBM",
+    "defaultLanguage": "en",
+    "version": 1,
+    "descriptions": {
+      "en": {
+        "name": "Order Line Detail Tabs",
+        "language": "en",
+        "description": "Order Line Detail Inbound Tabs"
+      }
+    },
+    "devConfigurations": [
+      {
+        "name": "resizeToContent",
+        "values": ["true"],
+        "metaInformation": "widgetOption"
+      },
+      {
+        "name": "data.service",
+        "values": ["infohub"]
+      },
+      {
+        "name": "tabSelected",
+        "values": ["orderLineDetails"],
+        "metaInformation": "stateScope"
+      },
+      {
+        "name": "orderLineDetails.tab.referenceId",
+        "values": ["refreshTabData"],
+        "metaInformation": "stateSubscription"
+      },
+      {
+        "name": "widgetInitialized",
+        "values": ["clearStates", "refreshTabData"],
+        "metaInformation": "eventSubscription"
+      },
+      {
+        "name": "clearStates",
+        "values": ["orderLineDetails.tab.referenceId"],
+        "metaInformation": "eventPayload"
+      },
+      {
+        "name": "draggable",
+        "values": ["false"],
+        "metaInformation": "widgetOption"
+      },
+      {
+        "name": "tabs[0].label",
+        "values": [
+          "WIDGET_DEFINITION.SCO_ORDER_LINE_DETAIL_INBOUND_OUTBOUND_TABS.SHIPMENTS_FULFILLING_THE_ORDER"
+        ],
+        "metaInformation": "tabOption"
+      },
+      {
+        "name": "tabs[0].referenceId",
+        "values": [
+          "orderLineDetailInboundTabsTableShipmentsFulfillingOrderListWidget"
+        ],
+        "metaInformation": "tabOption"
+      },
+      {
+        "name": "tabs[0].referenceType",
+        "values": ["widget_definition"],
+        "metaInformation": "tabOption"
+      },
+      {
+        "name": "tabs[1].label",
+        "values": [
+          "WIDGET_DEFINITION.SCO_ORDER_LINE_DETAIL_INBOUND_OUTBOUND_TABS.SHIPMENT_LINES_FULFILLING_THE_ORDER"
+        ],
+        "metaInformation": "tabOption"
+      },
+      {
+        "name": "tabs[1].referenceId",
+        "values": [
+          "orderLineDetailInboundTabsTableShipmentlinesFulfillingOrderListWidget"
+        ],
+        "metaInformation": "tabOption"
+      },
+      {
+        "name": "tabs[1].referenceType",
+        "values": ["widget_definition"],
+        "metaInformation": "tabOption"
+      },
+      {
+        "name": "orderLineDetails.tabs",
+        "values": ["refreshTabData"],
+        "metaInformation": "stateSubscription"
+      },
+      {
+        "name": "tabPageLength",
+        "values": [10],
+        "metaInformation": "widgetOption"
+      },
+      {
+        "name": "state.empty.title",
+        "values": ["COMMON.EMPTY_TITLE"],
+        "metaInformation": "widgetOption"
+      },
+      {
+        "name": "state.empty.body",
+        "values": ["COMMON.EMPTY_BODY"],
+        "metaInformation": "widgetOption"
+      },
+      {
+        "name": "state.empty.link.label",
+        "values": ["COMMON.EMPTY_LINK_LABEL"],
+        "metaInformation": "widgetOption"
+      },
+      {
+        "name": "state.empty.link.href.type",
+        "values": ["NEW_WINDOW"],
+        "metaInformation": "widgetOption"
+      },
+      {
+        "name": "state.empty.link.href.path",
+        "values": [
+          "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+        ],
+        "metaInformation": "widgetOption"
+      }
+    ],
+    "userConfigurations": [
+      {
+        "name": "chartType",
+        "values": ["tab_panel"]
+      }
+    ],
+    "adminConfigurations": []
+  }
+  

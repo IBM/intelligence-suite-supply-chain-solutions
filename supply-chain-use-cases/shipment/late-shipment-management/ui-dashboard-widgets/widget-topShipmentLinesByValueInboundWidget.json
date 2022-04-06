@@ -1,0 +1,163 @@
+{
+  "offeringId": "SCO",
+  "id": "topShipmentLinesByValueInboundWidget",
+  "state": "ACTIVE",
+  "identifier": "topShipmentLinesByValueInboundWidget",
+  "type": "Dashboard_Widget",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "descriptions": {
+    "en": {
+      "name": "Top shipment lines by value",
+      "description": "View top shipment lines by value"
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "draggable",
+      "values": ["false"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.type",
+      "values": ["simpleBar"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.type",
+      "values": ["text_header"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.title",
+      "values": ["WIDGET_DEFINITION.TOP_SHIPMENT_LINES_BY_VALUE.HEADER_TITLE"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "subheader.type",
+      "values": ["template"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "subheader.viewId",
+      "values": ["textTpl"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "subheader.label",
+      "values": [
+        "WIDGET_DEFINITION.TOP_SHIPMENT_LINES_BY_VALUE.SHIPMENT_ID_WITH_IDENTIFIER"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "subheader.translationParamObj",
+      "values": ["{\"shipmentIdentifier\": \"{{shipmentIdentifier}}\"}"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.options.axes.bottom.mapsTo",
+      "values": ["group"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.options.axes.bottom.scaleType",
+      "values": ["labels"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.options.axes.left.mapsTo",
+      "values": ["value"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.options.axes.left.title",
+      "values": [
+        "WIDGET_DEFINITION.TOP_SHIPMENT_LINES_BY_VALUE.VALUE_WITH_CURRENCY"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.options.axes.left.titleTranslationParams",
+      "values": ["{\"currency\": \"{{currency}}\"}"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.options.legend.enabled",
+      "values": ["false"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.options.tooltip.showTotal",
+      "values": ["false"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.options.multiColor",
+      "values": ["false"],
+      "metaInformation": "widgetOption"
+    },
+    { "name": "data.service", "values": ["infohub"] },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query topShipmentLinesByValue($tenantId: String!, $shipmentId: String!) { topShipmentLinesByValue: businessObjects(hint: {viewId: \"graph\"}, simpleFilter: {tenantId: $tenantId, type: ShipmentLine}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"shipment.id\", type: STRING}, {VALUE: $shipmentId, type: STRING}]}, {EQUALS: [{SELECT: \"shipment.shipmentType\", type: STRING}, {VALUE: \"INBOUND\", type: STRING}]}]}, cursorParams: { first: 5, sort: { fieldPath: \"value\", order: DESC } }) { totalCount pageInfo { hasNextPage endCursor } edges { cursor object { ... on ShipmentLine { value valueCurrency shipmentLineNumber shipment { id shipmentType shipmentIdentifier } } } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.shipmentId",
+      "values": ["{{ shipmentId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": ["refreshData"],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{\"totalCount\": \"{{ this.data.topShipmentLinesByValue.totalCount }}\", \"errors\": \"{{#? this.errors}}\", \"pageInfo\": \"{{  this.data.topShipmentLinesByValue.pageInfo }}\", \"currency\": [{\"{{#if this.data.topShipmentLinesByValue.edges.length > 0}}\": \"{{this.data.topShipmentLinesByValue.edges[0].object.valueCurrency}}\"}, {\"{{#else}}\":\"\"}], \"shipmentIdentifier\": [{\"{{#if this.data.topShipmentLinesByValue.edges.length > 0}}\": \"{{this.data.topShipmentLinesByValue.edges[0].object.shipment.shipmentIdentifier }}\"}, {\"{{#else}}\":\"\"}], \"results\": {\"{{ #each this.data.topShipmentLinesByValue.edges }}\": { \"group\": \"{{ this.object.shipment.shipmentIdentifier }}-{{ this.object.shipmentLineNumber }}\", \"value\": \"{{ this.object.value }}\" }} }"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.title",
+      "values": ["COMMON.EMPTY_TITLE"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.body",
+      "values": ["COMMON.EMPTY_BODY"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": ["COMMON.EMPTY_LINK_LABEL"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": ["NEW_WINDOW"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [{ "name": "chartType", "values": ["carbon_chart"] }],
+  "adminConfigurations": []
+}

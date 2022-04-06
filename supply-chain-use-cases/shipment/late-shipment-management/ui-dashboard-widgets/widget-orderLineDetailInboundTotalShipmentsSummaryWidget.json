@@ -1,0 +1,149 @@
+{
+    "offeringId": "SCO",
+    "id": "orderLineDetailInboundTotalShipmentsSummaryWidget",
+    "state": "ACTIVE",
+    "identifier": "ORDER_LINE_DETAIL_INBOUND_TOTAL_SHIPMENTS_METRICS",
+    "type": "Dashboard_Widget",
+    "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+    "path": "/api",
+    "vendor": "IBM",
+    "defaultLanguage": "en",
+    "version": 1,
+    "descriptions": {
+      "en": {
+        "name": "Order Line Detail Total Shipments Metrics",
+        "language": "en",
+        "description": "Order Line Detail Inbound Total Shipments Metrics"
+      }
+    },
+    "devConfigurations": [
+      {
+        "name": "header.type",
+        "values": ["text_header"],
+        "metaInformation": "widgetOption"
+      },
+      {
+        "name": "header.title",
+        "values": ["COMMON.TOTAL_SHIPMENTS"],
+        "metaInformation": "widgetOption"
+      },
+      {
+        "name": "draggable",
+        "values": ["false"],
+        "metaInformation": "widgetOption"
+      },
+      {
+        "name": "data.service",
+        "values": ["infohub"]
+      },
+      {
+        "name": "queries[0].fields",
+        "values": [
+          "query TotalShipmentsMetrics( $tenantId: String, $orderLineId: String) { totalShipmentsNotShipped: businessObjects( hint: { viewId: \"graph\" }, simpleFilter: { tenantId: $tenantId, type: ShipmentLine }, advancedFilter: {AND: [ { EQUALS: [ { SELECT: \"orderLine.id\", type: STRING}, {VALUE: $orderLineId, type: STRING}]}, {EQUALS: [{SELECT: \"order.orderType\", type: STRING}, { VALUE: \"INBOUND\", type: STRING } ] }, { EQUALS: [ { SELECT: \"shipment.statusByDate\", type: STRING}, {VALUE: \"NOT_SHIPPED\", type: STRING } ] } ] }, aggregationParams: {dimension: {fieldPath: \"orderLine.id\", type: STRING}, reduce: { expression: {operator: COUNT, fieldPath: \"shipment.id\", type: FLOAT}, output: {resultAlias: \"totalShipmentsNotShipped\", type: INT} } } ) {aggregationResults { values { name numValue } } } totalShipmentsInTransit: businessObjects( hint: { viewId: \"graph\" }, simpleFilter: {tenantId: $tenantId, type: ShipmentLine }, advancedFilter: {AND: [{EQUALS: [{SELECT: \"orderLine.id\", type: STRING}, {VALUE: $orderLineId, type: STRING } ] }, {EQUALS: [{SELECT: \"order.orderType\", type: STRING}, {VALUE: \"INBOUND\", type: STRING } ] }, {EQUALS: [{SELECT: \"shipment.statusByDate\", type: STRING }, { VALUE: \"IN_TRANSIT\", type: STRING } ] } ] }, aggregationParams: { dimension: { fieldPath: \"orderLine.id\", type: STRING}, reduce: {expression: {operator: COUNT, fieldPath: \"shipment.id\", type: FLOAT}, output: { resultAlias: \"totalShipmentsInTransit\", type: INT } } } ) { aggregationResults { values { name numValue } } } totalShipmentsDelivered: businessObjects(hint: { viewId: \"graph\"}, simpleFilter: { tenantId: $tenantId, type: ShipmentLine }, advancedFilter: { AND: [ { EQUALS: [{SELECT: \"orderLine.id\", type: STRING}, {VALUE: $orderLineId, type: STRING } ] }, {EQUALS: [ { SELECT: \"order.orderType\", type: STRING }, {VALUE: \"INBOUND\", type: STRING } ] }, {EQUALS: [{SELECT: \"shipment.statusByDate\", type: STRING}, {VALUE: \"DELIVERED\", type: STRING } ] } ] }, aggregationParams: { dimension: { fieldPath: \"orderLine.id\", type: STRING}, reduce: { expression: {operator: COUNT, fieldPath: \"shipment.id\", type: FLOAT }, output: {resultAlias: \"totalShipmentsInTransit\", type: INT } } } ) { aggregationResults { values { name numValue } } } }"
+        ],
+        "metaInformation": "infohub.fields"
+      },
+      {
+        "name": "queries[0].variables.tenantId",
+        "values": ["{{ tenantId }}"],
+        "metaInformation": "infohub.variable.dynamic"
+      },
+      {
+        "name": "queries[0].variables.orderLineId",
+        "values": ["{{ orderLineId }}"],
+        "metaInformation": "infohub.variable.dynamic"
+      },
+      {
+        "name": "items[0].heading.label",
+        "values": ["COMMON.SHIPMENT_STATUS.NOT_SHIPPED"],
+        "metaInformation": "gridOption"
+      },
+      {
+        "name": "items[0].count.label",
+        "values": ["{{ totalShipmentsNotShipped }}"],
+        "metaInformation": "gridOption"
+      },
+      {
+        "name": "items[0].count.href.labelType",
+        "values": ["numberTpl"],
+        "metaInformation": "gridOption"
+      },
+      {
+        "name": "items[1].heading.label",
+        "values": ["COMMON.SHIPMENT_STATUS.IN_TRANSIT"],
+        "metaInformation": "gridOption"
+      },
+      {
+        "name": "items[1].count.label",
+        "values": ["{{ totalShipmentsInTransit }}"],
+        "metaInformation": "gridOption"
+      },
+      {
+        "name": "items[1].count.href.labelType",
+        "values": ["numberTpl"],
+        "metaInformation": "gridOption"
+      },
+      {
+        "name": "items[2].heading.label",
+        "values": ["COMMON.SHIPMENT_STATUS.DELIVERED"],
+        "metaInformation": "gridOption"
+      },
+      {
+        "name": "items[2].count.label",
+        "values": ["{{ totalShipmentsDelivered }}"],
+        "metaInformation": "gridOption"
+      },
+      {
+        "name": "items[2].count.href.labelType",
+        "values": ["numberTpl"],
+        "metaInformation": "gridOption"
+      },
+      {
+        "name": "widgetInitialized",
+        "values": ["refreshData"],
+        "metaInformation": "eventSubscription"
+      },
+      {
+        "name": "transformation",
+        "values": [
+          "{ \"errors\":\"{{#? this.errors}}\", \"pageInfo\":{}, \"totalCount\":{}, \"results\":[{ \"totalShipmentsNotShipped\":\"{{ this.data.totalShipmentsNotShipped.aggregationResults.length ? this.data.totalShipmentsNotShipped.aggregationResults[0].values[0].numValue : 0 }}\"}, {\"totalShipmentsInTransit\":\"{{ this.data.totalShipmentsInTransit.aggregationResults.length ? this.data.totalShipmentsInTransit.aggregationResults[0].values[0].numValue : 0 }}\"}, {\"totalShipmentsDelivered\":\"{{ this.data.totalShipmentsDelivered.aggregationResults.length ? this.data.totalShipmentsDelivered.aggregationResults[0].values[0].numValue : 0 }}\"}] }"
+        ],
+        "metaInformation": "widgetOption"
+      },
+      {
+        "name": "state.empty.title",
+        "values": ["COMMON.EMPTY_TITLE"],
+        "metaInformation": "widgetOption"
+      },
+      {
+        "name": "state.empty.body",
+        "values": ["COMMON.EMPTY_BODY"],
+        "metaInformation": "widgetOption"
+      },
+      {
+        "name": "state.empty.link.label",
+        "values": ["COMMON.EMPTY_LINK_LABEL"],
+        "metaInformation": "widgetOption"
+      },
+      {
+        "name": "state.empty.link.href.type",
+        "values": ["NEW_WINDOW"],
+        "metaInformation": "widgetOption"
+      },
+      {
+        "name": "state.empty.link.href.path",
+        "values": [
+          "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+        ],
+        "metaInformation": "widgetOption"
+      }
+    ],
+    "userConfigurations": [
+      {
+        "name": "chartType",
+        "values": ["summary"]
+      }
+    ],
+    "adminConfigurations": []
+  }
+  
