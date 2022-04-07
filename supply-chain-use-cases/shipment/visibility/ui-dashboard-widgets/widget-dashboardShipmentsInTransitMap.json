@@ -1,0 +1,146 @@
+{
+  "offeringId": "SCO",
+  "id": "dashboardShipmentsInTransitMap",
+  "state": "ACTIVE",
+  "identifier": "dashboardShipmentsInTransitMap",
+  "type": "Dashboard_Widget",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "creator": "samsmith@ibm.com",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "descriptions": {
+    "en": {
+      "name": "In transit shipment map",
+      "language": "en",
+      "description": "View in transit shipments on map"
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "header.type",
+      "values": ["text_header"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.title",
+      "values": [""],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "icons[0].type",
+      "values": ["kebab_menu"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "icons[0].options[0]",
+      "values": ["move"],
+      "metaInformation": "widgetOption"
+    },
+    { "name": "colSpan", "values": ["4"], "metaInformation": "widgetOption" },
+    { "name": "rowSpan", "values": ["4"], "metaInformation": "widgetOption" },
+    { "name": "data.service", "values": ["infohub"] },
+    {
+      "name": "queries[0].processor",
+      "values": ["EDGES"],
+      "metaInformation": "infohub.processor"
+    },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query shipmentsInTransitMap($tenantId: String!, $cursorId: String, $pageLength: Int, $sortBy: String = \"id\", $sortOrder: SortOrder=DESC, $supplierFilter: BooleanExp = { CONSTANT_VALUE: true }, $carrierFilter: BooleanExp = { CONSTANT_VALUE: true }, $itemFilter: BooleanExp = { CONSTANT_VALUE: true }, $originFilter: BooleanExp = { CONSTANT_VALUE: true }, $destinationFilter: BooleanExp = { CONSTANT_VALUE: true }) { businessObjects( simpleFilter: { tenantId: $tenantId, type: Shipment }, advancedFilter: { AND: [ {EQUALS: [{SELECT: \"shipmentType\", type: STRING}, {VALUE: \"Supply\", type: STRING}]}, { EXISTS: [ { SELECT: \"actualShipDate\", type: STRING } ] }, { NOT: [ { EXISTS: [ { SELECT: \"actualTimeOfArrival\", type: STRING } ] } ] }, $supplierFilter, $carrierFilter, $itemFilter, $originFilter, $destinationFilter ] }, hint: { viewId: \"shipmentvisibilityview\" }, cursorParams: { after: $cursorId first: $pageLength, sort: {fieldPath: $sortBy, order: $sortOrder}  } ) { totalCount pageInfo { endCursor hasNextPage } edges { cursor object {  ... on Shipment { shipmentIdentifier Origin: shipFromLocation { coordinates } Destination: shipToLocation { coordinates } CurrentLocation: currentLocationCoordinates } } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.supplierFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"vendor.id\", \"type\": \"STRING\" }, { \"VALUES\": {{ hubFilter.appliedFilters.SupplierList.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.carrierFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"carrier.id\", \"type\": \"STRING\" }, { \"VALUES\": {{ hubFilter.appliedFilters.CarrierList.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.itemFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"order.orderlines.product.id\", \"type\": \"STRING\" }, { \"VALUES\": {{ hubFilter.appliedFilters.ItemList.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.originFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"shipFromLocation.id\", \"type\": \"STRING\" }, { \"VALUES\": {{ hubFilter.appliedFilters.OriginList.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.destinationFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"shipToLocation.id\", \"type\": \"STRING\" }, { \"VALUES\": {{ hubFilter.appliedFilters.DestinationList.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "draggable",
+      "values": ["false"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "horizontalScroll.enable",
+      "values": ["false"],
+      "metaInformation": "tableOption"
+    },
+    {
+      "name": "hubFilter.appliedFilters",
+      "values": ["refreshData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "inTransitList.page",
+      "values": ["refreshData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "inTransitList.pageLength",
+      "values": ["refreshData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "inTransitList.sort",
+      "values": ["refreshData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": ["refreshData"],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "rowData",
+      "values": ["{{ inTransitList.row }}"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{ \"errors\":\"{{#? this.errors}}\", \"totalCount\":\"{{this.data.businessObjects.totalCount}}\", \"pageInfo\":\"{{this.data.businessObjects.pageInfo}}\", \"results\":{ \"{{#each this.data.businessObjects.edges}}\":{ \"Id\":\"{{this.object.shipmentIdentifier}}\", \"Origin\":\"{{ this.object.Origin.coordinates }}\", \"Destination\": \"{{ this.object.Destination.coordinates }}\", \"CurrentLocation\": \"{{ this.object.CurrentLocation }}\"} } }"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [{ "name": "chartType", "values": ["map"] }],
+  "adminConfigurations": []
+}

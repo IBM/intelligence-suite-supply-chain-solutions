@@ -1,0 +1,545 @@
+{
+  "offeringId": "SCO",
+  "id": "shipmentTabsInboundOrdersListWidget",
+  "state": "ACTIVE",
+  "identifier": "shipmentTabsInboundOrdersListWidget",
+  "type": "Dashboard_Widget",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 2,
+  "descriptions": {
+    "en": {
+      "name": "Shipment Tabs orders",
+      "language": "en",
+      "description": "orders data table in shipment tabs"
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "header.type",
+      "values": ["metric_header"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.title",
+      "values": ["COMMON.INBOUND_ORDERS"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.value",
+      "values": ["{{ totalCount }}"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "data.service",
+      "values": ["infohub"]
+    },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query ShipmentDetailOrdersTab( $tenantId: String!, $shipmentId: String!, $cursorId: String, $pageLength: Int, $sortBy: String = \"orderLine.order.orderIdentifier\", $sortOrder: SortOrder = DESC ) { shipmentDetailOrders: businessObjects( hint: { viewId: \"graph\" }, simpleFilter: { tenantId: $tenantId, type: Shipment }, advancedFilter: { AND: [ { EQUALS: [ { SELECT: \"id\", type: STRING }, { VALUE: $shipmentId, type: STRING } ] }, { EQUALS: [ { SELECT: \"shipmentType\", type: STRING }, { VALUE: \"INBOUND\", type: STRING } ] } ] } ) { totalCount pageInfo { hasNextPage endCursor } edges { cursor object { ... on Shipment { shipmentLines(cursorParams: { after: $cursorId, first: $pageLength, sort: { fieldPath: $sortBy, order: $sortOrder } }) { edges { object { ... on ShipmentLine { orderLine { orderLineIdentifier order { id orderType orderStatus deliveryStatusByDate shipmentStatusByDate buyer { id name organizationIdentifier } vendor { id name organizationIdentifier } shipFromInstructionLocation { locationName locationIdentifier } shipToLocation { locationName locationIdentifier } orderIdentifier createdDate requestedShipDate plannedShipDate } } } } } } } } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.pageLength",
+      "values": ["{{ shipmentDetails.tabs.orderInbound.pageLength }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.sortBy",
+      "values": [
+        "orderLine.order.{{ shipmentDetails.tabs.orderInbound.sort.by }}"
+      ],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.sortOrder",
+      "values": ["{{ shipmentDetails.tabs.orderInbound.sort.order }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.shipmentId",
+      "values": ["{{ shipmentId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.cursorId",
+      "values": ["{{ shipmentDetails.tabs.orderInbound.cursorId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "resizeToContent",
+      "values": ["true"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "draggable",
+      "values": ["false"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "shipmentDetails.tabs.orderInbound.sort",
+      "values": ["refreshData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "pageChanged",
+      "values": ["shipmentDetails.tabs.orderInbound"],
+      "metaInformation": "stateScope"
+    },
+    {
+      "name": "shipmentDetails.tabs.orderInbound.page",
+      "values": ["refreshData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "shipmentDetails.tabs.orderInbound.pageLength",
+      "values": ["refreshData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "columnSorted",
+      "values": ["shipmentDetails.tabs.orderInbound"],
+      "metaInformation": "stateScope"
+    },
+    {
+      "name": "selectableRow.enable",
+      "values": [false],
+      "metaInformation": "tableOption"
+    },
+    {
+      "name": "pagination.enable",
+      "values": [true],
+      "metaInformation": "tableOption"
+    },
+    {
+      "name": "pageInput.enable",
+      "values": [true],
+      "metaInformation": "tableOption"
+    },
+    {
+      "name": "horizontalScroll.enable",
+      "values": [true],
+      "metaInformation": "tableOption"
+    },
+    {
+      "name": "rowDisable",
+      "values": [false],
+      "metaInformation": "tableOption"
+    },
+    {
+      "name": "stickyTableHeader",
+      "values": [false],
+      "metaInformation": "tableOption"
+    },
+    {
+      "name": "stripes",
+      "values": [false],
+      "metaInformation": "tableOption"
+    },
+    {
+      "name": "configurable",
+      "values": [false],
+      "metaInformation": "tableOption"
+    },
+    {
+      "name": "columns[0].cell.label",
+      "values": ["{{ orderType }}"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[0].header.label",
+      "values": ["ORDER.ORDER_TYPE"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[0].sortable",
+      "values": ["false"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[0].cell.customTemplate",
+      "values": ["textTpl"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[0].sequence",
+      "values": ["0"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[1].cell.label",
+      "values": ["{{ orderIdentifier }}"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[1].header.label",
+      "values": ["ORDER.ORDER_IDENTIFIER"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[1].sortable",
+      "values": ["true"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[1].cell.customTemplate",
+      "values": ["linkTpl"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[1].cell.href.type",
+      "values": ["LAYOUT_TEMPLATE"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[1].cell.href.id",
+      "values": ["defaultOrderDetailInboundLayoutTemplate"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[1].cell.href.params",
+      "values": ["orderId={{ id }}"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[1].sequence",
+      "values": ["1"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[2].cell.label",
+      "values": ["{{ vendor.organizationIdentifier }}"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[2].header.label",
+      "values": ["ORDER.VENDOR.ORGANIZATION_IDENTIFIER"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[2].sortable",
+      "values": ["false"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[2].cell.customTemplate",
+      "values": ["linkTpl"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[2].cell.href.type",
+      "values": ["LAYOUT_TEMPLATE"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[2].cell.href.id",
+      "values": ["defaultSupplierDetailLayoutTemplate"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[2].cell.href.params",
+      "values": ["organizationId={{ vendor.id }}"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[2].sequence",
+      "values": ["2"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[3].cell.label",
+      "values": ["{{ buyer.organizationIdentifier }}"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[3].header.label",
+      "values": ["ORDER.BUYER.ORGANIZATION_IDENTIFIER"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[3].sortable",
+      "values": ["false"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[3].cell.customTemplate",
+      "values": ["linkTpl"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[3].cell.href.type",
+      "values": ["LAYOUT_TEMPLATE"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[3].cell.href.id",
+      "values": ["defaultCustomerDetailLayoutTemplate"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[3].cell.href.params",
+      "values": ["organizationId={{ buyer.id }}"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[3].sequence",
+      "values": ["3"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[4].cell.label",
+      "values": ["{{ requestedShipDate }}"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[4].header.label",
+      "values": ["ORDER.REQUESTED_SHIP_DATE"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[4].sortable",
+      "values": ["true"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[4].cell.customTemplate",
+      "values": ["dateTpl"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[4].sequence",
+      "values": ["4"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[5].cell.label",
+      "values": ["{{ plannedShipDate }}"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[5].header.label",
+      "values": ["ORDER.PLANNED_SHIP_DATE"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[5].sortable",
+      "values": ["true"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[5].cell.customTemplate",
+      "values": ["dateTpl"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[5].sequence",
+      "values": ["5"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[6].cell.label",
+      "values": ["{{ orderStatus }}"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[6].header.label",
+      "values": ["ORDER.ORDER_STATUS"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[6].sortable",
+      "values": ["false"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[6].cell.customTemplate",
+      "values": ["textTpl"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[6].sequence",
+      "values": ["6"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[7].cell.label",
+      "values": ["{{ deliveryStatusByDate }}"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[7].header.label",
+      "values": ["ORDER.DELIVERY_STATUS_BY_DATE"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[7].sortable",
+      "values": ["false"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[7].cell.customTemplate",
+      "values": ["textTpl"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[7].sequence",
+      "values": ["7"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[8].cell.label",
+      "values": ["{{ shipmentStatusByDate }}"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[8].header.label",
+      "values": ["ORDER.SHIPMENT_STATUS_BY_DATE"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[8].sortable",
+      "values": ["false"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[8].cell.customTemplate",
+      "values": ["textTpl"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[8].sequence",
+      "values": ["8"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[9].cell.label",
+      "values": ["{{ shipFromInstructionLocation.locationIdentifier }}"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[9].header.label",
+      "values": ["ORDER.SHIP_FROM_INSTRUCTION_LOCATION.LOCATION_IDENTIFIER"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[9].sortable",
+      "values": ["false"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[9].cell.customTemplate",
+      "values": ["textTpl"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[9].sequence",
+      "values": ["9"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[10].cell.label",
+      "values": ["{{ shipToLocation.locationIdentifier }}"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[10].header.label",
+      "values": ["ORDER.SHIP_TO_LOCATION.LOCATION_IDENTIFIER"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[10].sortable",
+      "values": ["false"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[10].cell.customTemplate",
+      "values": ["textTpl"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[10].sequence",
+      "values": ["10"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[11].cell.label",
+      "values": ["{{ createdDate }}"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[11].header.label",
+      "values": ["COMMON.DATE_CREATED"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[11].sortable",
+      "values": ["true"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[11].cell.customTemplate",
+      "values": ["dateTpl"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[11].sequence",
+      "values": ["11"],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": ["refreshData"],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{ \"errors\":\"{{#? this.errors}}\", \"totalCount\":\"{{this.data.shipmentDetailOrders.totalCount}}\", \"pageInfo\":\"{{this.data.shipmentDetailOrders.pageInfo}}\", \"results\":{ \"{{#each this.data.shipmentDetailOrders.edges}}\":{ \"cursor\": \"{{this.cursor}}\", \"id\": \"{{this.object.shipmentLines.edges[0].object.orderLine.order.id}}\", \"orderStatus\": \"{{this.object.shipmentLines.edges[0].object.orderLine.order.orderStatus}}\", \"deliveryStatusByDate\": \"{{this.object.shipmentLines.edges[0].object.orderLine.order.deliveryStatusByDate}}\", \"shipmentStatusByDate\": \"{{this.object.shipmentLines.edges[0].object.orderLine.order.shipmentStatusByDate}}\", \"orderType\": \"{{this.object.shipmentLines.edges[0].object.orderLine.order.orderType}}\", \"buyer\": \"{{this.object.shipmentLines.edges[0].object.orderLine.order.buyer}}\", \"vendor\": \"{{this.object.shipmentLines.edges[0].object.orderLine.order.vendor}}\", \"shipFromInstructionLocation\": \"{{this.object.shipmentLines.edges[0].object.orderLine.order.shipFromInstructionLocation}}\", \"shipToLocation\": \"{{this.object.shipmentLines.edges[0].object.orderLine.order.shipToLocation}}\", \"orderIdentifier\": \"{{this.object.shipmentLines.edges[0].object.orderLine.order.orderIdentifier}}\", \"createdDate\": \"{{this.object.shipmentLines.edges[0].object.orderLine.order.createdDate}}\", \"requestedShipDate\": \"{{this.object.shipmentLines.edges[0].object.orderLine.order.requestedShipDate}}\" , \"plannedShipDate\": \"{{this.object.shipmentLines.edges[0].object.orderLine.order.plannedShipDate}}\" } } }"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.title",
+      "values": ["COMMON.EMPTY_TITLE"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.body",
+      "values": ["COMMON.EMPTY_BODY"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": ["COMMON.EMPTY_LINK_LABEL"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": ["NEW_WINDOW"],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [
+    {
+      "name": "chartType",
+      "values": ["data_table"]
+    }
+  ],
+  "adminConfigurations": []
+}
