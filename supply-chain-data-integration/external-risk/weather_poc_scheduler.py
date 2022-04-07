@@ -9,10 +9,10 @@ def uploadData():
     TwcGetData.getData(now)
     TwcTransformData.transformWeatherAtTime(now)
 
-    tenantId = "bb937633-25aa-4733-8086-058db5b0a3dc"
+    tenantId = "<<YOUR-TENANT-ID>>"
     header={"Content-Type":"application/x-www-form-urlencoded", "x-amz-tagging": "tenantId="+tenantId}
     body={
-        "apikey":"TK2OQxJdNTyeUj0Cb4o6dCQkN6Xjt6VoR0pyLKFICsKu",
+        "apikey":"<<YOUR-COS-APIKEY>>",
         "response_type":"cloud_iam", 
         "grant_type":"urn:ibm:params:oauth:grant-type:apikey"
         }
