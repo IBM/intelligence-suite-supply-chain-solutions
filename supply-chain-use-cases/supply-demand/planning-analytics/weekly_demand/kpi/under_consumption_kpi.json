@@ -1,0 +1,227 @@
+{
+    "offeringId": "SCO",
+    "id": "Inventory_Under_Consumption_BAR",
+    "state": "ACTIVE",
+    "identifier": "Inventory_Under_Consumption_BAR",
+    "type": "Dashboard_Widget",
+    "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+    "createdDate": "2022-03-23T10:10:45.150Z",
+    "createdBy": "550008GN71",
+    "lastModifiedDate": "2022-03-23T10:10:45.150Z",
+    "lastModifiedBy": "550008GN71",
+    "path": "/api",
+    "vendor": "IBM",
+    "defaultLanguage": "en",
+    "version": 2,
+    "description": {
+        "name": "Under consumption",
+        "language": "en",
+        "description": "Under consumption"
+    },
+    "devConfigurations": [
+        {
+            "name": "header.type",
+            "values": [
+                "text_header"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "header.title",
+            "values": [
+                "Under consumption"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "header.tooltip",
+            "values": [
+                "Under consumption."
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "icons[0].type",
+            "values": [
+                "kebab_menu"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "icons[0].options[0]",
+            "values": [
+                "move"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "draggable",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "data.service",
+            "values": [
+                "infohub"
+            ]
+        },
+        {
+            "name": "queries[0].fields",
+            "values": [
+                "query weeklyDemandOfUnderConsumption($tenantId: String, $locationNameFilter: BooleanExp = {CONSTANT_VALUE: true}, $locationIDFilter: BooleanExp = {CONSTANT_VALUE: true}, $categoryFilter: BooleanExp = {CONSTANT_VALUE: true}, $plannerCodeFilter: BooleanExp = {CONSTANT_VALUE: true} ) {    UnderConsumption: businessObjects(   simpleFilter: {tenantId: $tenantId, type: Inventory}  hint: { viewId: \"graph\" }  advancedFilter: {  AND: [  {  LESS_THAN: [  { SELECT: \"customAttributes.consumptionFloat\", type: STRING },  { SELECT: \"customAttributes.consumptionLowerLimitFloat\", type: STRING }  ]  }, $locationNameFilter, $locationIDFilter, $categoryFilter, $plannerCodeFilter  ]  }) { totalCount }      AllInventory: businessObjects(   simpleFilter: {tenantId: $tenantId, type: Inventory}  advancedFilter: {  AND: [ $locationNameFilter, $locationIDFilter, $categoryFilter, $plannerCodeFilter  ]  } hint: { viewId: \"graph\" }  ) { totalCount }}"
+            ],
+            "metaInformation": "infohub.fields"
+        },
+        {
+            "name": "queries[0].variables.locationNameFilter",
+            "values": [
+                "{ \"EQUALS_ANY\": [ {\"SELECT\": \"location.locationName\", \"type\": \"STRING\" }, { \"VALUES\": {{ weeklyDemand.appliedFilters.LocationName.ids }}, \"type\": \"STRING\" } ] }"
+            ],
+            "metaInformation": "infohub.variable.dynamicExpr"
+        },
+        {
+            "name": "queries[0].variables.locationIDFilter",
+            "values": [
+                "{ \"EQUALS_ANY\": [ {\"SELECT\": \"location.locationIdentifier\", \"type\": \"STRING\" }, { \"VALUES\": {{ weeklyDemand.appliedFilters.LocationID.ids }}, \"type\": \"STRING\" } ] }"
+            ],
+            "metaInformation": "infohub.variable.dynamicExpr"
+        },
+        {
+            "name": "queries[0].variables.categoryFilter",
+            "values": [
+                "{ \"EQUALS_ANY\": [ {\"SELECT\": \"product.category.code\", \"type\": \"STRING\" }, { \"VALUES\": {{ weeklyDemand.appliedFilters.Category.ids }}, \"type\": \"STRING\" } ] }"
+            ],
+            "metaInformation": "infohub.variable.dynamicExpr"
+        },
+        {
+            "name": "queries[0].variables.plannerCodeFilter",
+            "values": [
+                "{ \"EQUALS_ANY\": [ {\"SELECT\": \"product.plannerCode\", \"type\": \"STRING\" }, { \"VALUES\": {{ weeklyDemand.appliedFilters.PlannerCode.ids }}, \"type\": \"STRING\" } ] }"
+            ],
+            "metaInformation": "infohub.variable.dynamicExpr"
+        },
+        {
+            "name": "queries[0].variables.tenantId",
+            "values": [
+                "{{ tenantId }}"
+            ],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "items[0].count.href.labelType",
+            "values": [
+                "numberTpl"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "items[0].count.label",
+            "values": [
+                "{{ UnderConsumptionTotalCount }}"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "items[0].units.direction",
+            "values": [
+                "vertical"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "items[0].units.label",
+            "values": [
+                "of {{ AllTotalCount }} products"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "items[0].count.customTemplate",
+            "values": [
+                "linkTpl"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "items[0].count.href.type",
+            "values": [
+                "LAYOUT_TEMPLATE"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "items[0].count.href.id",
+            "values": [
+                "Inventory_With_Under_Consumption_View_All_Layout_Template"
+            ],
+            "metaInformation": "gridOption"
+        },
+        {
+            "name": "weeklyDemand.appliedFilters",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "widgetInitialized",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "eventSubscription"
+        },
+        {
+            "name": "transformation",
+            "values": [
+                "{ \"errors\": \"{{#? this.errors}}\", \"pageInfo\": \"{}\", \"totalCount\":\"{{this.data.AllInventory.totalCount}}\",  \"UnderConsumptionTotalCount\": \"{{this.data.UnderConsumption.totalCount}}\", \"AllTotalCount\": \"{{this.data.AllInventory.totalCount}}\", \"results\": [ { \"totalCount2\": \"{{this.data.UnderConsumption.totalCount}}\" } ] }"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.title",
+            "values": [
+                "No data"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.body",
+            "values": [
+                "There is no business data to display"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.link.label",
+            "values": [
+                "Learn more"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.link.href.type",
+            "values": [
+                "NEW_WINDOW"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.link.href.path",
+            "values": [
+                "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+            ],
+            "metaInformation": "widgetOption"
+        }
+    ],
+    "userConfigurations": [
+        {
+            "name": "chartType",
+            "values": [
+                "summary"
+            ]
+        }
+    ],
+    "adminConfigurations": []
+}

@@ -1,0 +1,283 @@
+{
+    "offeringId": "SCO",
+    "id": "Stock_Underage_Within_planning_period_plannerCode_BAR",
+    "state": "ACTIVE",
+    "identifier": "Stock_Underage_Within_planning_period_plannerCode_BAR",
+    "type": "Dashboard_Widget",
+    "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+    "createdDate": "2022-03-25T07:27:46.351Z",
+    "createdBy": "550008GN71",
+    "path": "/api",
+    "vendor": "CUSTOM",
+    "defaultLanguage": "en",
+    "version": 3,
+    "descriptions": {
+        "en":{
+            "name": "Stock Underage Within Planning Period (Planner Code)",
+            "language": "en",
+            "description": "Stock Underage Within Planning Period (Planner Code)"
+        }
+    },
+    "devConfigurations": [
+        {
+            "name": "header.type",
+            "values": [
+                "text_header"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "header.title",
+            "values": [
+                "Stock underage within planning period (planner code)"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "widget.footer.customTemplate",
+            "values": [
+                "linkTpl"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "widget.footer.label",
+            "values": [
+                "View all {{totalCount}} stock underages"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "widget.footer.href.type",
+            "values": [
+                "LAYOUT_TEMPLATE"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "widget.footer.href.id",
+            "values": [
+                "Stock_Underage_Within_planning_period_View_All_template"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "icons[0].type",
+            "values": [
+                "kebab_menu"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "icons[0].options[0]",
+            "values": [
+                "move"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "draggable",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "data.service",
+            "values": [
+                "infohub"
+            ]
+        },
+        {
+            "name": "dailySupply.appliedFilters",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "queries[0].variables.tenantId",
+            "values": [
+                "{{ tenantId }}"
+            ],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "widgetInitialized",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "eventSubscription"
+        },
+        {
+            "name": "state.empty.title",
+            "values": [
+                "No Data"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.body",
+            "values": [
+                "There is no business data to display"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.link.label",
+            "values": [
+                "Learn more"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.link.href.type",
+            "values": [
+                "NEW_WINDOW"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.link.href.path",
+            "values": [
+                "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "showFooter",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "chart.type",
+            "values": [
+                "simpleBar"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "chart.options.axes.bottom.mapsTo",
+            "values": [
+                "group"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "chart.options.axes.bottom.scaleType",
+            "values": [
+                "labels"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "chart.options.axes.left.mapsTo",
+            "values": [
+                "value"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "chart.options.axes.left.title",
+            "values": [
+                "Materials"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "chart.options.axes.right.visible",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "chart.options.tooltip.showTotal",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "chart.options.height",
+            "values": [
+                "250px"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "chart.options.legend.enabled",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "chart.options.grid.x.enabled",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "transformation",
+            "values": [
+                "{\"totalCount\":\"{{this.data.businessObjects.totalCount}}\",\"errors\":\"{{#? this.errors}}\",\"pageInfo\":\"{}\",\"results\":{\"{{#each this.data.businessObjects.aggregationResults}}\":{\"group\":\"{{dimensionValues[0].value}}\",\"value\":\"{{values[0].numValue}}\"}}}"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "queries[0].fields",
+            "values": [
+                "query InventoryStockOut($tenantId: String!, $locationNameFilter: BooleanExp = {CONSTANT_VALUE: true}, $locationIDFilter: BooleanExp = {CONSTANT_VALUE: true}, $categoryFilter: BooleanExp = {CONSTANT_VALUE: true}, $plannerCodeFilter: BooleanExp = {CONSTANT_VALUE: true}, $StockUnderageWithinPlanningPeriodFilter: BooleanExp = {CONSTANT_VALUE: true}, $cursorId: String, $sortBy: String = \"quantity\") { businessObjects( aggregationParams: { paginationParams: {first: 5, sort: {fieldPath: \"product.plannerCode\", order: DESC}}, dimension: {fieldPath: \"product.plannerCode\", type: STRING}, reduce: {expression: {fieldPath: \"product.plannerCode\", operator: COUNT, type: FLOAT}, output: {resultAlias: \"locationIdentifiers\", type: FLOAT}}}, simpleFilter: {type: Inventory, tenantId: $tenantId}, advancedFilter: {AND: [$StockUnderageWithinPlanningPeriodFilter, $locationNameFilter, $locationIDFilter, $categoryFilter, $plannerCodeFilter]} hint: {viewId: \"graph\"}, cursorParams: {first: 15, after: $cursorId, sort: {fieldPath: $sortBy, order: DESC}}) { totalCount pageInfo { hasNextPage } aggregationResultsTotalCount aggregationResults { dimensionValues { name value } values { name value numValue } } edges { cursor object { ... on Inventory { expectedLeadTime nextStockoutQuantity location { locationIdentifier } product { plannerCode } quantity } } } } }"
+            ],
+            "metaInformation": "infohub.fields"
+        },
+        {
+            "name": "queries[0].variables.locationNameFilter",
+            "values": [
+                "{ \"EQUALS_ANY\": [ {\"SELECT\": \"location.locationName\", \"type\": \"STRING\" }, { \"VALUES\": {{ dailySupply.appliedFilters.LocationName.ids }}, \"type\": \"STRING\" } ] }"
+            ],
+            "metaInformation": "infohub.variable.dynamicExpr"
+        },
+        {
+            "name": "queries[0].variables.locationIDFilter",
+            "values": [
+                "{ \"EQUALS_ANY\": [ {\"SELECT\": \"location.locationIdentifier\", \"type\": \"STRING\" }, { \"VALUES\": {{ dailySupply.appliedFilters.LocationID.ids }}, \"type\": \"STRING\" } ] }"
+            ],
+            "metaInformation": "infohub.variable.dynamicExpr"
+        },
+        {
+            "name": "queries[0].variables.categoryFilter",
+            "values": [
+                "{ \"EQUALS_ANY\": [ {\"SELECT\": \"product.category.code\", \"type\": \"STRING\" }, { \"VALUES\": {{ dailySupply.appliedFilters.Category.ids }}, \"type\": \"STRING\" } ] }"
+            ],
+            "metaInformation": "infohub.variable.dynamicExpr"
+        },
+        {
+            "name": "queries[0].variables.plannerCodeFilter",
+            "values": [
+                "{ \"EQUALS_ANY\": [ {\"SELECT\": \"product.plannerCode\", \"type\": \"STRING\" }, { \"VALUES\": {{ dailySupply.appliedFilters.PlannerCode.ids }}, \"type\": \"STRING\" } ] }"
+            ],
+            "metaInformation": "infohub.variable.dynamicExpr"
+        },
+        {
+            "name": "queries[0].variables.StockUnderageWithinPlanningPeriodFilter",
+            "values": [
+                "{ \"LESS_EQUALS\": [ { \"SELECT\": \"customAttributes.daysToStockUnderageFloat\", \"type\": \"FLOAT\" }, { \"SELECT\": \"customAttributes.planningPeriodFloat\", \"type\": \"FLOAT\" } ] }"
+            ],
+            "metaInformation": "infohub.variable.dynamicExpr"
+        }
+    ],
+    "userConfigurations": [
+        {
+            "name": "chartType",
+            "values": [
+                "carbon_chart"
+            ]
+        }
+    ],
+    "adminConfigurations": []
+}

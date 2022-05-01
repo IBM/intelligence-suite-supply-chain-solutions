@@ -1,0 +1,155 @@
+{
+    "id": "Inventory_With_Over_Consumption_View_All_Layout_Template",
+    "offeringId": "SCO",
+    "state": "ACTIVE",
+    "sequence": 3.0,
+    "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+    "type": "View_All_Layout",
+    "createdDate": "2022-03-23T10:34:40.390Z",
+    "creator": "550008GN71",
+    "lastModifiedDate": "2022-03-23T10:34:40.390Z",
+    "lastModifiedBy": "550008GN71",
+    "widgets": [
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "d864f720-aa94-11ec-ae11-094a39825378",
+            "layoutId": "Inventory_With_Over_Consumption_View_All_Layout_Template",
+            "sequence": 0.0,
+            "widgetDefinitionId": "Weekly_Demand_Dashboard_Filter",
+            "name": "Weekly demand dashboard filter",
+            "creator": "550008GN71",
+            "createdDate": "2022-03-23T10:34:40.402Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "chartType": "filter",
+                "fullBodyWidget": "false",
+                "enabled": "true",
+                "section": "layout_header"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "d864f721-aa94-11ec-ae11-094a39825378",
+            "layoutId": "Inventory_With_Over_Consumption_View_All_Layout_Template",
+            "sequence": 1.0,
+            "widgetDefinitionId": "Weekly_Demand_Dashboard_Active_Filters",
+            "name": "Weekly demand dashboard active filters",
+            "creator": "550008GN71",
+            "createdDate": "2022-03-23T10:34:40.402Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "chartType": "active_filters",
+                "section": "layout_subheader",
+                "enabled": "true",
+                "fullBodyWidget": "true"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "d864f722-aa94-11ec-ae11-094a39825378",
+            "layoutId": "Inventory_With_Over_Consumption_View_All_Layout_Template",
+            "sequence": 2.0,
+            "widgetDefinitionId": "Inventory_With_Over_Consumption_View_All_Table",
+            "name": "Inventory with over consumption view all table",
+            "creator": "550008GN71",
+            "createdDate": "2022-03-23T10:34:40.402Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "xPos": "0",
+                "yPos": "0",
+                "rowSpan": "80",
+                "colSpan": "4",
+                "chartType": "data_table",
+                "fullBodyWidget": "true",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        }
+    ],
+    "defaultLanguage": "en",
+    "description": {
+        "name": "Inventory with over consumption",
+        "language": "en",
+        "description": "Inventory with over consumption"
+    },
+    "descriptions": null,
+    "properties": [
+        {
+            "name": "breadcrumbEnabled",
+            "metaInformation": "layoutOption",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "breadcrumbList",
+            "metaInformation": "layoutOption",
+            "values": [
+                "{\"label\": \"Inventory with over consumption\", \"routeName\": \"/template/Inventory_With_Over_Consumption_View_All_Layout_Template\"}"
+            ]
+        },
+        {
+            "name": "timestampEnabled",
+            "metaInformation": "layoutOption",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "ivAssistantEnabled",
+            "metaInformation": "layoutOption",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "state.empty.title",
+            "metaInformation": "layoutOption",
+            "values": [
+                "No data"
+            ]
+        },
+        {
+            "name": "state.empty.body",
+            "metaInformation": "layoutOption",
+            "values": [
+                "There is no data to display"
+            ]
+        },
+        {
+            "name": "state.empty.image",
+            "metaInformation": "layoutOption",
+            "values": [
+                "dataEmpty"
+            ]
+        },
+        {
+            "name": "state.empty.link.label",
+            "metaInformation": "layoutOption",
+            "values": [
+                "Learn more"
+            ]
+        },
+        {
+            "name": "state.empty.link.href.type",
+            "metaInformation": "layoutOption",
+            "values": [
+                "NEW_WINDOW"
+            ]
+        },
+        {
+            "name": "state.empty.link.href.path",
+            "metaInformation": "layoutOption",
+            "values": [
+                "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+            ]
+        }
+    ],
+    "version": 2
+}

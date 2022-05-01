@@ -1,0 +1,248 @@
+{
+    "id": "inventory_weekly_demand_layout_template",
+    "offeringId": "SCO",
+    "state": "ACTIVE",
+    "sequence": 7.0,
+    "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+    "type": "Dashboard",
+    "createdDate": "2022-03-23T07:27:16.078Z",
+    "creator": "550008GN71",
+    "lastModifiedDate": "2022-03-23T07:27:16.078Z",
+    "lastModifiedBy": "550008GN71",
+    "widgets": [
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "aa428160-aa7a-11ec-8c0b-9b873cf983fa",
+            "layoutId": "inventory_weekly_demand_layout_template",
+            "sequence": 0.0,
+            "widgetDefinitionId": "Weekly_Demand_Dashboard_Filter",
+            "name": "Weekly demand dashboard filter",
+            "creator": "550008GN71",
+            "createdDate": "2022-03-23T07:27:16.086Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "chartType": "filter",
+                "fullBodyWidget": "false",
+                "enabled": "true",
+                "section": "layout_header"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "aa428161-aa7a-11ec-8c0b-9b873cf983fa",
+            "layoutId": "inventory_weekly_demand_layout_template",
+            "sequence": 1.0,
+            "widgetDefinitionId": "Weekly_Demand_Dashboard_Active_Filters",
+            "name": "Weekly demand dashboard active filters",
+            "creator": "550008GN71",
+            "createdDate": "2022-03-23T07:27:16.086Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "chartType": "active_filters",
+                "section": "layout_subheader",
+                "enabled": "true",
+                "fullBodyWidget": "true"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "aa428162-aa7a-11ec-8c0b-9b873cf983fa",
+            "layoutId": "inventory_weekly_demand_layout_template",
+            "sequence": 2.0,
+            "widgetDefinitionId": "DASHBOARD_STARRED_QUEUES",
+            "name": "Starred work queues",
+            "creator": "550008GN71",
+            "createdDate": "2022-03-23T07:27:16.086Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "colSpan": "2",
+                "rowSpan": "24",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "work_queue_table",
+                "fullBodyWidget": "false",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "aa428163-aa7a-11ec-8c0b-9b873cf983fa",
+            "layoutId": "inventory_weekly_demand_layout_template",
+            "sequence": 3.0,
+            "widgetDefinitionId": "Inventory_Over_Consumption_BAR",
+            "name": "Inventory over consumption BAR",
+            "creator": "550008GN71",
+            "createdDate": "2022-03-23T07:27:16.086Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "colSpan": "1",
+                "rowSpan": "12",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "summary",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "aa428164-aa7a-11ec-8c0b-9b873cf983fa",
+            "layoutId": "inventory_weekly_demand_layout_template",
+            "sequence": 4.0,
+            "widgetDefinitionId": "Inventory_Under_Consumption_BAR",
+            "name": "Inventory under consumption BAR",
+            "creator": "550008GN71",
+            "createdDate": "2022-03-23T07:27:16.086Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "colSpan": "1",
+                "rowSpan": "12",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "summary",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "aa428165-aa7a-11ec-8c0b-9b873cf983fa",
+            "layoutId": "inventory_weekly_demand_layout_template",
+            "sequence": 5.0,
+            "widgetDefinitionId": "Inventory_Over_Consumption_DONUT",
+            "name": "Inventory over consumption DONUT",
+            "creator": "550008GN71",
+            "createdDate": "2022-03-23T07:27:16.086Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "colSpan": "1",
+                "rowSpan": "24",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "carbon_chart",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "aa428166-aa7a-11ec-8c0b-9b873cf983fa",
+            "layoutId": "inventory_weekly_demand_layout_template",
+            "sequence": 6.0,
+            "widgetDefinitionId": "Inventory_Under_Consumption_DONUT",
+            "name": "Inventory under consumption DONUT",
+            "creator": "550008GN71",
+            "createdDate": "2022-03-23T07:27:16.086Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "colSpan": "1",
+                "rowSpan": "24",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "carbon_chart",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        }
+    ],
+    "defaultLanguage": "en",
+    "description": {
+        "name": "Weekly Demand",
+        "language": "en",
+        "description": "Weekly Demand"
+    },
+    "descriptions": null,
+    "properties": [
+        {
+            "name": "breadcrumbEnabled",
+            "values": [
+                "false"
+            ]
+        },
+        {
+            "name": "breadcrumbList",
+            "metaInformation": "layoutOption",
+            "values": [
+                "{\"label\": \"Dashboard\", \"routeName\": \"/\"}"
+            ]
+        },
+        {
+            "name": "timestampEnabled",
+            "values": [
+                "false"
+            ]
+        },
+        {
+            "name": "ivAssistantEnabled",
+            "metaInformation": "layoutOption",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "hideTitle",
+            "metaInformation": "layoutOption",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "state.empty.title",
+            "metaInformation": "layoutOption",
+            "values": [
+                "No data"
+            ]
+        },
+        {
+            "name": "state.empty.body",
+            "metaInformation": "layoutOption",
+            "values": [
+                "There is no data to display"
+            ]
+        },
+        {
+            "name": "state.empty.image",
+            "metaInformation": "layoutOption",
+            "values": [
+                "dataEmpty"
+            ]
+        },
+        {
+            "name": "state.empty.link.label",
+            "metaInformation": "layoutOption",
+            "values": [
+                "Learn more"
+            ]
+        },
+        {
+            "name": "state.empty.link.href.type",
+            "metaInformation": "layoutOption",
+            "values": [
+                "NEW_WINDOW"
+            ]
+        },
+        {
+            "name": "state.empty.link.href.path",
+            "metaInformation": "layoutOption",
+            "values": [
+                "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+            ]
+        }
+    ],
+    "version": 7
+}

@@ -1,0 +1,153 @@
+{
+    "id": "Stock_Out_Within_planning_period_View_All_Template",
+    "offeringId": "SCO",
+    "state": "ACTIVE",
+    "sequence": 4.0,
+    "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+    "type": "View_All_Layout",
+    "version": 2,
+    "widgets": [
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "4069a4b0-aa9f-11ec-9ed0-b3104ee08b84",
+            "layoutId": "Stock_Out_Within_planning_period_View_All_Template",
+            "sequence": 0.0,
+            "widgetDefinitionId": "Daily_Supply_Dashboard_Filter",
+            "name": "Daily supply dashboard filter",
+            "creator": "550008GN71",
+            "createdDate": "2022-03-23T11:49:09.883Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "chartType": "filter",
+                "fullBodyWidget": "false",
+                "enabled": "true",
+                "section": "layout_header"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "4069a4b1-aa9f-11ec-9ed0-b3104ee08b84",
+            "layoutId": "Stock_Out_Within_planning_period_View_All_Template",
+            "sequence": 1.0,
+            "widgetDefinitionId": "Daily_Supply_Dashboard_Active_Filters",
+            "name": "Daily supply dashboard active filters",
+            "creator": "550008GN71",
+            "createdDate": "2022-03-23T11:49:09.883Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "chartType": "active_filters",
+                "section": "layout_subheader",
+                "enabled": "true",
+                "fullBodyWidget": "true"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "4069a4b2-aa9f-11ec-9ed0-b3104ee08b84",
+            "layoutId": "Stock_Out_Within_planning_period_View_All_Template",
+            "sequence": 2.0,
+            "widgetDefinitionId": "Stock_Out_Within_planning_period_View_All",
+            "name": "Stock_Out_Within_planning_period_View_All",
+            "creator": "550008GN71",
+            "createdDate": "2022-03-23T11:49:09.883Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "xPos": "0",
+                "yPos": "0",
+                "rowSpan": "80",
+                "colSpan": "4",
+                "chartType": "data_table",
+                "fullBodyWidget": "true",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        }
+    ],
+    "defaultLanguage": "en",
+    "descriptions": {
+        "en":{
+            "name": "All stock out within planning period",
+            "language": "en",
+            "description": "All stock out within planning period"
+        }
+        
+    },
+    "properties": [
+        {
+            "name": "breadcrumbEnabled",
+            "metaInformation": "layoutOption",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "breadcrumbList",
+            "metaInformation": "layoutOption",
+            "values": [
+                "{\"label\": \"All stock out within planning period\", \"routeName\": \"/template/Stock_Out_Within_planning_period_View_All_Template\"}"
+            ]
+        },
+        {
+            "name": "timestampEnabled",
+            "metaInformation": "layoutOption",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "ivAssistantEnabled",
+            "metaInformation": "layoutOption",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "state.empty.title",
+            "metaInformation": "layoutOption",
+            "values": [
+                "No data"
+            ]
+        },
+        {
+            "name": "state.empty.body",
+            "metaInformation": "layoutOption",
+            "values": [
+                "There is no data to display"
+            ]
+        },
+        {
+            "name": "state.empty.image",
+            "metaInformation": "layoutOption",
+            "values": [
+                "dataEmpty"
+            ]
+        },
+        {
+            "name": "state.empty.link.label",
+            "metaInformation": "layoutOption",
+            "values": [
+                "Learn more"
+            ]
+        },
+        {
+            "name": "state.empty.link.href.type",
+            "metaInformation": "layoutOption",
+            "values": [
+                "NEW_WINDOW"
+            ]
+        },
+        {
+            "name": "state.empty.link.href.path",
+            "metaInformation": "layoutOption",
+            "values": [
+                "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+            ]
+        }
+    ]
+}

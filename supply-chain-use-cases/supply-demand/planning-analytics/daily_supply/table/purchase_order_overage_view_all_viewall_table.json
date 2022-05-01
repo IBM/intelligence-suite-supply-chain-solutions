@@ -1,0 +1,433 @@
+{
+    "offeringId": "SCO",
+    "id": "Purchase_Order_Overage_View_All_Table",
+    "state": "ACTIVE",
+    "identifier": "Purchase_Order_Overage_View_All_Table",
+    "type": "Dashboard_Widget",
+    "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+    "createdDate": "2022-03-24T06:57:29.814Z",
+    "createdBy": "550008GN71",
+    "path": "/api",
+    "vendor": "IBM",
+    "defaultLanguage": "en",
+    "version": 3,
+    "descriptions": {
+        "en":{
+            "name": "Purchase Order Overage View All Table",
+            "language": "en",
+            "description": "Purchase Order Overage View All Table"
+        }
+      
+    },
+    "devConfigurations": [
+        {
+            "name": "header.type",
+            "values": [
+                "metric_header"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "header.value",
+            "values": [
+                "{{ totalCount }}"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "header.title",
+            "values": [
+                "All purchase order overage"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "header.tooltip",
+            "values": [
+                "All purchase order overage tooltip."
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "icons[0].type",
+            "values": [
+                "kebab_menu"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "icons[0].options[0]",
+            "values": [
+                "move"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "data.service",
+            "values": [
+                "infohub"
+            ]
+        },
+        {
+            "name": "queries[0].fields",
+            "values": [
+                "query InventoryPurchaseOrderOverage($tenantId: String!, $pageLength: Int = 10, $nowDate: String!, $cursorId: String, $sortBy: String = \"customAttributes.nextStockOverageQuantityFloat\", $PurchaseOrderOverageFilter: BooleanExp = {CONSTANT_VALUE: true}, $locationNameFilter: BooleanExp = {CONSTANT_VALUE: true}, $locationIDFilter: BooleanExp = {CONSTANT_VALUE: true}, $categoryFilter: BooleanExp = {CONSTANT_VALUE: true}, $plannerCodeFilter: BooleanExp = {CONSTANT_VALUE: true} ) { PurchaseOrderOverage: businessObjects( simpleFilter: {type: Inventory, tenantId: $tenantId}, advancedFilter: {AND: [$PurchaseOrderOverageFilter, { GREATER_THAN: [ { SELECT: \"nextStockOverageStartDate\", type: STRING }, { VALUE: $nowDate, type: STRING } ] }, $locationNameFilter, $locationIDFilter, $categoryFilter, $plannerCodeFilter ]}, hint: {viewId: \"graph\"}, cursorParams: {first: $pageLength, after: $cursorId, sort: {fieldPath: $sortBy, order: DESC}}) { totalCount pageInfo { hasNextPage endCursor } edges { cursor object { ... on Inventory { id quantity location { locationIdentifier } product { name plannerCode } } } } } AllInventory: businessObjects(simpleFilter: {type: Inventory, tenantId: $tenantId}, advancedFilter: {  AND: [ $locationNameFilter, $locationIDFilter, $categoryFilter, $plannerCodeFilter  ]  }, hint: {viewId: \"graph\"}, cursorParams: {first: $pageLength, after: $cursorId, sort: {fieldPath: $sortBy, order: DESC}}) { totalCount pageInfo { hasNextPage endCursor } edges { cursor object { ... on Inventory { id quantity plannerCode location { locationIdentifier } product { name } } } } } }"
+            ],
+            "metaInformation": "infohub.fields"
+        },
+        {
+            "name": "queries[0].variables.pageLength",
+            "values": [
+                "{{ InventoryPurchaseOrderOverage.pageLength }}"
+            ],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "queries[0].variables.tenantId",
+            "values": [
+                "{{ tenantId }}"
+            ],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "queries[0].variables.nowDate",
+            "values": [
+                "{{ now }}"
+            ],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "queries[0].variables.cursorId",
+            "values": [
+                "{{ cursorId }}"
+            ],
+            "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "queries[0].variables.PurchaseOrderOverageFilter",
+            "values": [
+                "{ \"GREATER_THAN\": [ { \"SELECT\": \"customAttributes.quantityReceivedWithinPeriodFloat\", \"type\": \"FLOAT\" }, { \"VALUE\": \"0\", \"type\": \"FLOAT\" } ] }"
+            ],
+            "metaInformation": "infohub.variable.dynamicExpr"
+        },
+        {
+            "name": "queries[0].variables.locationNameFilter",
+            "values": [
+                "{ \"EQUALS_ANY\": [ {\"SELECT\": \"location.locationName\", \"type\": \"STRING\" }, { \"VALUES\": {{ dailySupply.appliedFilters.LocationName.ids }}, \"type\": \"STRING\" } ] }"
+            ],
+            "metaInformation": "infohub.variable.dynamicExpr"
+        },
+        {
+            "name": "queries[0].variables.locationIDFilter",
+            "values": [
+                "{ \"EQUALS_ANY\": [ {\"SELECT\": \"location.locationIdentifier\", \"type\": \"STRING\" }, { \"VALUES\": {{ dailySupply.appliedFilters.LocationID.ids }}, \"type\": \"STRING\" } ] }"
+            ],
+            "metaInformation": "infohub.variable.dynamicExpr"
+        },
+        {
+            "name": "queries[0].variables.categoryFilter",
+            "values": [
+                "{ \"EQUALS_ANY\": [ {\"SELECT\": \"product.category.code\", \"type\": \"STRING\" }, { \"VALUES\": {{ dailySupply.appliedFilters.Category.ids }}, \"type\": \"STRING\" } ] }"
+            ],
+            "metaInformation": "infohub.variable.dynamicExpr"
+        },
+        {
+            "name": "queries[0].variables.plannerCodeFilter",
+            "values": [
+                "{ \"EQUALS_ANY\": [ {\"SELECT\": \"product.plannerCode\", \"type\": \"STRING\" }, { \"VALUES\": {{ dailySupply.appliedFilters.PlannerCode.ids }}, \"type\": \"STRING\" } ] }"
+            ],
+            "metaInformation": "infohub.variable.dynamicExpr"
+        },
+        {
+            "name": "columnSorted",
+            "values": [
+                "InventoryPurchaseOrderOverage"
+            ],
+            "metaInformation": "stateScope"
+        },
+        {
+            "name": "InventoryPurchaseOrderOverage.sort",
+            "values": [
+                "refreshData",
+                "refreshSavedState"
+            ],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "dailySupply.appliedFilters",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "draggable",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "horizontalScroll.enable",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "tableOption"
+        },
+        {
+            "name": "pagination.enable",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "tableOption"
+        },
+        {
+            "name": "pageInput.enable",
+            "values": [
+                "true"
+            ],
+            "metaInformation": "tableOption"
+        },
+        {
+            "name": "pageChanged",
+            "values": [
+                "InventoryPurchaseOrderOverage"
+            ],
+            "metaInformation": "stateScope"
+        },
+        {
+            "name": "InventoryPurchaseOrderOverage.page",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "InventoryPurchaseOrderOverage.pageLength",
+            "values": [
+                "refreshData"
+            ],
+            "metaInformation": "stateSubscription"
+        },
+        {
+            "name": "stickyTableHeader",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableOption"
+        },
+        {
+            "name": "stripes",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableOption"
+        },
+        {
+            "name": "configurable",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableOption"
+        },
+        {
+            "name": "columns[0].cell.label",
+            "values": [
+                "{{ partNumber }}"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].header.label",
+            "values": [
+                "Inventory ID"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].sortable",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].sequence",
+            "values": [
+                "0"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].cell.customTemplate",
+            "values": [
+                "linkTpl"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].cell.href.params",
+            "values": [
+                "inventoryId={{ id }},hiddenLayoutSections=queue"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].cell.href.type",
+            "values": [
+                "LAYOUT_TEMPLATE"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[0].cell.href.id",
+            "values": [
+                "DEFAULT_INVENTORY_DETAIL_LAYOUT_TEMPLATE"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[1].cell.label",
+            "values": [
+                "{{ productName }}"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[1].header.label",
+            "values": [
+                "Product"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[1].sortable",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[1].sequence",
+            "values": [
+                "1"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[2].cell.label",
+            "values": [
+                "{{ locationIdentifier }}"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[2].header.label",
+            "values": [
+                "Location"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[2].sortable",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[2].sequence",
+            "values": [
+                "2"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[3].cell.label",
+            "values": [
+                "{{ quantity }}"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[3].header.label",
+            "values": [
+                "Quantity"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[3].sortable",
+            "values": [
+                "false"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "columns[3].sequence",
+            "values": [
+                "3"
+            ],
+            "metaInformation": "tableColumn"
+        },
+        {
+            "name": "widgetInitialized",
+            "values": [
+                "loadState",
+                "refreshData"
+            ],
+            "metaInformation": "eventSubscription"
+        },
+        {
+            "name": "transformation",
+            "values": [
+                "{ \"errors\": \"{{#? this.errors}}\", \"pageInfo\": \"{{this.data.PurchaseOrderOverage.pageInfo}}\", \"totalCount\": \"{{this.data.PurchaseOrderOverage.totalCount}}\", \"results\": { \"{{#each this.data.PurchaseOrderOverage.edges}}\": { \"cursor\": \"{{this.cursor}}\", \"partNumber\": \"{{this.object.product.partNumber}}\", \"productName\": \"{{this.object.product.name}}\", \"locationIdentifier\": \"{{this.object.location.locationIdentifier}}\", \"quantity\": \"{{this.object.quantity}}\" } } }"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.title",
+            "values": [
+                "No data"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.body",
+            "values": [
+                "There is no business data to display"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.link.label",
+            "values": [
+                "Learn more"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.link.href.type",
+            "values": [
+                "NEW_WINDOW"
+            ],
+            "metaInformation": "widgetOption"
+        },
+        {
+            "name": "state.empty.link.href.path",
+            "values": [
+                "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+            ],
+            "metaInformation": "widgetOption"
+        }
+    ],
+    "userConfigurations": [
+        {
+            "name": "chartType",
+            "values": [
+                "data_table"
+            ]
+        }
+    ],
+    "adminConfigurations": []
+}

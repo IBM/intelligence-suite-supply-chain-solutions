@@ -1,0 +1,424 @@
+{
+    "id": "daily_supply_v2",
+    "offeringId": "SCO",
+    "state": "ACTIVE",
+    "sequence": 5.0,
+    "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+    "type": "Dashboard",
+    "createdDate": "2022-03-23T21:01:40.543Z",
+    "creator": "270002RDJB",
+    "widgets": [
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "6fcc5a70-aaec-11ec-ae11-094a39825378",
+            "layoutId": "daily_supply_v2",
+            "sequence": 0.0,
+            "widgetDefinitionId": "Daily_Supply_Dashboard_Filter",
+            "name": "Daily supply dashboard filter",
+            "creator": "270002RDJB",
+            "createdDate": "2022-03-23T21:01:40.631Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "chartType": "filter",
+                "fullBodyWidget": "false",
+                "enabled": "true",
+                "section": "layout_header"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "6fcc5a71-aaec-11ec-ae11-094a39825378",
+            "layoutId": "daily_supply_v2",
+            "sequence": 1.0,
+            "widgetDefinitionId": "Daily_Supply_Dashboard_Active_Filters",
+            "name": "Daily supply dashboard active filters",
+            "creator": "270002RDJB",
+            "createdDate": "2022-03-23T21:01:40.631Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "chartType": "active_filters",
+                "section": "layout_subheader",
+                "enabled": "true",
+                "fullBodyWidget": "true"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "6fcc5a72-aaec-11ec-ae11-094a39825378",
+            "layoutId": "daily_supply_v2",
+            "sequence": 2.0,
+            "widgetDefinitionId": "DASHBOARD_STARRED_QUEUES",
+            "name": "Starred work queues",
+            "creator": "270002RDJB",
+            "createdDate": "2022-03-23T21:01:40.631Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "colSpan": "2",
+                "rowSpan": "24",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "work_queue_table",
+                "fullBodyWidget": "false",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "6fcc5a73-aaec-11ec-ae11-094a39825378",
+            "layoutId": "daily_supply_v2",
+            "sequence": 3.0,
+            "widgetDefinitionId": "Inventory_Stock_KPI",
+            "name": "Inventory Stock Out",
+            "creator": "270002RDJB",
+            "createdDate": "2022-03-23T21:01:40.631Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "colSpan": "2",
+                "rowSpan": "12",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "summary",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "6fcc5a74-aaec-11ec-ae11-094a39825378",
+            "layoutId": "daily_supply_v2",
+            "sequence": 4.0,
+            "widgetDefinitionId": "Stock_Out_Underage_Within_Planning_Period_KPI",
+            "name": "Inventory Stock Out underage within planning period",
+            "creator": "270002RDJB",
+            "createdDate": "2022-03-23T21:01:40.631Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "colSpan": "1",
+                "rowSpan": "12",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "summary",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "6fcc5a75-aaec-11ec-ae11-094a39825378",
+            "layoutId": "daily_supply_v2",
+            "sequence": 5.0,
+            "widgetDefinitionId": "Purchase_Order_Overage_KPI",
+            "name": "Purchase Order Overage",
+            "creator": "270002RDJB",
+            "createdDate": "2022-03-23T21:01:40.631Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "colSpan": "1",
+                "rowSpan": "12",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "summary",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "6fcc5a76-aaec-11ec-ae11-094a39825378",
+            "layoutId": "daily_supply_v2",
+            "sequence": 6.0,
+            "widgetDefinitionId": "Stock_Out_Within_Lead_Time_plannerCode_BAR",
+            "name": "Stock Out Within Lead Time bar",
+            "creator": "270002RDJB",
+            "createdDate": "2022-03-23T21:01:40.631Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "colSpan": "2",
+                "rowSpan": "30",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "carbon_chart",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "6fcc5a77-aaec-11ec-ae11-094a39825378",
+            "layoutId": "daily_supply_v2",
+            "sequence": 7.0,
+            "widgetDefinitionId": "Stock_Out_Within_Lead_Time_location_BAR",
+            "name": "Stock Out Within Lead time location BAR",
+            "creator": "270002RDJB",
+            "createdDate": "2022-03-23T21:01:40.631Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "colSpan": "2",
+                "rowSpan": "30",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "carbon_chart",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "6fcc5a78-aaec-11ec-ae11-094a39825378",
+            "layoutId": "daily_supply_v2",
+            "sequence": 8.0,
+            "widgetDefinitionId": "Stock_Out_Within_planning_period_plannerCode_BAR",
+            "name": "Stock Out within planning period (plannerCode)",
+            "creator": "270002RDJB",
+            "createdDate": "2022-03-23T21:01:40.631Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "colSpan": "2",
+                "rowSpan": "30",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "carbon_chart",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "6fcc5a79-aaec-11ec-ae11-094a39825378",
+            "layoutId": "daily_supply_v2",
+            "sequence": 9.0,
+            "widgetDefinitionId": "Stock_Out_Within_planning_period_location_BAR",
+            "name": "Stock Out within planning period (Location)",
+            "creator": "270002RDJB",
+            "createdDate": "2022-03-23T21:01:40.631Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "colSpan": "2",
+                "rowSpan": "24",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "carbon_chart",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "6fcc5a7a-aaec-11ec-ae11-094a39825378",
+            "layoutId": "daily_supply_v2",
+            "sequence": 10.0,
+            "widgetDefinitionId": "Stock_Underage_Within_planning_period_plannerCode_BAR",
+            "name": "Stock underage within planning period (plannerCode)",
+            "creator": "270002RDJB",
+            "createdDate": "2022-03-23T21:01:40.631Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "colSpan": "2",
+                "rowSpan": "30",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "carbon_chart",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "6fcc5a7b-aaec-11ec-ae11-094a39825378",
+            "layoutId": "daily_supply_v2",
+            "sequence": 11.0,
+            "widgetDefinitionId": "Stock_Underage_Within_planning_period_location_BAR",
+            "name": "Stock underage within planning period (Location)",
+            "creator": "270002RDJB",
+            "createdDate": "2022-03-23T21:01:40.631Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "colSpan": "2",
+                "rowSpan": "30",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "carbon_chart",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "6fcc5a7c-aaec-11ec-ae11-094a39825378",
+            "layoutId": "daily_supply_v2",
+            "sequence": 12.0,
+            "widgetDefinitionId": "Stock_Out_Within_Lead_Time_TABLE",
+            "name": "Stock Out Within Lead Time",
+            "creator": "270002RDJB",
+            "createdDate": "2022-03-23T21:01:40.631Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "colSpan": "2",
+                "rowSpan": "30",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "data_table",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "6fcc5a7d-aaec-11ec-ae11-094a39825378",
+            "layoutId": "daily_supply_v2",
+            "sequence": 13.0,
+            "widgetDefinitionId": "Stock_Out_Within_Planning_Period_TABLE",
+            "name": "Stock Out Within Planning Period",
+            "creator": "270002RDJB",
+            "createdDate": "2022-03-23T21:01:40.631Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "colSpan": "2",
+                "rowSpan": "30",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "data_table",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "6fcc5a7e-aaec-11ec-ae11-094a39825378",
+            "layoutId": "daily_supply_v2",
+            "sequence": 14.0,
+            "widgetDefinitionId": "Stock_Underage_Within_Planning_Period_TABLE",
+            "name": "Stock Underage Planning Period",
+            "creator": "270002RDJB",
+            "createdDate": "2022-03-23T21:01:40.631Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "colSpan": "2",
+                "rowSpan": "30",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "data_table",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        }
+    ],
+    "defaultLanguage": "en",
+    "descriptions": {
+        "en":{
+            "name": "Daily Supply",
+            "language": "en",
+            "description": "Daily Supply"
+        }
+        
+    },
+    "properties": [
+        {
+            "name": "breadcrumbEnabled",
+            "values": [
+                "false"
+            ]
+        },
+        {
+            "name": "breadcrumbList",
+            "metaInformation": "layoutOption",
+            "values": [
+                "{\"label\": \"Dashboard\", \"routeName\": \"/\"}"
+            ]
+        },
+        {
+            "name": "timestampEnabled",
+            "values": [
+                "false"
+            ]
+        },
+        {
+            "name": "ivAssistantEnabled",
+            "metaInformation": "layoutOption",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "hideTitle",
+            "metaInformation": "layoutOption",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "state.empty.title",
+            "metaInformation": "layoutOption",
+            "values": [
+                "No data"
+            ]
+        },
+        {
+            "name": "state.empty.body",
+            "metaInformation": "layoutOption",
+            "values": [
+                "There is no data to display"
+            ]
+        },
+        {
+            "name": "state.empty.image",
+            "metaInformation": "layoutOption",
+            "values": [
+                "dataEmpty"
+            ]
+        },
+        {
+            "name": "state.empty.link.label",
+            "metaInformation": "layoutOption",
+            "values": [
+                "Learn more"
+            ]
+        },
+        {
+            "name": "state.empty.link.href.type",
+            "metaInformation": "layoutOption",
+            "values": [
+                "NEW_WINDOW"
+            ]
+        },
+        {
+            "name": "state.empty.link.href.path",
+            "metaInformation": "layoutOption",
+            "values": [
+                "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+            ]
+        }
+    ],
+    "version": 1
+}

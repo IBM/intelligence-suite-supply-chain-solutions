@@ -1,0 +1,143 @@
+{
+    "id": "Purchase_Order_Overage_View_All_Template",
+    "offeringId": "SCO",
+    "state": "ACTIVE",
+    "sequence": 0.0,
+    "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+    "type": "View_All_Layout",
+    "version": 1,
+    "widgets": [
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "81f79150-ab33-11ec-9126-8315f49c3c89",
+            "sequence": 0.0,
+            "widgetDefinitionId": "Daily_Supply_Dashboard_Filter",
+            "name": "Daily supply dashboard filter",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "chartType": "filter",
+                "fullBodyWidget": "false",
+                "enabled": "true",
+                "section": "layout_header"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "81f7b860-ab33-11ec-9126-8315f49c3c89",
+            "sequence": 1.0,
+            "widgetDefinitionId": "Daily_Supply_Dashboard_Active_Filters",
+            "name": "Daily supply dashboard active filters",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "chartType": "active_filters",
+                "section": "layout_subheader",
+                "enabled": "true",
+                "fullBodyWidget": "true"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "81f7b861-ab33-11ec-9126-8315f49c3c89",
+            "sequence": 2.0,
+            "widgetDefinitionId": "Purchase_Order_Overage_View_All_Table",
+            "name": "Purchase_Order_Overage_View_All_Table",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "xPos": "0",
+                "yPos": "0",
+                "rowSpan": "80",
+                "colSpan": "4",
+                "chartType": "data_table",
+                "fullBodyWidget": "true",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        }
+    ],
+    "defaultLanguage": "en",
+    "descriptions": {
+        "en":{
+            "name": "All purchase order overage",
+            "language": "en",
+            "description": "All purchase order overage"
+        }
+    },
+    "properties": [
+        {
+            "name": "breadcrumbEnabled",
+            "metaInformation": "layoutOption",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "breadcrumbList",
+            "metaInformation": "layoutOption",
+            "values": [
+                "{\"label\": \"All purchase order overage\", \"routeName\": \"/template/Purchase_Order_Overage_View_All_Template\"}"
+            ]
+        },
+        {
+            "name": "timestampEnabled",
+            "metaInformation": "layoutOption",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "ivAssistantEnabled",
+            "metaInformation": "layoutOption",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "state.empty.title",
+            "metaInformation": "layoutOption",
+            "values": [
+                "No data"
+            ]
+        },
+        {
+            "name": "state.empty.body",
+            "metaInformation": "layoutOption",
+            "values": [
+                "There is no data to display"
+            ]
+        },
+        {
+            "name": "state.empty.image",
+            "metaInformation": "layoutOption",
+            "values": [
+                "dataEmpty"
+            ]
+        },
+        {
+            "name": "state.empty.link.label",
+            "metaInformation": "layoutOption",
+            "values": [
+                "Learn more"
+            ]
+        },
+        {
+            "name": "state.empty.link.href.type",
+            "metaInformation": "layoutOption",
+            "values": [
+                "NEW_WINDOW"
+            ]
+        },
+        {
+            "name": "state.empty.link.href.path",
+            "metaInformation": "layoutOption",
+            "values": [
+                "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+            ]
+        }
+    ]
+}

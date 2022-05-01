@@ -1,0 +1,157 @@
+{
+    "id": "Stock_Underage_Within_Planning_Horizon_View_All_Template",
+    "offeringId": "SCO",
+    "state": "ACTIVE",
+    "sequence": 0.0,
+    "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+    "type": "View_All_Layout",
+    "widgets": [
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "bec097d0-aa93-11ec-8c0b-9b873cf983fa",
+            "layoutId": "Stock_Underage_Within_Planning_Horizon_View_All_Template",
+            "sequence": 0.0,
+            "widgetDefinitionId": "weekly_supply_filters",
+            "name": "weekly_supply_filters",
+            "creator": "550001692Y",
+            "createdDate": "2022-03-23T10:26:47.885Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "colSpan": "6",
+                "rowSpan": "5",
+                "xPos": "0",
+                "yPos": "0",
+                "chartType": "filter",
+                "fullBodyWidget": "false",
+                "enabled": "true",
+                "section": "layout_header"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "bec097d1-aa93-11ec-8c0b-9b873cf983fa",
+            "layoutId": "Stock_Underage_Within_Planning_Horizon_View_All_Template",
+            "sequence": 1.0,
+            "widgetDefinitionId": "weekly_supply_active_filters",
+            "name": "weekly_supply_active_filters",
+            "creator": "550001692Y",
+            "createdDate": "2022-03-23T10:26:47.885Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "chartType": "active_filters",
+                "section": "layout_subheader",
+                "enabled": "true",
+                "fullBodyWidget": "true"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "bec097d2-aa93-11ec-8c0b-9b873cf983fa",
+            "layoutId": "Stock_Underage_Within_Planning_Horizon_View_All_Template",
+            "sequence": 2.0,
+            "widgetDefinitionId": "Stock_Underage_Within_Planning_Horizon_Table_View_All",
+            "name": "Stock_Underage_Within_Planning_Horizon_Table_View_All",
+            "creator": "550001692Y",
+            "createdDate": "2022-03-23T10:26:47.885Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "xPos": "0",
+                "yPos": "0",
+                "rowSpan": "80",
+                "colSpan": "4",
+                "chartType": "data_table",
+                "fullBodyWidget": "true",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        }
+    ],
+    "defaultLanguage": "en",
+    "descriptions": {
+        "en":{
+            "name": "All stock underage within planning horizon",
+            "language": "en",
+            "description": "All stock underage within planning horizon"
+        }
+       
+    },
+    "properties": [
+        {
+            "name": "breadcrumbEnabled",
+            "metaInformation": "layoutOption",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "breadcrumbList",
+            "metaInformation": "layoutOption",
+            "values": [
+                "{\"label\": \"All stock underage within planning horizon\", \"routeName\": \"/template/Stock_Underage_Within_Planning_Horizon_View_All_Template\"}"
+            ]
+        },
+        {
+            "name": "timestampEnabled",
+            "metaInformation": "layoutOption",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "ivAssistantEnabled",
+            "metaInformation": "layoutOption",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "state.empty.title",
+            "metaInformation": "layoutOption",
+            "values": [
+                "No data"
+            ]
+        },
+        {
+            "name": "state.empty.body",
+            "metaInformation": "layoutOption",
+            "values": [
+                "There is no data to display"
+            ]
+        },
+        {
+            "name": "state.empty.image",
+            "metaInformation": "layoutOption",
+            "values": [
+                "dataEmpty"
+            ]
+        },
+        {
+            "name": "state.empty.link.label",
+            "metaInformation": "layoutOption",
+            "values": [
+                "Learn more"
+            ]
+        },
+        {
+            "name": "state.empty.link.href.type",
+            "metaInformation": "layoutOption",
+            "values": [
+                "NEW_WINDOW"
+            ]
+        },
+        {
+            "name": "state.empty.link.href.path",
+            "metaInformation": "layoutOption",
+            "values": [
+                "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+            ]
+        }
+    ],
+    "version": 4
+}

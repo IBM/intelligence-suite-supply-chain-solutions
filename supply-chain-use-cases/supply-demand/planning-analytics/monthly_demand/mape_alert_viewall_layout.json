@@ -1,0 +1,155 @@
+{
+    "id": "MAPE_Alert_View_All_Layout_Template",
+    "offeringId": "SCO",
+    "state": "ACTIVE",
+    "sequence": 3.0,
+    "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+    "type": "View_All_Layout",
+    "createdDate": "2022-03-24T09:16:52.694Z",
+    "creator": "550008GN71",
+    "lastModifiedDate": "2022-03-24T09:16:52.694Z",
+    "lastModifiedBy": "550008GN71",
+    "widgets": [
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "24aac790-ab53-11ec-9126-8315f49c3c89",
+            "layoutId": "MAPE_Alert_View_All_Layout_Template",
+            "sequence": 0.0,
+            "widgetDefinitionId": "monthly_demand_filters",
+            "name": "Monthly demand dashboard filter",
+            "creator": "550008GN71",
+            "createdDate": "2022-03-24T09:16:52.745Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "chartType": "filter",
+                "fullBodyWidget": "false",
+                "enabled": "true",
+                "section": "layout_header"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "24aaeea0-ab53-11ec-9126-8315f49c3c89",
+            "layoutId": "MAPE_Alert_View_All_Layout_Template",
+            "sequence": 1.0,
+            "widgetDefinitionId": "monthly_demand_active_filters",
+            "name": "Monthly demand dashboard active filters",
+            "creator": "550008GN71",
+            "createdDate": "2022-03-24T09:16:52.746Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "chartType": "active_filters",
+                "section": "layout_subheader",
+                "enabled": "true",
+                "fullBodyWidget": "true"
+            }
+        },
+        {
+            "offeringId": "SCO",
+            "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
+            "id": "24aaeea1-ab53-11ec-9126-8315f49c3c89",
+            "layoutId": "MAPE_Alert_View_All_Layout_Template",
+            "sequence": 2.0,
+            "widgetDefinitionId": "MAPE_Alert_View_All_Table",
+            "name": "MAPE alert view all table",
+            "creator": "550008GN71",
+            "createdDate": "2022-03-24T09:16:52.746Z",
+            "parentWidgetId": null,
+            "widgetProperties": {},
+            "displayProperties": {
+                "xPos": "0",
+                "yPos": "0",
+                "rowSpan": "80",
+                "colSpan": "4",
+                "chartType": "data_table",
+                "fullBodyWidget": "true",
+                "enabled": "true",
+                "section": "layout_body"
+            }
+        }
+    ],
+    "defaultLanguage": "en",
+    "description": {
+        "name": "MAPE alerts",
+        "language": "en",
+        "description": "MAPE alerts"
+    },
+    "descriptions": null,
+    "properties": [
+        {
+            "name": "breadcrumbEnabled",
+            "metaInformation": "layoutOption",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "breadcrumbList",
+            "metaInformation": "layoutOption",
+            "values": [
+                "{\"label\": \"MAPE alerts\", \"routeName\": \"/template/MAPE_Alert_View_All_Layout_Template\"}"
+            ]
+        },
+        {
+            "name": "timestampEnabled",
+            "metaInformation": "layoutOption",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "ivAssistantEnabled",
+            "metaInformation": "layoutOption",
+            "values": [
+                "true"
+            ]
+        },
+        {
+            "name": "state.empty.title",
+            "metaInformation": "layoutOption",
+            "values": [
+                "No data"
+            ]
+        },
+        {
+            "name": "state.empty.body",
+            "metaInformation": "layoutOption",
+            "values": [
+                "There is no data to display"
+            ]
+        },
+        {
+            "name": "state.empty.image",
+            "metaInformation": "layoutOption",
+            "values": [
+                "dataEmpty"
+            ]
+        },
+        {
+            "name": "state.empty.link.label",
+            "metaInformation": "layoutOption",
+            "values": [
+                "Learn more"
+            ]
+        },
+        {
+            "name": "state.empty.link.href.type",
+            "metaInformation": "layoutOption",
+            "values": [
+                "NEW_WINDOW"
+            ]
+        },
+        {
+            "name": "state.empty.link.href.path",
+            "metaInformation": "layoutOption",
+            "values": [
+                "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+            ]
+        }
+    ],
+    "version": 4
+}
