@@ -92,7 +92,7 @@
             "tenantId": "bb937633-25aa-4733-8086-058db5b0a3dc",
             "layoutId": "location_advisories",
             "sequence": 3.0,
-            "widgetDefinitionId": "location_advisories_map_v2",
+            "widgetDefinitionId": "location_advisories_map",
             "name": "Location advisory map",
             "parentWidgetId": null,
             "widgetProperties": {},
