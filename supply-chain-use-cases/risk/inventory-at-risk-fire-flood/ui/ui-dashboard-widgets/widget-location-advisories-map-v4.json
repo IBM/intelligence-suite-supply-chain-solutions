@@ -1,11 +1,11 @@
 
 {
     "offeringId": "SCO",
-    "id": "location_advisories_map_v2",
+    "id": "location_advisories_map",
     "state": "ACTIVE",
-    "identifier": "location_advisories_map_v2",
+    "identifier": "location_advisories_map",
     "type": "Dashboard_Widget",
-    "tenantId": "2c358084-d86d-4f4d-ba5d-8ddb009f4d97",
+    "tenantId": "dca466b9-2891-4de4-a6eb-fe348ab41c30",
     "path": "/api",
     "vendor": "IBM",
     "defaultLanguage": "en",
@@ -36,7 +36,7 @@
         {
             "name": "queries[0].fields",
             "values": [
-                "query LocationPositionMap( $tenantId:String! ) { businessObjects( simpleFilter: { type:Location, tenantId:$tenantId },advancedFilter:{AND:[ {REFERENCED_BY:{type:GeoCorrelationIssue fieldName:\"businessObject\" criteria:{AND:[{EQUALS:[{SELECT:\"isCurrentlyMeetingCorrelationCriteria\",type:BOOLEAN},{VALUE:\"true\",type:BOOLEAN}]}]}}} ]},hint:{viewId:\"graph\"},cursorParams:{first:50 }){totalCount edges {cursor object{...on Location{ id coordinates locationIdentifier locationName city stateProvince }}}}}"
+                "query LocationPositionMap( $tenantId:String!, $countryFilter: BooleanExp = {CONSTANT_VALUE: true}, $stateProvinceFilter: BooleanExp = {CONSTANT_VALUE: true}, $subjectFilter: BooleanExp = {CONSTANT_VALUE: true} ) { businessObjects( simpleFilter: { type:Location, tenantId:$tenantId },advancedFilter:{AND:[ {REFERENCED_BY:{type:GeoCorrelationIssue fieldName:\"businessObject\" criteria:{AND:[{EQUALS:[{SELECT:\"isCurrentlyMeetingCorrelationCriteria\",type:BOOLEAN},{VALUE:\"true\",type:BOOLEAN}]}, $countryFilter, $stateProvinceFilter, $subjectFilter ]}}} ]},hint:{viewId:\"graph\"},cursorParams:{first:50 }){totalCount edges {cursor object{...on Location{ id coordinates locationIdentifier locationName city stateProvince }}}}}"
             ],
             "metaInformation": "infohub.fields"
         },
@@ -53,6 +53,27 @@
                 "{{ tenantId }}"
             ],
             "metaInformation": "infohub.variable.dynamic"
+        },
+        {
+            "name": "queries[0].variables.countryFilter",
+            "values": [
+                "{ \"EQUALS_ANY\": [ {\"SELECT\": \"externalEvent.country\", \"type\": \"STRING\" }, { \"VALUES\": {{ locationAdvisories.appliedFilters.Country.ids }}, \"type\": \"STRING\" } ] }"
+            ],
+            "metaInformation": "infohub.variable.dynamicExpr"
+        },
+        {
+            "name": "queries[0].variables.stateProvinceFilter",
+            "values": [
+                "{ \"EQUALS_ANY\": [ {\"SELECT\": \"externalEvent.stateProvince\", \"type\": \"STRING\" }, { \"VALUES\": {{ locationAdvisories.appliedFilters.StateProvince.ids }}, \"type\": \"STRING\" } ] }"
+            ],
+            "metaInformation": "infohub.variable.dynamicExpr"
+        },
+        {
+            "name": "queries[0].variables.subjectFilter",
+            "values": [
+                "{ \"EQUALS_ANY\": [ {\"SELECT\": \"externalEvent.subject\", \"type\": \"STRING\" }, { \"VALUES\": {{ locationAdvisories.appliedFilters.Subject.ids }}, \"type\": \"STRING\" } ] }"
+            ],
+            "metaInformation": "infohub.variable.dynamicExpr"
         },
         {
             "name": "queries[0].variables.now",
@@ -76,7 +97,7 @@
             "metaInformation": "tableOption"
         },
         {
-            "name": "hubFilter.appliedFilters",
+            "name": "locationAdvisories.appliedFilters",
             "values": [
                 "refreshData"
             ],
@@ -126,12 +147,16 @@
         },
         {
             "name": "mapControl.fullscreen",
-            "values": ["true"],
+            "values": [
+                "true"
+            ],
             "metaInformation": "widgetOption"
         },
         {
             "name": "mapControl.legend.isOverlay",
-            "values": ["true"],
+            "values": [
+                "true"
+            ],
             "metaInformation": "widgetOption"
         },
         {
@@ -169,7 +194,6 @@
             ],
             "metaInformation": "widgetOption"
         }
-
     ],
     "userConfigurations": [
         {
