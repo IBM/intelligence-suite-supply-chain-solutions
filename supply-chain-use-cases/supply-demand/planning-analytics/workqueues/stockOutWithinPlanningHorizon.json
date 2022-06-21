@@ -1,0 +1,57 @@
+
+{
+    "advancedFilter":
+    {
+        "AND": [
+            {
+                "LESS_EQUALS": [
+                    {
+                        "type": "FLOAT",
+                        "SELECT": "customAttributes.daysToStockoutFloat"
+                    },
+                    {
+                        "VALUE": "30",
+                        "type": "FLOAT"
+                    }
+                ]
+            }
+        ]
+    },
+    "primaryBusinessObjectTypes": [
+        "Inventory"
+    ],
+    "logicalName": "stockOutWithinPlanningHorizon",
+    "defaultCursorParams":
+    {
+        "first": 20,
+        "sort": [
+            {
+                "fieldPath": "quantity",
+                "order": "DESC"
+            }
+        ]
+    },
+    "priority": 45.0,
+    "enabled": true,
+    "columnsForWorkItemTitle": [],
+    "isGloballyVisible": false,
+    "defaultFieldsForSelect": [
+        "Inventory.product.partNumber",
+        "Inventory.product.name",
+        "Inventory.location.locationName",
+        "Inventory.quantity"
+    ],
+    "hint":
+    {
+        "viewId": "graph"
+    },
+    "name": "Stock out within Planning Horizon",
+    "simpleFilter":
+    {
+        "type": "Inventory"
+    },
+    "tenantId": "0a533c0f-07e6-42e7-ad46-36aaeeb999c2",
+    "isSimple": false,
+    "applicableActionDefinitions": [],
+    "isComplete": true
+}

@@ -1,0 +1,58 @@
+
+{
+    "advancedFilter":
+    {
+        "AND": [
+            {
+                "LESS_EQUALS": [
+                    {
+                        "SELECT": "customAttributes.daysToStockOverageFloat",
+                        "type": "FLOAT"
+                    },
+                    {
+                        "VALUE": "30",
+                        "type": "FLOAT"
+                    }
+                ]
+            }
+        ]
+    },
+    "primaryBusinessObjectTypes": [
+        "Inventory"
+    ],
+    "logicalName": "stockOverageWithinPlanningHorizon",
+    "defaultCursorParams":
+    {
+        "first": 20,
+        "sort": [
+            {
+                "fieldPath": "quantity",
+                "order": "DESC"
+            }
+        ]
+    },
+    "priority": 35.0,
+    "enabled": true,
+    "columnsForWorkItemTitle": [],
+    "isGloballyVisible": false,
+    "defaultFieldsForSelect": [
+        "Inventory.product.partNumber",
+        "Inventory.product.name",
+        "Inventory.location.locationName",
+        "Inventory.quantity"
+    ],
+    "hint":
+    {
+        "viewId": "graph"
+    },
+    "name": "Stock Overage within Planning Horizon",
+    "simpleFilter":
+    {
+        "type": "Inventory"
+    },
+    "tenantId": "0a533c0f-07e6-42e7-ad46-36aaeeb999c2",
+    "isSimple": false,
+    "applicableActionDefinitions": [],
+    "applicableActionDefinitions": [],
+    "isComplete": true
+}

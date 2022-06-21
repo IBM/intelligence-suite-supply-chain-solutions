@@ -1,0 +1,93 @@
+
+{
+    "advancedFilter":
+    {
+        "AND": [
+            {
+                "GREATER_THAN": [
+                    {
+                        "type": "FLOAT",
+                        "SELECT": "quantityBelowLowerThreshold"
+                    },
+                    {
+                        "VALUE": "0",
+                        "type": "FLOAT"
+                    }
+                ]
+            },
+            {
+                "GREATER_THAN": [
+                    {
+                        "type": "FLOAT",
+                        "SELECT": "quantity"
+                    },
+                    {
+                        "VALUE": "0",
+                        "type": "FLOAT"
+                    }
+                ]
+            }
+        ]
+    },
+    "primaryBusinessObjectTypes": [
+        "Inventory"
+    ],
+    "logicalName": "stockOutWithinLeadTime",
+    "description": "Next stock date is within the re-order window",
+    "defaultCursorParams":
+    {
+        "first": 20,
+        "sort": [
+            {
+                "fieldPath": "quantityBelowLowerThreshold",
+                "order": "DESC"
+            }
+        ]
+    },
+    "priority": 65.0,
+    "columnsForWorkItemTitle": [
+        "Inventory.product.partNumber",
+        "Inventory.location.locationIdentifier"
+    ],
+    "enabled": true,
+    "isGloballyVisible": false,
+    "detailedDescription": "Inventory which is expected to stock out before replenishment can occur.",
+    "defaultFieldsForSelect": [
+        "Inventory.product.partNumber",
+        "Inventory.product.name",
+        "WorkItem.status",
+        "WorkItem.userAssigned",
+        "Inventory.location.locationIdentifier",
+        "Inventory.location.locationName",
+        "Inventory.quantity",
+        "Inventory.quantityUnits",
+        "Inventory.quantityBelowLowerThreshold",
+        "Inventory.quantityLowerThreshold",
+        "Inventory.product.category.name",
+        "Inventory.plannerCode",
+        "Inventory.product.plannerCode",
+        "WorkItem.updateReceived"
+    ],
+    "hint":
+    {
+        "viewId": "graph"
+    },
+    "tenantId": "0a533c0f-07e6-42e7-ad46-36aaeeb999c2",
+    "simpleFilter":
+    {
+        "type": "Inventory"
+    },
+    "name": "Stock Out Within Lead Time",
+    "isSimple": true,
+    "applicableActionDefinitions": [
+        {
+            "id": "efeb8861-6257-4992-b54e-028d587d07be",
+            "type": "ActionDefinition"
+        },
+        {
+            "id": "efeb8861-6257-4992-b54e-028d587d07be",
+            "type": "ActionDefinition"
+        }
+    ],
+    "isComplete": true
+}

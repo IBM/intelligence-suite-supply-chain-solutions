@@ -1,0 +1,57 @@
+
+{
+    "advancedFilter":
+    {
+        "AND": [
+            {
+                "LESS_EQUALS": [
+                    {
+                        "type": "FLOAT",
+                        "SELECT": "customAttributes.daysToStockUnderageFloat"
+                    },
+                    {
+                        "type": "FLOAT",
+                        "SELECT": "customAttributes.planningPeriodFloat"
+                    }
+                ]
+            }
+        ]
+    },
+    "primaryBusinessObjectTypes": [
+        "Inventory"
+    ],
+    "logicalName": "stockUnderageWithinPlanningPeriod",
+    "defaultCursorParams":
+    {
+        "first": 20,
+        "sort": [
+            {
+                "fieldPath": "quantity",
+                "order": "DESC"
+            }
+        ]
+    },
+    "priority": 55.0,
+    "enabled": true,
+    "columnsForWorkItemTitle": [],
+    "isGloballyVisible": false,
+    "defaultFieldsForSelect": [
+        "Inventory.product.partNumber",
+        "Inventory.product.name",
+        "Inventory.location.locationName",
+        "Inventory.quantity"
+    ],
+    "hint":
+    {
+        "viewId": "graph"
+    },
+    "name": "Stock Underage within Planning Period",
+    "simpleFilter":
+    {
+        "type": "Inventory"
+    },
+    "tenantId": "0a533c0f-07e6-42e7-ad46-36aaeeb999c2",
+    "isSimple": false,
+    "applicableActionDefinitions": [],
+    "isComplete": true
+}

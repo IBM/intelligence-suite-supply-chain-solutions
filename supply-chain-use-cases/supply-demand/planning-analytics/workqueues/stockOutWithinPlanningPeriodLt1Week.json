@@ -1,0 +1,58 @@
+
+{
+    "advancedFilter":
+    {
+        "AND": [
+            {
+                "LESS_EQUALS": [
+                    {
+                        "SELECT": "customAttributes.daysToStockoutFloat",
+                        "type": "FLOAT"
+                    },
+                    {
+                        "SELECT": "customAttributes.planningPeriodFloat",
+                        "type": "FLOAT"
+                    }
+                ]
+            }
+        ]
+    },
+    "primaryBusinessObjectTypes": [
+        "Inventory"
+    ],
+    "logicalName": "stockOutWithinPlanningPeriodLt1Week",
+    "description": "Next stock out date is within the re-order window",
+    "defaultCursorParams":
+    {
+        "first": 20,
+        "sort": [
+            {
+                "fieldPath": "quantity",
+                "order": "DESC"
+            }
+        ]
+    },
+    "priority": 60.0,
+    "enabled": true,
+    "columnsForWorkItemTitle": [],
+    "isGloballyVisible": false,
+    "defaultFieldsForSelect": [
+        "Inventory.product.partNumber",
+        "Inventory.product.name",
+        "Inventory.location.locationName",
+        "Inventory.quantity"
+    ],
+    "hint":
+    {
+        "viewId": "graph"
+    },
+    "name": "Stock Out Within Planning Period (LT+1 week)",
+    "simpleFilter":
+    {
+        "type": "Inventory"
+    },
+    "tenantId": "0a533c0f-07e6-42e7-ad46-36aaeeb999c2",
+    "isSimple": false,
+    "applicableActionDefinitions": [],
+    "isComplete": true
+}

@@ -1,0 +1,69 @@
+
+{
+    "advancedFilter":
+    {
+        "AND": [
+            {
+                "GREATER_THAN": [
+                    {
+                        "SELECT": "customAttributes.quantityReceivedWithinPeriodFloat",
+                        "type": "FLOAT"
+                    },
+                    {
+                        "VALUE": "0",
+                        "type": "FLOAT"
+                    }
+                ]
+            },
+            {
+                "GREATER_THAN": [
+                    {
+                        "SELECT": "nextStockOverageStartDate",
+                        "type": "STRING"
+                    },
+                    {
+                        "VALUE": "2022-03-23",
+                        "type": "STRING"
+                    }
+                ]
+            }
+        ]
+    },
+    "primaryBusinessObjectTypes": [
+        "Inventory"
+    ],
+    "logicalName": "purchaseOrderOverage",
+    "defaultCursorParams":
+    {
+        "first": 20,
+        "sort": [
+            {
+                "fieldPath": "quantity",
+                "order": "DESC"
+            }
+        ]
+    },
+    "priority": 50.0,
+    "enabled": true,
+    "columnsForWorkItemTitle": [],
+    "isGloballyVisible": false,
+    "defaultFieldsForSelect": [
+        "Inventory.product.partNumber",
+        "Inventory.product.name",
+        "Inventory.location.locationName",
+        "Inventory.quantity"
+    ],
+    "hint":
+    {
+        "viewId": "graph"
+    },
+    "name": "Purchase Order Overage",
+    "simpleFilter":
+    {
+        "type": "Inventory"
+    },
+    "tenantId": "0a533c0f-07e6-42e7-ad46-36aaeeb999c2",
+    "isSimple": false,
+    "applicableActionDefinitions": [],
+    "isComplete": true
+}
