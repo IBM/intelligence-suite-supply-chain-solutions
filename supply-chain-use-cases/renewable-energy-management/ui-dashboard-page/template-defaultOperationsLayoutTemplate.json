@@ -1,0 +1,293 @@
+{
+  "id": "defaultOperationsLayoutTemplate",
+  "offeringId": "SCO",
+  "state": "ACTIVE",
+  "sequence": 0.0,
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "type": "Dashboard",
+  "widgets": [
+    {
+      "offeringId": "SCO",
+      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "layoutId": "defaultOperationsLayoutTemplate",
+      "sequence": 0.0,
+      "widgetDefinitionId": "plantDashboardFilterWidget",
+      "name": "Plant dashboard filter",
+      "creator": "50JUBJXT80",
+      "createdDate": "2022-05-19T17:50:25.909Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "chartType": "filter",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "layout_header"
+      }
+    },
+    {
+      "offeringId": "SCO",
+      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "layoutId": "defaultOperationsLayoutTemplate",
+      "sequence": 0.0,
+      "widgetDefinitionId": "plantDashboardActiveFiltersWidget",
+      "name": "Operations dashboard active filters",
+      "creator": "50JUBJXT80",
+      "createdDate": "2022-05-19T17:50:25.909Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "chartType": "active_filters",
+        "section": "layout_subheader",
+        "enabled": "true",
+        "fullBodyWidget": "true"
+      }
+    },
+    {
+      "offeringId": "SCO",
+      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "layoutId": "defaultOperationsLayoutTemplate",
+      "sequence": 0.0,
+      "widgetDefinitionId": "plantCurrentConditionsLocationLinkSummaryWidget",
+      "name": "Location id link",
+      "creator": "50JUBJXT80",
+      "createdDate": "2022-05-19T19:26:00.984Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "1",
+        "rowSpan": "10",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "summary",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "layout_body"
+      }
+    },
+    {
+      "offeringId": "SCO",
+      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "layoutId": "defaultOperationsLayoutTemplate",
+      "sequence": 2.0,
+      "widgetDefinitionId": "plantPerformance24HourMeterChart",
+      "name": "Performance 24h meter",
+      "creator": "50JUBJXT80",
+      "createdDate": "2022-05-19T17:50:25.909Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "1",
+        "rowSpan": "10",
+        "xPos": "0",
+        "yPos": "1",
+        "chartType": "carbon_chart",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "layout_body"
+      }
+    },
+    {
+      "offeringId": "SCO",
+      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "layoutId": "defaultOperationsLayoutTemplate",
+      "sequence": 4.0,
+      "widgetDefinitionId": "plantLocationDetailsAssetsBarChart",
+      "name": "Location details asset bar chart",
+      "creator": "50JUBJXT80",
+      "createdDate": "2022-05-19T17:50:25.909Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "2",
+        "rowSpan": "31",
+        "xPos": "1",
+        "yPos": "1",
+        "chartType": "carbon_chart",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "layout_body"
+      }
+    },
+    {
+      "offeringId": "SCO",
+      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "layoutId": "defaultOperationsLayoutTemplate",
+      "sequence": 4.0,
+      "widgetDefinitionId": "plantLocationGridDetailsWidget",
+      "name": "Location details grid",
+      "creator": "50JUBJXT80",
+      "createdDate": "2022-05-19T17:50:25.909Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "4",
+        "rowSpan": "6",
+        "xPos": "0",
+        "yPos": "22",
+        "chartType": "grid_details",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "layout_body"
+      }
+    },
+    {
+      "offeringId": "SCO",
+      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "layoutId": "defaultOperationsLayoutTemplate",
+      "sequence": 5.0,
+      "widgetDefinitionId": "plantAssetListWidget",
+      "name": "Location details asset list",
+      "creator": "50JUBJXT80",
+      "createdDate": "2022-05-19T17:50:25.909Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "4",
+        "rowSpan": "24",
+        "xPos": "0",
+        "yPos": "2",
+        "chartType": "data_table",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "layout_body"
+      }
+    },
+    {
+      "offeringId": "SCO",
+      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "layoutId": "defaultOperationsLayoutTemplate",
+      "sequence": 5.0,
+      "widgetDefinitionId": "plantDashboardStarredWorkQueues",
+      "name": "Starred work queues",
+      "creator": "50JUBJXT80",
+      "createdDate": "2022-05-20T13:34:29.680Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "2",
+        "rowSpan": "21",
+        "xPos": "1",
+        "yPos": "1",
+        "chartType": "work_queue_table",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "layout_body"
+      }
+    },
+    {
+      "offeringId": "SCO",
+      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "layoutId": "defaultOperationsLayoutTemplate",
+      "sequence": 6.0,
+      "widgetDefinitionId": "plantLocationDetailsMap",
+      "name": "Location details map",
+      "creator": "550005SJT3",
+      "createdDate": "2022-05-20T15:43:21.625Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "4",
+        "rowSpan": "24",
+        "xPos": "0",
+        "yPos": "3",
+        "chartType": "map",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "layout_body"
+      }
+    }
+  ],
+  "defaultLanguage": "en",
+  "description": {
+    "name": "Operations",
+    "language": "en",
+    "description": "Operations"
+  },
+  "descriptions": {
+    "en": {
+      "name": "Operations",
+      "language": "en",
+      "description": "Operations"
+    }
+  },
+  "properties": [
+    {
+      "name": "breadcrumbEnabled",
+      "metaInformation": "layoutOption",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "breadcrumbList",
+      "metaInformation": "layoutOption",
+      "values": [
+        "{\"label\": \"COMMON.DASHBOARD\", \"routeName\": \"/\"}"
+      ]
+    },
+    {
+      "name": "timestampEnabled",
+      "metaInformation": "layoutOption",
+      "values": [
+        "false"
+      ]
+    },
+    {
+      "name": "ivAssistantEnabled",
+      "metaInformation": "layoutOption",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "hideTitle",
+      "metaInformation": "layoutOption",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "state.empty.title",
+      "metaInformation": "layoutOption",
+      "values": [
+        "COMMON.EMPTY_TITLE"
+      ]
+    },
+    {
+      "name": "state.empty.body",
+      "metaInformation": "layoutOption",
+      "values": [
+        "COMMON.EMPTY_BODY"
+      ]
+    },
+    {
+      "name": "state.empty.image",
+      "metaInformation": "layoutOption",
+      "values": [
+        "dataEmpty"
+      ]
+    },
+    {
+      "name": "state.empty.link.label",
+      "metaInformation": "layoutOption",
+      "values": [
+        "COMMON.EMPTY_LINK_LABEL"
+      ]
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "metaInformation": "layoutOption",
+      "values": [
+        "NEW_WINDOW"
+      ]
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "metaInformation": "layoutOption",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ]
+    }
+  ],
+  "version": 1
+}

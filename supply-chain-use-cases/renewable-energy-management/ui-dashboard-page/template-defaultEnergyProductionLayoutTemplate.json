@@ -1,0 +1,335 @@
+{
+  "id": "defaultEnergyProductionLayoutTemplate",
+  "offeringId": "SCO",
+  "state": "ACTIVE",
+  "sequence": 0.0,
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "type": "Dashboard",
+  "widgets": [
+    {
+      "offeringId": "SCO",
+      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "layoutId": "defaultEnergyProductionLayoutTemplate",
+      "sequence": 0.0,
+      "widgetDefinitionId": "windPast48HoursSummaryWidget",
+      "name": "Energy production past 48 hours summary",
+      "creator": "550005SJT3",
+      "createdDate": "2022-05-18T21:19:03.570Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "2",
+        "rowSpan": "10",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "summary",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "layout_body"
+      }
+    },
+    {
+      "offeringId": "SCO",
+      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "layoutId": "defaultEnergyProductionLayoutTemplate",
+      "sequence": 1.0,
+      "widgetDefinitionId": "windDashboardFilter",
+      "name": "Overview dashboard filter",
+      "creator": "550005SJT3",
+      "createdDate": "2022-05-18T21:19:03.570Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "chartType": "filter",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "layout_header"
+      }
+    },
+    {
+      "offeringId": "SCO",
+      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "layoutId": "defaultEnergyProductionLayoutTemplate",
+      "sequence": 1.0,
+      "widgetDefinitionId": "windNext48HoursSummaryWidget",
+      "name": "Energy production summary next 48 hours",
+      "creator": "550005SJT3",
+      "createdDate": "2022-05-19T14:15:34.941Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "2",
+        "rowSpan": "10",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "summary",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "layout_body"
+      }
+    },
+    {
+      "offeringId": "SCO",
+      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "layoutId": "defaultEnergyProductionLayoutTemplate",
+      "sequence": 2.0,
+      "widgetDefinitionId": "windDashboardActiveFiltersWidget",
+      "name": "Overview dashboard active filters",
+      "creator": "550005SJT3",
+      "createdDate": "2022-05-18T21:19:03.570Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "chartType": "active_filters",
+        "section": "layout_subheader",
+        "enabled": "true",
+        "fullBodyWidget": "true"
+      }
+    },
+    {
+      "offeringId": "SCO",
+      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "layoutId": "defaultEnergyProductionLayoutTemplate",
+      "sequence": 2.0,
+      "widgetDefinitionId": "windPowerProductionPast48HoursChart",
+      "name": "Power production past 48 hours",
+      "creator": "550005SJT3",
+      "createdDate": "2022-05-19T03:12:11.412Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "2",
+        "rowSpan": "24",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "carbon_chart",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "layout_body"
+      }
+    },
+    {
+      "offeringId": "SCO",
+      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "layoutId": "defaultEnergyProductionLayoutTemplate",
+      "sequence": 3.0,
+      "widgetDefinitionId": "windPowerProductionNext48HoursChart",
+      "name": "Power production next 48 hours",
+      "creator": "550005SJT3",
+      "createdDate": "2022-05-19T03:26:10.293Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "2",
+        "rowSpan": "24",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "carbon_chart",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "layout_body"
+      }
+    },
+    {
+      "offeringId": "SCO",
+      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "layoutId": "defaultEnergyProductionLayoutTemplate",
+      "sequence": 4.0,
+      "widgetDefinitionId": "windPast30DaysSummaryWidget",
+      "name": "Energy production summary past 30 days",
+      "creator": "550005SJT3",
+      "createdDate": "2022-05-19T14:27:15.909Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "2",
+        "rowSpan": "10",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "summary",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "layout_body"
+      }
+    },
+    {
+      "offeringId": "SCO",
+      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "layoutId": "defaultEnergyProductionLayoutTemplate",
+      "sequence": 5.0,
+      "widgetDefinitionId": "windNext30DaysSummaryWidget",
+      "name": "windNext30DaysSummaryWidget",
+      "creator": "550005SJT3",
+      "createdDate": "2022-05-19T14:37:18.451Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "2",
+        "rowSpan": "10",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "summary",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "layout_body"
+      }
+    },
+    {
+      "offeringId": "SCO",
+      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "layoutId": "defaultEnergyProductionLayoutTemplate",
+      "sequence": 6.0,
+      "widgetDefinitionId": "windPowerProductionPast30DaysChart",
+      "name": "Power production last 30 days",
+      "creator": "550005SJT3",
+      "createdDate": "2022-05-19T02:19:11.810Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "2",
+        "rowSpan": "24",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "carbon_chart",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "layout_body"
+      }
+    },
+    {
+      "offeringId": "SCO",
+      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "layoutId": "defaultEnergyProductionLayoutTemplate",
+      "sequence": 7.0,
+      "widgetDefinitionId": "windPowerProductionNext30DaysChart",
+      "name": "Power production last 30 days",
+      "creator": "550005SJT3",
+      "createdDate": "2022-05-19T02:25:42.723Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "2",
+        "rowSpan": "24",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "carbon_chart",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "layout_body"
+      }
+    },
+    {
+      "offeringId": "SCO",
+      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "layoutId": "defaultEnergyProductionLayoutTemplate",
+      "sequence": 8.0,
+      "widgetDefinitionId": "windEnergyProductionMap",
+      "name": "Location map",
+      "creator": "550005SJT3",
+      "createdDate": "2022-05-20T15:14:41.097Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "4",
+        "rowSpan": "36",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "map",
+        "fullBodyWidget": "true",
+        "enabled": "true",
+        "section": "layout_body"
+      }
+    }
+  ],
+  "defaultLanguage": "en",
+  "description": {
+    "name": "Energy production",
+    "language": "en",
+    "description": "Energy production"
+  },
+  "descriptions": {
+    "en": {
+      "name": "Energy production",
+      "language": "en",
+      "description": "Energy production"
+    }
+  },
+  "properties": [
+    {
+      "name": "breadcrumbEnabled",
+      "values": [
+        "false"
+      ]
+    },
+    {
+      "name": "breadcrumbList",
+      "metaInformation": "layoutOption",
+      "values": [
+        "{\"label\": \"Dashboard\", \"routeName\": \"/\"}"
+      ]
+    },
+    {
+      "name": "timestampEnabled",
+      "values": [
+        "false"
+      ]
+    },
+    {
+      "name": "ivAssistantEnabled",
+      "metaInformation": "layoutOption",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "hideTitle",
+      "metaInformation": "layoutOption",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "state.empty.title",
+      "metaInformation": "layoutOption",
+      "values": [
+        "No data"
+      ]
+    },
+    {
+      "name": "state.empty.body",
+      "metaInformation": "layoutOption",
+      "values": [
+        "There is no data to display"
+      ]
+    },
+    {
+      "name": "state.empty.image",
+      "metaInformation": "layoutOption",
+      "values": [
+        "dataEmpty"
+      ]
+    },
+    {
+      "name": "state.empty.link.label",
+      "metaInformation": "layoutOption",
+      "values": [
+        "Learn more"
+      ]
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "metaInformation": "layoutOption",
+      "values": [
+        "NEW_WINDOW"
+      ]
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "metaInformation": "layoutOption",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ]
+    }
+  ],
+  "version": 1
+}
