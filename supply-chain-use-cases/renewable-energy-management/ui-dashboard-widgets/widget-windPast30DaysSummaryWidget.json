@@ -1,0 +1,307 @@
+{
+  "offeringId": "SCO",
+  "id": "windPast30DaysSummaryWidget",
+  "state": "ACTIVE",
+  "identifier": "windPast30DaysSummaryWidget",
+  "type": "Dashboard_Widget",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "description": {
+    "name": "Renewable past 30 days metrics",
+    "language": "en",
+    "description": "Summary of total expected and actual power output for selected generators"
+  },
+  "descriptions": {
+    "en": {
+      "name": "Renewable past 30 days metrics",
+      "language": "en",
+      "description": "Summary of total expected and actual power output for selected generators"
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "header.type",
+      "values": [
+        "text_header"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.title",
+      "values": [
+        "Past 30 days"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "colSpan",
+      "values": [
+        "2"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "rowSpan",
+      "values": [
+        "12"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "draggable",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "data.service",
+      "values": [
+        "infohub"
+      ]
+    },
+    {
+      "name": "queries[0].processor",
+      "values": [
+        "OBJECT_AGGREGATIONS"
+      ],
+      "metaInformation": "infohub.processor"
+    },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query past30Days($tenantId: String!, $locationNameFilter: BooleanExp = { CONSTANT_VALUE: true }, $locationStateFilter: BooleanExp = { CONSTANT_VALUE: true }, $categoryCodeFilter: BooleanExp = { CONSTANT_VALUE: true }, $brandCodeFilter: BooleanExp = { CONSTANT_VALUE: true }, $lineCodeFilter: BooleanExp = { CONSTANT_VALUE: true }) { actualEnergyProducedPast30Days: businessObjects(simpleFilter: { type: DemandPlan, tenantId: $tenantId }, hint: { viewId: \"graph\" }, advancedFilter: { AND: [ { GREATER_EQUALS: [ { SELECT: \"startDate\", type: STRING }, { VALUE: \"2021-03-01\", type: STRING } ] }, { LESS_THAN: [ { SELECT: \"startDate\", type: STRING }, { VALUE: \"2021-04-01\", type: STRING} ]}, { EQUALS: [ { SELECT: \"planParentType\" }, { VALUE: \"POWER_ACTUAL\" } ] }, { EQUALS: [ { SELECT: \"duration\" }, { VALUE: \"24\" } ]}, $locationNameFilter, $locationStateFilter, $categoryCodeFilter, $brandCodeFilter, $lineCodeFilter] }, aggregationParams: { reduce: { expression: { fieldPath: \"quantity\", operator: SUM, type: FLOAT }, output: { resultAlias: \"actualEnergyProducedPast30Days\", type: FLOAT } } } ) { totalCount aggregationResults { dimensionValues { name value } values { name numValue } } } energyForecastPast30Days: businessObjects(simpleFilter: { type: DemandPlan, tenantId: $tenantId }, hint: { viewId: \"graph\" }, advancedFilter: { AND: [ { GREATER_EQUALS: [ { SELECT: \"startDate\", type: STRING }, { VALUE: \"2021-03-01\", type: STRING } ] }, { LESS_THAN: [ { SELECT: \"startDate\", type: STRING }, { VALUE: \"2021-04-01\", type: STRING} ]}, { EQUALS: [ { SELECT: \"planParentType\" }, { VALUE: \"POWER_FORECAST\" } ] }, { EQUALS: [ { SELECT: \"duration\" }, { VALUE: \"24\" }]}, { EQUALS: [ { SELECT: \"source\" }, { VALUE: \"v2\" }]},$locationNameFilter, $locationStateFilter, $categoryCodeFilter, $brandCodeFilter, $lineCodeFilter] }, aggregationParams: { reduce: { expression: { fieldPath: \"quantity\", operator: SUM, type: FLOAT }, output: { resultAlias: \"energyForecastPast30Days\", type: FLOAT } } } ) { totalCount aggregationResults { dimensionValues { name value } values { name numValue } } } } "
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": [
+        "{{ tenantId }}"
+      ],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.locationNameFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"location.locationName\", \"type\": \"STRING\" }, { \"VALUES\": {{ wind.appliedFilters.LocationName.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.locationStateFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"location.stateProvince\", \"type\": \"STRING\" }, { \"VALUES\": {{ wind.appliedFilters.LocationState.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.categoryCodeFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"product.category.code\", \"type\": \"STRING\" }, { \"VALUES\": {{ wind.appliedFilters.ProductCategoryCode.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.brandCodeFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"product.brand.code\", \"type\": \"STRING\" }, { \"VALUES\": {{ wind.appliedFilters.ProductBrandCode.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.lineCodeFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"product.line.code\", \"type\": \"STRING\" }, { \"VALUES\": {{ wind.appliedFilters.ProductLineCode.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "wind.appliedFilters",
+      "values": [
+        "refreshData"
+      ],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "items[0].count.href.labelType",
+      "values": [
+        "numberTpl"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].count.label",
+      "values": [
+        "{{ actualEnergyProducedPast30DaysSum }}"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].heading.label",
+      "values": [
+        "Actual energy produced"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].heading.tooltip",
+      "values": [
+        "Actual energy produced"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].units.label",
+      "values": [
+        "MW"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].count.customTemplate",
+      "values": [
+        "linkTpl"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].count.href.type",
+      "values": [
+        "LAYOUT_TEMPLATE"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].count.href.id",
+      "values": [
+        "wind_view_all"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[1].count.href.labelType",
+      "values": [
+        "numberTpl"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[1].count.label",
+      "values": [
+        "{{ energyForecastPast30DaysSum }}"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[1].heading.label",
+      "values": [
+        "Energy forecast"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[1].heading.tooltip",
+      "values": [
+        "Energy forecast"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[1].units.label",
+      "values": [
+        "MW"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[1].count.customTemplate",
+      "values": [
+        "linkTpl"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[1].count.href.type",
+      "values": [
+        "LAYOUT_TEMPLATE"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[1].count.href.id",
+      "values": [
+        "wind_view_all"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": [
+        "refreshData"
+      ],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{\"errors\":\"{{#? this.errors}}\",\"pageInfo\":\"{}\",\"results\":[{\"energyForecastPast30DaysSum\":\"{{this.data.energyForecastPast30Days.aggregationResults[0].values[0].numValue.toFixed()}}\"},{\"actualEnergyProducedPast30DaysSum\":\"{{this.data.actualEnergyProducedPast30Days.aggregationResults[0].values[0].numValue.toFixed()}}\"}]}"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.title",
+      "values": [
+        "COMMON.EMPTY_TITLE"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.body",
+      "values": [
+        "COMMON.EMPTY_BODY"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": [
+        "COMMON.EMPTY_LINK_LABEL"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": [
+        "NEW_WINDOW"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "showFooter",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [
+    {
+      "name": "chartType",
+      "values": [
+        "summary"
+      ]
+    }
+  ],
+  "adminConfigurations": []
+}

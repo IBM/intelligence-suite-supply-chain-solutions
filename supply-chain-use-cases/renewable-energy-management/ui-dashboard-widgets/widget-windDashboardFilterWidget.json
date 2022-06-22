@@ -1,0 +1,294 @@
+{
+  "offeringId": "SCO",
+  "id": "windDashboardFilter",
+  "state": "ACTIVE",
+  "identifier": "windDashboardFilter",
+  "type": "Dashboard_Widget",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "description": {
+    "name": "Wind Dashboard Filter",
+    "language": "en",
+    "description": "Filter dashboard content."
+  },
+  "descriptions": {
+    "en": {
+      "name": "Wind Dashboard Filter",
+      "language": "en",
+      "description": "Filter dashboard content."
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "data.service",
+      "values": [
+        "infohub"
+      ]
+    },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query DashboardFilters($tenantId: String!, $locationTypeAheadFilter: BooleanExp = {CONSTANT_VALUE: true}, $locationStateTypeAheadFilter: BooleanExp = {CONSTANT_VALUE: true}, $productTypeAheadFilter: BooleanExp = {CONSTANT_VALUE: true}) { LocationName: businessObjects(simpleFilter: {type: Location, tenantId: $tenantId, fieldNameForDistinctValues: \"locationName\"}, advancedFilter: {AND: [$locationTypeAheadFilter, {EQUALS: [{SELECT: \"locationType\", type: STRING}, {VALUE: \"PLANT\", type: STRING}]}]}, hint: {viewId: \"graph\"}, cursorParams: {first: 50}) { totalCount pageInfo { hasNextPage } edges { cursor object { ... on Location { id: locationName name: locationName } } } } LocationState: businessObjects(simpleFilter: {type: Location, tenantId: $tenantId, fieldNameForDistinctValues: \"stateProvince\"}, advancedFilter: {AND: [$locationStateTypeAheadFilter, {EQUALS: [{SELECT: \"locationType\", type: STRING}, {VALUE: \"PLANT\", type: STRING}]}]}, hint: {viewId: \"graph\"}, cursorParams: {first: 50}) { totalCount pageInfo { hasNextPage } edges { cursor object { ... on Location { id: stateProvince name: stateProvince } } } } ProductCategoryCode: businessObjects(simpleFilter: {type: Catalog, tenantId: $tenantId, fieldNameForDistinctValues: \"code\"}, advancedFilter: {AND: [$productTypeAheadFilter, {EQUALS: [{SELECT: \"levelType\", type: STRING}, {VALUE: \"CATEGORY\", type: STRING}]}]}, hint: {viewId: \"graph\"}, cursorParams: {first: 50, sort: {fieldPath: \"code\", order: ASC}}) { totalCount pageInfo { hasNextPage } edges { cursor object { ... on Catalog { id: code name: code } } } } ProductBrandCode: businessObjects(simpleFilter: {type: Catalog, tenantId: $tenantId, fieldNameForDistinctValues: \"code\"}, advancedFilter: {AND: [$productTypeAheadFilter, {EQUALS: [{SELECT: \"levelType\", type: STRING}, {VALUE: \"BRAND\", type: STRING}]}]}, hint: {viewId: \"graph\"}, cursorParams: {first: 50, sort: {fieldPath: \"code\", order: ASC}}) { totalCount pageInfo { hasNextPage } edges { cursor object { ... on Catalog { id: code name: code } } } } ProductLineCode: businessObjects(simpleFilter: {type: Catalog, tenantId: $tenantId, fieldNameForDistinctValues: \"code\"}, advancedFilter: {AND: [$productTypeAheadFilter, {EQUALS: [{SELECT: \"levelType\", type: STRING}, {VALUE: \"LINE\", type: STRING}]}]}, hint: {viewId: \"graph\"}, cursorParams: {first: 50, sort: {fieldPath: \"code\", order: ASC}}) { totalCount pageInfo { hasNextPage } edges { cursor object { ... on Catalog { id: code name: code } } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": [
+        "{{ tenantId }}"
+      ],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.locationTypeAheadFilter",
+      "values": [
+        "{ \"CONTAINS\": [ {\"SELECT\": \"locationName\", \"type\": \"STRING\" }, { \"VALUE\": \"{{ wind.searchText }}\", \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.locationStateTypeAheadFilter",
+      "values": [
+        "{ \"CONTAINS\": [ {\"SELECT\": \"stateProvince\", \"type\": \"STRING\" }, { \"VALUE\": \"{{ wind.searchText }}\", \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.productTypeAheadFilter",
+      "values": [
+        "{ \"CONTAINS\": [ {\"SELECT\": \"code\", \"type\": \"STRING\" }, { \"VALUE\": \"{{ wind.searchText }}\", \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "filter.fields[0].id",
+      "values": [
+        "LocationName"
+      ],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[0].label",
+      "values": [
+        "COMMON.LOCATION_NAME"
+      ],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[0].multiSelect",
+      "values": [
+        "true"
+      ],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[1].id",
+      "values": [
+        "LocationState"
+      ],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[1].label",
+      "values": [
+        "Location state"
+      ],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[1].multiSelect",
+      "values": [
+        "true"
+      ],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[2].id",
+      "values": [
+        "ProductCategoryCode"
+      ],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[2].label",
+      "values": [
+        "Category code"
+      ],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[2].multiSelect",
+      "values": [
+        "true"
+      ],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[3].id",
+      "values": [
+        "ProductBrandCode"
+      ],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[3].label",
+      "values": [
+        "Brand code"
+      ],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[3].multiSelect",
+      "values": [
+        "true"
+      ],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[4].id",
+      "values": [
+        "ProductLineCode"
+      ],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[4].label",
+      "values": [
+        "Line code"
+      ],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[4].multiSelect",
+      "values": [
+        "true"
+      ],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.title",
+      "values": [
+        "COMMON.FILTERS.FILTER_TITLE"
+      ],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.placeholders.search",
+      "values": [
+        "COMMON.FILTERS.SEARCH_PLACE_HOLDER"
+      ],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.placeholders.tags",
+      "values": [
+        "COMMON.FILTERS.NO_TAGS_MESSAGE_DETAILED"
+      ],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.selections",
+      "values": [
+        "{{wind.appliedFilters}}"
+      ],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": [
+        "loadState",
+        "refreshData"
+      ],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "filterSearched",
+      "values": [
+        "wind"
+      ],
+      "metaInformation": "stateScope"
+    },
+    {
+      "name": "filterChanged",
+      "values": [
+        "wind"
+      ],
+      "metaInformation": "stateScope"
+    },
+    {
+      "name": "wind.searchText",
+      "values": [
+        "refreshData"
+      ],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "wind.appliedFilters",
+      "values": [
+        "refreshSavedState"
+      ],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "wind.appliedFilters",
+      "values": [
+        "refreshOptions"
+      ],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{ \"errors\": \"{{#? this.errors}}\", \"data\": [ { \"totalCount\": \"{{this.data.LocationName.totalCount}}\", \"results\": { \"{{#each this.data.LocationName.edges}}\": { \"id\": \"{{this.object.id}}\", \"name\": \"{{this.object.name}}\" } } }, { \"totalCount\": \"{{this.data.LocationState.totalCount}}\", \"results\": { \"{{#each this.data.LocationState.edges}}\": { \"id\": \"{{this.object.id}}\", \"name\": \"{{this.object.name}}\" } } }, { \"totalCount\": \"{{this.data.ProductCategoryCode.totalCount}}\", \"results\": { \"{{#each this.data.ProductCategoryCode.edges}}\": { \"id\": \"{{this.object.id}}\", \"name\": \"{{this.object.name}}\" } } }, { \"totalCount\": \"{{this.data.ProductBrandCode.totalCount}}\", \"results\": { \"{{#each this.data.ProductBrandCode.edges}}\": { \"id\": \"{{this.object.id}}\", \"name\": \"{{this.object.name}}\" } } }, { \"totalCount\": \"{{this.data.ProductLineCode.totalCount}}\", \"results\": { \"{{#each this.data.ProductLineCode.edges}}\": { \"id\": \"{{this.object.id}}\", \"name\": \"{{this.object.name}}\" } } } ] }"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.title",
+      "values": [
+        "COMMON.EMPTY_TITLE"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.body",
+      "values": [
+        "COMMON.EMPTY_BODY"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": [
+        "COMMON.EMPTY_LINK_LABEL"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": [
+        "NEW_WINDOW"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [
+    {
+      "name": "chartType",
+      "values": [
+        "filter"
+      ]
+    }
+  ],
+  "adminConfigurations": []
+}

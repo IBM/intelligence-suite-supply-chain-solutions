@@ -1,0 +1,195 @@
+{
+  "offeringId": "SCO",
+  "id": "plantCurrentConditionsLocationLinkSummaryWidget",
+  "state": "ACTIVE",
+  "identifier": "plantCurrentConditionsLocationLinkSummaryWidget",
+  "type": "Dashboard_Widget",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "description": {
+    "name": "Current conditions",
+    "language": "en",
+    "description": "Current conditions"
+  },
+  "descriptions": {
+    "en": {
+      "name": "Current conditions",
+      "language": "en",
+      "description": "Current conditions"
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "colSpan",
+      "values": [
+        "2"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "rowSpan",
+      "values": [
+        "12"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "draggable",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "data.service",
+      "values": [
+        "infohub"
+      ]
+    },
+    {
+      "name": "queries[0].processor",
+      "values": [
+        "EDGES"
+      ],
+      "metaInformation": "infohub.processor"
+    },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query locationLinkMetric($tenantId: String, $locationFilter: BooleanExp = {CONSTANT_VALUE: true}) { businessObjects(simpleFilter: {type: Location, tenantId: $tenantId}, advancedFilter: {AND: [{EQUALS: [ {SELECT: \"locationType\", type: STRING}, {VALUE: \"PLANT\", type: STRING}]}, $locationFilter ]}, hint: {viewId: \"graph\"}, cursorParams: {first: 1}) { totalCount edges { cursor object { ... on Location { id coordinates locationIdentifier locationName city stateProvince sourceLink } } } }}"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.locationFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"id\", \"type\": \"STRING\" }, { \"VALUES\": {{ plant.appliedFilters.LocationName.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "plant.appliedFilters",
+      "values": [
+        "refreshData"
+      ],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": [
+        "{{ tenantId }}"
+      ],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "items[0].count.customTemplate",
+      "values": [
+        "linkTpl"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].count.href.type",
+      "values": [
+        "NEW_WINDOW"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].count.href.path",
+      "values": [
+        "{{ sourceLink }}"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].count.href.labelType",
+      "values": [
+        "textTpl"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].count.label",
+      "values": [
+        "{{ locationIdentifier }}"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].heading.label",
+      "values": [
+        "Current conditions"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": [
+        "refreshData"
+      ],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{\"errors\": \"{{#? this.errors}}\", \"sourceLink\": \"{{ this.data.businessObjects.edges[0].object.sourceLink }}\", \"pageInfo\": \"{}\", \"totalCount\": \"{{this.data.businessObjects.totalCount}}\", \"results\": [{\"locationIdentifier\": \"{{ this.data.businessObjects.edges[0].object.locationIdentifier }}\"}, {\"sourceLink\": \"{{ this.data.businessObjects.edges[0].object.sourceLink }}\"}]}"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.title",
+      "values": [
+        "COMMON.EMPTY_TITLE"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.body",
+      "values": [
+        "COMMON.EMPTY_BODY"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": [
+        "COMMON.EMPTY_LINK_LABEL"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": [
+        "NEW_WINDOW"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "showFooter",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [
+    {
+      "name": "chartType",
+      "values": [
+        "summary"
+      ]
+    }
+  ],
+  "adminConfigurations": []
+}

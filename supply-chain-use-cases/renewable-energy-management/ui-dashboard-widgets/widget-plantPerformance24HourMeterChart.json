@@ -1,0 +1,223 @@
+{
+  "offeringId": "SCO",
+  "id": "plantPerformance24HourMeterChart",
+  "state": "ACTIVE",
+  "identifier": "plantPerformance24HourMeterChart",
+  "type": "Dashboard_Widget",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "description": {
+    "name": "Energy performance 24h",
+    "language": "en",
+    "description": "Summary of over and under performance in past 24 hours"
+  },
+  "descriptions": {
+    "en": {
+      "name": "Energy performance 24h",
+      "language": "en",
+      "description": "Summary of over and under performance in past 24 hours"
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "showFooter",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.type",
+      "values": [
+        "meterChart"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.options.customChartType",
+      "values": [
+        "NON_BREAKDOWN_FORMATTER_METER_CHART"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.options.toolbar.enabled",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.options.total.text",
+      "values": [
+        "COMMON.TOTAL"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.options.color.pairing.option",
+      "values": [
+        "3"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.options.color.scale",
+      "values": [
+        "{{colorTemplate}}"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.options.meter.proportional.total",
+      "values": [
+        "{{totalCount}}"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.options.meterChartFormatter",
+      "values": [
+        "true"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.options.height",
+      "values": [
+        "100px"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.type",
+      "values": [
+        "text_header"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.title",
+      "values": [
+        "Performance 24h"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.tooltip",
+      "values": [
+        "Summary of over and under performance in past 24 hours"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "draggable",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "data.service",
+      "values": [
+        "infohub"
+      ]
+    },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query energyMetric($tenantId: String!, $locationFilter: BooleanExp = { CONSTANT_VALUE: true }, $locationStateFilter: BooleanExp = { CONSTANT_VALUE: true }) { underPerforming: businessObjects(simpleFilter: { tenantId: $tenantId, type: Inventory }, advancedFilter: { AND: [ { LESS_THAN: [ { SELECT: \"quantity\", type: FLOAT }, { SELECT: \"quantityLowerThreshold\", type: FLOAT } ] }, $locationFilter, $locationStateFilter ] }, cursorParams: { first: 0 } ) { totalCount } overPerforming: businessObjects(simpleFilter: { tenantId: $tenantId, type: Inventory }, advancedFilter: { AND: [ { GREATER_THAN: [ { SELECT: \"quantity\", type: FLOAT }, { SELECT: \"quantityUpperThreshold\", type: FLOAT } ] }, $locationFilter, $locationStateFilter] }, cursorParams: { first: 0 } ) { totalCount } normal: businessObjects(simpleFilter: { tenantId: $tenantId, type: Inventory }, advancedFilter: { AND: [ { LESS_THAN: [ { SELECT: \"quantity\", type: FLOAT }, { SELECT: \"quantityUpperThreshold\", type: FLOAT } ] }, { GREATER_THAN: [ { SELECT: \"quantity\", type: FLOAT }, { SELECT: \"quantityLowerThreshold\", type: FLOAT } ] }, $locationFilter, $locationStateFilter ] }, cursorParams: { first: 0 } ) { totalCount } } "
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": [
+        "{{ tenantId }}"
+      ],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.locationFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"location.id\", \"type\": \"STRING\" }, { \"VALUES\": {{ plant.appliedFilters.LocationName.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.locationStateFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"location.stateProvince\", \"type\": \"STRING\" }, { \"VALUES\": {{ plant.appliedFilters.LocationState.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "plant.appliedFilters",
+      "values": [
+        "refreshData"
+      ],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": [
+        "refreshData"
+      ],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{ \"legendOrder\": [\"Over-performing\", \"Normal\", \"Under-performing\"],\"colorTemplate\":{\"Over-performing\": \"#3329c4\", \"Normal\": \"#009d9a\", \"Under-performing\": \"#6929c4\"},\"totalCount\": [\"{{ this.data.underPerforming.totalCount + this.data.overPerforming.totalCount + this.data.normal.totalCount }}\" ], \"errors\": \"{{#? this.errors}}\", \"pageInfo\": \"{}\", \"results\": [ { \"group\":\"Over-performing\", \"value\": \"{{this.data.overPerforming.totalCount}}\" }, { \"group\":\"Normal\", \"value\": \"{{this.data.normal.totalCount}}\" }, {\"group\": \"Under-performing\", \"value\": \"{{this.data.underPerforming.totalCount}}\"} ] }"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.title",
+      "values": [
+        "COMMON.EMPTY_TITLE"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.body",
+      "values": [
+        "COMMON.EMPTY_BODY"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": [
+        "COMMON.EMPTY_LINK_LABEL"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": [
+        "NEW_WINDOW"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [
+    {
+      "name": "chartType",
+      "values": [
+        "meterChart"
+      ]
+    }
+  ],
+  "adminConfigurations": []
+}

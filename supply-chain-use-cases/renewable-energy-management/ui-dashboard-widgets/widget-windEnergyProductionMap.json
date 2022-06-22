@@ -1,0 +1,258 @@
+{
+  "offeringId": "SCO",
+  "id": "windEnergyProductionMap",
+  "state": "ACTIVE",
+  "identifier": "windEnergyProductionMap",
+  "type": "Dashboard_Widget",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "description": {
+    "name": "Lcoations",
+    "language": "en",
+    "description": "Renewable assets and locations"
+  },
+  "descriptions": {
+    "en": {
+      "name": "Lcoations",
+      "language": "en",
+      "description": "Renewable assets and locations"
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "header.value",
+      "values": [
+        "{{ totalCount }}"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "data.service",
+      "values": [
+        "infohub"
+      ]
+    },
+    {
+      "name": "queries[0].options.fetchPolicy",
+      "values": [
+        "no-cache"
+      ],
+      "metaInformation": "infohub.queryOption"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": [
+        "{{ tenantId }}"
+      ],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query locations($tenantId: String!, $locationNameFilter: BooleanExp = {CONSTANT_VALUE: true}, $locationStateFilter: BooleanExp = {CONSTANT_VALUE: true},$locationNameFilterInventoryBO: BooleanExp = {CONSTANT_VALUE: true}, $locationStateFilterInventoryBO: BooleanExp = {CONSTANT_VALUE: true}) { plantLocations: businessObjects(simpleFilter: {type: Location, tenantId: $tenantId}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"locationType\", type: STRING}, {VALUE: \"PLANT\", type: STRING}]}, $locationNameFilter, $locationStateFilter]}, hint: {viewId: \"graph\"}, cursorParams: {first: 50}) { totalCount edges { cursor object { ... on Location { id coordinates locationType locationIdentifier locationName city stateProvince } } } } assetLocations: businessObjects(simpleFilter: {type: Inventory, tenantId: $tenantId}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"inventoryType\", type: STRING}, {VALUE: \"ASSET\", type: STRING}]}, $locationNameFilterInventoryBO, $locationStateFilterInventoryBO]}, hint: {viewId: \"graph\"}, cursorParams: {first: 50}) { totalCount edges { cursor object { ... on Inventory { id customAttributes { coordinatesString } location { locationType locationIdentifier locationName city stateProvince } } } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.locationNameFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"locationName\", \"type\": \"STRING\" }, { \"VALUES\": {{ wind.appliedFilters.LocationName.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.locationStateFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"stateProvince\", \"type\": \"STRING\" }, { \"VALUES\": {{ wind.appliedFilters.LocationState.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.locationNameFilterInventoryBO",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"location.locationName\", \"type\": \"STRING\" }, { \"VALUES\": {{ wind.appliedFilters.LocationName.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.locationStateFilterInventoryBO",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"location.stateProvince\", \"type\": \"STRING\" }, { \"VALUES\": {{ wind.appliedFilters.LocationState.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "wind.appliedFilters",
+      "values": [
+        "refreshData"
+      ],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{\"errors\":\"{{#? this.errors}}\",\"totalCount\":\"{{this.data.assetLocations.totalCount}}\",\"results\": {\"assetLocationData\":{\"{{#each this.data.assetLocations.edges}}\":{\"id\":\"{{this.object.id}}\",\"coordinates\":\"{{#? this.object.customAttributes.coordinatesString}}\",\"startLocationTooltip\":\"{{this.object.location.locationName}}\"}}, \"plantLocationData\":{\"{{#each this.data.plantLocations.edges}}\":{\"id\":\"{{this.object.id}}\",\"coordinates\":\"{{this.object.coordinates}}\",\"startLocationTooltip\":\"{{this.object.locationName}}\"}}}}"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "draggable",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "horizontalScroll.enable",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "tableOption"
+    },
+    {
+      "name": "hubFilter.appliedFilters",
+      "values": [
+        "refreshData"
+      ],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "wind.page",
+      "values": [
+        "refreshData"
+      ],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "wind.pageLength",
+      "values": [
+        "refreshData"
+      ],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "wind.sort",
+      "values": [
+        "refreshData"
+      ],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": [
+        "refreshData"
+      ],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "mapProvider",
+      "values": [
+        "openStreetMap"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "mapControl.zoom",
+      "values": [
+        "true"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "mapControl.fullscreen",
+      "values": [
+        "true"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "mapControl.legend.isOverlay",
+      "values": [
+        "true"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "dataStreamsOptions[0].id",
+      "values": [
+        "plantLocationData"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "dataStreamsOptions[0].label",
+      "values": [
+        "Plant locations"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "dataStreamsOptions[0].startLocation.tooltip",
+      "values": [
+        "startLocationTooltip"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "dataStreamsOptions[0].startLocation.key",
+      "values": [
+        "coordinates"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "dataStreamsOptions[0].color",
+      "values": [
+        "orange"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "dataStreamsOptions[1].id",
+      "values": [
+        "assetLocationData"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "dataStreamsOptions[1].label",
+      "values": [
+        "Asset locations"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "dataStreamsOptions[1].startLocation.tooltip",
+      "values": [
+        "startLocationTooltip"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "dataStreamsOptions[1].startLocation.key",
+      "values": [
+        "coordinates"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "dataStreamsOptions[1].color",
+      "values": [
+        "blue"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [
+    {
+      "name": "chartType",
+      "values": [
+        "map"
+      ]
+    }
+  ],
+  "adminConfigurations": []
+}

@@ -1,0 +1,230 @@
+{
+  "offeringId": "SCO",
+  "id": "plantLocationDetailsAssetsBarChart",
+  "state": "ACTIVE",
+  "identifier": "plantLocationDetailsAssetsBarChart",
+  "type": "Dashboard_Widget",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "description": {
+    "name": "Energy output quantity by assets",
+    "language": "en",
+    "description": "Energy output quantity by assets"
+  },
+  "descriptions": {
+    "en": {
+      "name": "Energy output quantity by assets",
+      "language": "en",
+      "description": "Energy output quantity by assets"
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "draggable",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.type",
+      "values": [
+        "simpleBar"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.type",
+      "values": [
+        "text_header"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.title",
+      "values": [
+        "Energy output quantity by assets"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.tooltip",
+      "values": [
+        "Energy output quantity by asset's part number"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.options.color.scale",
+      "values": [
+        "{{colorScale}}"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.options.legend.enabled",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.options.axes.bottom.mapsTo",
+      "values": [
+        "key"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.options.axes.bottom.scaleType",
+      "values": [
+        "labels"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.options.axes.bottom.title",
+      "values": [
+        "Part number"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.options.axes.left.mapsTo",
+      "values": [
+        "value"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.options.axes.left.title",
+      "values": [
+        "Total energy (MW)"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.options.tooltip.showTotal",
+      "values": [
+        "true"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "data.service",
+      "values": [
+        "infohub"
+      ]
+    },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query assetOutput($tenantId: String!, $locationFilter: BooleanExp = { CONSTANT_VALUE: true },  $locationIdentifierFilter: BooleanExp = { CONSTANT_VALUE: true }, $locationStateFilter: BooleanExp = { CONSTANT_VALUE: true }) { assetOutput: businessObjects(simpleFilter: {type: Inventory, tenantId: $tenantId}, advancedFilter: {AND: [$locationFilter, $locationIdentifierFilter, $locationStateFilter]}, hint: {viewId: \"graph\"}, aggregationParams: {dimension: {fieldPath: \"product.partNumber\", type: STRING}, reduce: {expression: {fieldPath: \"quantity\", operator: SUM, type: FLOAT}, output: {resultAlias: \"sumByDate\", type: FLOAT}}}) { totalCount aggregationResults { dimensionValues { name value } values { name numValue } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": [
+        "{{ tenantId }}"
+      ],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.locationFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"location.id\", \"type\": \"STRING\" }, { \"VALUES\": {{ plant.appliedFilters.LocationName.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.locationIdentifierFilter",
+      "values": [
+        "{ \"CONTAINS\": [ {\"SELECT\": \"location.locationIdentifier\", \"type\": \"STRING\" }, { \"VALUES\": {{ plant.appliedFilters.LocationIdentifier.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.locationStateFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"location.stateProvince\", \"type\": \"STRING\" }, { \"VALUES\": {{ plant.appliedFilters.LocationState.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "plant.appliedFilters",
+      "values": [
+        "refreshData"
+      ],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": [
+        "refreshData"
+      ],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{ \"colorScale\":\"{{function(){const keySet =  $root.data.assetOutput.aggregationResults.map(pair => pair.dimensionValues[0].value); const colorScale = {}; [...new Set(keySet)].forEach(key => colorScale[key] = '#0e6027'); return colorScale}()}}\",\"totalCount\": \"{{ this.data.assetOutput.totalCount }}\", \"errors\": \"{{#? this.errors}}\", \"pageInfo\": \"{}\", \"results\": { \"{{#each this.data.assetOutput.aggregationResults}}\": { \"group\": \"{{dimensionValues[0].value}}\", \"key\": \"{{dimensionValues[0].value}}\", \"value\": \"{{values[0].numValue}}\" } } }"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "showFooter",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.title",
+      "values": [
+        "COMMON.EMPTY_TITLE"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.body",
+      "values": [
+        "COMMON.EMPTY_BODY"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": [
+        "COMMON.EMPTY_LINK_LABEL"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": [
+        "NEW_WINDOW"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [
+    {
+      "name": "chartType",
+      "values": [
+        "carbon_chart"
+      ]
+    }
+  ],
+  "adminConfigurations": []
+}
