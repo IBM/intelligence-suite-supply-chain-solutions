@@ -1,0 +1,162 @@
+{
+	"id": "inspection_drill_down_template",
+	"offeringId": "SCO",
+	"state": "ACTIVE",
+	"sequence": 0.0,
+	"tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+	"type": "Details",
+	"widgets": [{
+			"offeringId": "SCO",
+			"tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+			"id": "09e4ff20-f121-11ec-833a-0f54cb50deea",
+			"layoutId": "inspection_drill_down_template",
+			"sequence": 0.0,
+			"widgetDefinitionId": "INSPECTION_DRILL_DOWN_TABLE",
+			"name": "Product Inspection",
+			"creator": "500QA1KNFB",
+			"createdDate": "2022-06-21T05:14:34.386Z",
+			"parentWidgetId": null,
+			"widgetProperties": {},
+			"displayProperties": {
+				"colSpan": "4",
+				"rowSpan": "8",
+				"xPos": "0",
+				"yPos": "0",
+				"chartType": "data_table",
+				"enabled": "true",
+				"section": "layout_body"
+			}
+		},
+		{
+			"offeringId": "SCO",
+			"tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+			"id": "09e4ff21-f121-11ec-833a-0f54cb50deea",
+			"layoutId": "inspection_drill_down_template",
+			"sequence": 1.0,
+			"widgetDefinitionId": "PRODUCT_QUALITY_THRESHOLD_TABLE",
+			"name": "Product Quality Threshold",
+			"creator": "500QA1KNFB",
+			"createdDate": "2022-06-21T05:14:34.386Z",
+			"parentWidgetId": null,
+			"widgetProperties": {},
+			"displayProperties": {
+				"colSpan": "4",
+				"rowSpan": "8",
+				"xPos": "50",
+				"yPos": "0",
+				"chartType": "data_table",
+				"enabled": "true",
+				"section": "layout_body"
+			}
+		},
+		{
+			"offeringId": "SCO",
+			"tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+			"id": "09e52630-f121-11ec-833a-0f54cb50deea",
+			"layoutId": "inspection_drill_down_template",
+			"sequence": 2.0,
+			"widgetDefinitionId": "TS_DOCUMENT_DETAILS_IFRAME",
+			"name": "Product Quality Document",
+			"creator": "500QA1KNFB",
+			"createdDate": "2022-06-21T05:14:34.387Z",
+			"parentWidgetId": null,
+			"widgetProperties": {},
+			"displayProperties": {
+				"colSpan": "8",
+				"rowSpan": "100",
+				"xPos": "50",
+				"yPos": "0",
+				"fullBodyWidget": "true",
+				"chartType": "iframe",
+				"enabled": "true",
+				"section": "layout_body"
+			}
+		}
+	],
+	"defaultLanguage": "en",
+	"descriptions": {
+		"en": {
+			"name": "Inspection Drill Down",
+			"language": "en",
+			"description": "Inspection Drill Down"
+		}
+	},
+	"properties": [{
+			"name": "breadcrumbEnabled",
+			"metaInformation": "layoutOption",
+			"values": [
+				"true"
+			]
+		},
+		{
+			"name": "breadcrumbList",
+			"metaInformation": "layoutOption",
+			"values": [
+				"{\"label\": \"Dashboard\", \"routeName\": \"/\"}"
+			]
+		},
+		{
+			"name": "timestampEnabled",
+			"values": [
+				"false"
+			]
+		},
+		{
+			"name": "ivAssistantEnabled",
+			"metaInformation": "layoutOption",
+			"values": [
+				"true"
+			]
+		},
+		{
+			"name": "hasTitleWidget",
+			"metaInformation": "layoutOption",
+			"values": [
+				"true"
+			]
+		},
+		{
+			"name": "state.empty.title",
+			"metaInformation": "layoutOption",
+			"values": [
+				"No data"
+			]
+		},
+		{
+			"name": "state.empty.body",
+			"metaInformation": "layoutOption",
+			"values": [
+				"There is no data to display"
+			]
+		},
+		{
+			"name": "state.empty.image",
+			"metaInformation": "layoutOption",
+			"values": [
+				"dataEmpty"
+			]
+		},
+		{
+			"name": "state.empty.link.label",
+			"metaInformation": "layoutOption",
+			"values": [
+				"Learn more"
+			]
+		},
+		{
+			"name": "state.empty.link.href.type",
+			"metaInformation": "layoutOption",
+			"values": [
+				"NEW_WINDOW"
+			]
+		},
+		{
+			"name": "state.empty.link.href.path",
+			"metaInformation": "layoutOption",
+			"values": [
+				"https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+			]
+		}
+	],
+	"version": 1
+}
