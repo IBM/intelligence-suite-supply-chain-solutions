@@ -1,220 +1,297 @@
-
 {
-    "id": "quality_summary",
-    "offeringId": "SCO",
-    "state": "ACTIVE",
-    "sequence": 5.0,
-    "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
-    "defaultLanguage": "en",
-    "descriptions":
-    {
-        "en":
-        {
-            "name": "Quality summary",
-            "description": "Quality summary"
-        }
-    },
-    "type": "Dashboard",
-    "widgets": [
-        {
-            "tenantId": "all-tenants",
-            "layoutId": "quality_summary",
-            "sequence": 0.0,
-            "widgetDefinitionId": "SCO_ICT_DASHBOARD_FILTER",
-            "name": "SCO ICT Dashboard Filter",
-            "widgetProperties": {},
-            "displayProperties":
-            {
-                "colSpan": "6",
-                "rowSpan": "5",
-                "xPos": "0",
-                "yPos": "0",
-                "chartType": "filter",
-                "fullBodyWidget": "false",
-                "enabled": "true",
-                "section": "layout_header"
-            }
-        },
-        {
-            "tenantId": "all-tenants",
-            "layoutId": "quality_summary",
-            "sequence": 1.0,
-            "widgetDefinitionId": "DASHBOARD_ACTIVE_FILTERS",
-            "name": "Dashboard active filters",
-            "widgetProperties": {},
-            "displayProperties":
-            {
-                "chartType": "active_filters",
-                "section": "layout_subheader",
-                "enabled": "true",
-                "fullBodyWidget": "true"
-            }
-        },
-        {
-            "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
-            "sequence": 5.0,
-            "widgetDefinitionId": "firmnessSummaryWidget",
-            "name": "Firmness summary",
-            "widgetProperties": {},
-            "displayProperties":
-            {
-                "colSpan": "1",
-                "rowSpan": "22",
-                "xPos": "0",
-                "yPos": "0",
-                "chartType": "carbon_chart",
-                "fullBodyWidget": "false",
-                "enabled": "true",
-                "section": "layout_body"
-            }
-        },
-        {
-            "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
-            "sequence": 6.0,
-            "widgetDefinitionId": "ripenessSummaryWidget",
-            "name": "Ripeness summary",
-            "widgetProperties": {},
-            "displayProperties":
-            {
-                "colSpan": "1",
-                "rowSpan": "22",
-                "xPos": "0",
-                "yPos": "0",
-                "chartType": "carbon_chart",
-                "fullBodyWidget": "false",
-                "enabled": "true",
-                "section": "layout_body"
-            }
-        },
-        {
-            "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
-            "sequence": 7.0,
-            "widgetDefinitionId": "sweetnessSummaryWidget",
-            "name": "Sweetness summary",
-            "widgetProperties": {},
-            "displayProperties":
-            {
-                "colSpan": "1",
-                "rowSpan": "22",
-                "xPos": "0",
-                "yPos": "0",
-                "chartType": "carbon_chart",
-                "fullBodyWidget": "false",
-                "enabled": "true",
-                "section": "layout_body"
-            }
-        },
-        {
-            "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
-            "sequence": 8.0,
-            "widgetDefinitionId": "weightSummaryWidget",
-            "name": "Weight summary",
-            "widgetProperties": {},
-            "displayProperties":
-            {
-                "colSpan": "1",
-                "rowSpan": "22",
-                "xPos": "0",
-                "yPos": "0",
-                "chartType": "carbon_chart",
-                "fullBodyWidget": "false",
-                "enabled": "true",
-                "section": "layout_body"
-            }
-        },
-        {
-            "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
-            "sequence": 9.0,
-            "widgetDefinitionId": "inventorylot_count",
-            "name": "Inspetion count",
-            "widgetProperties": {},
-            "displayProperties":
-            {
-                "colSpan": "1",
-                "rowSpan": "10",
-                "xPos": "0",
-                "yPos": "0",
-                "chartType": "summary",
-                "fullBodyWidget": "false",
-                "enabled": "true",
-                "section": "layout_body"
-            }
-        },
-        {
-            "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
-            "sequence": 10.0,
-            "widgetDefinitionId": "failedInspectionsByCategory",
-            "name": "Failed inspections by category",
-            "widgetProperties": {},
-            "displayProperties":
-            {
-                "colSpan": "3",
-                "rowSpan": "33",
-                "xPos": "0",
-                "yPos": "0",
-                "chartType": "carbon_chart",
-                "fullBodyWidget": "false",
-                "enabled": "true",
-                "section": "layout_body"
-            }
-        }
-    ],
-
-
-    "properties": [
-        {
-            "name": "breadcrumbEnabled",
-            "values": ["false"]
-        },
-        {
-            "name": "breadcrumbList",
-            "metaInformation": "layoutOption",
-            "values": ["{\"label\": \"Dashboard\", \"routeName\": \"/\"}"]
-        },
-        {
-            "name": "timestampEnabled",
-            "values": ["false"]
-        },
-        {
-            "name": "ivAssistantEnabled",
-            "metaInformation": "layoutOption",
-            "values": ["true"]
-        },
-        {
-            "name": "hideTitle",
-            "metaInformation": "layoutOption",
-            "values": ["true"]
-        },
-        {
-            "name": "state.empty.title",
-            "metaInformation": "layoutOption",
-            "values": ["No data"]
-        },
-        {
-            "name": "state.empty.body",
-            "metaInformation": "layoutOption",
-            "values": ["There is no data to display"]
-        },
-        {
-            "name": "state.empty.image",
-            "metaInformation": "layoutOption",
-            "values": ["dataEmpty"]
-        },
-        {
-            "name": "state.empty.link.label",
-            "metaInformation": "layoutOption",
-            "values": ["Learn more"]
-        },
-        {
-            "name": "state.empty.link.href.type",
-            "metaInformation": "layoutOption",
-            "values": ["NEW_WINDOW"]
-        },
-        {
-            "name": "state.empty.link.href.path",
-            "metaInformation": "layoutOption",
-            "values": ["https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"]
-        }
-    ],
-    "version": 4
+	"id": "quality_summary",
+	"offeringId": "SCO",
+	"state": "ACTIVE",
+	"sequence": 5.0,
+	"tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+	"type": "Dashboard",
+	"widgets": [{
+			"offeringId": "SCO",
+			"tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+			"id": "85e17470-c6b8-11ec-8404-ed22c8aaa820",
+			"layoutId": "quality_summary",
+			"sequence": 0.0,
+			"widgetDefinitionId": "SCO_ICT_DASHBOARD_FILTER",
+			"name": "SCO ICT Dashboard Filter",
+			"creator": "500QA1KNFB",
+			"createdDate": "2022-04-28T06:00:36.407Z",
+			"parentWidgetId": null,
+			"widgetProperties": {},
+			"displayProperties": {
+				"colSpan": "6",
+				"rowSpan": "5",
+				"xPos": "0",
+				"yPos": "0",
+				"chartType": "filter",
+				"fullBodyWidget": "false",
+				"enabled": "true",
+				"section": "layout_header"
+			}
+		},
+		{
+			"offeringId": "SCO",
+			"tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+			"id": "85e17471-c6b8-11ec-8404-ed22c8aaa820",
+			"layoutId": "quality_summary",
+			"sequence": 1.0,
+			"widgetDefinitionId": "DASHBOARD_ACTIVE_FILTERS",
+			"name": "Dashboard active filters",
+			"creator": "500QA1KNFB",
+			"createdDate": "2022-04-28T06:00:36.407Z",
+			"parentWidgetId": null,
+			"widgetProperties": {},
+			"displayProperties": {
+				"chartType": "active_filters",
+				"section": "layout_subheader",
+				"enabled": "true",
+				"fullBodyWidget": "true"
+			}
+		},
+		{
+			"offeringId": "SCO",
+			"tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+			"id": "85e17472-c6b8-11ec-8404-ed22c8aaa820",
+			"layoutId": "quality_summary",
+			"sequence": 2.0,
+			"widgetDefinitionId": "firmnessSummaryWidget",
+			"name": "Firmness summary",
+			"creator": "500QA1KNFB",
+			"createdDate": "2022-04-28T06:00:36.407Z",
+			"parentWidgetId": null,
+			"widgetProperties": {},
+			"displayProperties": {
+				"colSpan": "1",
+				"rowSpan": "22",
+				"xPos": "0",
+				"yPos": "0",
+				"chartType": "carbon_chart",
+				"fullBodyWidget": "false",
+				"enabled": "true",
+				"section": "layout_body"
+			}
+		},
+		{
+			"offeringId": "SCO",
+			"tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+			"id": "85e17473-c6b8-11ec-8404-ed22c8aaa820",
+			"layoutId": "quality_summary",
+			"sequence": 3.0,
+			"widgetDefinitionId": "ripenessSummaryWidget",
+			"name": "Ripeness summary",
+			"creator": "500QA1KNFB",
+			"createdDate": "2022-04-28T06:00:36.407Z",
+			"parentWidgetId": null,
+			"widgetProperties": {},
+			"displayProperties": {
+				"colSpan": "1",
+				"rowSpan": "22",
+				"xPos": "0",
+				"yPos": "2",
+				"chartType": "carbon_chart",
+				"fullBodyWidget": "false",
+				"enabled": "true",
+				"section": "layout_body"
+			}
+		},
+		{
+			"offeringId": "SCO",
+			"tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+			"id": "85e17474-c6b8-11ec-8404-ed22c8aaa820",
+			"layoutId": "quality_summary",
+			"sequence": 4.0,
+			"widgetDefinitionId": "sweetnessSummaryWidget",
+			"name": "Sweetness summary",
+			"creator": "500QA1KNFB",
+			"createdDate": "2022-04-28T06:00:36.407Z",
+			"parentWidgetId": null,
+			"widgetProperties": {},
+			"displayProperties": {
+				"colSpan": "1",
+				"rowSpan": "22",
+				"xPos": "0",
+				"yPos": "4",
+				"chartType": "carbon_chart",
+				"fullBodyWidget": "false",
+				"enabled": "true",
+				"section": "layout_body"
+			}
+		},
+		{
+			"offeringId": "SCO",
+			"tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+			"id": "85e17475-c6b8-11ec-8404-ed22c8aaa820",
+			"layoutId": "quality_summary",
+			"sequence": 5.0,
+			"widgetDefinitionId": "weightSummaryWidget",
+			"name": "Weight summary",
+			"creator": "500QA1KNFB",
+			"createdDate": "2022-04-28T06:00:36.407Z",
+			"parentWidgetId": null,
+			"widgetProperties": {},
+			"displayProperties": {
+				"colSpan": "1",
+				"rowSpan": "22",
+				"xPos": "0",
+				"yPos": "6",
+				"chartType": "carbon_chart",
+				"fullBodyWidget": "false",
+				"enabled": "true",
+				"section": "layout_body"
+			}
+		},
+		{
+			"offeringId": "SCO",
+			"tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+			"id": "85e17476-c6b8-11ec-8404-ed22c8aaa820",
+			"layoutId": "quality_summary",
+			"sequence": 6.0,
+			"widgetDefinitionId": "failedInspectionsByCategory",
+			"name": "Failed inspections by category",
+			"creator": "500QA1KNFB",
+			"createdDate": "2022-04-28T06:00:36.407Z",
+			"parentWidgetId": null,
+			"widgetProperties": {},
+			"displayProperties": {
+				"colSpan": "2",
+				"rowSpan": "22",
+				"xPos": "0",
+				"yPos": "6",
+				"chartType": "carbon_chart",
+				"fullBodyWidget": "false",
+				"enabled": "true",
+				"section": "layout_body"
+			}
+		},
+		{
+			"offeringId": "SCO",
+			"tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+			"id": "85e17477-c6b8-11ec-8404-ed22c8aaa820",
+			"layoutId": "quality_summary",
+			"sequence": 7.0,
+			"widgetDefinitionId": "failedInspectionsBySupplier",
+			"name": "Failed inspections by supplier",
+			"creator": "500QA1KNFB",
+			"createdDate": "2022-04-28T06:00:36.407Z",
+			"parentWidgetId": null,
+			"widgetProperties": {},
+			"displayProperties": {
+				"colSpan": "2",
+				"rowSpan": "22",
+				"xPos": "0",
+				"yPos": "6",
+				"chartType": "carbon_chart",
+				"fullBodyWidget": "false",
+				"enabled": "true",
+				"section": "layout_body"
+			}
+		},
+		{
+			"offeringId": "SCO",
+			"tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+			"id": "85e17478-c6b8-11ec-8404-ed22c8aaa820",
+			"layoutId": "quality_summary",
+			"sequence": 8.0,
+			"widgetDefinitionId": "inventorylot_count",
+			"name": "Inspection count",
+			"creator": "500QA1KNFB",
+			"createdDate": "2022-04-28T06:00:36.407Z",
+			"parentWidgetId": null,
+			"widgetProperties": {},
+			"displayProperties": {
+				"colSpan": "1",
+				"rowSpan": "11",
+				"xPos": "0",
+				"yPos": "6",
+				"chartType": "summary",
+				"fullBodyWidget": "false",
+				"enabled": "true",
+				"section": "layout_body"
+			}
+		}
+	],
+	"defaultLanguage": "en",
+	"descriptions": {
+		"en": {
+			"name": "Quality summary",
+			"language": "en",
+			"description": "Quality summary"
+		}
+	},
+	"properties": [{
+			"name": "breadcrumbEnabled",
+			"values": [
+				"false"
+			]
+		},
+		{
+			"name": "breadcrumbList",
+			"metaInformation": "layoutOption",
+			"values": [
+				"{\"label\": \"Dashboard\", \"routeName\": \"/\"}"
+			]
+		},
+		{
+			"name": "timestampEnabled",
+			"values": [
+				"false"
+			]
+		},
+		{
+			"name": "ivAssistantEnabled",
+			"metaInformation": "layoutOption",
+			"values": [
+				"true"
+			]
+		},
+		{
+			"name": "hideTitle",
+			"metaInformation": "layoutOption",
+			"values": [
+				"true"
+			]
+		},
+		{
+			"name": "state.empty.title",
+			"metaInformation": "layoutOption",
+			"values": [
+				"No data"
+			]
+		},
+		{
+			"name": "state.empty.body",
+			"metaInformation": "layoutOption",
+			"values": [
+				"There is no data to display"
+			]
+		},
+		{
+			"name": "state.empty.image",
+			"metaInformation": "layoutOption",
+			"values": [
+				"dataEmpty"
+			]
+		},
+		{
+			"name": "state.empty.link.label",
+			"metaInformation": "layoutOption",
+			"values": [
+				"Learn more"
+			]
+		},
+		{
+			"name": "state.empty.link.href.type",
+			"metaInformation": "layoutOption",
+			"values": [
+				"NEW_WINDOW"
+			]
+		},
+		{
+			"name": "state.empty.link.href.path",
+			"metaInformation": "layoutOption",
+			"values": [
+				"https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+			]
+		}
+	],
+	"version": 4
 }
