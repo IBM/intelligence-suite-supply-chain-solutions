@@ -1,0 +1,26 @@
+    {
+    	"id": "b07741a0-90c7-11ec-8041-1df38a389110",
+    	"tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+    	"createdDate": "2022-02-18T14:33:07.501Z",
+    	"lastModifiedDate": "2022-02-18T14:33:07.501Z",
+    	"widgetDefinitionId": "WORK_ITEM_ADDITIONAL_DETAILS_IFRAME",
+    	"offeringId": "SCO",
+    	"state": "ACTIVE",
+    	"subscriptionConfig": [{
+    			"name": "shelfLifeRisk.iframe.path",
+    			"value": "/template/BTS_LAYOUT_TEMPLATE"
+    		},
+    		{
+    			"name": "productFirmnessAboveUpperLimit.iframe.path",
+    			"value": "/template/TS_DOC_LAYOUT_TEMPLATE"
+    		},
+    		{
+    			"name": "shelfLifeRisk.iframe.queryParams",
+    			"value": "productId={{workItemResolution.workItem.additionalInfo[1].value}}&locationId={{workItemResolution.workItem.additionalInfo[3].value}}&uom={{workItemResolution.workItem.additionalInfo[5].value}}&quantityValue={{workItemResolution.workItem.additionalInfo[7].value}}&quantityTotal={{workItemResolution.workItem.additionalInfo[8].value}}&thresholdType={{workItemResolution.workItem.additionalInfo[9].value}}&threshold={{workItemResolution.workItem.additionalInfo[10].value}}&firstDateAtRisk={{workItemResolution.workItem.additionalInfo[11].value}}&lastDateAtRisk={{workItemResolution.workItem.additionalInfo[12].value}}&disabledLayoutFeatures=ivAssistantEnabled,timestampEnabled"
+    		},
+    		{
+    			"name": "productFirmnessAboveUpperLimit.iframe.queryParams",
+    			"value": "productId={{workItemResolution.workItem.additionalInfo[1].value}}&locationId={{workItemResolution.workItem.additionalInfo[3].value}}&uom={{workItemResolution.workItem.additionalInfo[5].value}}&quantityValue={{workItemResolution.workItem.additionalInfo[7].value}}&quantityTotal={{workItemResolution.workItem.additionalInfo[8].value}}&thresholdType={{workItemResolution.workItem.additionalInfo[9].value}}&threshold={{workItemResolution.workItem.additionalInfo[10].value}}&firstDateAtRisk={{workItemResolution.workItem.additionalInfo[11].value}}&lastDateAtRisk={{workItemResolution.workItem.additionalInfo[12].value}}&businessObjectId={{businessObjectId}}&disabledLayoutFeatures=ivAssistantEnabled,timestampEnabled"
+    		}
+    	]
+    }
