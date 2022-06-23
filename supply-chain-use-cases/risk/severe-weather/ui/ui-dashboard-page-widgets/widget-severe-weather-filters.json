@@ -1,4 +1,3 @@
-
 {
     "offeringId": "SCO",
     "id": "SEVERE_WEATHER_FILTER",
@@ -27,16 +26,9 @@
             ]
         },
         {
-            "name": "queries[0].processor",
-            "values": [
-                "EDGES"
-            ],
-            "metaInformation": "infohub.processor"
-        },
-        {
             "name": "queries[0].fields",
             "values": [
-                "query Country( $tenantId: String!, $typeAheadFilter: BooleanExp={ CONSTANT_VALUE: true } ) { businessObjects( simpleFilter: { type: ExternalEvent, tenantId: $tenantId, fieldNameForDistinctValues: \"country\" }, advancedFilter: { AND: [ $typeAheadFilter ] }, hint: { viewId: \"graph\" }, cursorParams: { first: 50, sort: { fieldPath: \"country\", order: ASC } } ) { totalCount pageInfo { hasNextPage } edges { cursor object { ...on ExternalEvent { id: country name: country } } } } }"
+                "query WeatherFilters($tenantId: String!, $CountryTypeAhead: BooleanExp = {CONSTANT_VALUE: true}, $stateProvinceTypeAhead: BooleanExp = {CONSTANT_VALUE: true}, $subjectTypeAhead: BooleanExp = {CONSTANT_VALUE: true}) { Country: businessObjects(simpleFilter: {type: ExternalEvent, tenantId: $tenantId, fieldNameForDistinctValues: \"country\"}, advancedFilter: {AND: [$CountryTypeAhead]}, hint: {viewId: \"graph\"}, cursorParams: {first: 50, sort: {fieldPath: \"country\", order: ASC}}) { totalCount pageInfo { hasNextPage } edges { cursor object { ... on ExternalEvent { id: country name: country } } } } StateProvince: businessObjects(simpleFilter: {type: ExternalEvent, tenantId: $tenantId, fieldNameForDistinctValues: \"stateProvince\"}, advancedFilter: {AND: [$stateProvinceTypeAhead]}, hint: {viewId: \"graph\"}, cursorParams: {first: 50, sort: {fieldPath: \"stateProvince\", order: ASC}}) { totalCount pageInfo { hasNextPage } edges { cursor object { ... on ExternalEvent { id: stateProvince name: stateProvince } } } } Subject: businessObjects(simpleFilter: {type: ExternalEvent, tenantId: $tenantId, fieldNameForDistinctValues: \"subject\"}, advancedFilter: {AND: [$subjectTypeAhead]}, hint: {viewId: \"graph\"}, cursorParams: {first: 50, sort: {fieldPath: \"subject\", order: ASC}}) { totalCount pageInfo { hasNextPage } edges { cursor object { ... on ExternalEvent { id: subject name: subject } } } } } "
             ],
             "metaInformation": "infohub.fields"
         },
@@ -48,63 +40,21 @@
             "metaInformation": "infohub.variable.dynamic"
         },
         {
-            "name": "queries[0].variables.typeAheadFilter",
+            "name": "queries[0].variables.CountryTypeAhead",
             "values": [
                 "{ \"CONTAINS\": [ {\"SELECT\": \"country\", \"type\": \"STRING\" }, { \"VALUE\": \"{{ externalEvent.searchText }}\", \"type\": \"STRING\" } ] }"
             ],
             "metaInformation": "infohub.variable.dynamicExpr"
         },
         {
-            "name": "queries[1].processor",
-            "values": [
-                "EDGES"
-            ],
-            "metaInformation": "infohub.processor"
-        },
-        {
-            "name": "queries[1].fields",
-            "values": [
-                "query StateProvince( $tenantId: String!, $typeAheadFilter: BooleanExp={ CONSTANT_VALUE: true } ) { businessObjects( simpleFilter: { type: ExternalEvent, tenantId: $tenantId, fieldNameForDistinctValues: \"stateProvince\" }, advancedFilter: { AND: [ $typeAheadFilter ] }, hint: { viewId: \"graph\" }, cursorParams: { first: 50, sort: { fieldPath: \"stateProvince\", order: ASC } } ) { totalCount pageInfo { hasNextPage } edges { cursor object { ...on ExternalEvent { id: stateProvince name: stateProvince } } } } }"
-            ],
-            "metaInformation": "infohub.fields"
-        },
-        {
-            "name": "queries[1].variables.tenantId",
-            "values": [
-                "{{ tenantId }}"
-            ],
-            "metaInformation": "infohub.variable.dynamic"
-        },
-        {
-            "name": "queries[1].variables.typeAheadFilter",
+            "name": "queries[0].variables.stateProvinceTypeAhead",
             "values": [
                 "{ \"CONTAINS\": [ {\"SELECT\": \"stateProvince\", \"type\": \"STRING\" }, { \"VALUE\": \"{{ externalEvent.searchText }}\", \"type\": \"STRING\" } ] }"
             ],
             "metaInformation": "infohub.variable.dynamicExpr"
         },
         {
-            "name": "queries[2].processor",
-            "values": [
-                "EDGES"
-            ],
-            "metaInformation": "infohub.processor"
-        },
-        {
-            "name": "queries[2].fields",
-            "values": [
-                "query Subject( $tenantId: String!, $typeAheadFilter: BooleanExp={ CONSTANT_VALUE: true } ) { businessObjects( simpleFilter: { type: ExternalEvent, tenantId: $tenantId, fieldNameForDistinctValues: \"subject\" }, advancedFilter: { AND: [ $typeAheadFilter ] }, hint: { viewId: \"graph\" }, cursorParams: { first: 50, sort: { fieldPath: \"subject\", order: ASC } } ) { totalCount pageInfo { hasNextPage } edges { cursor object { ...on ExternalEvent { id: subject name: subject } } } } }"
-            ],
-            "metaInformation": "infohub.fields"
-        },
-        {
-            "name": "queries[2].variables.tenantId",
-            "values": [
-                "{{ tenantId }}"
-            ],
-            "metaInformation": "infohub.variable.dynamic"
-        },
-        {
-            "name": "queries[2].variables.typeAheadFilter",
+            "name": "queries[0].variables.subjectTypeAhead",
             "values": [
                 "{ \"CONTAINS\": [ {\"SELECT\": \"subject\", \"type\": \"STRING\" }, { \"VALUE\": \"{{ externalEvent.searchText }}\", \"type\": \"STRING\" } ] }"
             ],
@@ -197,21 +147,21 @@
         {
             "name": "filter.title",
             "values": [
-                "COMPONENT.FILTERS.FILTER_TITLE"
+                "COMMON.FILTERS.FILTER_TITLE"
             ],
             "metaInformation": "filterOption"
         },
         {
             "name": "filter.placeholders.search",
             "values": [
-                "COMPONENT.FILTERS.SEARCH_PLACE_HOLDER"
+                "COMMON.FILTERS.SEARCH_PLACE_HOLDER"
             ],
             "metaInformation": "filterOption"
         },
         {
             "name": "filter.placeholders.tags",
             "values": [
-                "COMPONENT.FILTERS.NO_TAGS_MESSAGE_DETAILED"
+                "COMMON.FILTERS.NO_TAGS_MESSAGE_DETAILED"
             ],
             "metaInformation": "filterOption"
         },
@@ -271,7 +221,14 @@
                 "refreshOptions"
             ],
             "metaInformation": "stateSubscription"
-        }
+        },
+        {
+      "name": "transformation",
+      "values": [
+        "{ \"errors\": \"{{#? this.errors}}\", \"data\": [ { \"totalCount\": \"{{this.data.Country.totalCount}}\", \"results\": { \"{{#each this.data.Country.edges}}\": { \"id\": \"{{this.object.id}}\", \"name\": \"{{this.object.name}}\" } } }, { \"totalCount\": \"{{this.data.StateProvince.totalCount}}\", \"results\": { \"{{#each this.data.StateProvince.edges}}\": { \"id\": \"{{this.object.id}}\", \"name\": \"{{this.object.name}}\" } } }, { \"totalCount\": \"{{this.data.Subject.totalCount}}\", \"results\": { \"{{#each this.data.Subject.edges}}\": { \"id\": \"{{this.object.id}}\", \"name\": \"{{this.object.name}}\" } } } ] }"
+      ],
+      "metaInformation": "widgetOption"
+    }
     ],
     "userConfigurations": [
         {
