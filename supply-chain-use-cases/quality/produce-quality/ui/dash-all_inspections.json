@@ -1,129 +1,166 @@
-
 {
-    "id": "all_inspections",
-    "offeringId": "SCO",
-    "state": "ACTIVE",
-    "sequence": 6.0,
-    "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
-    "defaultLanguage": "en",
-    "descriptions":
-    {
-        "en":
-        {
-            "name": "Inspections",
-            "description": "Inspections"
-        }
-    },
-    "type": "Dashboard",
-    "widgets": [
-        {
-            "tenantId": "all-tenants",
-            "layoutId": "all_inspections",
-            "sequence": 0.0,
-            "widgetDefinitionId": "SCO_ICT_DASHBOARD_FILTER",
-            "name": "SCO ICT Dashboard Filter",
-            "widgetProperties": {},
-            "displayProperties":
-            {
-                "colSpan": "6",
-                "rowSpan": "5",
-                "xPos": "0",
-                "yPos": "0",
-                "chartType": "filter",
-                "fullBodyWidget": "false",
-                "enabled": "true",
-                "section": "layout_header"
-            }
-        },
-        {
-            "tenantId": "all-tenants",
-            "layoutId": "all_inspections",
-            "sequence": 1.0,
-            "widgetDefinitionId": "DASHBOARD_ACTIVE_FILTERS",
-            "name": "Dashboard active filters",
-            "widgetProperties": {},
-            "displayProperties":
-            {
-                "chartType": "active_filters",
-                "section": "layout_subheader",
-                "enabled": "true",
-                "fullBodyWidget": "true"
-            }
-        },
-        {
-            "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
-            "sequence": 5.0,
-            "widgetDefinitionId": "inspections_list",
-            "name": "Inspections",
-            "widgetProperties": {},
-            "displayProperties":
-            {
-                "colSpan": "4",
-                "rowSpan": "80",
-                "xPos": "0",
-                "yPos": "0",
-                "chartType": "data_table",
-                "fullBodyWidget": "true",
-                "enabled": "true",
-                "section": "layout_body"
-            }
-        }
-    ],
-
-    "properties": [
-        {
-            "name": "breadcrumbEnabled",
-            "values": ["false"]
-        },
-        {
-            "name": "breadcrumbList",
-            "metaInformation": "layoutOption",
-            "values": ["{\"label\": \"Dashboard\", \"routeName\": \"/\"}"]
-        },
-        {
-            "name": "timestampEnabled",
-            "values": ["false"]
-        },
-        {
-            "name": "ivAssistantEnabled",
-            "metaInformation": "layoutOption",
-            "values": ["true"]
-        },
-        {
-            "name": "hideTitle",
-            "metaInformation": "layoutOption",
-            "values": ["true"]
-        },
-        {
-            "name": "state.empty.title",
-            "metaInformation": "layoutOption",
-            "values": ["No data"]
-        },
-        {
-            "name": "state.empty.body",
-            "metaInformation": "layoutOption",
-            "values": ["There is no data to display"]
-        },
-        {
-            "name": "state.empty.image",
-            "metaInformation": "layoutOption",
-            "values": ["dataEmpty"]
-        },
-        {
-            "name": "state.empty.link.label",
-            "metaInformation": "layoutOption",
-            "values": ["Learn more"]
-        },
-        {
-            "name": "state.empty.link.href.type",
-            "metaInformation": "layoutOption",
-            "values": ["NEW_WINDOW"]
-        },
-        {
-            "name": "state.empty.link.href.path",
-            "metaInformation": "layoutOption",
-            "values": ["https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"]
-        }
-    ],
-    "version": 4
+	"id": "all_inspections",
+	"offeringId": "SCO",
+	"state": "ACTIVE",
+	"sequence": 6.0,
+	"tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+	"type": "Dashboard",
+	"widgets": [{
+			"offeringId": "SCO",
+			"tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+			"id": "8c64aaf0-8dd9-11ec-8d5a-590cf1cd407e",
+			"layoutId": "all_inspections",
+			"sequence": 0.0,
+			"widgetDefinitionId": "SCO_ICT_DASHBOARD_FILTER",
+			"name": "SCO ICT Dashboard Filter",
+			"creator": "270002RDJB",
+			"createdDate": "2022-02-14T21:03:24.447Z",
+			"parentWidgetId": null,
+			"widgetProperties": {},
+			"displayProperties": {
+				"colSpan": "6",
+				"rowSpan": "5",
+				"xPos": "0",
+				"yPos": "0",
+				"chartType": "filter",
+				"fullBodyWidget": "false",
+				"enabled": "true",
+				"section": "layout_header"
+			}
+		},
+		{
+			"offeringId": "SCO",
+			"tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+			"id": "8c64aaf1-8dd9-11ec-8d5a-590cf1cd407e",
+			"layoutId": "all_inspections",
+			"sequence": 1.0,
+			"widgetDefinitionId": "DASHBOARD_ACTIVE_FILTERS",
+			"name": "Dashboard active filters",
+			"creator": "270002RDJB",
+			"createdDate": "2022-02-14T21:03:24.447Z",
+			"parentWidgetId": null,
+			"widgetProperties": {},
+			"displayProperties": {
+				"chartType": "active_filters",
+				"section": "layout_subheader",
+				"enabled": "true",
+				"fullBodyWidget": "true"
+			}
+		},
+		{
+			"offeringId": "SCO",
+			"tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+			"id": "8c64aaf2-8dd9-11ec-8d5a-590cf1cd407e",
+			"layoutId": "all_inspections",
+			"sequence": 5.0,
+			"widgetDefinitionId": "inspections_list",
+			"name": "Inspections",
+			"creator": "270002RDJB",
+			"createdDate": "2022-02-14T21:03:24.447Z",
+			"parentWidgetId": null,
+			"widgetProperties": {},
+			"displayProperties": {
+				"colSpan": "4",
+				"rowSpan": "40",
+				"xPos": "0",
+				"yPos": "0",
+				"chartType": "data_table",
+				"fullBodyWidget": "true",
+				"enabled": "true",
+				"section": "layout_body"
+			}
+		}
+	],
+	"defaultLanguage": "en",
+	"descriptions": {
+		"en": {
+			"name": "Inspections",
+			"language": "en",
+			"description": "Inspections"
+		}
+	},
+	"properties": [{
+			"name": "breadcrumbEnabled",
+			"values": [
+				"false"
+			]
+		},
+		{
+			"name": "breadcrumbList",
+			"metaInformation": "layoutOption",
+			"values": [
+				"{\"label\": \"Dashboard\", \"routeName\": \"/\"}"
+			]
+		},
+		{
+			"name": "timestampEnabled",
+			"values": [
+				"false"
+			]
+		},
+		{
+			"name": "ivAssistantEnabled",
+			"metaInformation": "layoutOption",
+			"values": [
+				"true"
+			]
+		},
+		{
+			"name": "hideTitle",
+			"metaInformation": "layoutOption",
+			"values": [
+				"true"
+			]
+		},
+		{
+			"name": "resizeToContent",
+			"metaInformation": "widgetOption",
+			"values": [
+				"true"
+			]
+		},
+		{
+			"name": "state.empty.title",
+			"metaInformation": "layoutOption",
+			"values": [
+				"No data"
+			]
+		},
+		{
+			"name": "state.empty.body",
+			"metaInformation": "layoutOption",
+			"values": [
+				"There is no data to display"
+			]
+		},
+		{
+			"name": "state.empty.image",
+			"metaInformation": "layoutOption",
+			"values": [
+				"dataEmpty"
+			]
+		},
+		{
+			"name": "state.empty.link.label",
+			"metaInformation": "layoutOption",
+			"values": [
+				"Learn more"
+			]
+		},
+		{
+			"name": "state.empty.link.href.type",
+			"metaInformation": "layoutOption",
+			"values": [
+				"NEW_WINDOW"
+			]
+		},
+		{
+			"name": "state.empty.link.href.path",
+			"metaInformation": "layoutOption",
+			"values": [
+				"https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+			]
+		}
+	],
+	"version": 4
 }
