@@ -1,0 +1,89 @@
+{
+	"offeringId": "SCO",
+	"id": "TS_DOCUMENT_DETAILS_IFRAME",
+	"state": "ACTIVE",
+	"identifier": "TS_DOCUMENT_DETAILS_IFRAME",
+	"type": "Dashboard_Widget",
+	"tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+	"path": "/api",
+	"vendor": "IBM",
+	"defaultLanguage": "en",
+	"version": 1,
+	"descriptions": {
+		"en": {
+			"name": "TS Document Details Iframe",
+			"language": "en",
+			"description": "TS Document Details Iframe"
+		}
+	},
+	"devConfigurations": [{
+			"name": "iframe.baseUrl",
+			"values": [
+				"{{ viewData.organization.serviceInstances.bts.serviceUrl }}"
+			],
+			"metaInformation": "widgetOption"
+		},
+		{
+			"name": "iframe.path",
+			"values": [
+				"/documents/document/{{ businessObjectId }}?hideBreadcrumbs=true"
+			],
+			"metaInformation": "widgetOption"
+		},
+		{
+			"name": "iframe.queryParams",
+			"values": [],
+			"metaInformation": "widgetOption"
+		},
+		{
+			"name": "iframe.token",
+			"values": [
+				"{{ cuiToken }}"
+			],
+			"metaInformation": "widgetOption"
+		},
+		{
+			"name": "iframe.tenantId",
+			"values": [
+				"{{ tenantId }}"
+			],
+			"metaInformation": "widgetOption"
+		},
+		{
+			"name": "iframe.viewData",
+			"values": [
+				"{{ viewData }}"
+			],
+			"metaInformation": "widgetOption"
+		},
+		{
+			"name": "widgetInitialized",
+			"values": [
+				"loadState",
+				"refreshData"
+			],
+			"metaInformation": "eventSubscription"
+		},
+		{
+			"name": "cuiToken",
+			"values": [
+				"refreshOptions"
+			],
+			"metaInformation": "stateSubscription"
+		},
+		{
+			"name": "businessObject",
+			"values": [
+				"refreshOptions"
+			],
+			"metaInformation": "stateSubscription"
+		}
+	],
+	"userConfigurations": [{
+		"name": "chartType",
+		"values": [
+			"iframe"
+		]
+	}],
+	"adminConfigurations": []
+}
