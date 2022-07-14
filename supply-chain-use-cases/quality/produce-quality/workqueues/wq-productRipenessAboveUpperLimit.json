@@ -33,7 +33,7 @@
         "InventoryLot.location.locationIdentifier",
         "InventoryLot.customAttributes.supplierString"
     ],
-    "isGloballyVisible": true,
+    "isGloballyVisible": false,
     "detailedDescription": "Produce with a measured ripeness above the configured threshold.",
     "defaultFieldsForSelect": [
         "InventoryLot.product.name",
