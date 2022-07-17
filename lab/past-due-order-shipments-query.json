@@ -128,14 +128,14 @@ query totalPastDueOrder($tenantId: String!, $cursorId: String, $sortBy: String =
                         locationName
                         locationIdentifier
                     }
-										shipmentStatusByDate
-										createdDate
+                    shipmentStatusByDate
+                    createdDate
                     requestedShipDate
-                  	plannedShipDate
-          					totalValue
+                    plannedShipDate
+                    totalValue
                     orderValueCurrency
                     lineCount
-                  	
+
                 }
             }
         }
