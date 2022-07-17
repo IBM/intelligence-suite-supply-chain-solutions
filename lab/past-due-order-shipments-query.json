@@ -1,0 +1,143 @@
+query totalPastDueOrder($tenantId: String!, $cursorId: String, $sortBy: String = "OrderIdentifier", $sortOrder: SortOrder = DESC, $customerNameFilter: BooleanExp =
+    {
+        CONSTANT_VALUE: true
+    }, $customerIdFilter: BooleanExp =
+    {
+        CONSTANT_VALUE: true
+    }, $supplierNameFilter: BooleanExp =
+    {
+        CONSTANT_VALUE: true
+    }, $supplierIdFilter: BooleanExp =
+    {
+        CONSTANT_VALUE: true
+    }, $carrierNameFilter: BooleanExp =
+    {
+        CONSTANT_VALUE: true
+    }, $carrierIdFilter: BooleanExp =
+    {
+        CONSTANT_VALUE: true
+    }, $originNameFilter: BooleanExp =
+    {
+        CONSTANT_VALUE: true
+    }, $originIdFilter: BooleanExp =
+    {
+        CONSTANT_VALUE: true
+    }, $destinationNameFilter: BooleanExp =
+    {
+        CONSTANT_VALUE: true
+    }, $destinationIdFilter: BooleanExp =
+    {
+        CONSTANT_VALUE: true
+    }, $orderTypeFilter: BooleanExp =
+    {
+        CONSTANT_VALUE: true
+    }, $now: String)
+{
+    totalPastDueOrder: businessObjects(
+        simpleFilter:
+    {
+        tenantId: $tenantId,
+        type: Order
+    }
+        advancedFilter:
+    {
+        AND: [
+            {
+                EQUALS: [
+                    {
+                        SELECT: "orderType",
+                        type: STRING
+                    },
+                    {
+                        VALUE: "OUTBOUND",
+                        type: STRING
+                    }
+                ]
+            },
+            {
+                LESS_THAN: [
+                    {
+                        SELECT: "plannedShipDate",
+                        type: STRING
+                    },
+                    {
+                        VALUE: $now,
+                        type: STRING
+                    }
+                ]
+            },
+            {
+                NOT:
+                {
+                    EQUALS: [
+                        {
+                            SELECT: "shipmentStatusByDate",
+                            type: STRING
+                        },
+                        {
+                            VALUE: "FULLY_SHIPPED",
+                            type: STRING
+                        }
+                    ]
+                }
+            }, $customerNameFilter, $customerIdFilter, $supplierNameFilter, $supplierIdFilter, $carrierNameFilter, $carrierIdFilter, $originNameFilter, $originIdFilter, $destinationNameFilter, $destinationIdFilter, $orderTypeFilter]
+    }
+        hint:
+    {
+        viewId: "graph"
+    }
+        cursorParams:
+    {
+        after: $cursorId,
+        first: 15,
+        sort:
+        {
+            fieldPath: $sortBy,
+            order: $sortOrder
+        }
+    }
+    )
+    {
+        totalCount
+        pageInfo
+        {
+            endCursor
+            hasNextPage
+        }
+        edges
+        {
+            cursor
+            object
+            {
+                ...on Order
+                {
+                    id
+                    orderIdentifier
+                    buyer
+                    {
+                        name
+                        organizationIdentifier
+                    }
+                    shipFromInstructionLocation
+                    {
+                        locationName
+                        locationIdentifier
+                    }
+                    shipToLocation
+                    {
+                        locationName
+                        locationIdentifier
+                    }
+										shipmentStatusByDate
+										createdDate
+                    requestedShipDate
+                  	plannedShipDate
+          					totalValue
+                    orderValueCurrency
+                    lineCount
+                  	
+                }
+            }
+        }
+    }
+}
