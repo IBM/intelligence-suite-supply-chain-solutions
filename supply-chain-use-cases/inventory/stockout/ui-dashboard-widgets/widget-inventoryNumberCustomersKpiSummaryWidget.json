@@ -3,7 +3,7 @@
   "id": "inventoryNumberCustomersKpiSummaryWidget",
   "state": "ACTIVE",
   "identifier": "inventoryNumberCustomersKpiSummaryWidget",
-  "type": "Dashboard_Widget",
+  "type": "Dashboard",
   "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
   "path": "/api",
   "vendor": "IBM",
