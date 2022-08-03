@@ -3,7 +3,7 @@
     "id": "Stock_Overage_Within_Planning_Horizon_plannerCode_BAR",
     "state": "ACTIVE",
     "identifier": "Stock_Overage_Within_Planning_Horizon_plannerCode_BAR",
-    "type": "Dashboard_Widget",
+    "type": "Dashboard",
     "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
     "createdDate": "2022-03-25T06:51:03.420Z",
     "createdBy": "550001692Y",

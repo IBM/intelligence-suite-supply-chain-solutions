@@ -3,7 +3,7 @@
     "id": "Bias_Alert_Negative_Donut",
     "state": "ACTIVE",
     "identifier": "Bias_Alert_Negative_Donut",
-    "type": "Dashboard_Widget",
+    "type": "Dashboard",
     "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
     "path": "/api",
     "vendor": "CUSTOM",

@@ -3,7 +3,7 @@
 	"id": "PRODUCT_QUALITY_THRESHOLD_TABLE",
 	"state": "ACTIVE",
 	"identifier": "PRODUCT_QUALITY_THRESHOLD_TABLE",
-	"type": "Dashboard_Widget",
+	"type": "Dashboard",
 	"tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
 	"path": "/api",
 	"vendor": "IBM",

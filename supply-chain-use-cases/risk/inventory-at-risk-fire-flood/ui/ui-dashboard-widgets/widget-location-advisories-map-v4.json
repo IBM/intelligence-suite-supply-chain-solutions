@@ -4,7 +4,7 @@
     "id": "location_advisories_map",
     "state": "ACTIVE",
     "identifier": "location_advisories_map",
-    "type": "Dashboard_Widget",
+    "type": "Dashboard",
     "tenantId": "dca466b9-2891-4de4-a6eb-fe348ab41c30",
     "path": "/api",
     "vendor": "IBM",

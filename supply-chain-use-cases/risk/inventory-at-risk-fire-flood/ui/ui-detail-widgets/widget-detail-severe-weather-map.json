@@ -4,7 +4,7 @@
     "id": "SCO_WEATHER_MAP",
     "state": "ACTIVE",
     "identifier": "SCO_WEATHER_MAP",
-    "type": "Dashboard_Widget",
+    "type": "Detail",
     "tenantId": "bb937633-25aa-4733-8086-058db5b0a3dc",
     "path": "/api",
     "vendor": "IBM",

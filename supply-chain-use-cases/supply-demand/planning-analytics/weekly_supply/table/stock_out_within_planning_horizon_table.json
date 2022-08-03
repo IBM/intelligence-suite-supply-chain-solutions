@@ -3,7 +3,7 @@
     "id": "Stock_Out_Within_Planning_Horizon_TABLE",
     "state": "ACTIVE",
     "identifier": "Stock_Out_Within_Planning_Horizon_TABLE",
-    "type": "Dashboard_Widget",
+    "type": "Dashboard",
     "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
     "createdDate": "2022-03-25T07:03:53.847Z",
     "createdBy": "550001692Y",

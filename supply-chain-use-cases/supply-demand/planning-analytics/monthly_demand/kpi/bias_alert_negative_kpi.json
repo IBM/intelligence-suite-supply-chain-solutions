@@ -3,7 +3,7 @@
     "id": "Bias_Alert_Negative_KPI",
     "state": "ACTIVE",
     "identifier": "Bias_Alert_Negative_KPI",
-    "type": "Dashboard_Widget",
+    "type": "Dashboard",
     "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
     "createdDate": "2022-03-24T03:15:41.841Z",
     "createdBy": "550008GN71",

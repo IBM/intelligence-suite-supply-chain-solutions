@@ -3,7 +3,7 @@
     "id": "Inventory_With_Over_Consumption_View_All_Table",
     "state": "ACTIVE",
     "identifier": "Inventory_With_Over_Consumption_View_All_Table",
-    "type": "Dashboard_Widget",
+    "type": "Dashboard",
     "tenantId": "4591d1e8-de08-4c98-bcb9-3658c4d1539c",
     "createdDate": "2022-03-24T03:39:29.770Z",
     "createdBy": "550008GN71",

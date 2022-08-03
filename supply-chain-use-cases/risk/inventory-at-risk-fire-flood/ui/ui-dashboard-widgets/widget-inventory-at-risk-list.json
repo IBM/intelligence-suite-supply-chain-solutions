@@ -4,7 +4,7 @@
     "id": "inventory_at_risk_table",
     "state": "ACTIVE",
     "identifier": "inventory_at_risk_table",
-    "type": "Dashboard_Widget",
+    "type": "Dashboard",
     "tenantId": "bb937633-25aa-4733-8086-058db5b0a3dc",
     "path": "/api",
     "vendor": "IBM",

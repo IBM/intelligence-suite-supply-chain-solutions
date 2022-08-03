@@ -4,7 +4,7 @@
     "id": "FUTURE_WEATHER_LIST_WIDGET",
     "state": "ACTIVE",
     "identifier": "FUTURE_WEATHER_LIST_WIDGET",
-    "type": "Dashboard_Widget",
+    "type": "Dashboard",
     "tenantId": "2c358084-d86d-4f4d-ba5d-8ddb009f4d97",
     "path": "/api",
     "vendor": "IBM",

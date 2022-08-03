@@ -4,7 +4,7 @@
     "id": "SEVERE_WEATHER_MAP_WIDGET_V2",
     "state": "ACTIVE",
     "identifier": "SEVERE_WEATHER_MAP_WIDGET_V2",
-    "type": "Dashboard_Widget",
+    "type": "Dashboard",
     "tenantId": "bb937633-25aa-4733-8086-058db5b0a3dc",
     "path": "/api",
     "vendor": "IBM",
