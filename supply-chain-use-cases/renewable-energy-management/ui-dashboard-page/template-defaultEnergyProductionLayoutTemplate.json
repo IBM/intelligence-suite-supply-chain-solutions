@@ -3,12 +3,12 @@
   "offeringId": "SCO",
   "state": "ACTIVE",
   "sequence": 0.0,
-  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
   "type": "Dashboard",
   "widgets": [
     {
       "offeringId": "SCO",
-      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
       "layoutId": "defaultEnergyProductionLayoutTemplate",
       "sequence": 0.0,
       "widgetDefinitionId": "windPast48HoursSummaryWidget",
@@ -30,7 +30,7 @@
     },
     {
       "offeringId": "SCO",
-      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
       "layoutId": "defaultEnergyProductionLayoutTemplate",
       "sequence": 1.0,
       "widgetDefinitionId": "windDashboardFilter",
@@ -48,7 +48,7 @@
     },
     {
       "offeringId": "SCO",
-      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
       "layoutId": "defaultEnergyProductionLayoutTemplate",
       "sequence": 1.0,
       "widgetDefinitionId": "windNext48HoursSummaryWidget",
@@ -70,7 +70,7 @@
     },
     {
       "offeringId": "SCO",
-      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
       "layoutId": "defaultEnergyProductionLayoutTemplate",
       "sequence": 2.0,
       "widgetDefinitionId": "windDashboardActiveFiltersWidget",
@@ -88,7 +88,7 @@
     },
     {
       "offeringId": "SCO",
-      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
       "layoutId": "defaultEnergyProductionLayoutTemplate",
       "sequence": 2.0,
       "widgetDefinitionId": "windPowerProductionPast48HoursChart",
@@ -110,7 +110,7 @@
     },
     {
       "offeringId": "SCO",
-      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
       "layoutId": "defaultEnergyProductionLayoutTemplate",
       "sequence": 3.0,
       "widgetDefinitionId": "windPowerProductionNext48HoursChart",
@@ -132,7 +132,7 @@
     },
     {
       "offeringId": "SCO",
-      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
       "layoutId": "defaultEnergyProductionLayoutTemplate",
       "sequence": 4.0,
       "widgetDefinitionId": "windPast30DaysSummaryWidget",
@@ -154,7 +154,7 @@
     },
     {
       "offeringId": "SCO",
-      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
       "layoutId": "defaultEnergyProductionLayoutTemplate",
       "sequence": 5.0,
       "widgetDefinitionId": "windNext30DaysSummaryWidget",
@@ -176,7 +176,7 @@
     },
     {
       "offeringId": "SCO",
-      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
       "layoutId": "defaultEnergyProductionLayoutTemplate",
       "sequence": 6.0,
       "widgetDefinitionId": "windPowerProductionPast30DaysChart",
@@ -198,7 +198,7 @@
     },
     {
       "offeringId": "SCO",
-      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
       "layoutId": "defaultEnergyProductionLayoutTemplate",
       "sequence": 7.0,
       "widgetDefinitionId": "windPowerProductionNext30DaysChart",
@@ -220,7 +220,7 @@
     },
     {
       "offeringId": "SCO",
-      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
       "layoutId": "defaultEnergyProductionLayoutTemplate",
       "sequence": 8.0,
       "widgetDefinitionId": "windEnergyProductionMap",

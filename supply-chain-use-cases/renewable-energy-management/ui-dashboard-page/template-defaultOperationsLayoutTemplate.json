@@ -3,12 +3,12 @@
   "offeringId": "SCO",
   "state": "ACTIVE",
   "sequence": 0.0,
-  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
   "type": "Dashboard",
   "widgets": [
     {
       "offeringId": "SCO",
-      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
       "layoutId": "defaultOperationsLayoutTemplate",
       "sequence": 0.0,
       "widgetDefinitionId": "plantDashboardFilterWidget",
@@ -26,7 +26,7 @@
     },
     {
       "offeringId": "SCO",
-      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
       "layoutId": "defaultOperationsLayoutTemplate",
       "sequence": 0.0,
       "widgetDefinitionId": "plantDashboardActiveFiltersWidget",
@@ -44,7 +44,7 @@
     },
     {
       "offeringId": "SCO",
-      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
       "layoutId": "defaultOperationsLayoutTemplate",
       "sequence": 0.0,
       "widgetDefinitionId": "plantCurrentConditionsLocationLinkSummaryWidget",
@@ -66,7 +66,7 @@
     },
     {
       "offeringId": "SCO",
-      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
       "layoutId": "defaultOperationsLayoutTemplate",
       "sequence": 2.0,
       "widgetDefinitionId": "plantPerformance24HourMeterChart",
@@ -88,7 +88,7 @@
     },
     {
       "offeringId": "SCO",
-      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
       "layoutId": "defaultOperationsLayoutTemplate",
       "sequence": 4.0,
       "widgetDefinitionId": "plantLocationDetailsAssetsBarChart",
@@ -110,29 +110,7 @@
     },
     {
       "offeringId": "SCO",
-      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
-      "layoutId": "defaultOperationsLayoutTemplate",
-      "sequence": 4.0,
-      "widgetDefinitionId": "plantLocationGridDetailsWidget",
-      "name": "Location details grid",
-      "creator": "50JUBJXT80",
-      "createdDate": "2022-05-19T17:50:25.909Z",
-      "parentWidgetId": null,
-      "widgetProperties": {},
-      "displayProperties": {
-        "colSpan": "4",
-        "rowSpan": "6",
-        "xPos": "0",
-        "yPos": "22",
-        "chartType": "grid_details",
-        "fullBodyWidget": "false",
-        "enabled": "true",
-        "section": "layout_body"
-      }
-    },
-    {
-      "offeringId": "SCO",
-      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
       "layoutId": "defaultOperationsLayoutTemplate",
       "sequence": 5.0,
       "widgetDefinitionId": "plantAssetListWidget",
@@ -154,7 +132,7 @@
     },
     {
       "offeringId": "SCO",
-      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
       "layoutId": "defaultOperationsLayoutTemplate",
       "sequence": 5.0,
       "widgetDefinitionId": "plantDashboardStarredWorkQueues",
@@ -176,7 +154,7 @@
     },
     {
       "offeringId": "SCO",
-      "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+      "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
       "layoutId": "defaultOperationsLayoutTemplate",
       "sequence": 6.0,
       "widgetDefinitionId": "plantLocationDetailsMap",
