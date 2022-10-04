@@ -1,0 +1,92 @@
+{
+  "offeringId": "SCO",
+  "id": "assetDetailTitle",
+  "state": "ACTIVE",
+  "identifier": "assetDetailTitle",
+  "type": "Dashboard_Widget",
+  "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "descriptions": {
+    "en": {
+      "name": "Asset detail title",
+      "language": "en",
+      "description": "Asset page detail title widget"
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "title.viewId",
+      "values": [
+        "textTpl"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "title.label",
+      "values": [
+        "Asset ID {{assetIdentifier}} - {{locationIdentifier}}"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "title.translationParamObj.assetIdentifier",
+      "values": [
+        "{{assetIdentifier}}"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "title.translationParamObj.locationIdentifier",
+      "values": [
+        "{{location.locationIdentifier}}"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "data.service",
+      "values": [
+        "infohub"
+      ]
+    },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query AssetDetail($tenantId: String, $assetId: String) { assetTitle: businessObjects(hint: {viewId: \"graph\"}, simpleFilter: {tenantId: $tenantId, type: Asset}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"id\", type: STRING}, {VALUE: $assetId, type: STRING}]}]}) { totalCount edges { object { ... on Asset { assetIdentifier location { locationIdentifier } } } } } } "
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": [
+        "{{ tenantId }}"
+      ],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.assetId",
+      "values": [
+        "{{ assetId }}"
+      ],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": [
+        "refreshData"
+      ],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{\"errors\":\"{{#? this.errors}}\", \"pageInfo\":\"{{this.data.assetTitle.pageInfo}}\", \"totalCount\":\"{{this.data.assetTitle.totalCount}}\", \"locationIdentifier\":\"{{this.data.assetTitle.edges[0].object.location.locationIdentifier}}\", \"assetIdentifier\":\"{{this.data.assetTitle.edges[0].object.assetIdentifier}}\"}"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [{ "name": "chartType", "values": ["page_title"] }],
+  "adminConfigurations": []
+}

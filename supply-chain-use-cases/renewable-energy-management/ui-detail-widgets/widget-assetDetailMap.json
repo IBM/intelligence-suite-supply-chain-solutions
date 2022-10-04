@@ -1,0 +1,223 @@
+{
+  "offeringId": "SCO",
+  "id": "assetDetailMap",
+  "state": "ACTIVE",
+  "identifier": "assetDetailMap",
+  "type": "Dashboard_Widget",
+  "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "description": {
+    "name": "Asset Locations",
+    "language": "en",
+    "description": "Asset Locations"
+  },
+  "descriptions": {
+    "en": {
+      "name": "Asset Locations",
+      "language": "en",
+      "description": "Asset Locations"
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "data.service",
+      "values": [
+        "infohub"
+      ]
+    },
+    {
+      "name": "queries[0].options.fetchPolicy",
+      "values": [
+        "no-cache"
+      ],
+      "metaInformation": "infohub.queryOption"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": [
+        "{{ tenantId }}"
+      ],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query assetDetailMap($tenantId: String!, $selectedAssetId: String) { thisAssetLocation: businessObjects(simpleFilter: {type: Asset, tenantId: $tenantId}, advancedFilter: {EQUALS: [{SELECT: \"id\", type: STRING}, {VALUE: $selectedAssetId, type: STRING}]}, hint: {viewId: \"graph\"}, cursorParams: {first: 50}) { totalCount edges { cursor object { ... on Asset { id currentLocationCoordinates location { locationType locationIdentifier locationName city stateProvince } } } } } assetLocations: businessObjects(simpleFilter: {type: Asset, tenantId: $tenantId}, advancedFilter: {EQUALS: [{SELECT: \"id\", type: STRING}, {VALUE: $selectedAssetId, type: STRING}]}, hint: {viewId: \"graph\"}, cursorParams: {first: 50}) { totalCount edges { cursor object { ... on Asset { id currentLocationCoordinates location { locationType locationIdentifier locationName city stateProvince } } } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.selectedAssetId",
+      "values": [
+        "{{ assetId }}"
+      ],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{\"errors\":\"{{#? this.errors}}\",\"totalCount\":\"{{this.data.assetLocations.totalCount}}\",\"results\": {\"assetLocationData\":{\"{{#each this.data.assetLocations.edges}}\":{\"id\":\"{{this.object.id}}\",\"coordinates\":\"{{#? this.object.currentLocationCoordinates}}\",\"startLocationTooltip\":\"{{this.object.location.locationName}}\"}}, \"thisAssetLocationData\":{\"{{#each this.data.thisAssetLocation.edges}}\":{\"id\":\"{{this.object.id}}\",\"coordinates\":\"{{#? this.object.currentLocationCoordinates}}\",\"startLocationTooltip\":\"{{this.object.location.locationName}}\"}}}}"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "draggable",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "horizontalScroll.enable",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "tableOption"
+    },
+    {
+      "name": "hubFilter.appliedFilters",
+      "values": [
+        "refreshData"
+      ],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "wind.page",
+      "values": [
+        "refreshData"
+      ],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "wind.pageLength",
+      "values": [
+        "refreshData"
+      ],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "wind.sort",
+      "values": [
+        "refreshData"
+      ],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": [
+        "refreshData"
+      ],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "mapProvider",
+      "values": [
+        "openStreetMap"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "mapControl.zoom",
+      "values": [
+        "true"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "mapControl.fullscreen",
+      "values": [
+        "true"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "mapControl.legend.isOverlay",
+      "values": [
+        "true"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "dataStreamsOptions[0].id",
+      "values": [
+        "assetLocationData"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "dataStreamsOptions[0].label",
+      "values": [
+        "All asset locations"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "dataStreamsOptions[0].startLocation.tooltip",
+      "values": [
+        "startLocationTooltip"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "dataStreamsOptions[0].startLocation.key",
+      "values": [
+        "coordinates"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "dataStreamsOptions[0].color",
+      "values": [
+        "orange"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "dataStreamsOptions[1].id",
+      "values": [
+        "thisAssetLocationData"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "dataStreamsOptions[1].label",
+      "values": [
+        "This asset location"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "dataStreamsOptions[1].startLocation.tooltip",
+      "values": [
+        "startLocationTooltip"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "dataStreamsOptions[1].startLocation.key",
+      "values": [
+        "coordinates"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "dataStreamsOptions[1].color",
+      "values": [
+        "blue"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [
+    {
+      "name": "chartType",
+      "values": [
+        "map"
+      ]
+    }
+  ],
+  "adminConfigurations": []
+}

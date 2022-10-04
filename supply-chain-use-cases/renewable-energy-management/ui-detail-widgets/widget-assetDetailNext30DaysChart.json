@@ -1,0 +1,209 @@
+{
+  "offeringId": "SCO",
+  "id": "assetDetailNext30DaysChart",
+  "state": "ACTIVE",
+  "identifier": "assetDetailNext30DaysChart",
+  "type": "Dashboard_Widget",
+  "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "description": {
+    "name": "Power production forecast",
+    "language": "en",
+    "description": "Power production forecast for next 30 days"
+  },
+  "descriptions": {
+    "en": {
+      "name": "Power production forecast",
+      "language": "en",
+      "description": "Power production forecast for next 30 days"
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "draggable",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.type",
+      "values": [
+        "line"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.type",
+      "values": [
+        "text_header"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.title",
+      "values": [
+        "Next 30 days"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.tooltip",
+      "values": [
+        "Power production forecast for the next 30 days"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.options.height",
+      "values": [
+        "300px"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.options.color.scale",
+      "values": [
+        "{\"forecast v2\": \"#0043ce\"}"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.options.axes.bottom.mapsTo",
+      "values": [
+        "key"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.options.axes.bottom.scaleType",
+      "values": [
+        "labels"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.options.axes.left.mapsTo",
+      "values": [
+        "value"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.options.axes.left.title",
+      "values": [
+        "Total energy (MW)"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "chart.options.tooltip.showTotal",
+      "values": [
+        "true"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "data.service",
+      "values": [
+        "infohub"
+      ]
+    },
+    {
+      "name": "queries[0].options.fetchPolicy",
+      "values": [
+        "no-cache"
+      ],
+      "metaInformation": "infohub.queryOption"
+    },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query lineChartPast30Days($tenantId: String!, $assetId: String) { forecastV2: businessObjects(simpleFilter: {type: AssetTimeSeries, tenantId: $tenantId}, hint: {viewId: \"graph\"}, advancedFilter: {AND: [ {EQUALS: [{SELECT: \"asset.id\", type: STRING}, {VALUE: $assetId, type: STRING}]}, {GREATER_EQUALS: [{SELECT: \"startDate\", type: STRING}, {VALUE: \"2021-04-01\", type: STRING}]}, {LESS_THAN: [{SELECT: \"startDate\", type: STRING}, {VALUE: \"2021-05-01\", type: STRING}]}, {EQUALS: [{SELECT: \"seriesType\", type: STRING}, {VALUE: \"FORECAST\", type: STRING}]}]}, aggregationParams: {paginationParams: {first: 50, sort: [{fieldPath: \"startDate\", order: ASC}]}, dimension: {fieldPath: \"startDate\", type: STRING}, reduce: {expression: {fieldPath: \"metric2\", operator: SUM, type: FLOAT}, output: {resultAlias: \"sumByDate\", type: FLOAT}}}) { totalCount aggregationResults { dimensionValues { name value } values { name numValue } } } }"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": [
+        "{{ tenantId }}"
+      ],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.assetId",
+      "values": [
+        "{{ assetId }}"
+      ],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": [
+        "refreshData"
+      ],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{\"totalCount\":\"{{ this.data.forecastV2.totalCount }}\",\"errors\":\"{{#? this.errors}}\",\"pageInfo\":\"{}\",\"results\":{\"{{#concat}}\":[{\"{{#each this.data.forecastV2.aggregationResults}}\":{\"group\":\"forecast v2\",\"key\":\"{{this.dimensionValues[0].value}}\",\"value\":\"{{values[0].numValue}}\"}}]}}"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "showFooter",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.title",
+      "values": [
+        "COMMON.EMPTY_TITLE"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.body",
+      "values": [
+        "COMMON.EMPTY_BODY"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": [
+        "COMMON.EMPTY_LINK_LABEL"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": [
+        "NEW_WINDOW"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [
+    {
+      "name": "chartType",
+      "values": [
+        "carbon_chart"
+      ]
+    }
+  ],
+  "adminConfigurations": []
+}

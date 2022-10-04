@@ -1,0 +1,358 @@
+{
+  "offeringId": "SCO",
+  "id": "assetGridDetails",
+  "state": "ACTIVE",
+  "identifier": "assetGridDetails",
+  "type": "Dashboard_Widget",
+  "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "descriptions": {
+    "en": {
+      "name": "Asset Details",
+      "language": "en",
+      "description": "Asset Details"
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "header.type",
+      "values": [
+        "text_header"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.title",
+      "values": [
+        "COMMON.DETAILS"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "colSpan",
+      "values": [
+        "4"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "rowSpan",
+      "values": [
+        "10"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "draggable",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "data.service",
+      "values": [
+        "infohub"
+      ]
+    },
+    {
+      "name": "queries[0].processor",
+      "values": [
+        "EDGES"
+      ],
+      "metaInformation": "infohub.processor"
+    },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query AssetDetails($tenantId: String, $selectedAssetId: String) { assetDetails: businessObjects(hint: {viewId: \"graph\"}, simpleFilter: {tenantId: $tenantId, type: Asset}, advancedFilter: {EQUALS: [{SELECT: \"id\", type: STRING}, {VALUE: $selectedAssetId, type: STRING}]}) { totalCount pageInfo { hasNextPage endCursor } edges { cursor object { ... on Asset { id createReceived assetType assetIdentifier assetClass { customAttributes { heightFloat diameterFloat } id partNumber name value valueCurrency category { code } brand { code } line { code } family { code } } metric1 metric1Units  metric1UpperLimit metric1LowerLimit  metric2 metric2Units metric2UpperLimit metric2LowerLimit status currentLocationCoordinates location { locationName locationIdentifier customAttributes { currentWindFloat infoLinkString } stateProvince } } } } } } "
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": [
+        "{{ tenantId }}"
+      ],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.selectedAssetId",
+      "values": [
+        "{{ assetId }}"
+      ],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "item[0].name",
+      "values": [
+        "assetIdentifier"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[0].title",
+      "values": [
+        "Asset identifier"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[1].name",
+      "values": [
+        "currentLocationCoordinates"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[1].title",
+      "values": [
+        "Current location coordinates"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[2].name",
+      "values": [
+        "product.name"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[2].title",
+      "values": [
+        "Name"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[3].name",
+      "values": [
+        "product.partNumber"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[3].title",
+      "values": [
+        "Product ID"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[4].name",
+      "values": [
+        "status"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[4].title",
+      "values": [
+        "Status"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[5].name",
+      "values": [
+        "metric1"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[5].title",
+      "values": [
+        "Wind"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[6].name",
+      "values": [
+        "metric1Units"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[6].title",
+      "values": [
+        "Wind units"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[7].name",
+      "values": [
+        "location.locationIdentifier"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[7].title",
+      "values": [
+        "Location Identifier"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[8].name",
+      "values": [
+        "location.locationName"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[8].title",
+      "values": [
+        "Location name"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[9].name",
+      "values": [
+        "assetType"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[9].title",
+      "values": [
+        "Asset type"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[10].name",
+      "values": [
+        "metric2"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[10].title",
+      "values": [
+        "Energy"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[11].name",
+      "values": [
+        "metric2Units"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[11].title",
+      "values": [
+        "Energy units"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[12].name",
+      "values": [
+        "location.customAttributes.currentWindFloat"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[12].title",
+      "values": [
+        "Current wind"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[13].name",
+      "values": [
+        "location.customAttributes.infoLinkString"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[13].title",
+      "values": [
+        "Location link"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[13].customTemplate",
+      "values": [
+        "linkTpl"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[13].linkType",
+      "values": [
+        "NEW_WINDOW"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[13].linkPath",
+      "values": [
+        "location.customAttributes.infoLinkString"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[14].name",
+      "values": [
+        "product.customAttributes.heightFloat"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[14].title",
+      "values": [
+        "Product height"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[15].name",
+      "values": [
+        "product.customAttributes.diameterFloat"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[15].title",
+      "values": [
+        "Product diameter"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": [
+        "refreshData"
+      ],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "drilldownRowData.row",
+      "values": [
+        "refreshData"
+      ],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{ \"errors\": \"{{#? this.errors}}\", \"totalCount\": \"{{this.data.assetDetails.totalCount}}\", \"pageInfo\": \"{{this.data.assetDetails.pageInfo}}\", \"results\": { \"{{#each data.assetDetails.edges}}\": { \"cursor\": \"{{this.cursor}}\", \"id\": \"{{this.object.id}}\", \"product\": \"{{this.object.assetClass}}\", \"assetIdentifier\": \"{{this.object.assetIdentifier}}\", \"assetType\": \"{{this.object.assetType}}\", \"metric1\": \"{{this.object.metric1}}\", \"metric1Units\": \"{{this.object.metric1Units}}\", \"metric1UpperLimit\": \"{{this.object.metric1UpperLimit}}\", \"metric1LowerLimit\": \"{{this.object.metric1LowerLimit}}\", \"status\": \"{{this.object.status}}\",  \"location\": \"{{this.object.location}}\", \"currentLocationCoordinates\": \"{{this.object.currentLocationCoordinates}}\",  \"metric2\": \"{{this.object.metric2}}\", \"metric2Units\": \"{{this.object.metric2Units}}\", \"metric2UpperLimit\": \"{{this.object.metric2UpperLimit}}\", \"metric2LowerLimit\": \"{{this.object.metric2LowerLimit}}\"  } } }"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [{ "name": "chartType", "values": ["grid_details"] }],
+  "adminConfigurations": []
+}

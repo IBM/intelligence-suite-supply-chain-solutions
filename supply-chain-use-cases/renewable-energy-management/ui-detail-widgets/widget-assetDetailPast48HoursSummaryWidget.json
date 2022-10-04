@@ -1,0 +1,244 @@
+{
+  "offeringId": "SCO",
+  "id": "assetDetailPast48HoursSummaryWidget",
+  "state": "ACTIVE",
+  "identifier": "assetDetailPast48HoursSummaryWidget",
+  "type": "Dashboard_Widget",
+  "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "description": {
+    "name": "Renewable past 48h metrics",
+    "language": "en",
+    "description": "Summary of total expected and actual power output for selected generators"
+  },
+  "descriptions": {
+    "en": {
+      "name": "Renewable past 48h metrics",
+      "language": "en",
+      "description": "Summary of total expected and actual power output for selected generators"
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "header.type",
+      "values": [
+        "text_header"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.title",
+      "values": [
+        "Past 48 hours"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "colSpan",
+      "values": [
+        "2"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "rowSpan",
+      "values": [
+        "12"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "draggable",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "data.service",
+      "values": [
+        "infohub"
+      ]
+    },
+    {
+      "name": "queries[0].processor",
+      "values": [
+        "OBJECT_AGGREGATIONS"
+      ],
+      "metaInformation": "infohub.processor"
+    },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query past48Hours($tenantId: String!, $assetId: String) { energyForecast48h: businessObjects(simpleFilter: { type: AssetTimeSeries, tenantId: $tenantId }, hint: { viewId: \"graph\" }, advancedFilter: { AND: [ {EQUALS: [{SELECT: \"asset.id\", type: STRING}, {VALUE: $assetId, type: STRING}]}, { GREATER_EQUALS: [ { SELECT: \"startDate\", type: STRING }, { VALUE: \"2021-03-30T00:00:00Z\", type: STRING } ] }, { LESS_THAN: [ { SELECT: \"startDate\", type: STRING }, { VALUE: \"2021-04-01T00:00:00Z\", type: STRING} ]}, { EQUALS: [ { SELECT: \"seriesType\" }, { VALUE: \"FORECAST\" } ] }] }, aggregationParams: { reduce: { expression: { fieldPath: \"metric2\", operator: SUM, type: FLOAT }, output: { resultAlias: \"energyForcast\", type: FLOAT } } } ) { totalCount aggregationResults { dimensionValues { name value } values { name numValue } } } actualEnergyProduced48h: businessObjects(simpleFilter: { type: AssetTimeSeries, tenantId: $tenantId }, hint: { viewId: \"graph\" }, advancedFilter: { AND: [ {EQUALS: [{SELECT: \"asset.id\", type: STRING}, {VALUE: $assetId, type: STRING}]}, { GREATER_EQUALS: [ { SELECT: \"startDate\", type: STRING }, { VALUE: \"2021-03-30T00:00:00Z\", type: STRING } ] }, { LESS_THAN: [ { SELECT: \"startDate\", type: STRING }, { VALUE: \"2021-04-01T00:00:00Z\", type: STRING} ]}, { EQUALS: [ { SELECT: \"seriesType\" }, { VALUE: \"ACTUAL\" } ] }, { EQUALS: [ { SELECT: \"duration\" }, { VALUE: \"1\" }]}] }, aggregationParams: { reduce: { expression: { fieldPath: \"metric2\", operator: SUM, type: FLOAT }, output: { resultAlias: \"actualEnergyProduced\", type: FLOAT } } } ) { totalCount aggregationResults { dimensionValues { name value } values { name numValue } } } } "
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": [
+        "{{ tenantId }}"
+      ],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.assetId",
+      "values": [
+        "{{ assetId }}"
+      ],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "items[0].count.href.labelType",
+      "values": [
+        "numberTpl"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].count.label",
+      "values": [
+        "{{ actualEnergyProduced48hSum }}"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].heading.label",
+      "values": [
+        "Actual energy produced"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].heading.tooltip",
+      "values": [
+        "Actual energy produced"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].units.label",
+      "values": [
+        "MW"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].count.customTemplate",
+      "values": [
+        "textTpl"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[1].count.href.labelType",
+      "values": [
+        "numberTpl"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[1].count.label",
+      "values": [
+        "{{ energyForecast48hSum }}"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[1].heading.label",
+      "values": [
+        "Energy forecast"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[1].heading.tooltip",
+      "values": [
+        "Energy forecast"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[1].units.label",
+      "values": [
+        "MW"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[1].count.customTemplate",
+      "values": [
+        "textTpl"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": [
+        "refreshData"
+      ],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{\"errors\":\"{{#? this.errors}}\",\"pageInfo\":\"{}\",\"results\":[{\"energyForecast48hSum\":\"{{this.data.energyForecast48h.aggregationResults[0].values[0].numValue.toFixed()}}\"},{\"actualEnergyProduced48hSum\":\"{{this.data.actualEnergyProduced48h.aggregationResults[0].values[0].numValue.toFixed()}}\"}]}"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.title",
+      "values": [
+        "COMMON.EMPTY_TITLE"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.body",
+      "values": [
+        "COMMON.EMPTY_BODY"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": [
+        "COMMON.EMPTY_LINK_LABEL"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": [
+        "NEW_WINDOW"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "showFooter",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [
+    {
+      "name": "chartType",
+      "values": [
+        "summary"
+      ]
+    }
+  ],
+  "adminConfigurations": []
+}

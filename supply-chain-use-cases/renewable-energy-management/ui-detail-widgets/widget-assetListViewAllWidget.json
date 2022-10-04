@@ -1,0 +1,665 @@
+{
+  "offeringId": "SCO",
+  "id": "ASSET_LIST_VIEW_ALL",
+  "state": "ACTIVE",
+  "identifier": "ASSET_LIST_VIEW_ALL",
+  "type": "Dashboard_Widget",
+  "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "description": {
+    "name": "Asset list view all",
+    "language": "en",
+    "description": "Asset list view all"
+  },
+  "descriptions": {
+    "en": {
+      "name": "Asset list view all",
+      "language": "en",
+      "description": "Asset list view all"
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "header.type",
+      "values": [
+        "metric_header"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "resizeToContent",
+      "values": [
+        "true"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.value",
+      "values": [
+        "{{ totalCount }}"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.title",
+      "values": [
+        "Assets"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "header.tooltip",
+      "values": [
+        "Inspections tooltip."
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "data.service",
+      "values": [
+        "infohub"
+      ]
+    },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query AssetList($tenantId: String,  $pageLength: Int, $cursorId: String,, $locationFilter: BooleanExp = {CONSTANT_VALUE: true}, $locationStateFilter: BooleanExp = {CONSTANT_VALUE: true}, $locationIdentifierFilter: BooleanExp = {CONSTANT_VALUE: true}) { businessObjects( hint: { viewId: \"graph\" } cursorParams: { after: $cursorId first: $pageLength } simpleFilter: { tenantId: $tenantId, type: Asset } advancedFilter: { AND: [ { EXISTS: [{ SELECT: \"createReceived\", type: STRING }] } $locationFilter, $locationStateFilter, $locationIdentifierFilter ] } ) { totalCount pageInfo { hasNextPage endCursor } edges { object { ...on Asset { createReceived id assetType assetIdentifier assetClass { id partNumber name value valueCurrency category { code } brand { code } line { code } family { code } } metric1 metric1Units  metric1UpperLimit metric1LowerLimit  metric2 metric2Units metric2UpperLimit metric2LowerLimit status currentLocationCoordinates location { locationName locationIdentifier stateProvince } } } } } } "
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": [
+        "{{ tenantId }}"
+      ],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.cursorId",
+      "values": [
+        "{{ cursorId }}"
+      ],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.pageLength",
+      "values": [
+        "{{ assetListViewAll.pageLength }}"
+      ],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.locationFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"location.id\", \"type\": \"STRING\" }, { \"VALUES\": {{ plant.appliedFilters.LocationName.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.locationIdentifierFilter",
+      "values": [
+        "{ \"CONTAINS\": [ {\"SELECT\": \"locationIdentifier\", \"type\": \"STRING\" }, { \"VALUES\": {{ plant.appliedFilters.LocationIdentifier.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.locationStateFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"stateProvince\", \"type\": \"STRING\" }, { \"VALUES\": {{ plant.appliedFilters.LocationState.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "plant.appliedFilters",
+      "values": [
+        "refreshData"
+      ],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "columnSorted",
+      "values": [
+        "assetListViewAll"
+      ],
+      "metaInformation": "stateScope"
+    },
+    {
+      "name": "assetListViewAllt.sort",
+      "values": [
+        "refreshData",
+        "refreshSavedState"
+      ],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "custom.appliedFilters",
+      "values": [
+        "refreshData"
+      ],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "horizontalScroll.enable",
+      "values": [
+        "true"
+      ],
+      "metaInformation": "tableOption"
+    },
+    {
+      "name": "pagination.enable",
+      "values": [
+        "true"
+      ],
+      "metaInformation": "tableOption"
+    },
+    {
+      "name": "pageInput.enable",
+      "values": [
+        "true"
+      ],
+      "metaInformation": "tableOption"
+    },
+    {
+      "name": "pageChanged",
+      "values": [
+        "assetListViewAll"
+      ],
+      "metaInformation": "stateScope"
+    },
+    {
+      "name": "assetListViewAll.page",
+      "values": [
+        "refreshData"
+      ],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "assetListViewAll.pageLength",
+      "values": [
+        "refreshData"
+      ],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "stickyTableHeader",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "tableOption"
+    },
+    {
+      "name": "stripes",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "tableOption"
+    },
+    {
+      "name": "configurable",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "tableOption"
+    },
+    {
+      "name": "columns[0].cell.label",
+      "values": [
+        "{{ assetIdentifier }}"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[0].header.label",
+      "values": [
+        "Asset ID"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[0].sortable",
+      "values": [
+        "true"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[0].cell.customTemplate",
+      "values": [
+        "linkTpl"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[0].cell.href.type",
+      "values": [
+        "LAYOUT_TEMPLATE"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[0].cell.href.id",
+      "values": [
+        "DEFAULT_ASSET_DETAIL_LAYOUT_TEMPLATE"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[0].cell.href.params",
+      "values": [
+        "assetId={{ id }}"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[0].sequence",
+      "values": [
+        "0"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[1].cell.label",
+      "values": [
+        "{{ product.partNumber }}"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[1].header.label",
+      "values": [
+        "Product ID"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[1].sortable",
+      "values": [
+        "true"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[1].cell.customTemplate",
+      "values": [
+        "textTpl"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[1].sequence",
+      "values": [
+        "1"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[2].cell.label",
+      "values": [
+        "{{ assetType }}"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[2].header.label",
+      "values": [
+        "Asset type"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[2].sortable",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[2].cell.customTemplate",
+      "values": [
+        "textTpl"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[2].sequence",
+      "values": [
+        "2"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[3].cell.label",
+      "values": [
+        "{{ metric1 }}"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[3].header.label",
+      "values": [
+        "Wind"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[3].sortable",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[3].cell.customTemplate",
+      "values": [
+        "textTpl"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[3].sequence",
+      "values": [
+        "3"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[4].cell.label",
+      "values": [
+        "{{ metric1Units }}"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[4].header.label",
+      "values": [
+        "Wind Units"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[4].sortable",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[4].cell.customTemplate",
+      "values": [
+        "textTpl"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[4].sequence",
+      "values": [
+        "4"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[5].cell.label",
+      "values": [
+        "{{ metric2 }}"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[5].header.label",
+      "values": [
+        "Energy"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[5].sortable",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[5].cell.customTemplate",
+      "values": [
+        "textTpl"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[5].sequence",
+      "values": [
+        "5"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[6].cell.label",
+      "values": [
+        "{{ metric2Units }}"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[6].header.label",
+      "values": [
+        "Energy units"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[6].sortable",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[6].cell.customTemplate",
+      "values": [
+        "textTpl"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[6].sequence",
+      "values": [
+        "6"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[7].cell.label",
+      "values": [
+        "{{ metric1UpperLimit }}"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[7].header.label",
+      "values": [
+        "Wind upper limit"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[7].sortable",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[7].cell.customTemplate",
+      "values": [
+        "textTpl"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[7].sequence",
+      "values": [
+        "7"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[8].cell.label",
+      "values": [
+        "{{ metric1LowerLimit }}"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[8].header.label",
+      "values": [
+        "Wind lower limit"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[8].sortable",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[8].cell.customTemplate",
+      "values": [
+        "textTpl"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[8].sequence",
+      "values": [
+        "8"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[9].cell.label",
+      "values": [
+        "{{ status }}"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[9].header.label",
+      "values": [
+        "Status"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[9].sortable",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[9].cell.customTemplate",
+      "values": [
+        "textTpl"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[9].sequence",
+      "values": [
+        "9"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[10].cell.label",
+      "values": [
+        "{{ currentLocationCoordinates }}"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[10].header.label",
+      "values": [
+        "Current location coordinates"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[10].sortable",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[10].cell.customTemplate",
+      "values": [
+        "textTpl"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[10].sequence",
+      "values": [
+        "10"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        " { \"errors\": \"{{#? this.errors}}\", \"pageInfo\": \"{{this.data.businessObjects.pageInfo}}\", \"totalCount\": \"{{this.data.businessObjects.totalCount}}\", \"results\": { \"{{#each this.data.businessObjects.edges}}\": { \"id\": \"{{this.object.id}}\", \"product\": \"{{this.object.assetClass}}\", \"assetIdentifier\": \"{{this.object.assetIdentifier}}\", \"assetType\": \"{{this.object.assetType}}\", \"metric1\": \"{{this.object.metric1}}\", \"metric1Units\": \"{{this.object.metric1Units}}\", \"metric1UpperLimit\": \"{{this.object.metric1UpperLimit}}\", \"metric1LowerLimit\": \"{{this.object.metric1LowerLimit}}\", \"status\": \"{{this.object.status}}\", \"currentLocationCoordinates\": \"{{this.object.currentLocationCoordinates}}\", \"metric2\": \"{{this.object.metric2}}\", \"metric2Units\": \"{{this.object.metric2Units}}\", \"metric2UpperLimit\": \"{{this.object.metric2UpperLimit}}\", \"metric2LowerLimit\": \"{{this.object.metric2LowerLimit}}\"} } } "
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.title",
+      "values": [
+        "No data"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.body",
+      "values": [
+        "There is no business data to display"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": [
+        "Learn more"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": [
+        "NEW_WINDOW"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [
+    {
+      "name": "chartType",
+      "values": [
+        "data_table"
+      ]
+    }
+  ],
+  "adminConfigurations": []
+}
