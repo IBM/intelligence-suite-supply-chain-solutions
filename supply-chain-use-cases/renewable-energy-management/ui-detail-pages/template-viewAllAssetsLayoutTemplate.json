@@ -1,0 +1,96 @@
+{
+  "id": "VIEW_ALL_ASSETS_LAYOUT_TEMPLATE",
+  "offeringId": "SCO",
+  "state": "ACTIVE",
+  "sequence": 0.0,
+  "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
+  "type": "View_All_Layout",
+  "widgets": [
+    {
+      "id": "ASSET_LIST_VIEW_ALL",
+      "layoutId": "VIEW_ALL_ASSETS_LAYOUT_TEMPLATE",
+      "sequence": 0.0,
+      "widgetDefinitionId": "ASSET_LIST_VIEW_ALL",
+      "name": "View all assets table",
+      "creator": "50JUBJXT80",
+      "createdDate": "2021-02-25T20:10:00.003Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "xPos": "0",
+        "yPos": "0",
+        "rowSpan": "41",
+        "colSpan": "4",
+        "chartType": "data_table",
+        "fullBodyWidget": "true",
+        "enabled": "true",
+        "section": "layout_body"
+      }
+    }
+  ],
+  "defaultLanguage": "en",
+  "descriptions": {
+    "en": {
+      "name": "View all assets",
+      "language": "en",
+      "description": "View all assets"
+    }
+  },
+  "properties": [
+    {
+      "name": "breadcrumbEnabled",
+      "values": [true],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "breadcrumbList",
+      "values": [
+        "{\"label\": \"View all assets\", \"routeName\": \"/template/VIEW_ALL_ASSETS_LAYOUT_TEMPLATE\"}"
+      ],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "timestampEnabled",
+      "values": [false],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "ivAssistantEnabled",
+      "values": [true],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.title",
+      "values": ["COMMON.EMPTY_TITLE"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.body",
+      "metaInformation": "layoutOption",
+      "values": ["COMMON.EMPTY_BODY"]
+    },
+    {
+      "name": "state.empty.image",
+      "metaInformation": "layoutOption",
+      "values": ["dataEmpty"]
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": ["COMMON.EMPTY_LINK_LABEL"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": ["NEW_WINDOW"],
+      "metaInformation": "layoutOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "layoutOption"
+    }
+  ],
+  "version": 1
+}

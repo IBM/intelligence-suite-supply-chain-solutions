@@ -1,0 +1,429 @@
+{
+  "id": "DEFAULT_ASSET_DETAIL_LAYOUT_TEMPLATE",
+  "offeringId": "SCO",
+  "state": "ACTIVE",
+  "sequence": 0.0,
+  "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
+  "type": "Details",
+  "widgets": [
+    {
+      "offeringId": "SCO",
+      "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
+      "layoutId": "DEFAULT_ASSET_DETAIL_LAYOUT_TEMPLATE",
+      "sequence": 0.0,
+      "widgetDefinitionId": "assetDetailTitle",
+      "name": "Title",
+      "creator": "50JUBJXT80",
+      "createdDate": "2022-09-15T17:52:00.899Z",
+      "parentWidgetId": "",
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "2",
+        "rowSpan": "2",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "page_title",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "layout_title"
+      }
+    },
+    {
+      "offeringId": "SCO",
+      "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
+      "layoutId": "DEFAULT_ASSET_DETAIL_LAYOUT_TEMPLATE",
+      "sequence": 0.0,
+      "widgetDefinitionId": "assetGridDetails",
+      "name": "Asset grid details",
+      "creator": "50JUBJXT80",
+      "createdDate": "2022-09-15T17:52:00.899Z",
+      "parentWidgetId": "",
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "6",
+        "rowSpan": "12",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "grid_details",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "asset_overview"
+      }
+    },
+    {
+      "offeringId": "SCO",
+      "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
+      "layoutId": "DEFAULT_ASSET_DETAIL_LAYOUT_TEMPLATE",
+      "sequence": 0.0,
+      "widgetDefinitionId": "assetDetailNext48HoursSummaryWidget",
+      "name": "Energy production summary next 48 hours",
+      "creator": "50JUBJXT80",
+      "createdDate": "2022-09-15T17:52:00.899Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "2",
+        "rowSpan": "10",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "summary",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "asset_metrics_hours"
+      }
+    },
+    {
+      "offeringId": "SCO",
+      "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
+      "layoutId": "DEFAULT_ASSET_DETAIL_LAYOUT_TEMPLATE",
+      "sequence": 0.0,
+      "widgetDefinitionId": "assetDetailPast48HoursChart",
+      "name": "Power production past 48 hours",
+      "creator": "50JUBJXT80",
+      "createdDate": "2022-09-15T17:52:00.899Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "2",
+        "rowSpan": "24",
+        "xPos": "0",
+        "yPos": "1",
+        "chartType": "carbon_chart",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "asset_metrics_hours"
+      }
+    },
+    {
+      "offeringId": "SCO",
+      "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
+      "layoutId": "DEFAULT_ASSET_DETAIL_LAYOUT_TEMPLATE",
+      "sequence": 0.0,
+      "widgetDefinitionId": "assetDetailNext48HoursChart",
+      "name": "Power production next 48 hours",
+      "creator": "50JUBJXT80",
+      "createdDate": "2022-09-15T17:52:00.899Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "2",
+        "rowSpan": "24",
+        "xPos": "0",
+        "yPos": "1",
+        "chartType": "carbon_chart",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "asset_metrics_hours"
+      }
+    },
+    {
+      "offeringId": "SCO",
+      "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
+      "layoutId": "DEFAULT_ASSET_DETAIL_LAYOUT_TEMPLATE",
+      "sequence": 0.0,
+      "widgetDefinitionId": "assetDetailPast30DaysSummaryWidget",
+      "name": "Energy production summary past 30 days",
+      "creator": "50JUBJXT80",
+      "createdDate": "2022-09-15T17:52:00.899Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "2",
+        "rowSpan": "10",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "summary",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "asset_metrics_days"
+      }
+    },
+    {
+      "offeringId": "SCO",
+      "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
+      "layoutId": "DEFAULT_ASSET_DETAIL_LAYOUT_TEMPLATE",
+      "sequence": 0.0,
+      "widgetDefinitionId": "assetDetailNext30DaysSummaryWidget",
+      "name": "windNext30DaysSummaryWidget",
+      "creator": "50JUBJXT80",
+      "createdDate": "2022-09-15T17:52:00.899Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "2",
+        "rowSpan": "10",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "summary",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "asset_metrics_days"
+      }
+    },
+    {
+      "offeringId": "SCO",
+      "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
+      "layoutId": "DEFAULT_ASSET_DETAIL_LAYOUT_TEMPLATE",
+      "sequence": 0.0,
+      "widgetDefinitionId": "assetDetailPast30DaysChart",
+      "name": "Power production last 30 days",
+      "creator": "50JUBJXT80",
+      "createdDate": "2022-09-15T17:52:00.899Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "2",
+        "rowSpan": "24",
+        "xPos": "0",
+        "yPos": "1",
+        "chartType": "carbon_chart",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "asset_metrics_days"
+      }
+    },
+    {
+      "offeringId": "SCO",
+      "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
+      "layoutId": "DEFAULT_ASSET_DETAIL_LAYOUT_TEMPLATE",
+      "sequence": 0.0,
+      "widgetDefinitionId": "assetDetailNext30DaysChart",
+      "name": "Power production last 30 days",
+      "creator": "50JUBJXT80",
+      "createdDate": "2022-09-15T17:52:00.899Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "2",
+        "rowSpan": "24",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "carbon_chart",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "asset_metrics_days"
+      }
+    },
+    {
+      "offeringId": "SCO",
+      "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
+      "layoutId": "DEFAULT_ASSET_DETAIL_LAYOUT_TEMPLATE",
+      "sequence": 1.0,
+      "widgetDefinitionId": "assetDetailPast48HoursSummaryWidget",
+      "name": "Energy production past 48 hours summary",
+      "creator": "50JUBJXT80",
+      "createdDate": "2022-09-15T17:52:00.899Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "2",
+        "rowSpan": "10",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "summary",
+        "fullBodyWidget": "false",
+        "enabled": "true",
+        "section": "asset_metrics_hours"
+      }
+    },
+    {
+      "offeringId": "SCO",
+      "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
+      "layoutId": "DEFAULT_ASSET_DETAIL_LAYOUT_TEMPLATE",
+      "sequence": 8.0,
+      "widgetDefinitionId": "assetDetailMap",
+      "name": "Location map",
+      "creator": "50JUBJXT80",
+      "createdDate": "2022-09-15T17:52:00.900Z",
+      "parentWidgetId": null,
+      "widgetProperties": {},
+      "displayProperties": {
+        "colSpan": "4",
+        "rowSpan": "36",
+        "xPos": "0",
+        "yPos": "0",
+        "chartType": "map",
+        "fullBodyWidget": "true",
+        "enabled": "true",
+        "section": "asset_locations"
+      }
+    }
+  ],
+  "defaultLanguage": "en",
+  "description": {
+    "name": "Asset detail",
+    "language": "en",
+    "description": "Asset Detail"
+  },
+  "descriptions": null,
+  "properties": [
+    {
+      "name": "gridConfig.maxCols",
+      "metaInformation": "layoutOption",
+      "values": [
+        "6"
+      ]
+    },
+    {
+      "name": "accordions[0].id",
+      "metaInformation": "layoutOption",
+      "values": [
+        "asset_overview"
+      ]
+    },
+    {
+      "name": "accordions[0].expanded",
+      "metaInformation": "layoutOption",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "accordions[0].title",
+      "metaInformation": "layoutOption",
+      "values": [
+        "Overview"
+      ]
+    },
+    {
+      "name": "accordions[1].id",
+      "metaInformation": "layoutOption",
+      "values": [
+        "asset_metrics_days"
+      ]
+    },
+    {
+      "name": "accordions[1].expanded",
+      "metaInformation": "layoutOption",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "accordions[1].title",
+      "metaInformation": "layoutOption",
+      "values": [
+        "Metrics in days"
+      ]
+    },
+    {
+      "name": "accordions[2].id",
+      "metaInformation": "layoutOption",
+      "values": [
+        "asset_metrics_hours"
+      ]
+    },
+    {
+      "name": "accordions[2].expanded",
+      "metaInformation": "layoutOption",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "accordions[2].title",
+      "metaInformation": "layoutOption",
+      "values": [
+        "Metrics in hours"
+      ]
+    },
+    {
+      "name": "accordions[3].id",
+      "metaInformation": "layoutOption",
+      "values": [
+        "asset_locations"
+      ]
+    },
+    {
+      "name": "accordions[3].expanded",
+      "metaInformation": "layoutOption",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "accordions[3].title",
+      "metaInformation": "layoutOption",
+      "values": [
+        "Locations"
+      ]
+    },
+    {
+      "name": "hideTitle",
+      "metaInformation": "layoutOption",
+      "values": [
+        "false"
+      ]
+    },
+    {
+      "name": "breadcrumbEnabled",
+      "metaInformation": "layoutOption",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "breadcrumbList",
+      "metaInformation": "layoutOption",
+      "values": [
+        "{\"label\": \"Asset detail\", \"routeName\": \"/template/DEFAULT_ASSET_DETAIL_LAYOUT_TEMPLATE\"}"
+      ]
+    },
+    {
+      "name": "timestampEnabled",
+      "values": [
+        "false"
+      ]
+    },
+    {
+      "name": "ivAssistantEnabled",
+      "metaInformation": "layoutOption",
+      "values": [
+        "true"
+      ]
+    },
+    {
+      "name": "state.empty.title",
+      "metaInformation": "layoutOption",
+      "values": [
+        "No data"
+      ]
+    },
+    {
+      "name": "state.empty.body",
+      "metaInformation": "layoutOption",
+      "values": [
+        "There is no data to display"
+      ]
+    },
+    {
+      "name": "state.empty.image",
+      "metaInformation": "layoutOption",
+      "values": [
+        "dataEmpty"
+      ]
+    },
+    {
+      "name": "state.empty.link.label",
+      "metaInformation": "layoutOption",
+      "values": [
+        "Learn more"
+      ]
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "metaInformation": "layoutOption",
+      "values": [
+        "NEW_WINDOW"
+      ]
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "metaInformation": "layoutOption",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ]
+    }
+  ],
+  "version": 1
+}
