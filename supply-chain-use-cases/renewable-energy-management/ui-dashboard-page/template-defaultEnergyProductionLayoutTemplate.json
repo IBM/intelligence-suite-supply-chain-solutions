@@ -243,29 +243,30 @@
   ],
   "defaultLanguage": "en",
   "description": {
-    "name": "Energy production",
+    "name": "Energy",
     "language": "en",
-    "description": "Energy production"
+    "description": "Energy"
   },
   "descriptions": {
     "en": {
-      "name": "Energy production",
+      "name": "Energy",
       "language": "en",
-      "description": "Energy production"
+      "description": "Energy"
     }
   },
   "properties": [
     {
       "name": "breadcrumbEnabled",
+      "metaInformation": "layoutOption",
       "values": [
-        "false"
+        "true"
       ]
     },
     {
       "name": "breadcrumbList",
       "metaInformation": "layoutOption",
       "values": [
-        "{\"label\": \"Dashboard\", \"routeName\": \"/\"}"
+        "{\"label\": \"COMMON.DASHBOARD\", \"routeName\": \"/\"}"
       ]
     },
     {
