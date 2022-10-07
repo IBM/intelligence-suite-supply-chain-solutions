@@ -3,8 +3,8 @@
   "id": "plantLocationDetailsMap",
   "state": "ACTIVE",
   "identifier": "plantLocationDetailsMap",
-  "type": "Dashboard",
-  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "type": "Dashboard_Widget",
+  "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
   "path": "/api",
   "vendor": "IBM",
   "defaultLanguage": "en",
@@ -22,20 +22,6 @@
     }
   },
   "devConfigurations": [
-    {
-      "name": "header.type",
-      "values": [
-        "text_header"
-      ],
-      "metaInformation": "widgetOption"
-    },
-    {
-      "name": "header.title",
-      "values": [
-        "Weather Event Location"
-      ],
-      "metaInformation": "widgetOption"
-    },
     {
       "name": "colSpan",
       "values": [
@@ -66,7 +52,7 @@
     {
       "name": "queries[0].fields",
       "values": [
-        "query weatherEventMap($tenantId: String, $locationIdFilter: BooleanExp = {CONSTANT_VALUE: true}, $locationIdentifierFilter: BooleanExp = {CONSTANT_VALUE: true}, $locationStateFilter: BooleanExp = {CONSTANT_VALUE: true},$locationIdFilterInventoryBO: BooleanExp = {CONSTANT_VALUE: true}, $locationIdentifierFilterInventoryBO: BooleanExp = {CONSTANT_VALUE: true}, $locationStateFilterInventoryBO: BooleanExp = {CONSTANT_VALUE: true}) { plantLocations: businessObjects(simpleFilter: {type: Location, tenantId: $tenantId}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"locationType\", type: STRING}, {VALUE: \"PLANT\", type: STRING}]}, $locationIdFilter, $locationIdentifierFilter, $locationStateFilter]}, hint: {viewId: \"graph\"}, cursorParams: {first: 50}) { totalCount edges { cursor object { ... on Location { id coordinates locationIdentifier locationName city stateProvince } } } } assetLocations: businessObjects(simpleFilter: {type: Inventory, tenantId: $tenantId}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"inventoryType\", type: STRING}, {VALUE: \"ASSET\", type: STRING}]}, $locationIdFilterInventoryBO, $locationIdentifierFilterInventoryBO, $locationStateFilterInventoryBO]}, hint: {viewId: \"graph\"}, cursorParams: {first: 50}) { totalCount edges { cursor object { ... on Inventory { id customAttributes { coordinatesString } location { locationType locationIdentifier locationName city stateProvince } } } } } }"
+        "query weatherEventMap($tenantId: String, $locationIdFilter: BooleanExp = {CONSTANT_VALUE: true}, $locationIdentifierFilter: BooleanExp = {CONSTANT_VALUE: true}, $locationStateFilter: BooleanExp = {CONSTANT_VALUE: true},$locationIdFilterAssetBO: BooleanExp = {CONSTANT_VALUE: true}, $locationIdentifierFilterAssetBO: BooleanExp = {CONSTANT_VALUE: true}, $locationStateFilterAssetBO: BooleanExp = {CONSTANT_VALUE: true}) { plantLocations: businessObjects(simpleFilter: {type: Location, tenantId: $tenantId}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"locationType\", type: STRING}, {VALUE: \"PLANT\", type: STRING}]}, $locationIdFilter, $locationIdentifierFilter, $locationStateFilter]}, hint: {viewId: \"graph\"}, cursorParams: {first: 50}) { totalCount edges { cursor object { ... on Location { id coordinates locationIdentifier locationName city stateProvince } } } } assetLocations: businessObjects(simpleFilter: {type: Asset, tenantId: $tenantId}, advancedFilter: {AND: [$locationIdFilterAssetBO, $locationIdentifierFilterAssetBO, $locationStateFilterAssetBO]}, hint: {viewId: \"graph\"}, cursorParams: {first: 50}) { totalCount edges { cursor object { ... on Asset { id  currentLocationCoordinates location { locationType locationIdentifier locationName city stateProvince coordinates } } } } } }"
       ],
       "metaInformation": "infohub.fields"
     },
@@ -99,21 +85,21 @@
       "metaInformation": "infohub.variable.dynamicExpr"
     },
     {
-      "name": "queries[0].variables.locationIdFilterInventoryBO",
+      "name": "queries[0].variables.locationIdFilterAssetBO",
       "values": [
         "{ \"EQUALS_ANY\": [ {\"SELECT\": \"location.id\", \"type\": \"STRING\" }, { \"VALUES\": {{ plant.appliedFilters.LocationName.ids }}, \"type\": \"STRING\" } ] }"
       ],
       "metaInformation": "infohub.variable.dynamicExpr"
     },
     {
-      "name": "queries[0].variables.locationIdentifierFilterInventoryBO",
+      "name": "queries[0].variables.locationIdentifierFilterAssetBO",
       "values": [
         "{ \"EQUALS_ANY\": [ {\"SELECT\": \"location.locationIdentifier\", \"type\": \"STRING\" }, { \"VALUES\": {{ plant.appliedFilters.LocationIdentifier.ids }}, \"type\": \"STRING\" } ] }"
       ],
       "metaInformation": "infohub.variable.dynamicExpr"
     },
     {
-      "name": "queries[0].variables.locationStateFilterInventoryBO",
+      "name": "queries[0].variables.locationStateFilterAssetBO",
       "values": [
         "{ \"EQUALS_ANY\": [ {\"SELECT\": \"location.stateProvince\", \"type\": \"STRING\" }, { \"VALUES\": {{ plant.appliedFilters.LocationState.ids }}, \"type\": \"STRING\" } ] }"
       ],
@@ -150,7 +136,7 @@
     {
       "name": "mapProvider",
       "values": [
-        "openStreetMap"
+        "mapbox"
       ],
       "metaInformation": "widgetOption"
     },
@@ -255,7 +241,7 @@
     {
       "name": "transformation",
       "values": [
-        "{\"errors\":\"{{#? this.errors}}\",\"totalCount\":\"{{this.data.assetLocations.totalCount}}\",\"results\": {\"assetLocationData\":{\"{{#each this.data.assetLocations.edges}}\":{\"id\":\"{{this.object.id}}\",\"coordinates\":\"{{#? this.object.customAttributes.coordinatesString}}\",\"startLocationTooltip\":\"{{this.object.location.locationName}}\"}}, \"plantLocationData\":{\"{{#each this.data.plantLocations.edges}}\":{\"id\":\"{{this.object.id}}\",\"coordinates\":\"{{this.object.coordinates}}\",\"startLocationTooltip\":\"{{this.object.locationName}}\"}}}}"
+        "{\"errors\":\"{{#? this.errors}}\",\"totalCount\":\"{{this.data.assetLocations.totalCount}}\",\"results\": {\"assetLocationData\":{\"{{#each this.data.assetLocations.edges}}\":{\"id\":\"{{this.object.id}}\",\"coordinates\":\"{{#? this.object.currentLocationCoordinates}}\",\"startLocationTooltip\":\"{{this.object.location.locationName}}\"}}, \"plantLocationData\":{\"{{#each this.data.plantLocations.edges}}\":{\"id\":\"{{this.object.id}}\",\"coordinates\":\"{{this.object.coordinates}}\",\"startLocationTooltip\":\"{{this.object.locationName}}\"}}}}"
       ],
       "metaInformation": "widgetOption"
     }

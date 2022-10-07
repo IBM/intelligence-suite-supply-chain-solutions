@@ -3,8 +3,8 @@
   "id": "plantDashboardFilterWidget",
   "state": "ACTIVE",
   "identifier": "plantDashboardFilterWidget",
-  "type": "Dashboard",
-  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "type": "Dashboard_Widget",
+  "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
   "path": "/api",
   "vendor": "IBM",
   "defaultLanguage": "en",
@@ -87,7 +87,7 @@
     {
       "name": "filter.fields[0].multiSelect",
       "values": [
-        "true"
+        "false"
       ],
       "metaInformation": "filterOption"
     },
@@ -108,7 +108,7 @@
     {
       "name": "filter.fields[1].multiSelect",
       "values": [
-        "true"
+        "false"
       ],
       "metaInformation": "filterOption"
     },
@@ -129,7 +129,7 @@
     {
       "name": "filter.fields[2].multiSelect",
       "values": [
-        "true"
+        "false"
       ],
       "metaInformation": "filterOption"
     },
@@ -150,7 +150,7 @@
     {
       "name": "filter.fields[3].multiSelect",
       "values": [
-        "true"
+        "false"
       ],
       "metaInformation": "filterOption"
     },
@@ -171,7 +171,7 @@
     {
       "name": "filter.fields[4].multiSelect",
       "values": [
-        "true"
+        "false"
       ],
       "metaInformation": "filterOption"
     },
@@ -192,7 +192,7 @@
     {
       "name": "filter.fields[5].multiSelect",
       "values": [
-        "true"
+        "false"
       ],
       "metaInformation": "filterOption"
     },

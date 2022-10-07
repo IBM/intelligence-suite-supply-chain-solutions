@@ -3,8 +3,8 @@
   "id": "plantAssetListWidget",
   "state": "ACTIVE",
   "identifier": "plantAssetListWidget",
-  "type": "Dashboard",
-  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "type": "Dashboard_Widget",
+  "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
   "path": "/api",
   "vendor": "IBM",
   "defaultLanguage": "en",
@@ -59,7 +59,7 @@
     {
       "name": "queries[0].fields",
       "values": [
-        "query AssetList($tenantId: String, $locationFilter: BooleanExp = {CONSTANT_VALUE: true}, $locationStateFilter: BooleanExp = {CONSTANT_VALUE: true}, $locationIdentifierFilter: BooleanExp = {CONSTANT_VALUE: true}) { businessObjects( hint: { viewId: \"graph\" } cursorParams: { first: 50 } simpleFilter: { tenantId: $tenantId, type: Inventory } advancedFilter: { AND: [ $locationFilter, $locationStateFilter, $locationIdentifierFilter ] } ) { totalCount pageInfo { hasNextPage endCursor } edges { object { ...on Inventory { product { id partNumber name value valueCurrency category { code } brand { code } line { code } family { code } } quantity quantityUnits quantityAboveUpperThreshold quantityBelowLowerThreshold } } } } } "
+        "query AssetList($tenantId: String, $locationFilter: BooleanExp = {CONSTANT_VALUE: true}, $locationStateFilter: BooleanExp = {CONSTANT_VALUE: true}, $locationIdentifierFilter: BooleanExp = {CONSTANT_VALUE: true}, $categoryCodeFilter: BooleanExp = {CONSTANT_VALUE: true}, $brandCodeFilter: BooleanExp = {CONSTANT_VALUE: true}, $lineCodeFilter: BooleanExp = {CONSTANT_VALUE: true}) { businessObjects( hint: { viewId: \"graph\" } cursorParams: { first: 5 } simpleFilter: { tenantId: $tenantId, type: Asset } advancedFilter: { AND: [ { EXISTS: [{ SELECT: \"createReceived\", type: STRING }] } $locationFilter, $locationStateFilter, $locationIdentifierFilter,$categoryCodeFilter, $brandCodeFilter, $lineCodeFilter] } ) { totalCount pageInfo { hasNextPage endCursor } edges { object { ...on Asset { id createReceived assetType assetIdentifier assetClass { id partNumber name value valueCurrency category { code } brand { code } line { code } family { code } } metric1 metric1Units  metric1UpperLimit metric1LowerLimit  metric2 metric2Units metric2UpperLimit metric2LowerLimit status currentLocationCoordinates location { locationName locationIdentifier stateProvince } } } } } } "
       ],
       "metaInformation": "infohub.fields"
     },
@@ -80,14 +80,35 @@
     {
       "name": "queries[0].variables.locationIdentifierFilter",
       "values": [
-        "{ \"CONTAINS\": [ {\"SELECT\": \"locationIdentifier\", \"type\": \"STRING\" }, { \"VALUES\": {{ plant.appliedFilters.LocationIdentifier.ids }}, \"type\": \"STRING\" } ] }"
+        "{ \"CONTAINS\": [ {\"SELECT\": \"location.locationIdentifier\", \"type\": \"STRING\" }, { \"VALUE\": {{ plant.appliedFilters.LocationIdentifier.ids }}, \"type\": \"STRING\" } ] }"
       ],
       "metaInformation": "infohub.variable.dynamicExpr"
     },
     {
       "name": "queries[0].variables.locationStateFilter",
       "values": [
-        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"stateProvince\", \"type\": \"STRING\" }, { \"VALUES\": {{ plant.appliedFilters.LocationState.ids }}, \"type\": \"STRING\" } ] }"
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"location.stateProvince\", \"type\": \"STRING\" }, { \"VALUES\": {{ plant.appliedFilters.LocationState.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.categoryCodeFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"assetClass.category.code\", \"type\": \"STRING\" }, { \"VALUES\": {{ plant.appliedFilters.ProductCategoryCode.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.brandCodeFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"assetClass.brand.code\", \"type\": \"STRING\" }, { \"VALUES\": {{ plant.appliedFilters.ProductBrandCode.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.lineCodeFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"assetClass.line.code\", \"type\": \"STRING\" }, { \"VALUES\": {{ plant.appliedFilters.ProductLineCode.ids }}, \"type\": \"STRING\" } ] }"
       ],
       "metaInformation": "infohub.variable.dynamicExpr"
     },
@@ -130,7 +151,7 @@
     {
       "name": "pagination.enable",
       "values": [
-        "true"
+        "false"
       ],
       "metaInformation": "tableOption"
     },
@@ -186,7 +207,7 @@
     {
       "name": "columns[0].cell.label",
       "values": [
-        "{{ product.partNumber }}"
+        "{{ assetIdentifier }}"
       ],
       "metaInformation": "tableColumn"
     },
@@ -207,7 +228,28 @@
     {
       "name": "columns[0].cell.customTemplate",
       "values": [
-        "textTpl"
+        "linkTpl"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[0].cell.href.type",
+      "values": [
+        "LAYOUT_TEMPLATE"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[0].cell.href.id",
+      "values": [
+        "DEFAULT_ASSET_DETAIL_LAYOUT_TEMPLATE"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[0].cell.href.params",
+      "values": [
+        "assetId={{ id }}"
       ],
       "metaInformation": "tableColumn"
     },
@@ -221,14 +263,14 @@
     {
       "name": "columns[1].cell.label",
       "values": [
-        "{{ product.brand.code }}"
+        "{{ product.partNumber }}"
       ],
       "metaInformation": "tableColumn"
     },
     {
       "name": "columns[1].header.label",
       "values": [
-        "Manufacturer"
+        "Product ID"
       ],
       "metaInformation": "tableColumn"
     },
@@ -242,7 +284,7 @@
     {
       "name": "columns[1].cell.customTemplate",
       "values": [
-        "stringTpl"
+        "textTpl"
       ],
       "metaInformation": "tableColumn"
     },
@@ -256,28 +298,28 @@
     {
       "name": "columns[2].cell.label",
       "values": [
-        "{{ product.category.code }}"
+        "{{ assetType }}"
       ],
       "metaInformation": "tableColumn"
     },
     {
       "name": "columns[2].header.label",
       "values": [
-        "Category"
+        "Asset type"
       ],
       "metaInformation": "tableColumn"
     },
     {
       "name": "columns[2].sortable",
       "values": [
-        "true"
+        "false"
       ],
       "metaInformation": "tableColumn"
     },
     {
       "name": "columns[2].cell.customTemplate",
       "values": [
-        "stringTpl"
+        "textTpl"
       ],
       "metaInformation": "tableColumn"
     },
@@ -291,28 +333,28 @@
     {
       "name": "columns[3].cell.label",
       "values": [
-        "{{ product.line.code }}"
+        "{{ metric1 }}"
       ],
       "metaInformation": "tableColumn"
     },
     {
       "name": "columns[3].header.label",
       "values": [
-        "Type"
+        "Wind"
       ],
       "metaInformation": "tableColumn"
     },
     {
       "name": "columns[3].sortable",
       "values": [
-        "true"
+        "false"
       ],
       "metaInformation": "tableColumn"
     },
     {
       "name": "columns[3].cell.customTemplate",
       "values": [
-        "stringTpl"
+        "textTpl"
       ],
       "metaInformation": "tableColumn"
     },
@@ -326,28 +368,28 @@
     {
       "name": "columns[4].cell.label",
       "values": [
-        "{{ product.family.code }}"
+        "{{ metric1Units }}"
       ],
       "metaInformation": "tableColumn"
     },
     {
       "name": "columns[4].header.label",
       "values": [
-        "Class"
+        "Wind Units"
       ],
       "metaInformation": "tableColumn"
     },
     {
       "name": "columns[4].sortable",
       "values": [
-        "true"
+        "false"
       ],
       "metaInformation": "tableColumn"
     },
     {
       "name": "columns[4].cell.customTemplate",
       "values": [
-        "stringTpl"
+        "textTpl"
       ],
       "metaInformation": "tableColumn"
     },
@@ -361,28 +403,28 @@
     {
       "name": "columns[5].cell.label",
       "values": [
-        "{{ product.value }}"
+        "{{ metric2 }}"
       ],
       "metaInformation": "tableColumn"
     },
     {
       "name": "columns[5].header.label",
       "values": [
-        "Nominal output"
+        "Energy"
       ],
       "metaInformation": "tableColumn"
     },
     {
       "name": "columns[5].sortable",
       "values": [
-        "true"
+        "false"
       ],
       "metaInformation": "tableColumn"
     },
     {
       "name": "columns[5].cell.customTemplate",
       "values": [
-        "stringTpl"
+        "textTpl"
       ],
       "metaInformation": "tableColumn"
     },
@@ -396,28 +438,28 @@
     {
       "name": "columns[6].cell.label",
       "values": [
-        "{{ quantityUnits }}"
+        "{{ metric2Units }}"
       ],
       "metaInformation": "tableColumn"
     },
     {
       "name": "columns[6].header.label",
       "values": [
-        "Units"
+        "Energy units"
       ],
       "metaInformation": "tableColumn"
     },
     {
       "name": "columns[6].sortable",
       "values": [
-        "true"
+        "false"
       ],
       "metaInformation": "tableColumn"
     },
     {
       "name": "columns[6].cell.customTemplate",
       "values": [
-        "stringTpl"
+        "textTpl"
       ],
       "metaInformation": "tableColumn"
     },
@@ -431,28 +473,28 @@
     {
       "name": "columns[7].cell.label",
       "values": [
-        "{{ quantity }}"
+        "{{ metric1UpperLimit }}"
       ],
       "metaInformation": "tableColumn"
     },
     {
       "name": "columns[7].header.label",
       "values": [
-        "Current output"
+        "Wind upper limit"
       ],
       "metaInformation": "tableColumn"
     },
     {
       "name": "columns[7].sortable",
       "values": [
-        "true"
+        "false"
       ],
       "metaInformation": "tableColumn"
     },
     {
       "name": "columns[7].cell.customTemplate",
       "values": [
-        "stringTpl"
+        "textTpl"
       ],
       "metaInformation": "tableColumn"
     },
@@ -466,14 +508,14 @@
     {
       "name": "columns[8].cell.label",
       "values": [
-        "view history"
+        "{{ metric1LowerLimit }}"
       ],
       "metaInformation": "tableColumn"
     },
     {
       "name": "columns[8].header.label",
       "values": [
-        "History"
+        "Wind lower limit"
       ],
       "metaInformation": "tableColumn"
     },
@@ -487,7 +529,7 @@
     {
       "name": "columns[8].cell.customTemplate",
       "values": [
-        "linkTpl"
+        "textTpl"
       ],
       "metaInformation": "tableColumn"
     },
@@ -499,23 +541,79 @@
       "metaInformation": "tableColumn"
     },
     {
-      "name": "columns[8].cell.href.type",
+      "name": "columns[9].cell.label",
       "values": [
-        "NEW_WINDOW"
+        "{{ status }}"
       ],
       "metaInformation": "tableColumn"
     },
     {
-      "name": "columns[8].cell.href.path",
+      "name": "columns[9].header.label",
       "values": [
-        "{{ sourceLink }}"
+        "Status"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[9].sortable",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[9].cell.customTemplate",
+      "values": [
+        "textTpl"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[9].sequence",
+      "values": [
+        "9"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[10].cell.label",
+      "values": [
+        "{{ currentLocationCoordinates }}"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[10].header.label",
+      "values": [
+        "Current location coordinates"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[10].sortable",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[10].cell.customTemplate",
+      "values": [
+        "textTpl"
+      ],
+      "metaInformation": "tableColumn"
+    },
+    {
+      "name": "columns[10].sequence",
+      "values": [
+        "10"
       ],
       "metaInformation": "tableColumn"
     },
     {
       "name": "transformation",
       "values": [
-        " { \"errors\": \"{{#? this.errors}}\", \"pageInfo\": \"{{this.data.businessObjects.pageInfo}}\", \"totalCount\": \"{{this.data.businessObjects.totalCount}}\", \"results\": { \"{{#each this.data.businessObjects.edges}}\": { \"product\": \"{{this.object.product}}\", \"value\": \"{{this.object.value}}\", \"quantity\": \"{{this.object.quantity}}\", \"quantityUnits\": \"{{this.object.quantityUnits}}\", \"quantityBelowLowerThreshold\": \"{{this.object.quantityBelowLowerThreshold}}\", \"quantityAboveUpperThreshold\": \"{{this.object.quantityAboveUpperThreshold}}\" } } } "
+        " { \"errors\": \"{{#? this.errors}}\", \"pageInfo\": \"{{this.data.businessObjects.pageInfo}}\", \"totalCount\": \"{{this.data.businessObjects.totalCount}}\", \"results\": { \"{{#each this.data.businessObjects.edges}}\": { \"id\": \"{{this.object.id}}\", \"product\": \"{{this.object.assetClass}}\", \"assetIdentifier\": \"{{this.object.assetIdentifier}}\", \"assetType\": \"{{this.object.assetType}}\", \"metric1\": \"{{this.object.metric1}}\", \"metric1Units\": \"{{this.object.metric1Units}}\", \"metric1UpperLimit\": \"{{this.object.metric1UpperLimit}}\", \"metric1LowerLimit\": \"{{this.object.metric1LowerLimit}}\", \"status\": \"{{this.object.status}}\", \"currentLocationCoordinates\": \"{{this.object.currentLocationCoordinates}}\",  \"metric2\": \"{{this.object.metric2}}\", \"metric2Units\": \"{{this.object.metric2Units}}\", \"metric2UpperLimit\": \"{{this.object.metric2UpperLimit}}\", \"metric2LowerLimit\": \"{{this.object.metric2LowerLimit}}\"} } } "
       ],
       "metaInformation": "widgetOption"
     },
@@ -551,6 +649,41 @@
       "name": "state.empty.link.href.path",
       "values": [
         "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "showFooter",
+      "values": [
+        "true"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "widget.footer.customTemplate",
+      "values": [
+        "linkTpl"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "widget.footer.label",
+      "values": [
+        "COMMON.VIEW_ALL"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "widget.footer.href.type",
+      "values": [
+        "LAYOUT_TEMPLATE"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "widget.footer.href.id",
+      "values": [
+        "VIEW_ALL_ASSETS_LAYOUT_TEMPLATE"
       ],
       "metaInformation": "widgetOption"
     }
