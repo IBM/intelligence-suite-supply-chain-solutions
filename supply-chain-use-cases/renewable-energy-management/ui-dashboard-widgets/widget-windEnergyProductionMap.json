@@ -150,7 +150,7 @@
     {
       "name": "mapProvider",
       "values": [
-        "openStreetMap"
+        "mapbox"
       ],
       "metaInformation": "widgetOption"
     },
