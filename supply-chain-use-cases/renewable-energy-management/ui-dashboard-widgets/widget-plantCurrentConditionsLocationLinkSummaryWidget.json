@@ -59,7 +59,7 @@
     {
       "name": "queries[0].fields",
       "values": [
-        "query locationLinkMetric($tenantId: String, $locationFilter: BooleanExp = {CONSTANT_VALUE: true}) { businessObjects(simpleFilter: {type: Location, tenantId: $tenantId}, advancedFilter: {AND: [{EQUALS: [ {SELECT: \"locationType\", type: STRING}, {VALUE: \"PLANT\", type: STRING}]}, $locationFilter ]}, hint: {viewId: \"graph\"}, cursorParams: {first: 1}) { totalCount edges { cursor object { ... on Location { id coordinates locationIdentifier locationName city stateProvince sourceLink } } } }}"
+        "query locationLinkMetric($tenantId: String, $locationFilter: BooleanExp = {CONSTANT_VALUE: true}) { businessObjects(simpleFilter: {type: Location, tenantId: $tenantId}, advancedFilter: {AND: [{EQUALS: [ {SELECT: \"locationType\", type: STRING}, {VALUE: \"PLANT\", type: STRING}]}, $locationFilter ]}, hint: {viewId: \"graph\"}, cursorParams: {first: 1}) { totalCount edges { cursor object { ... on Location { id coordinates locationIdentifier locationName city stateProvince localIdentifiers { name value } } } } }}"
       ],
       "metaInformation": "infohub.fields"
     },
@@ -94,14 +94,21 @@
     {
       "name": "items[0].count.href.type",
       "values": [
-        "NEW_WINDOW"
+        "CUI_SHELL"
       ],
       "metaInformation": "gridOption"
     },
     {
       "name": "items[0].count.href.path",
       "values": [
-        "{{ sourceLink }}"
+        "/environmental-intelligence/weather"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "items[0].count.href.params",
+      "values": [
+        "dashboardId={{ dashboardId }}"
       ],
       "metaInformation": "gridOption"
     },
@@ -136,7 +143,7 @@
     {
       "name": "transformation",
       "values": [
-        "{\"errors\": \"{{#? this.errors}}\", \"sourceLink\": \"{{ this.data.businessObjects.edges[0].object.sourceLink }}\", \"pageInfo\": \"{}\", \"totalCount\": \"{{this.data.businessObjects.totalCount}}\", \"results\": [{\"locationIdentifier\": \"{{ this.data.businessObjects.edges[0].object.locationIdentifier }}\"}, {\"sourceLink\": \"{{ this.data.businessObjects.edges[0].object.sourceLink }}\"}]}"
+        "{\"errors\": \"{{#? this.errors}}\", \"pageInfo\": \"{}\", \"totalCount\": \"{{this.data.businessObjects.totalCount}}\", \"results\": [{\"locationIdentifier\": \"{{ this.data.businessObjects.edges[0].object.locationIdentifier }}\"}, {\"dashboardId\": \"{{ this.data.businessObjects.edges[0].object.localIdentifiers.find(item => item.name === ‘eisLocationDashboardId’)?.value || ‘’ }}\"}]}"
       ],
       "metaInformation": "widgetOption"
     },
