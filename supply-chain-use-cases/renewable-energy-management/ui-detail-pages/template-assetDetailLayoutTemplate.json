@@ -84,7 +84,7 @@
       "parentWidgetId": null,
       "widgetProperties": {},
       "displayProperties": {
-        "colSpan": "2",
+        "colSpan": "3",
         "rowSpan": "24",
         "xPos": "0",
         "yPos": "1",
@@ -106,7 +106,7 @@
       "parentWidgetId": null,
       "widgetProperties": {},
       "displayProperties": {
-        "colSpan": "2",
+        "colSpan": "3",
         "rowSpan": "24",
         "xPos": "0",
         "yPos": "1",
@@ -172,7 +172,7 @@
       "parentWidgetId": null,
       "widgetProperties": {},
       "displayProperties": {
-        "colSpan": "2",
+        "colSpan": "3",
         "rowSpan": "24",
         "xPos": "0",
         "yPos": "1",
@@ -194,7 +194,7 @@
       "parentWidgetId": null,
       "widgetProperties": {},
       "displayProperties": {
-        "colSpan": "2",
+        "colSpan": "3",
         "rowSpan": "24",
         "xPos": "0",
         "yPos": "0",
@@ -255,7 +255,13 @@
     "language": "en",
     "description": "Asset Detail"
   },
-  "descriptions": null,
+  "descriptions": {
+    "en": {
+      "name": "Asset detail",
+      "language": "en",
+      "description": "Asset Detail"
+    }
+  },
   "properties": [
     {
       "name": "gridConfig.maxCols",
