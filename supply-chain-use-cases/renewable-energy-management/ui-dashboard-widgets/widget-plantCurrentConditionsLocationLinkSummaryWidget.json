@@ -143,7 +143,7 @@
     {
       "name": "transformation",
       "values": [
-        "{\"errors\": \"{{#? this.errors}}\", \"pageInfo\": \"{}\", \"totalCount\": \"{{this.data.businessObjects.totalCount}}\", \"results\": [{\"locationIdentifier\": \"{{ this.data.businessObjects.edges[0].object.locationIdentifier }}\"}, {\"dashboardId\": \"{{ this.data.businessObjects.edges[0].object.localIdentifiers.find(item => item.name === ‘eisLocationDashboardId’)?.value || ‘’ }}\"}]}"
+        "{\"errors\": \"{{#? this.errors}}\", \"pageInfo\": \"{}\", \"totalCount\": \"{{this.data.businessObjects.totalCount}}\", \"results\": [{\"locationIdentifier\": \"{{ this.data.businessObjects.edges[0].object.locationIdentifier }}\"}, {\"dashboardId\": \"{{ this.data.businessObjects.edges[0].object.localIdentifiers.find(item => item.name === 'eisLocationDashboardId')?.value || '' }}\"}]}"
       ],
       "metaInformation": "widgetOption"
     },
