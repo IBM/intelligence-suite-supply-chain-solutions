@@ -11,7 +11,7 @@
     "vendor": "IBM",
     "defaultLanguage": "en",
     "version": 7,
-    "description": {
+    "descriptions": {
         "en":{
             "name": "Stock Out Within Planning Horizon",
             "language": "en",
