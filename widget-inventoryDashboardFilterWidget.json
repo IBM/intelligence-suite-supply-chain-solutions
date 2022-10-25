@@ -1,0 +1,300 @@
+{
+  "offeringId": "SCO",
+  "id": "inventoryDashboardFilterWidget",
+  "state": "ACTIVE",
+  "identifier": "inventoryDashboardFilterWidget",
+  "type": "Dashboard",
+  "tenantId": "98117773-c3b9-45bb-b9ea-0bc37065b037",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "descriptions": {
+    "en": {
+      "name": "Dashboard Filter",
+      "language": "en",
+      "description": "Filter dashboard content."
+    }
+  },
+  "devConfigurations": [
+    { "name": "data.service", "values": ["infohub"] },
+    {
+      "name": "queries[0].processor",
+      "values": ["EDGES"],
+      "metaInformation": "infohub.processor"
+    },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query InventoryFilters($tenantId: String!, $typeAheadFilter: BooleanExp = {CONSTANT_VALUE: true}) { PlannerCode: searchStrings(simpleFilter: {type: Inventory, tenantId: $tenantId}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"matchedFields\", type: STRING}, {VALUE: \"plannerCode\", type: STRING}]}, $typeAheadFilter]}, cursorParams: {first: 5, sort: {fieldPath: \"matchingString\", order: ASC}}) { totalCount pageInfo { hasNextPage } edges {cursor object { id: matchingString name: matchingString } }} ProductStatus: searchStrings(simpleFilter: {type: Product, tenantId: $tenantId}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"matchedFields\", type: STRING}, {VALUE: \"status\", type: STRING}]}, $typeAheadFilter]}, cursorParams: {first: 5, sort: {fieldPath: \"matchingString\", order: ASC}}) { totalCount pageInfo { hasNextPage }edges { cursor object { id: matchingString name: matchingString }}} Category: searchStrings(simpleFilter: {type: Catalog, tenantId: $tenantId}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"matchedFields\", type: STRING}, {VALUE: \"name\", type: STRING}]}, $typeAheadFilter]}, cursorParams: {first: 5, sort: {fieldPath: \"matchingString\", order: ASC}}) { totalCount pageInfo { hasNextPage } edges { cursor object { id: matchingString name: matchingString }}} Customer: searchStrings(simpleFilter: {type: Organization, tenantId: $tenantId}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"orgType\", type: STRING}, {VALUE: \"CUSTOMER\", type: STRING}]}, $typeAheadFilter]}, cursorParams: {first: 5, sort: {fieldPath: \"matchingString\", order: ASC}}) { totalCount pageInfo { hasNextPage } edges { cursor object { id: matchingString name: matchingString }}} Supplier: searchStrings(simpleFilter: {type: Organization, tenantId: $tenantId}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"orgType\", type: STRING}, {VALUE: \"SUPPLIER\", type: STRING}]}, $typeAheadFilter]}, cursorParams: {first: 5, sort: {fieldPath: \"matchingString\", order: ASC}}) { totalCount pageInfo { hasNextPage }  edges { cursor object { id: matchingString name: matchingString } }} Carrier: searchStrings(simpleFilter: {type: Organization, tenantId: $tenantId}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"orgType\", type: STRING}, {VALUE: \"CARRIER\", type: STRING}]}, $typeAheadFilter]}, cursorParams: {first: 5, sort: {fieldPath: \"matchingString\", order: ASC}}) { totalCount pageInfo { hasNextPage } edges {cursor object { id: matchingString name: matchingString }}} Location: searchStrings(simpleFilter: {type: Location, tenantId: $tenantId}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"matchedFields\", type: STRING}, {VALUE: \"locationName\", type: STRING}]}, $typeAheadFilter]}, cursorParams: {first: 5, sort: {fieldPath: \"matchingString\", order: ASC}}) { totalCount pageInfo { hasNextPage } edges {cursor object { id: matchingString name: matchingString }}}\nLocationType: searchStrings(simpleFilter: {type: Location, tenantId: $tenantId}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"matchedFields\", type: STRING}, {VALUE: \"locationType\", type: STRING}]}, $typeAheadFilter]}, cursorParams: {first: 5, sort: {fieldPath: \"matchingString\", order: ASC}}) { totalCount pageInfo { hasNextPage } edges {cursor object { id: matchingString name: matchingString }}} Origin: searchStrings(simpleFilter: {type: Location, tenantId: $tenantId}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"locationType\", type: STRING}, {VALUE: \"SUPPLIER\", type: STRING}]}, $typeAheadFilter]}, cursorParams: {first: 5, sort: {fieldPath: \"matchingString\", order: ASC}}) { totalCount pageInfo { hasNextPage } edges {cursor object { id: matchingString name: matchingString }}} Destination: searchStrings(simpleFilter: {type: Location, tenantId: $tenantId}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"locationType\", type: STRING}, {VALUE: \"OPERATIONS\", type: STRING}]}, $typeAheadFilter]}, cursorParams: {first: 5, sort: {fieldPath: \"matchingString\", order: ASC}}) { totalCount pageInfo {hasNextPage } edges {cursor object { id: matchingString name: matchingString} } } InventoryType: searchStrings(simpleFilter: {type: Inventory, tenantId: $tenantId}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"matchedFields\", type: STRING}, {VALUE: \"inventoryType\", type: STRING}]}, $typeAheadFilter]}, cursorParams: {first: 5, sort: {fieldPath: \"matchingString\", order: ASC}}) { totalCount pageInfo {hasNextPage}edges {cursor object {id: matchingString name: matchingString }}}}"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": ["{{ tenantId }}"],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.typeAheadFilter",
+      "values": [
+        "{ \"CONTAINS\": [ {\"SELECT\": \"matchingString\", \"type\": \"STRING\" }, { \"VALUE\": \"{{ inventory.searchText }}\", \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "filter.fields[0].id",
+      "values": ["Location"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[0].label",
+      "values": ["COMPONENT.FILTERS.INVENTORY_LOCATION"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[0].required",
+      "values": ["false"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[0].multiSelect",
+      "values": ["true"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[1].id",
+      "values": ["Category"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[1].label",
+      "values": ["COMMON.PRODUCT_CATEGORY"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[1].required",
+      "values": ["false"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[1].multiSelect",
+      "values": ["true"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[2].id",
+      "values": ["ProductStatus"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[2].label",
+      "values": ["COMPONENT.FILTERS.INVENTORY_STATUS"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[2].required",
+      "values": ["false"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[2].multiSelect",
+      "values": ["true"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[3].id",
+      "values": ["PlannerCode"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[3].label",
+      "values": ["COMMON.INVENTORY_PLANNER_CODE"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[3].required",
+      "values": ["false"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[3].multiSelect",
+      "values": ["true"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[4].id",
+      "values": ["Origin"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[4].label",
+      "values": ["COMPONENT.FILTERS.ORDER_ORIGIN"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[4].required",
+      "values": ["false"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[4].multiSelect",
+      "values": ["true"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[5].id",
+      "values": ["Destination"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[5].label",
+      "values": ["COMPONENT.FILTERS.ORDER_DESTINATION"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[5].required",
+      "values": ["false"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[5].multiSelect",
+      "values": ["true"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[6].id",
+      "values": ["Customer"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[6].label",
+      "values": ["COMMON.CUSTOMER"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[6].required",
+      "values": ["false"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[6].multiSelect",
+      "values": ["true"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[7].id",
+      "values": ["Carrier"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[7].label",
+      "values": ["COMMON.CARRIER"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[7].required",
+      "values": ["false"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[7].multiSelect",
+      "values": ["true"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[8].id",
+      "values": ["Supplier"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[8].label",
+      "values": ["COMMON.SUPPLIER"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[8].required",
+      "values": ["false"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.fields[8].multiSelect",
+      "values": ["true"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.title",
+      "values": ["COMPONENT.FILTERS.FILTER_TITLE"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.placeholders.search",
+      "values": ["COMPONENT.FILTERS.SEARCH_PLACE_HOLDER"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.placeholders.tags",
+      "values": ["COMPONENT.FILTERS.NO_TAGS_MESSAGE_DETAILED"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "filter.selections",
+      "values": ["{{inventory.appliedFilters}}"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": ["loadState", "refreshData"],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "filterSearched",
+      "values": ["inventory"],
+      "metaInformation": "stateScope"
+    },
+    {
+      "name": "filterChanged",
+      "values": ["inventory"],
+      "metaInformation": "stateScope"
+    },
+    {
+      "name": "filter.stateScope",
+      "values": ["inventory"],
+      "metaInformation": "filterOption"
+    },
+    {
+      "name": "inventory.searchText",
+      "values": ["refreshData"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "inventory.appliedFilters",
+      "values": ["refreshSavedState"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "configureState.buttonClicked",
+      "values": ["open"],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "inventory.appliedFilters",
+      "values": ["refreshOptions"],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{ \"errors\": \"{{#? this.errors}}\", \"data\": [ { \"totalCount\": \"{{this.data.PlannerCode.totalCount}}\", \"results\": { \"{{#each this.data.PlannerCode.edges}}\": { \"id\": \"{{this.object.id}}\", \"name\": \"{{this.object.name}}\" } } }, { \"totalCount\": \"{{this.data.ProductStatus.totalCount}}\", \"results\": { \"{{#each this.data.ProductStatus.edges}}\": { \"id\": \"{{this.object.id}}\", \"name\": \"{{this.object.name}}\" } } }, { \"totalCount\": \"{{this.data.Category.totalCount}}\", \"results\": { \"{{#each this.data.Category.edges}}\": { \"id\": \"{{this.object.id}}\", \"name\": \"{{this.object.name}}\" } } }, { \"totalCount\": \"{{this.data.Location.totalCount}}\", \"results\": { \"{{#each this.data.Location.edges}}\": { \"id\": \"{{this.object.id}}\", \"name\": \"{{this.object.name}}\" } } }, { \"totalCount\": \"{{this.data.LocationType.totalCount}}\", \"results\": { \"{{#each this.data.LocationType.edges}}\": { \"id\": \"{{this.object.id}}\", \"name\": \"{{this.object.name}}\" } } }, { \"totalCount\": \"{{this.data.Customer.totalCount}}\", \"results\": { \"{{#each this.data.Customer.edges}}\": { \"id\": \"{{this.object.id}}\", \"name\": \"{{this.object.name}}\" } } }, { \"totalCount\": \"{{this.data.Supplier.totalCount}}\", \"results\": { \"{{#each this.data.Supplier.edges}}\": { \"id\": \"{{this.object.id}}\", \"name\": \"{{this.object.name}}\" } } }, { \"totalCount\": \"{{this.data.Carrier.totalCount}}\", \"results\": { \"{{#each this.data.Carrier.edges}}\": { \"id\": \"{{this.object.id}}\", \"name\": \"{{this.object.name}}\" } } }, { \"totalCount\": \"{{this.data.Origin.totalCount}}\", \"results\": { \"{{#each this.data.Origin.edges}}\": { \"id\": \"{{this.object.id}}\", \"name\": \"{{this.object.name}}\" } } }, { \"totalCount\": \"{{this.data.Destination.totalCount}}\", \"results\": { \"{{#each this.data.Destination.edges}}\": { \"id\": \"{{this.object.id}}\", \"name\": \"{{this.object.name}}\" } } } ] }"
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [
+    {
+      "name": "chartType",
+      "values": ["filter"]
+    }
+  ],
+  "adminConfigurations": []
+}
