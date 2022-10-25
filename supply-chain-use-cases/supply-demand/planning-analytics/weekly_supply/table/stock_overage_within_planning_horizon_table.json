@@ -11,7 +11,7 @@
     "vendor": "IBM",
     "defaultLanguage": "en",
     "version": 8,
-    "description": {
+    "descriptions": {
         "en":{
             "name": "Stock Overage Within Planning Horizon",
             "language": "en",
