@@ -26,7 +26,7 @@
     {
       "name": "queries[0].fields",
       "values": [
-        "query Location( $tenantId: String!, $typeAheadFilter: BooleanExp = { CONSTANT_VALUE: true } ) { businessObjects(simpleFilter: {type: Location, tenantId: $tenantId}, advancedFilter: {AND: [$typeAheadFilter, {EQUALS: [{SELECT: \"locationType\", type: STRING}, {VALUE: \"OPERATIONS\", type: STRING}]}]}, hint: {viewId: \"graph\"}, cursorParams: {first: 50}) { totalCount pageInfo { hasNextPage } edges { cursor object { ... on Location { id name: locationName locationType } } } } }"
+        "query InventoryFilters($tenantId: String!, $typeAheadFilter: BooleanExp = {CONSTANT_VALUE: true}) { PlannerCode: searchStrings(simpleFilter: {type: Inventory, tenantId: $tenantId}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"matchedFields\", type: STRING}, {VALUE: \"plannerCode\", type: STRING}]}, $typeAheadFilter]}, cursorParams: {first: 5, sort: {fieldPath: \"matchingString\", order: ASC}}) { totalCount pageInfo { hasNextPage } edges {cursor object { id: matchingString name: matchingString } }} ProductStatus: searchStrings(simpleFilter: {type: Product, tenantId: $tenantId}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"matchedFields\", type: STRING}, {VALUE: \"status\", type: STRING}]}, $typeAheadFilter]}, cursorParams: {first: 5, sort: {fieldPath: \"matchingString\", order: ASC}}) { totalCount pageInfo { hasNextPage }edges { cursor object { id: matchingString name: matchingString }}} Category: searchStrings(simpleFilter: {type: Catalog, tenantId: $tenantId}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"matchedFields\", type: STRING}, {VALUE: \"name\", type: STRING}]}, $typeAheadFilter]}, cursorParams: {first: 5, sort: {fieldPath: \"matchingString\", order: ASC}}) { totalCount pageInfo { hasNextPage } edges { cursor object { id: matchingString name: matchingString }}} Customer: searchStrings(simpleFilter: {type: Organization, tenantId: $tenantId}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"orgType\", type: STRING}, {VALUE: \"CUSTOMER\", type: STRING}]}, $typeAheadFilter]}, cursorParams: {first: 5, sort: {fieldPath: \"matchingString\", order: ASC}}) { totalCount pageInfo { hasNextPage } edges { cursor object { id: matchingString name: matchingString }}} Supplier: searchStrings(simpleFilter: {type: Organization, tenantId: $tenantId}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"orgType\", type: STRING}, {VALUE: \"SUPPLIER\", type: STRING}]}, $typeAheadFilter]}, cursorParams: {first: 5, sort: {fieldPath: \"matchingString\", order: ASC}}) { totalCount pageInfo { hasNextPage }  edges { cursor object { id: matchingString name: matchingString } }} Carrier: searchStrings(simpleFilter: {type: Organization, tenantId: $tenantId}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"orgType\", type: STRING}, {VALUE: \"CARRIER\", type: STRING}]}, $typeAheadFilter]}, cursorParams: {first: 5, sort: {fieldPath: \"matchingString\", order: ASC}}) { totalCount pageInfo { hasNextPage } edges {cursor object { id: matchingString name: matchingString }}} Location: searchStrings(simpleFilter: {type: Location, tenantId: $tenantId}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"matchedFields\", type: STRING}, {VALUE: \"locationName\", type: STRING}]}, $typeAheadFilter]}, cursorParams: {first: 5, sort: {fieldPath: \"matchingString\", order: ASC}}) { totalCount pageInfo { hasNextPage } edges {cursor object { id: matchingString name: matchingString }}}\nLocationType: searchStrings(simpleFilter: {type: Location, tenantId: $tenantId}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"matchedFields\", type: STRING}, {VALUE: \"locationType\", type: STRING}]}, $typeAheadFilter]}, cursorParams: {first: 5, sort: {fieldPath: \"matchingString\", order: ASC}}) { totalCount pageInfo { hasNextPage } edges {cursor object { id: matchingString name: matchingString }}} Origin: searchStrings(simpleFilter: {type: Location, tenantId: $tenantId}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"locationType\", type: STRING}, {VALUE: \"SUPPLIER\", type: STRING}]}, $typeAheadFilter]}, cursorParams: {first: 5, sort: {fieldPath: \"matchingString\", order: ASC}}) { totalCount pageInfo { hasNextPage } edges {cursor object { id: matchingString name: matchingString }}} Destination: searchStrings(simpleFilter: {type: Location, tenantId: $tenantId}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"locationType\", type: STRING}, {VALUE: \"OPERATIONS\", type: STRING}]}, $typeAheadFilter]}, cursorParams: {first: 5, sort: {fieldPath: \"matchingString\", order: ASC}}) { totalCount pageInfo {hasNextPage } edges {cursor object { id: matchingString name: matchingString} } } InventoryType: searchStrings(simpleFilter: {type: Inventory, tenantId: $tenantId}, advancedFilter: {AND: [{EQUALS: [{SELECT: \"matchedFields\", type: STRING}, {VALUE: \"inventoryType\", type: STRING}]}, $typeAheadFilter]}, cursorParams: {first: 5, sort: {fieldPath: \"matchingString\", order: ASC}}) { totalCount pageInfo {hasNextPage}edges {cursor object {id: matchingString name: matchingString }}}}"
       ],
       "metaInformation": "infohub.fields"
     },
@@ -38,199 +38,7 @@
     {
       "name": "queries[0].variables.typeAheadFilter",
       "values": [
-        "{ \"CONTAINS\": [ {\"SELECT\": \"locationName\", \"type\": \"STRING\" }, { \"VALUE\": \"{{ inventory.searchText }}\", \"type\": \"STRING\" } ] }"
-      ],
-      "metaInformation": "infohub.variable.dynamicExpr"
-    },
-    {
-      "name": "queries[1].processor",
-      "values": ["EDGES"],
-      "metaInformation": "infohub.processor"
-    },
-    {
-      "name": "queries[1].fields",
-      "values": [
-        "query Category( $tenantId: String!, $typeAheadFilter: BooleanExp = { CONSTANT_VALUE: true } ) { businessObjects( simpleFilter: { type: Catalog, tenantId: $tenantId }, advancedFilter: { AND: [ { EQUALS: [ { type: STRING, SELECT: \"levelType\" }, { type: STRING, VALUE: \"CATEGORY\" } ] }, { EQUALS: [ { type: STRING, SELECT: \"catalogType\" }, { type: STRING, VALUE: \"PRODUCT\" } ] }, $typeAheadFilter ] }, hint: { viewId: \"graph\" }, cursorParams: { first: 50, sort: { fieldPath: \"name\", order: ASC } } ) { totalCount pageInfo { hasNextPage } edges { cursor object { ... on Catalog { id name } } } } }"
-      ],
-      "metaInformation": "infohub.fields"
-    },
-    {
-      "name": "queries[1].variables.tenantId",
-      "values": ["{{ tenantId }}"],
-      "metaInformation": "infohub.variable.dynamic"
-    },
-    {
-      "name": "queries[1].variables.typeAheadFilter",
-      "values": [
-        "{ \"CONTAINS\": [ {\"SELECT\": \"name\", \"type\": \"STRING\" }, { \"VALUE\": \"{{ inventory.searchText }}\", \"type\": \"STRING\" } ] }"
-      ],
-      "metaInformation": "infohub.variable.dynamicExpr"
-    },
-    {
-      "name": "queries[2].processor",
-      "values": ["EDGES"],
-      "metaInformation": "infohub.processor"
-    },
-    {
-      "name": "queries[2].fields",
-      "values": [
-        "query PlannerCode( $tenantId: String!, $typeAheadFilter: BooleanExp = { CONSTANT_VALUE: true } ) { businessObjects( simpleFilter: { type: Inventory, tenantId: $tenantId, fieldNameForDistinctValues: \"plannerCode\" }, advancedFilter: { AND: [ $typeAheadFilter ] }, hint: { viewId: \"graph\" }, cursorParams: { first: 50, sort: { fieldPath: \"plannerCode\", order: ASC } } ) { totalCount pageInfo { hasNextPage } edges { cursor object { ... on Inventory { id: plannerCode name: plannerCode } } } } }"
-      ],
-      "metaInformation": "infohub.fields"
-    },
-    {
-      "name": "queries[2].variables.tenantId",
-      "values": ["{{ tenantId }}"],
-      "metaInformation": "infohub.variable.dynamic"
-    },
-    {
-      "name": "queries[2].variables.typeAheadFilter",
-      "values": [
-        "{ \"CONTAINS\": [ {\"SELECT\": \"plannerCode\", \"type\": \"STRING\" }, { \"VALUE\": \"{{ inventory.searchText }}\", \"type\": \"STRING\" } ] }"
-      ],
-      "metaInformation": "infohub.variable.dynamicExpr"
-    },
-    {
-      "name": "queries[3].processor",
-      "values": ["EDGES"],
-      "metaInformation": "infohub.processor"
-    },
-    {
-      "name": "queries[3].fields",
-      "values": [
-        "query Customer( $tenantId: String!, $typeAheadFilter: BooleanExp = { CONSTANT_VALUE: true }, $sortBy: String = \"name\" ) { businessObjects( simpleFilter: { type: Organization, tenantId: $tenantId }, advancedFilter: { AND: [ $typeAheadFilter, { EQUALS: [ { SELECT: \"orgType\", type: STRING }, { VALUE: \"CUSTOMER\", type: STRING } ] } ] }, hint: { viewId: \"graph\" }, cursorParams: { first: 50, sort: {order: ASC, fieldPath: $sortBy } } ) { totalCount pageInfo { hasNextPage } edges { cursor object { ... on Organization { id name } } } } }"
-      ],
-      "metaInformation": "infohub.fields"
-    },
-    {
-      "name": "queries[3].variables.tenantId",
-      "values": ["{{ tenantId }}"],
-      "metaInformation": "infohub.variable.dynamic"
-    },
-    {
-      "name": "queries[3].variables.typeAheadFilter",
-      "values": [
-        "{ \"CONTAINS\": [ {\"SELECT\": \"name\", \"type\": \"STRING\" }, { \"VALUE\": \"{{ inventory.searchText }}\", \"type\": \"STRING\" } ] }"
-      ],
-      "metaInformation": "infohub.variable.dynamicExpr"
-    },
-    {
-      "name": "queries[4].processor",
-      "values": ["EDGES"],
-      "metaInformation": "infohub.processor"
-    },
-    {
-      "name": "queries[4].fields",
-      "values": [
-        "query ProductStatus( $tenantId: String!, $typeAheadFilter: BooleanExp = { CONSTANT_VALUE: true } ) { businessObjects( simpleFilter: { type: Product, tenantId: $tenantId, fieldNameForDistinctValues: \"status\" }, advancedFilter: { AND: [ { EQUALS: [ { type: STRING, SELECT: \"productType\" }, { type: STRING, VALUE: \"PRODUCT\" } ] }, $typeAheadFilter ] }, hint: { viewId: \"graph\" }, cursorParams: { first: 50, sort: { fieldPath: \"status\", order: ASC } } ) { totalCount pageInfo { hasNextPage endCursor } edges { cursor object { ... on Product { id: status name: status } } } } }"
-      ],
-      "metaInformation": "infohub.fields"
-    },
-    {
-      "name": "queries[4].variables.tenantId",
-      "values": ["{{ tenantId }}"],
-      "metaInformation": "infohub.variable.dynamic"
-    },
-    {
-      "name": "queries[4].variables.typeAheadFilter",
-      "values": [
-        "{ \"CONTAINS\": [ {\"SELECT\": \"status\", \"type\": \"STRING\" }, { \"VALUE\": \"{{ inventory.searchText }}\", \"type\": \"STRING\" } ] }"
-      ],
-      "metaInformation": "infohub.variable.dynamicExpr"
-    },
-    {
-      "name": "queries[5].processor",
-      "values": ["EDGES"],
-      "metaInformation": "infohub.processor"
-    },
-    {
-      "name": "queries[5].fields",
-      "values": [
-        "query Supplier( $tenantId: String!, $typeAheadFilter: BooleanExp = { CONSTANT_VALUE: true }, $sortBy: String = \"name\" ) { businessObjects( simpleFilter: { type: Organization, tenantId: $tenantId }, advancedFilter: { AND: [ $typeAheadFilter, { EQUALS: [ { SELECT: \"orgType\", type: STRING }, { VALUE: \"SUPPLIER\", type: STRING } ] } ] }, hint: { viewId: \"graph\" }, cursorParams: { first: 50, sort: { order: ASC, fieldPath: $sortBy } } ) { totalCount pageInfo { hasNextPage } edges { cursor object { ... on Organization { id name } } } } }"
-      ],
-      "metaInformation": "infohub.fields"
-    },
-    {
-      "name": "queries[5].variables.tenantId",
-      "values": ["{{ tenantId }}"],
-      "metaInformation": "infohub.variable.dynamic"
-    },
-    {
-      "name": "queries[5].variables.typeAheadFilter",
-      "values": [
-        "{ \"CONTAINS\": [ {\"SELECT\": \"name\", \"type\": \"STRING\" }, { \"VALUE\": \"{{ inventory.searchText }}\", \"type\": \"STRING\" } ] }"
-      ],
-      "metaInformation": "infohub.variable.dynamicExpr"
-    },
-    {
-      "name": "queries[6].processor",
-      "values": ["EDGES"],
-      "metaInformation": "infohub.processor"
-    },
-    {
-      "name": "queries[6].fields",
-      "values": [
-        "query Carrier( $tenantId: String!, $typeAheadFilter: BooleanExp = { CONSTANT_VALUE: true } , $sortBy: String = \"name\" ) { businessObjects(simpleFilter: { type: Organization, tenantId: $tenantId }, advancedFilter: { AND: [ $typeAheadFilter, { EQUALS: [ { SELECT: \"orgType\", type: STRING }, { VALUE: \"CARRIER\", type: STRING } ] } ] }, hint: { viewId: \"graph\" }, cursorParams: { first: 50, sort: { order: ASC, fieldPath: $sortBy } } ) { totalCount pageInfo { hasNextPage } edges { cursor object { ... on Organization { id name } } } } }"
-      ],
-      "metaInformation": "infohub.fields"
-    },
-    {
-      "name": "queries[6].variables.tenantId",
-      "values": ["{{ tenantId }}"],
-      "metaInformation": "infohub.variable.dynamic"
-    },
-    {
-      "name": "queries[6].variables.typeAheadFilter",
-      "values": [
-        "{ \"CONTAINS\": [ {\"SELECT\": \"name\", \"type\": \"STRING\" }, { \"VALUE\": \"{{ inventory.searchText }}\", \"type\": \"STRING\" } ] }"
-      ],
-      "metaInformation": "infohub.variable.dynamicExpr"
-    },
-    {
-      "name": "queries[7].processor",
-      "values": ["EDGES"],
-      "metaInformation": "infohub.processor"
-    },
-    {
-      "name": "queries[7].fields",
-      "values": [
-        "query Origin( $tenantId: String!, $typeAheadFilter: BooleanExp = { CONSTANT_VALUE: true }, $sortBy: String = \"locationName\") { businessObjects( simpleFilter: { type: Location, tenantId: $tenantId }, advancedFilter: {AND: [ $typeAheadFilter, { EQUALS: [ { SELECT: \"locationType\", type: STRING }, { VALUE: \"SUPPLIER\", type: STRING } ] } ] }, hint: { viewId: \"graph\" }, cursorParams: { first: 50, sort: { order: ASC, fieldPath: $sortBy } } ) { totalCount pageInfo { hasNextPage } edges { cursor object { ... on Location { id name: locationName } } } } }"
-      ],
-      "metaInformation": "infohub.fields"
-    },
-    {
-      "name": "queries[7].variables.tenantId",
-      "values": ["{{ tenantId }}"],
-      "metaInformation": "infohub.variable.dynamic"
-    },
-    {
-      "name": "queries[7].variables.typeAheadFilter",
-      "values": [
-        "{ \"CONTAINS\": [ {\"SELECT\": \"locationName\", \"type\": \"STRING\" }, { \"VALUE\": \"{{ inventory.searchText }}\", \"type\": \"STRING\" } ] }"
-      ],
-      "metaInformation": "infohub.variable.dynamicExpr"
-    },
-    {
-      "name": "queries[8].processor",
-      "values": ["EDGES"],
-      "metaInformation": "infohub.processor"
-    },
-    {
-      "name": "queries[8].fields",
-      "values": [
-        "query Destination( $tenantId: String!, $typeAheadFilter: BooleanExp = { CONSTANT_VALUE: true }, $sortBy: String = \"locationName\") { businessObjects( simpleFilter: { type: Location, tenantId: $tenantId }, advancedFilter: {AND: [ $typeAheadFilter, { EQUALS: [ { SELECT: \"locationType\", type: STRING }, { VALUE: \"OPERATIONS\", type: STRING } ] } ] }, hint: { viewId: \"graph\" }, cursorParams: { first: 50, sort: { order: ASC, fieldPath: $sortBy } } ) { totalCount pageInfo { hasNextPage } edges { cursor object { ... on Location { id name: locationName } } } } }"
-      ],
-      "metaInformation": "infohub.fields"
-    },
-    {
-      "name": "queries[8].variables.tenantId",
-      "values": ["{{ tenantId }}"],
-      "metaInformation": "infohub.variable.dynamic"
-    },
-    {
-      "name": "queries[8].variables.typeAheadFilter",
-      "values": [
-        "{ \"CONTAINS\": [ {\"SELECT\": \"locationName\", \"type\": \"STRING\" }, { \"VALUE\": \"{{ inventory.searchText }}\", \"type\": \"STRING\" } ] }"
+        "{ \"CONTAINS\": [ {\"SELECT\": \"matchingString\", \"type\": \"STRING\" }, { \"VALUE\": \"{{ inventory.searchText }}\", \"type\": \"STRING\" } ] }"
       ],
       "metaInformation": "infohub.variable.dynamicExpr"
     },
@@ -450,6 +258,11 @@
       "metaInformation": "stateScope"
     },
     {
+      "name": "filter.stateScope",
+      "values": ["inventory"],
+      "metaInformation": "filterOption"
+    },
+    {
       "name": "inventory.searchText",
       "values": ["refreshData"],
       "metaInformation": "stateSubscription"
@@ -468,19 +281,19 @@
       "name": "inventory.appliedFilters",
       "values": ["refreshOptions"],
       "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{ \"errors\": \"{{#? this.errors}}\", \"data\": [ { \"totalCount\": \"{{this.data.PlannerCode.totalCount}}\", \"results\": { \"{{#each this.data.PlannerCode.edges}}\": { \"id\": \"{{this.object.id}}\", \"name\": \"{{this.object.name}}\" } } }, { \"totalCount\": \"{{this.data.ProductStatus.totalCount}}\", \"results\": { \"{{#each this.data.ProductStatus.edges}}\": { \"id\": \"{{this.object.id}}\", \"name\": \"{{this.object.name}}\" } } }, { \"totalCount\": \"{{this.data.Category.totalCount}}\", \"results\": { \"{{#each this.data.Category.edges}}\": { \"id\": \"{{this.object.id}}\", \"name\": \"{{this.object.name}}\" } } }, { \"totalCount\": \"{{this.data.Location.totalCount}}\", \"results\": { \"{{#each this.data.Location.edges}}\": { \"id\": \"{{this.object.id}}\", \"name\": \"{{this.object.name}}\" } } }, { \"totalCount\": \"{{this.data.LocationType.totalCount}}\", \"results\": { \"{{#each this.data.LocationType.edges}}\": { \"id\": \"{{this.object.id}}\", \"name\": \"{{this.object.name}}\" } } }, { \"totalCount\": \"{{this.data.Customer.totalCount}}\", \"results\": { \"{{#each this.data.Customer.edges}}\": { \"id\": \"{{this.object.id}}\", \"name\": \"{{this.object.name}}\" } } }, { \"totalCount\": \"{{this.data.Supplier.totalCount}}\", \"results\": { \"{{#each this.data.Supplier.edges}}\": { \"id\": \"{{this.object.id}}\", \"name\": \"{{this.object.name}}\" } } }, { \"totalCount\": \"{{this.data.Carrier.totalCount}}\", \"results\": { \"{{#each this.data.Carrier.edges}}\": { \"id\": \"{{this.object.id}}\", \"name\": \"{{this.object.name}}\" } } }, { \"totalCount\": \"{{this.data.Origin.totalCount}}\", \"results\": { \"{{#each this.data.Origin.edges}}\": { \"id\": \"{{this.object.id}}\", \"name\": \"{{this.object.name}}\" } } }, { \"totalCount\": \"{{this.data.Destination.totalCount}}\", \"results\": { \"{{#each this.data.Destination.edges}}\": { \"id\": \"{{this.object.id}}\", \"name\": \"{{this.object.name}}\" } } } ] }"
+      ],
+      "metaInformation": "widgetOption"
     }
   ],
   "userConfigurations": [
     {
       "name": "chartType",
-      "values": ["filter"],
-      "descriptions": {
-        "en": {
-          "name": "Select a visual to display the data",
-          "language": "en",
-          "description": "The type of visual display"
-        }
-      }
+      "values": ["filter"]
     }
   ],
   "adminConfigurations": []
