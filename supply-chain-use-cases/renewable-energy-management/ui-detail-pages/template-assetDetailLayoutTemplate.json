@@ -288,7 +288,7 @@
       "name": "accordions[0].title",
       "metaInformation": "layoutOption",
       "values": [
-        "Overview"
+        "COMMON.OVERVIEW"
       ]
     },
     {
@@ -309,7 +309,7 @@
       "name": "accordions[1].title",
       "metaInformation": "layoutOption",
       "values": [
-        "Metrics in days"
+        "COMMON.METRICS_IN_DAYS"
       ]
     },
     {
@@ -330,7 +330,7 @@
       "name": "accordions[2].title",
       "metaInformation": "layoutOption",
       "values": [
-        "Metrics in hours"
+        "COMMON.METRICS_IN_HOURS"
       ]
     },
     {
@@ -351,7 +351,7 @@
       "name": "accordions[3].title",
       "metaInformation": "layoutOption",
       "values": [
-        "Locations"
+        "COMMON.LOCATIONS"
       ]
     },
     {
@@ -372,7 +372,7 @@
       "name": "breadcrumbList",
       "metaInformation": "layoutOption",
       "values": [
-        "{\"label\": \"Asset detail\", \"routeName\": \"/template/DEFAULT_ASSET_DETAIL_LAYOUT_TEMPLATE\"}"
+        "{\"label\": \"COMMON.ASSET_DETAIL\", \"routeName\": \"/template/DEFAULT_ASSET_DETAIL_LAYOUT_TEMPLATE\"}"
       ]
     },
     {
@@ -392,14 +392,14 @@
       "name": "state.empty.title",
       "metaInformation": "layoutOption",
       "values": [
-        "No data"
+        "COMMON.EMPTY_TITLE"
       ]
     },
     {
       "name": "state.empty.body",
       "metaInformation": "layoutOption",
       "values": [
-        "There is no data to display"
+        "COMMON.EMPTY_BODY"
       ]
     },
     {
@@ -413,7 +413,7 @@
       "name": "state.empty.link.label",
       "metaInformation": "layoutOption",
       "values": [
-        "Learn more"
+        "COMMON.EMPTY_LINK_LABEL"
       ]
     },
     {

@@ -45,7 +45,7 @@
     {
       "name": "breadcrumbList",
       "values": [
-        "{\"label\": \"View all assets\", \"routeName\": \"/template/VIEW_ALL_ASSETS_LAYOUT_TEMPLATE\"}"
+        "{\"label\": \"COMMON.VIEW_ALL\", \"routeName\": \"/template/VIEW_ALL_ASSETS_LAYOUT_TEMPLATE\"}"
       ],
       "metaInformation": "layoutOption"
     },
