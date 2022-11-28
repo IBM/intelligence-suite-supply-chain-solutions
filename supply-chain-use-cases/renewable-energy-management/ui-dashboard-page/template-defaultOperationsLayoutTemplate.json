@@ -176,14 +176,9 @@
     }
   ],
   "defaultLanguage": "en",
-  "description": {
-    "name": "Operations",
-    "language": "en",
-    "description": "Operations"
-  },
   "descriptions": {
     "en": {
-      "name": "Operations",
+      "name": "COMMON.OPERATIONS",
       "language": "en",
       "description": "Operations"
     }

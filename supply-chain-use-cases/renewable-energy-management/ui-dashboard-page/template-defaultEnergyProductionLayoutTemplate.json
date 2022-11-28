@@ -242,14 +242,9 @@
     }
   ],
   "defaultLanguage": "en",
-  "description": {
-    "name": "Energy",
-    "language": "en",
-    "description": "Energy"
-  },
   "descriptions": {
     "en": {
-      "name": "Energy",
+      "name": "COMMON.ENERGY",
       "language": "en",
       "description": "Energy"
     }
@@ -291,38 +286,28 @@
     },
     {
       "name": "state.empty.title",
-      "metaInformation": "layoutOption",
-      "values": [
-        "No data"
-      ]
+      "values": ["COMMON.EMPTY_TITLE"],
+      "metaInformation": "layoutOption"
     },
     {
       "name": "state.empty.body",
       "metaInformation": "layoutOption",
-      "values": [
-        "There is no data to display"
-      ]
+      "values": ["COMMON.EMPTY_BODY"]
     },
     {
       "name": "state.empty.image",
       "metaInformation": "layoutOption",
-      "values": [
-        "dataEmpty"
-      ]
+      "values": ["dataEmpty"]
     },
     {
       "name": "state.empty.link.label",
-      "metaInformation": "layoutOption",
-      "values": [
-        "Learn more"
-      ]
+      "values": ["COMMON.EMPTY_LINK_LABEL"],
+      "metaInformation": "layoutOption"
     },
     {
       "name": "state.empty.link.href.type",
-      "metaInformation": "layoutOption",
-      "values": [
-        "NEW_WINDOW"
-      ]
+      "values": ["NEW_WINDOW"],
+      "metaInformation": "layoutOption"
     },
     {
       "name": "state.empty.link.href.path",
