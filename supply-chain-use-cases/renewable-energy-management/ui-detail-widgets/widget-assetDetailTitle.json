@@ -27,7 +27,7 @@
     {
       "name": "title.label",
       "values": [
-        "Asset ID {{assetIdentifier}} - {{locationIdentifier}}"
+        "COMMON.ASSET_TITLE"
       ],
       "metaInformation": "widgetOption"
     },

@@ -46,14 +46,14 @@
     {
       "name": "header.title",
       "values": [
-        "Past 48 hours"
+        "COMMON.PAST_48_HOURS"
       ],
       "metaInformation": "widgetOption"
     },
     {
       "name": "header.tooltip",
       "values": [
-        "Power production actual and forecast data for the past 48 hours"
+        "COMMON.POWER_PRODUCTION_ACTUAL_AND_FORECAST_PAST_48"
       ],
       "metaInformation": "widgetOption"
     },
@@ -95,7 +95,7 @@
     {
       "name": "chart.options.axes.left.title",
       "values": [
-        "Total energy (MW)"
+        "COMMON.TOTAL_ENERGY_MW"
       ],
       "metaInformation": "widgetOption"
     },

@@ -46,14 +46,14 @@
     {
       "name": "header.title",
       "values": [
-        "Past 30 days"
+        "COMMON.PAST_30_DAYS"
       ],
       "metaInformation": "widgetOption"
     },
     {
       "name": "header.tooltip",
       "values": [
-        "Power production for the past 30 days"
+        "COMMON.POWER_PRODUCTION_PAST_30_DAYS"
       ],
       "metaInformation": "widgetOption"
     },
@@ -95,7 +95,7 @@
     {
       "name": "chart.options.axes.left.title",
       "values": [
-        "Total energy (MW)"
+        "COMMON.TOTAL_ENERGY_MW"
       ],
       "metaInformation": "widgetOption"
     },

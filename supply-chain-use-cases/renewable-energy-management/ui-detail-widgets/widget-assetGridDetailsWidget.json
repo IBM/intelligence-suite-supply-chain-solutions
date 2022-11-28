@@ -96,7 +96,7 @@
     {
       "name": "item[0].title",
       "values": [
-        "Asset identifier"
+        "COMMON.ASSET_ID"
       ],
       "metaInformation": "gridOption"
     },
@@ -110,7 +110,7 @@
     {
       "name": "item[1].title",
       "values": [
-        "Current location coordinates"
+        "COMMON.CURRENT_LOCATION_COORDINATES"
       ],
       "metaInformation": "gridOption"
     },
@@ -124,7 +124,7 @@
     {
       "name": "item[2].title",
       "values": [
-        "Name"
+        "COMMON.NAME"
       ],
       "metaInformation": "gridOption"
     },
@@ -138,7 +138,7 @@
     {
       "name": "item[3].title",
       "values": [
-        "Product ID"
+        "COMMON.PRODUCT_ID"
       ],
       "metaInformation": "gridOption"
     },
@@ -152,7 +152,7 @@
     {
       "name": "item[4].title",
       "values": [
-        "Status"
+        "COMMON.STATUS"
       ],
       "metaInformation": "gridOption"
     },
@@ -166,7 +166,7 @@
     {
       "name": "item[5].title",
       "values": [
-        "Wind"
+        "COMMON.WIND"
       ],
       "metaInformation": "gridOption"
     },
@@ -180,7 +180,7 @@
     {
       "name": "item[6].title",
       "values": [
-        "Wind units"
+        "COMMON.WIND_UNITS"
       ],
       "metaInformation": "gridOption"
     },
@@ -194,7 +194,7 @@
     {
       "name": "item[7].title",
       "values": [
-        "Location Identifier"
+        "COMMON.LOCATION_ID"
       ],
       "metaInformation": "gridOption"
     },
@@ -208,7 +208,7 @@
     {
       "name": "item[8].title",
       "values": [
-        "Location name"
+        "COMMON.LOCATION_NAME"
       ],
       "metaInformation": "gridOption"
     },
@@ -222,7 +222,7 @@
     {
       "name": "item[9].title",
       "values": [
-        "Asset type"
+        "COMMON.ASSET_TYPE"
       ],
       "metaInformation": "gridOption"
     },
@@ -236,7 +236,7 @@
     {
       "name": "item[10].title",
       "values": [
-        "Energy"
+        "COMMON.ENERGY"
       ],
       "metaInformation": "gridOption"
     },
@@ -250,7 +250,7 @@
     {
       "name": "item[11].title",
       "values": [
-        "Energy units"
+        "COMMON.ENERGY_UNITS"
       ],
       "metaInformation": "gridOption"
     },
@@ -264,7 +264,7 @@
     {
       "name": "item[12].title",
       "values": [
-        "Current wind"
+        "COMMON.CURRENT_WIND"
       ],
       "metaInformation": "gridOption"
     },
@@ -278,7 +278,7 @@
     {
       "name": "item[13].title",
       "values": [
-        "Location link"
+        "COMMON.LOCATION_LINK"
       ],
       "metaInformation": "gridOption"
     },
@@ -313,7 +313,7 @@
     {
       "name": "item[14].title",
       "values": [
-        "Product height"
+        "COMMON.PRODUCT_HEIGHT"
       ],
       "metaInformation": "gridOption"
     },
@@ -327,7 +327,7 @@
     {
       "name": "item[15].title",
       "values": [
-        "Product diameter"
+        "COMMON.PRODUCT_DIAMETER"
       ],
       "metaInformation": "gridOption"
     },

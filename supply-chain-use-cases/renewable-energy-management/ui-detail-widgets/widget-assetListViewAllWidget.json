@@ -46,14 +46,7 @@
     {
       "name": "header.title",
       "values": [
-        "Assets"
-      ],
-      "metaInformation": "widgetOption"
-    },
-    {
-      "name": "header.tooltip",
-      "values": [
-        "Inspections tooltip."
+        "COMMON.ASSETS"
       ],
       "metaInformation": "widgetOption"
     },
@@ -214,7 +207,7 @@
     {
       "name": "columns[0].header.label",
       "values": [
-        "Asset ID"
+        "COMMON.ASSET_ID"
       ],
       "metaInformation": "tableColumn"
     },
@@ -270,7 +263,7 @@
     {
       "name": "columns[1].header.label",
       "values": [
-        "Product ID"
+        "COMMON.PRODUCT_ID"
       ],
       "metaInformation": "tableColumn"
     },
@@ -305,7 +298,7 @@
     {
       "name": "columns[2].header.label",
       "values": [
-        "Asset type"
+        "COMMON.ASSET_TYPE"
       ],
       "metaInformation": "tableColumn"
     },
@@ -340,7 +333,7 @@
     {
       "name": "columns[3].header.label",
       "values": [
-        "Wind"
+        "COMMON.WIND"
       ],
       "metaInformation": "tableColumn"
     },
@@ -375,7 +368,7 @@
     {
       "name": "columns[4].header.label",
       "values": [
-        "Wind Units"
+        "COMMON.WIND_UNITS"
       ],
       "metaInformation": "tableColumn"
     },
@@ -410,7 +403,7 @@
     {
       "name": "columns[5].header.label",
       "values": [
-        "Energy"
+        "COMMON.ENERGY"
       ],
       "metaInformation": "tableColumn"
     },
@@ -445,7 +438,7 @@
     {
       "name": "columns[6].header.label",
       "values": [
-        "Energy units"
+        "COMMON.ENERGY_UNITS"
       ],
       "metaInformation": "tableColumn"
     },
@@ -480,7 +473,7 @@
     {
       "name": "columns[7].header.label",
       "values": [
-        "Wind upper limit"
+        "COMMON.WIND_UPPER_LIMIT"
       ],
       "metaInformation": "tableColumn"
     },
@@ -515,7 +508,7 @@
     {
       "name": "columns[8].header.label",
       "values": [
-        "Wind lower limit"
+        "COMMON.WIND_LOWER_LIMIT"
       ],
       "metaInformation": "tableColumn"
     },
@@ -550,7 +543,7 @@
     {
       "name": "columns[9].header.label",
       "values": [
-        "Status"
+        "COMMON.STATUS"
       ],
       "metaInformation": "tableColumn"
     },
@@ -585,7 +578,7 @@
     {
       "name": "columns[10].header.label",
       "values": [
-        "Current location coordinates"
+        "COMMON.CURRENT_LOCATION_COORDINATES"
       ],
       "metaInformation": "tableColumn"
     },
@@ -620,21 +613,21 @@
     {
       "name": "state.empty.title",
       "values": [
-        "No data"
+        "COMMON.EMPTY_TITLE"
       ],
       "metaInformation": "widgetOption"
     },
     {
       "name": "state.empty.body",
       "values": [
-        "There is no business data to display"
+        "COMMON.EMPTY_BODY"
       ],
       "metaInformation": "widgetOption"
     },
     {
       "name": "state.empty.link.label",
       "values": [
-        "Learn more"
+        "COMMON.EMPTY_LINK_LABEL"
       ],
       "metaInformation": "widgetOption"
     },

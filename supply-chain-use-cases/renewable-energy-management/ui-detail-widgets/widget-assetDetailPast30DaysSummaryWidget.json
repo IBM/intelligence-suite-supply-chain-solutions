@@ -32,7 +32,7 @@
     {
       "name": "header.title",
       "values": [
-        "Past 30 days"
+        "COMMON.PAST_30_DAYS"
       ],
       "metaInformation": "widgetOption"
     },
@@ -108,21 +108,21 @@
     {
       "name": "items[0].heading.label",
       "values": [
-        "Actual energy produced"
+        "COMMON.ACTUAL_ENERGY_PRODUCED"
       ],
       "metaInformation": "gridOption"
     },
     {
       "name": "items[0].heading.tooltip",
       "values": [
-        "Actual energy produced"
+        "COMMON.ACTUAL_ENERGY_PRODUCED"
       ],
       "metaInformation": "gridOption"
     },
     {
       "name": "items[0].units.label",
       "values": [
-        "MW"
+        "COMMON.MW"
       ],
       "metaInformation": "gridOption"
     },
@@ -150,21 +150,21 @@
     {
       "name": "items[1].heading.label",
       "values": [
-        "Energy forecast"
+        "COMMON.ENERGY_FORECAST"
       ],
       "metaInformation": "gridOption"
     },
     {
       "name": "items[1].heading.tooltip",
       "values": [
-        "Energy forecast"
+        "COMMON.ENERGY_FORECAST"
       ],
       "metaInformation": "gridOption"
     },
     {
       "name": "items[1].units.label",
       "values": [
-        "MW"
+        "COMMON.MW"
       ],
       "metaInformation": "gridOption"
     },

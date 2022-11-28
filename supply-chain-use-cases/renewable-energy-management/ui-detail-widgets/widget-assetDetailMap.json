@@ -150,7 +150,7 @@
     {
       "name": "dataStreamsOptions[0].label",
       "values": [
-        "All asset locations"
+        "COMMON.ALL_ASSET_LOCATIONS"
       ],
       "metaInformation": "widgetOption"
     },
@@ -185,7 +185,7 @@
     {
       "name": "dataStreamsOptions[1].label",
       "values": [
-        "This asset location"
+        "COMMON.THIS_ASSET_LOCATION"
       ],
       "metaInformation": "widgetOption"
     },

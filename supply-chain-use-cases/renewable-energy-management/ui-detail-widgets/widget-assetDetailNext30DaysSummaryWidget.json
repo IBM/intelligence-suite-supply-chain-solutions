@@ -32,7 +32,7 @@
     {
       "name": "header.title",
       "values": [
-        "Next 30 days"
+        "COMMON.NEXT_30_DAYS"
       ],
       "metaInformation": "widgetOption"
     },
@@ -164,21 +164,21 @@
     {
       "name": "items[0].heading.label",
       "values": [
-        "Average wind forecast"
+        "COMMON.AVERAGE_WIND_FORECAST"
       ],
       "metaInformation": "gridOption"
     },
     {
       "name": "items[0].heading.tooltip",
       "values": [
-        "Average wind forecast"
+        "COMMON.AVERAGE_WIND_FORECAST"
       ],
       "metaInformation": "gridOption"
     },
     {
       "name": "items[0].units.label",
       "values": [
-        "m/s"
+        "COMMON.METERS_PER_SEC"
       ],
       "metaInformation": "gridOption"
     },
@@ -206,21 +206,21 @@
     {
       "name": "items[1].heading.label",
       "values": [
-        "Energy forecast (v2)"
+        "COMMON.ENERGY_FORECAST"
       ],
       "metaInformation": "gridOption"
     },
     {
       "name": "items[1].heading.tooltip",
       "values": [
-        "Energy forecast (v2)"
+        "COMMON.ENERGY_FORECAST"
       ],
       "metaInformation": "gridOption"
     },
     {
       "name": "items[1].units.label",
       "values": [
-        "MW"
+        "COMMON.MW"
       ],
       "metaInformation": "gridOption"
     },
