@@ -1,0 +1,61 @@
+{
+  "offeringId": "SCO",
+  "id": "windDashboardActiveFiltersWidget",
+  "state": "ACTIVE",
+  "identifier": "windDashboardActiveFiltersWidget",
+  "type": "Dashboard_Widget",
+  "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "description": {
+    "name": "Wind Dashboard Active Filters",
+    "language": "en",
+    "description": "Filter dashboard active content."
+  },
+  "descriptions": {
+    "en": {
+      "name": "Wind Dashboard Active Filters",
+      "language": "en",
+      "description": "Filter dashboard active content."
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "data.service",
+      "values": [
+        "uihub"
+      ]
+    },
+    {
+      "name": "data.scope",
+      "values": [
+        "wind.appliedFilters"
+      ]
+    },
+    {
+      "name": "filterChanged",
+      "values": [
+        "wind"
+      ],
+      "metaInformation": "stateScope"
+    },
+    {
+      "name": "wind.appliedFilters",
+      "values": [
+        "refreshData"
+      ],
+      "metaInformation": "stateSubscription"
+    }
+  ],
+  "userConfigurations": [
+    {
+      "name": "chartType",
+      "values": [
+        "active_filters"
+      ]
+    }
+  ],
+  "adminConfigurations": []
+}

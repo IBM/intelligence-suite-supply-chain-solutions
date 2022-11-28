@@ -1,0 +1,405 @@
+{
+  "offeringId": "SCO",
+  "id": "plantLocationGridDetailsWidget",
+  "state": "ACTIVE",
+  "identifier": "plantLocationGridDetailsWidget",
+  "type": "Dashboard_Widget",
+  "tenantId": "4f5e6153-5247-4a4d-9abe-63cbe92d896f",
+  "path": "/api",
+  "vendor": "IBM",
+  "defaultLanguage": "en",
+  "version": 1,
+  "description": {
+    "name": "Plant Info",
+    "language": "en",
+    "description": "Plant Info"
+  },
+  "descriptions": {
+    "en": {
+      "name": "Plant Info",
+      "language": "en",
+      "description": "Plant Info"
+    }
+  },
+  "devConfigurations": [
+    {
+      "name": "resizeToContent",
+      "values": [
+        "true"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "data.service",
+      "values": [
+        "infohub"
+      ]
+    },
+    {
+      "name": "queries[0].fields",
+      "values": [
+        "query PlantLocation($tenantId: String!, $locationFilter: BooleanExp = {CONSTANT_VALUE: true}, $locationStateFilter: BooleanExp = {CONSTANT_VALUE: true}, $locationIdentifierFilter: BooleanExp = {CONSTANT_VALUE: true}) { businessObjects( simpleFilter: {type: Location, tenantId: $tenantId} advancedFilter: { AND: [ $locationFilter, $locationStateFilter, $locationIdentifierFilter ]}, hint: {viewId: \"graph\"} cursorParams: {first: 1} ) { totalCount pageInfo { hasNextPage  } edges { cursor object { ... on Location { id locationName locationIdentifier geo city stateProvince country coordinates sourceLink locationType }}}}}"
+      ],
+      "metaInformation": "infohub.fields"
+    },
+    {
+      "name": "queries[0].variables.tenantId",
+      "values": [
+        "{{ tenantId }}"
+      ],
+      "metaInformation": "infohub.variable.dynamic"
+    },
+    {
+      "name": "queries[0].variables.locationFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"id\", \"type\": \"STRING\" }, { \"VALUES\": {{ plant.appliedFilters.LocationName.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.locationIdentifierFilter",
+      "values": [
+        "{ \"CONTAINS\": [ {\"SELECT\": \"locationIdentifier\", \"type\": \"STRING\" }, { \"VALUES\": {{ plant.appliedFilters.LocationIdentifier.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "queries[0].variables.locationStateFilter",
+      "values": [
+        "{ \"EQUALS_ANY\": [ {\"SELECT\": \"stateProvince\", \"type\": \"STRING\" }, { \"VALUES\": {{ plant.appliedFilters.LocationState.ids }}, \"type\": \"STRING\" } ] }"
+      ],
+      "metaInformation": "infohub.variable.dynamicExpr"
+    },
+    {
+      "name": "plant.appliedFilters",
+      "values": [
+        "refreshData"
+      ],
+      "metaInformation": "stateSubscription"
+    },
+    {
+      "name": "draggable",
+      "values": [
+        "false"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "direction",
+      "values": [
+        "vertical"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "valueOption",
+      "values": [
+        "vertical"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "verticalScroll.enable",
+      "values": [
+        "true"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[0].title",
+      "values": [
+        "Location name"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[0].name",
+      "values": [
+        "locationName"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[1].title",
+      "values": [
+        "Location identifier"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[1].name",
+      "values": [
+        "locationIdentifier"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[2].title",
+      "values": [
+        "City"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[2].name",
+      "values": [
+        "city"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[3].title",
+      "values": [
+        "State/Province"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[3].name",
+      "values": [
+        "stateProvince"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[4].title",
+      "values": [
+        "Country"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[4].name",
+      "values": [
+        "country"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[5].title",
+      "values": [
+        "Geo"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[5].name",
+      "values": [
+        "geo"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[6].title",
+      "values": [
+        "Current conditions"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[6].name",
+      "values": [
+        "sourceLink"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[6].label",
+      "values": [
+        "View in Weather Dashboard"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[6].customTemplate",
+      "values": [
+        "linkTpl"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[6].linkType",
+      "values": [
+        "NEW_WINDOW"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[6].linkPath",
+      "values": [
+        "sourceLink"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[7].title",
+      "values": [
+        "Past 7 day Min"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[7].name",
+      "values": [
+        "customAttributes.pastWeekMinFloat"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[8].title",
+      "values": [
+        "Past 7 day Average"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[8].name",
+      "values": [
+        "customAttributes.pastWeekAverageFloat"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[9].title",
+      "values": [
+        "Past 7 day Max"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[9].name",
+      "values": [
+        "customAttributes.pastWeekMaxFloat"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[10].title",
+      "values": [
+        "Next 7 day Min"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[10].name",
+      "values": [
+        "customAttributes.nextWeekMinFloat"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[11].title",
+      "values": [
+        "Next 7 day average"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[11].name",
+      "values": [
+        "customAttributes.nextWeekAverageFloat"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[12].title",
+      "values": [
+        "Next 7 day Max"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[12].name",
+      "values": [
+        "customAttributes.nextWeekMaxFloat"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[13].title",
+      "values": [
+        "Over-performing assets"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[13].name",
+      "values": [
+        "customAttributes.overPerformingAssetsInt"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[14].title",
+      "values": [
+        "Under-performing assets"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "item[14].name",
+      "values": [
+        "customAttributes.underPerformingAssetsInt"
+      ],
+      "metaInformation": "gridOption"
+    },
+    {
+      "name": "widgetInitialized",
+      "values": [
+        "refreshData"
+      ],
+      "metaInformation": "eventSubscription"
+    },
+    {
+      "name": "state.empty.title",
+      "values": [
+        "No Data"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.body",
+      "values": [
+        "There is no business data to display"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.label",
+      "values": [
+        "Learn more"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.type",
+      "values": [
+        "NEW_WINDOW"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "state.empty.link.href.path",
+      "values": [
+        "https://www.ibm.com/docs/en/sscis?topic=troubleshooting-no-data-display"
+      ],
+      "metaInformation": "widgetOption"
+    },
+    {
+      "name": "transformation",
+      "values": [
+        "{ \"errors\": \"{{#?this.errors}}\", \"pageInfo\": \"{{this.data.businessObjects.pageInfo}}\", \"totalCount\": \"{{this.data.businessObjects.totalCount}}\", \"results\": { \"{{#each this.data.businessObjects.edges}}\": { \"cursor\": \"{{this.cursor}}\", \"locationName\": \"{{this.object.locationName}}\", \"locationIdentifier\": \"{{this.object.locationIdentifier}}\", \"id\": \"{{this.object.id}}\", \"city\": \"{{this.object.city}}\", \"stateProvince\": \"{{this.object.stateProvince}}\", \"country\": \"{{this.object.country}}\", \"locationType\": \"{{this.object.locationType}}\", \"customAttributes\": \"{{this.object.customAttributes}}\", \"coordinates\": \"{{this.object.coordinates}}\", \"geo\": \"{{this.object.geo}}\", \"locationType\": \"{{this.object.locationType}}\", \"sourceLink\": \"{{this.object.sourceLink}}\", \"customAttributes\": \"{{this.object.customAttributes}}\" } } } "
+      ],
+      "metaInformation": "widgetOption"
+    }
+  ],
+  "userConfigurations": [
+    {
+      "name": "chartType",
+      "values": [
+        "grid_details"
+      ]
+    }
+  ],
+  "adminConfigurations": []
+}
