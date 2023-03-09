@@ -167,13 +167,6 @@
             "metaInformation": "widgetOption"
         },
         {
-            "name": "mapProvider",
-            "values": [
-                "openStreetMap"
-            ],
-            "metaInformation": "widgetOption"
-        },
-        {
             "name": "mapControl.zoom",
             "values": [
                 "true"
