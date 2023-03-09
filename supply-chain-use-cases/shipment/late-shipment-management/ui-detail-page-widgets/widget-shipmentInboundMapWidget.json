@@ -50,11 +50,6 @@
       "metaInformation": "infohub.variable.dynamic"
     },
     {
-      "name": "mapProvider",
-      "values": ["openStreetMap"],
-      "metaInformation": "widgetOption"
-    },
-    {
       "name": "mapControl.zoom",
       "values": ["true"],
       "metaInformation": "widgetOption"
